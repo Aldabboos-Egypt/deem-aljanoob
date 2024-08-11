@@ -1,0 +1,93 @@
+<odoo>
+    <data>
+        <!--Reservation Status-->
+        <!--<record id="housemaid_applicant_reservations_1" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=35)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_1"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1200</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_reservations_2" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=8)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_2"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1000</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_reservations_3" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="(datetime.now())"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_3"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">850</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+
+
+        <!--&lt;!&ndash;visa Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_reservations_4" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=15)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_4"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1250</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_reservations_5" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=16)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_5"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1300</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+
+        <!--&lt;!&ndash;Expected Arrival Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_reservations_6" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=10)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_6"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1100</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_reservations_7" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=9)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_7"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">950</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+
+        <!--&lt;!&ndash; Arrival Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_reservations_8" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=6)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_8"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1100</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_reservations_9" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=5)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_9"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">950</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+
+        <!--&lt;!&ndash; deliver Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_reservations_10" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=4)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_10"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1150</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_reservations_14" model="housemaidsystem.applicant.reservations">-->
+            <!--<field name="reservation_date" eval="datetime.now()-timedelta(days=3)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_11"/>-->
+            <!--<field name="sales_man" ref="base.user_root"/>-->
+            <!--<field name="deal_amount">1300</field>-->
+            <!--<field name="customer_id" ref="base.res_partner_1"/>-->
+        <!--</record>-->
+
+    </data>
+
+</odoo>

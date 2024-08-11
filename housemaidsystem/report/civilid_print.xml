@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="civilid_layout">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-raw="0"/>
+        </div>
+    </template>
+
+    <template id="civilid_print">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="housemaidsystem.civilid_layout">
+
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col-10">
+                            <div class="card" style="width: 100%;border: 2px solid grey;">
+                                <div class="card-header">
+
+                                    <!-- First Row -->
+                                    <div class="row">
+                                        <div class="col-6 text-left">
+                                            <span style="font-family:Simplified Arabic;font-size: 18px;">
+                                                <b>
+                                                    STATE OF KUWAIT
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <span style="font-family:Simplified Arabic;font-size: 18px;">
+                                                <b>CIVIL IDENTITY CARD</b>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <!-- Second Row:  Civil I.D-->
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <span style="font-family:Simplified Arabic;font-size: 16px;">
+                                                <b>
+                                                    <u>
+                                                        Civil I.D. No.:<span t-field="o.customer_civil_id"/>
+                                                    </u>
+                                                </b>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Third Row:  Name -->
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Name
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-8">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_name"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fourth Row:  Nationality -->
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Nationality
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-8">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_nationality"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fourth Row:  DB -->
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Date of Birth
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-8">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_date_birth"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fifth Row:  Sex -->
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Sex
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-8">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_gender"/>
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Sixth Row:  Civil I.D Expiry -->
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Civil I.D. Expires on
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-8">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_date_birth"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-1">
+                        </div>
+                        <div class="col-10">
+                            <div class="card" style="width: 100%;border: 2px solid grey;">
+                                <div class="card-body">
+
+                                    <!-- First Row -->
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <span style="font-family:Simplified Arabic;font-size: 16px;">
+                                                <b>
+                                                    <u>
+                                                        Holder of Civil I.D. No.:<span t-field="o.customer_civil_id"/>
+                                                    </u>
+                                                </b>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Second Row -->
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <span style="font-family:Simplified Arabic;font-size: 16px;">
+                                                <b>
+                                                    Nationality No.:<span t-field="o.customer_nationality_no"/>
+                                                </b>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Third Row -->
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Address
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-10">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_address_area"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fourth Row -->
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Street
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-10">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_address_street"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Fifth Row -->
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Block
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_address_block"/>
+                                            </span>
+                                        </div>
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    AVE
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_address_avenue"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Fifth Row -->
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Building
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_address_house"/>
+                                            </span>
+                                        </div>
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Tel. No.
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_mobile"/>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fifth Row -->
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Blood Type
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_blood"/>
+                                            </span>
+                                        </div>
+                                        <div class="col-2">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                <b>
+                                                    Serial No.
+                                                </b>
+                                            </span>
+                                        </div>
+                                        <div class="col-4">
+                                            <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;">
+                                                :<span t-field="o.customer_serial"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

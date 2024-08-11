@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="arrival_list_rep">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="font">
+                    <div class="page">
+                        <br> </br>
+                        <div class="text-center">
+                            <h3>
+                                <strong>Arrival List Report</strong>
+                            </h3>
+                            <br>
+                                <small>
+                                    <t t-esc="rep_head_line1"/>
+                                    -
+                                    <t t-esc="rep_head_line2"/>
+                                    -
+                                    <t t-esc="rep_head_line3"/>
+                                </small>
+                            </br>
+                        </div>
+                        <br> </br>
+                        <table class="table table-sm table-hover table-bordered">
+                            <thead class="thead-light small">
+                                <t t-if="accumulated">
+                                    <th colspan="8"> </th>
+                                </t>
+                                <t t-else="">
+                                    <th>SN</th>
+                                    <th>Arrival Date</th>
+                                    <th>External Code</th>
+                                    <th>HM Name</th>
+                                    <th>Passport</th>
+                                    <th>Sponsor Name(En)</th>
+                                    <th>Sponsor Name(Ar)</th>
+                                    <th>Sponsor Mobile</th>
+                                    <th>User</th>
+                                </t>
+                                <th>Total Amount</th>
+                                <th>Due Amount</th>
+                                <th>Remain Amount</th>
+                            </thead>
+                            <tbody class="thead-light small">
+                                <t t-set="line_num" t-value="1"/>
+                                <t t-set="tot_deal_amount" t-value="0.000"/>
+                                <t t-set="tot_down_payment_amount" t-value="0.000"/>
+                                <t t-set="tot_remain_amount" t-value="0.000"/>
+                                <t t-foreach="docs" t-as="doc">
+                                    <t t-set="down_payment_amount" t-value="0.000"/>
+                                    <t t-set="down_payment_amount"
+                                       t-value="doc.invoice_id.amount_total-doc.invoice_id.amount_residual_signed"/>
+
+                                    <tr>
+                                        <td>
+                                            <t t-esc="line_num"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.arrival_date.strftime('%Y-%m-%d')"/>
+
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.application_id.external_office_id"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.application_id.full_name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.application_id.passport_id"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.customer_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.customer_id.name_ar"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.customer_id.mobile"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="doc.create_uid.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.invoice_id.amount_total"
+                                                  />
+                                        </td>
+                                        <td>
+                                            <span t-esc="down_payment_amount"
+                                                  />
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.invoice_id.amount_residual_signed"
+                                                  />
+                                        </td>
+
+
+                                    </tr>
+                                    <t t-set="line_num" t-value="line_num+1"/>
+                                     <t t-set="tot_deal_amount" t-value="tot_deal_amount+doc.sales_move.amount_total"/>
+                                    <t t-set="tot_down_payment_amount"
+                                       t-value="tot_down_payment_amount+down_payment_amount"/>
+                                    <t t-set="tot_remain_amount"
+                                       t-value="tot_remain_amount+doc.invoice_id.amount_residual_signed"/>
+                                </t>
+                            </tbody>
+                            <tfoot class="thead-light small">
+                                <tr>
+                                    <td colspan="8">
+                                        <span>Total of
+                                            <span t-esc="line_num - 1"/>
+                                            Records
+                                        </span>
+
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="tot_deal_amount"
+                                              />
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="tot_down_payment_amount"
+                                              />
+                                    </td>
+
+                                    <td align="right">
+                                        <span t-esc="tot_remain_amount"
+                                              />
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

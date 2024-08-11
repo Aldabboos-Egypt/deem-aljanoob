@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <!--Arrival Status-->
+        <!--<record id="housemaid_applicant_arrival_1" model="housemaidsystem.applicant.arrival">-->
+            <!--<field name="arrival_date" eval="datetime.now()-timedelta(days=8)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_8"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_arrival_2" model="housemaidsystem.applicant.arrival">-->
+            <!--<field name="arrival_date" eval="datetime.now()-timedelta(days=7)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_9"/>-->
+        <!--</record>-->
+        <!--&lt;!&ndash;deliver Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_arrival_3" model="housemaidsystem.applicant.arrival">-->
+            <!--<field name="arrival_date" eval="datetime.now()-timedelta(days=8)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_10"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_arrival_4" model="housemaidsystem.applicant.arrival">-->
+            <!--<field name="arrival_date" eval="datetime.now()-timedelta(days=7)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_11"/>-->
+        <!--</record>-->
+
+    </data>
+
+</odoo>

@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_returnbackfromlastsponsor_form_view" model="ir.ui.view">
+            <field name="name">Housemaid Return Back From Last Sponsor Form view</field>
+            <field name="model">housemaidsystem.applicant.returnbackfromlastsponsor</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="return_date"/>
+                                <field name="application_action" widget="radio" attrs="{'invisible': 1}"/>
+                                <field name="refund_amount" attrs="{'readonly': [('application_action', '!=', 'resell')]}"/>
+                                <field name="hm_salary"/>
+                            </group>
+                            <group>
+                                <field name="deliver_date" readonly="True"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="old_customer_id" string="Current Sponsor" readonly="True"/>
+                                <field name="old_invoice_id" string="Active Invoice" readonly="True"/>
+                                <field name="old_invoice_state" string="Invoice Status" readonly="True"/>
+                                <field name="old_invoice_total" string="Invoice Amount" readonly="True"/>
+                                <field name="old_invoice_due" string="Invoice Dues" readonly="True"/>
+                                <field name="previous_discount" string="Invoice Discount" readonly="True"/>
+                                <field name="paid_by_sponsor" string="Paid By Sponsor" readonly="True"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

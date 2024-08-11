@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_backtocountryafterfirstsponsor_form_view" model="ir.ui.view">
+            <field name="name">Housemaid Back To Country After First Sponsor Form view</field>
+            <field name="model">housemaidsystem.applicant.backtocountryafterfirstsponsor</field>
+
+            <field name="arch" type="xml">
+                <form delete="false" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="return_date" readonly="True"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="customer_id" readonly="True"/>
+                                <field name="invoice_id" readonly="True"/>
+                                <field name="invoice_state" readonly="True"/>
+                                <field name="invoice_total" readonly="True"/>
+                                <field name="previouse_discount" readonly="True"/>
+                                <field name="net_amount" readonly="True"/>
+                                <field name="refund_amount" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="back_to_country_date"/>
+                                <field name="action" string="Action Taken" widget="radio"/>
+
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                         <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_backtocountryafterfirstsponsor_list_tree_view" model="ir.ui.view">
+            <field name="name">Back To Country After First Sponsor List</field>
+            <field name="model">housemaidsystem.applicant.backtocountryafterfirstsponsor</field>
+            <field name="arch" type="xml">
+                <tree string="Back To Country After First Sponsor List" editable="top">
+                    <field name="back_to_country_date" readonly="True"/>
+                    <field name="application_id" readonly="True"/>
+                    <field name="action" readonly="True"/>
+                    <field name="customer_id" readonly="True"/>
+                    <field name="refund_amount" readonly="True"/>
+                    <field name="previouse_discount" readonly="True"/>
+                    <field name="invoice_total" readonly="True"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_backtocountryafterfirstsponsor_filter" model="ir.ui.view">
+            <field name="name">Back To Country After First Sponsor Search</field>
+            <field name="model">housemaidsystem.applicant.backtocountryafterfirstsponsor</field>
+            <field name="arch" type="xml">
+                <search string="sell test">
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+
+                    <field name="customer_id" string="Sponsor Name (En)"
+                           filter_domain="[('customer_id.name','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Name (Ar)"
+                           filter_domain="[('customer_id.name_ar','ilike',self)]"/>
+
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('new_customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+
+                    <filter string="Back to Country Date" name="filter_back_to_country_date" date="back_to_country_date"/>
+
+
+                </search>
+            </field>
+        </record>
+        
+        <record id="housemaid_applicant_backtocountryafterfirstsponsor_list_action_window"
+                model="ir.actions.act_window">
+            <field name="name">Back To Country After First Sponsor List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.backtocountryafterfirstsponsor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="view_id" ref="housemaid_applicant_backtocountryafterfirstsponsor_list_tree_view"/>
+        </record>
+
+        
+        
+    </data>
+</odoo>

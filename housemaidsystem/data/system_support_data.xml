@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="housemaidsystem_system_support_01" model="housemaidsystem.system.support">
+            <field name="name">01-Craete New External Office - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/tLEACb_p-W0</field>
+            <field name="description">How to create new external office</field>
+        </record>
+
+        <record id="housemaidsystem_system_support_02" model="housemaidsystem.system.support">
+            <field name="name">02-Create New Application - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/RSPVbnmwMyo</field>
+            <field name="description">How to create new application</field>
+        </record>
+
+        <record id="housemaidsystem_system_support_03" model="housemaidsystem.system.support">
+            <field name="name">03-Cancel Application - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/Y7ozwI1XgKM</field>
+            <field name="description">How to cancel application</field>
+        </record>
+
+
+        <record id="housemaidsystem_system_support_04" model="housemaidsystem.system.support">
+            <field name="name">04-Activate Canceled Application - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/uMiFXJssxlY</field>
+            <field name="description">How to activate cancel application</field>
+        </record>
+
+
+        <record id="housemaidsystem_system_support_05" model="housemaidsystem.system.support">
+            <field name="name">05-Add New Reservation - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/z4R-bT61geI</field>
+            <field name="description">How to create new reservation</field>
+        </record>
+
+        <record id="housemaidsystem_system_support_06" model="housemaidsystem.system.support">
+            <field name="name">06-Cancel Reservation - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/RcCo8BImj-Q</field>
+            <field name="description">How to cancel reservation</field>
+        </record>
+
+        <record id="housemaidsystem_system_support_07" model="housemaidsystem.system.support">
+            <field name="name">07-Create New Visa - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/f8hCABqfIFg</field>
+            <field name="description">How to create new visa</field>
+        </record>
+
+        <record id="housemaidsystem_system_support_08" model="housemaidsystem.system.support">
+            <field name="name">08- Cancel Visa - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/nt_1jNQ0Rbs</field>
+            <field name="description">How to create cancel visa</field>
+        </record>
+
+        <record id="housemaidsystem_system_support_09" model="housemaidsystem.system.support">
+            <field name="name">09-Add New External Office Transactions - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/KT02-RdHfl4</field>
+            <field name="description">How to create new external office transactions</field>
+        </record>
+
+
+        <record id="housemaidsystem_system_support_10" model="housemaidsystem.system.support">
+            <field name="name">10-Add Expected Arrival - Arabic</field>
+            <field name="document_type">sales</field>
+            <field name="document_url">https://youtu.be/drtCqKJKSxA</field>
+            <field name="description">How to create new expected arriavl</field>
+        </record>
+
+<!--        <record id="housemaidsystem_system_support_11" model="housemaidsystem.system.support">-->
+<!--            <field name="name">11-Cancel Expected Arrival - Arabic</field>-->
+<!--            <field name="document_type">sales</field>-->
+<!--            <field name="document_url">https://youtu.be/drtCqKJKSxA</field>-->
+<!--            <field name="description">How to Cancel expected arriavl</field>-->
+<!--        </record>-->
+
+
+
+    </data>
+</odoo>

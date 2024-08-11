@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="visa_translate_layout">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-raw="0"/>
+        </div>
+    </template>
+
+    <template id="visa_translate_print">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="housemaidsystem.visa_translate_layout">
+                    <div class="page">
+                        <table class="table" style="border: 3px solid black;border-collapse: collapse;">
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" style="text-align:center;border: 1px solid black;background-color:#F6F6F6;">
+                                        STATE OF KUWAIT <br/>
+                                        MINISTRY OF INTERIOR <br/>
+                                        THE GENERAL ADMINISTRATION FOR
+                                        IMMIGRATION AFFAIRS
+                                    </td>
+                                </tr>
+                                <!--  DETAILS ARRIVING PERSON-->
+                                <tr>
+                                    <td colspan="4" style="text-align:center;border: 1px solid black;text-decoration:underline;">
+                                        DETAILS ARRIVING PERSON
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        NAME IN FULL
+                                    </td>
+                                    <td colspan="3" style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.hm_name"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        NATIONALITY
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.hm_nationality"/></b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        SEX
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.hm_sex"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        OCCUPATION
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.hm_occupation"/></b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        DATE OF BIRTH
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.hm_dob"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        PASSPORT HOLDER
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b>PASSPORT HOLDER </b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        UNIFIED NO.
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.visa_unified_no"/></b>
+                                    </td>
+                                </tr>
+
+                                <!--  PASSPORT PARTICULARS-->
+                                <tr>
+                                    <td colspan="4" style="text-align:center;border: 1px solid black;;text-decoration:underline">
+                                        PASSPORT PARTICULARS
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        PASSPORT NO.
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.hm_passport_number"/></b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        PASSPORT TYPE
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b>ORDINARY</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        PLACE OF ISSUE
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b>PHILIPPINES</b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        DATE OF EXPIRE
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b>09-JAN 2030</b>
+                                    </td>
+                                </tr>
+
+                                <!--  ACCOMPANY AT THE SAME PASSPORT-->
+                                <tr>
+                                    <td colspan="4" style="text-align:center;border: 1px solid black;">
+                                        ACCOMPANY AT THE SAME PASSPORT
+                                    </td>
+                                </tr>
+
+                                <!--  NAME IN FULL/ SEX / RELATION / UNIFIED NO-->
+                                <tr>
+                                    <td colspan="4" style="text-align:center;border: 1px solid black;">
+                                        NAME IN FULL/ SEX / RELATION / UNIFIED NO.
+                                    </td>
+                                </tr>
+
+                                <!-- DETAILS OF THE SPONSOR-->
+                                <tr>
+                                    <td colspan="4" style="text-align:center;border: 1px solid black;text-decoration:underline;">
+                                        DETAILS OF THE SPONSOR
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        NAME IN FULL
+                                    </td>
+                                    <td colspan="3" style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.customer_name"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        NATIONALITY
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.customer_nationality"/></b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        UNIFIED NO.
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.customer_unfied"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        TEL.NO.
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b>99648461</b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        P.O.BOX
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b> </b>
+                                    </td>
+                                </tr>
+                                <!-- DETAILS OF ISSUANCE-->
+                                <tr>
+                                    <td colspan="4" style="text-align:center;border: 1px solid black;text-decoration:underline;">
+                                        DETAILS OF ISSUANCE
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        VISA NO.
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.visa_no"/></b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        PURPOSE
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b>WORK</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        VISA TYPE
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b>DOMESTIC WORKER</b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        DATE OF ISSUE
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.visa_issue_date"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        PLACE OF ISSUE
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.visa_place_issue"/></b>
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                       DATE OF EXPIRY
+                                    </td>
+                                    <td style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.visa_exp_date"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;border: 1px solid black;background-color:#F6F6F6;">
+                                        NAME OF AGENCY
+                                    </td>
+                                    <td colspan="3" style="text-align:left;border: 1px solid black;">
+                                        <b><span t-field="o.name_external_office"/></b>
+                                    </td>
+                                </tr>
+
+                                <!-- Footer Section-->
+                                <tr>
+                                    <td colspan="4" style="text-align:left;border:none;">
+                                        APPLICATION NO: <b><span t-field="o.hm_office_name"/></b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;">
+                                        ENTRY SEAL
+                                    </td>
+                                    <td colspan="2" style="text-align:center;border:none;">
+                                        FOR OFFICIAL USE ONLY
+                                    </td>
+                                    <td style="text-align:right;">
+                                        EXIT SEAL
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

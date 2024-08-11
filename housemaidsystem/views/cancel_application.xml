@@ -1,0 +1,82 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_cancelapplication_form_view" model="ir.ui.view">
+            <field name="name">Cancel Application Form View</field>
+            <field name="model">housemaidsystem.applicant.cancelapplication</field>
+            <field name="arch" type="xml">
+                <form string="Cancel Reason" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="application_id" invisible="1"/>
+                            <field name="application_state" invisible="1"/>
+                            <field name="cancel_reason"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="housemaid_applicant_cancelapplication_tree_view" model="ir.ui.view">
+            <field name="name">Canceled Applications List</field>
+            <field name="model">housemaidsystem.applicant.cancelapplication</field>
+            <field name="arch" type="xml">
+                <tree string="Canceled Applications List" editable="top">
+
+                    <field name="application_id" readonly="1"/>
+                    <field name="office_code" readonly="1"/>
+                    <field name="cancel_date" readonly="1"/>
+                    <field name="cancel_reason"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="housemaid_applicant_cancelapplication_filter" model="ir.ui.view">
+            <field name="name">cancel application search</field>
+            <field name="model">housemaidsystem.applicant.cancelapplication</field>
+            <field name="arch" type="xml">
+                <search string="cancel application">
+                    <field name="application_id" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+
+
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+
+
+                    <filter name="state" string="Canceled Only"
+                            domain="[('application_id.state','=','cancelapplication')]"/>
+                    <separator/>
+
+                    <filter name="cancel_date" string="Application Canceled last week"
+                            domain="[('cancel_date', '&gt;', (context_today() - relativedelta(days=7)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="cancel_date" string="Application Canceled last Month"
+                            domain="[('cancel_date', '&gt;', (context_today() - relativedelta(days=30)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="cancel_date" string="Application Canceled last Year"
+                            domain="[('cancel_date', '&gt;', (context_today() - relativedelta(days=365)).strftime('%%Y-%%m-%%d'))]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]" context="{'group_by':'office_code'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+        <record id="housemaid_applicant_cancelapplication_action_window" model="ir.actions.act_window">
+            <field name="name">Canceled Applications List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.cancelapplication</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="housemaid_applicant_cancelapplication_tree_view"/>
+        </record>
+    </data>
+</odoo>

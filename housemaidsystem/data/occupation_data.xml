@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sponsor_occupation1" model="housemaidsystem.configuration.sponsor_occupation">
+            <field name="name">Employee</field>
+        </record>
+        <record id="sponsor_occupation2" model="housemaidsystem.configuration.sponsor_occupation">
+            <field name="name">Retired</field>
+        </record>
+    </data>
+</odoo>

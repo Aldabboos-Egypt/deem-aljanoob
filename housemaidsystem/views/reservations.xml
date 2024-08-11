@@ -1,0 +1,224 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_reservations_form_view" model="ir.ui.view">
+            <field name="name">Reservation Form view</field>
+            <field name="model">housemaidsystem.applicant.reservations</field>
+
+            <field name="arch" type="xml">
+                <form delete="false" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="reservation_date"/>
+                                <field name="application_id" invisible="1"/>
+                                <field name="sales_man"/>
+                                <field name="journal" string="Payment Method" options="{'no_quick_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="customer_id" string="Sponsor" options="{'no_quick_create': True}"/>
+                                <field name="deal_amount" string="Deal Amount"/>
+                                <field name="down_payment_amount" string="Down Payment"/>
+                                <field name="deal_confirmation" string="Ticket Deal"/>
+
+                                <!--                                <field name="paid_immediately" string="Collected From Sponsor"/>-->
+                                <!--                                <field name="pay_due_date" string="Expected Date"-->
+                                <!--                                       attrs="{'readonly': [('paid_immediately', '=', True)]}"/>-->
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_reservations_tree_view" model="ir.ui.view">
+            <field name="name">Reservation Form view</field>
+            <field name="model">housemaidsystem.applicant.reservations</field>
+            <field name="arch" type="xml">
+                <tree string="Reservation" delete="false">
+                    <field name="reservation_date"/>
+                    <field name="application_id"/>
+                    <field name="office_code"/>
+                    <field name="customer_id"/>
+                    <field name="sales_man"/>
+                    <field name="reservation_days"/>
+                    <field name="deal_amount"/>
+                    <field name="down_payment_amount"/>
+                    <field name="invoice_sales_id"/>
+                    <field name="invoice_purchase_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_reservations_filter" model="ir.ui.view">
+            <field name="name">reservations search</field>
+            <field name="model">housemaidsystem.applicant.reservations</field>
+            <field name="arch" type="xml">
+                <search string="Reservations">
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+<!--                    <field name="customer_id" string="Sponsor Name (En)"-->
+<!--                           filter_domain="[('customer_id.name','ilike',self)]"/>-->
+<!--                    <field name="customer_id" string="Sponsor Name (Ar)"-->
+<!--                           filter_domain="[('customer_id.name_ar','ilike',self)]"/>-->
+
+                    <field name="name" string="Sponsor" filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+
+
+                    <filter name="state" string="Reservation Only"
+                            domain="[('state','=','reservation')]"/>
+                    <separator/>
+                    <filter name="reservation_date" string="Reservation last week"
+                            domain="[('reservation_date', '&gt;', (context_today() - relativedelta(days=7)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="reservation_date" string="Reservation last Month"
+                            domain="[('reservation_date', '&gt;', (context_today() - relativedelta(days=30)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="reservation_date" string="Reservation last Year"
+                            domain="[('reservation_date', '&gt;', (context_today() - relativedelta(days=365)).strftime('%%Y-%%m-%%d'))]"/>
+                    <separator/>
+                    <filter name="reservation_date" string="Late Reservation over one week"
+                            domain="['&amp;',(('state','=','reservation')),('reservation_date', '&lt;', (context_today() - relativedelta(weeks=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="reservation_date" string="Late Reservation over 2 weeks"
+                            domain="['&amp;',(('state','=','reservation')),('reservation_date', '&lt;', (context_today() - relativedelta(weeks=2)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="reservation_date" string="Late Reservation over 3 weeks"
+                            domain="['&amp;',(('state','=','reservation')),('reservation_date', '&lt;', (context_today() - relativedelta(weeks=3)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="reservation_date" string="Late Reservation over 1 Month"
+                            domain="['&amp;',(('state','=','reservation')),('reservation_date', '&lt;', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-%%d'))]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                        <filter name="sales_man" string="Sales Man" domain="[]" context="{'group_by':'sales_man'}"/>
+                        <filter name="customer_id" string="Sponsor" domain="[]" context="{'group_by':'customer_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_reservations_action_window" model="ir.actions.act_window">
+            <field name="name">Reservation List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.reservations</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_state": 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new reservation
+                </p>
+                <p>
+                    reservation .....
+                </p>
+            </field>
+        </record>
+        <record id="housemaid_applicant_reservations_list_tree_view" model="ir.ui.view">
+            <field name="name">Reservation List</field>
+            <field name="model">housemaidsystem.applicant.reservations</field>
+            <field name="arch" type="xml">
+                <tree string="Reservation List" editable="top" default_order="reservation_date desc">
+                    <field name="reservation_date" readonly="1"/>
+                    <field name="application_id" readonly="1"/>
+                    <field name="office_code" readonly="1"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="sales_man" readonly="1"/>
+                    <field name="reservation_days" readonly="1"/>
+                    <field name="deal_amount" readonly="1" sum="deal_amount"/>
+                    <field name="down_payment_amount" readonly="1" sum="down_payment_amount"/>
+                    <field name="invoice_sales_id" string="Sales Invoice" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_reservations_list_action_window" model="ir.actions.act_window">
+            <field name="name">Reservation List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.reservations</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="context">{"search_default_state": True, }</field>
+            <field name="view_id" ref="housemaid_applicant_reservations_list_tree_view"/>
+        </record>
+
+        <!-- ********************** Cancel Reservations***************************************************-->
+        <record id="housemaid_applicant_cancel_reservations_filter" model="ir.ui.view">
+            <field name="name">Cancel reservations search</field>
+            <field name="model">housemaidsystem.applicant.cancel_reservations</field>
+            <field name="arch" type="xml">
+                <search string="Reservations">
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+
+<!--                    <field name="customer_id" string="Sponsor Name"-->
+<!--                           filter_domain="[('customer_id.name','ilike',self)]"/>-->
+
+                    <field name="name" string="Sponsor" filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+
+
+
+
+
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+
+
+                    <filter string="Reservation Date" name="filter_reservation_date" date="reservation_date"/>
+                    <filter string="Cancelation Date" name="filter_cancelation_date" date="cancelation_date"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_cancel_reservations_list_tree_view" model="ir.ui.view">
+            <field name="name">Cancel Reservations List</field>
+            <field name="model">housemaidsystem.applicant.cancel_reservations</field>
+            <field name="arch" type="xml">
+                <tree string="Cancel Reservation List" editable="top" default_order="cancelation_date desc">
+                    <field name="cancelation_date" readonly="1"/>
+                    <field name="reservation_date" readonly="1"/>
+                    <field name="office_code" readonly="1"/>
+                    <field name="application_id" readonly="1"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="sales_man" readonly="1"/>
+                    <field name="deal_amount" readonly="1" sum="deal_amount"/>
+                    <field name="down_payment_amount" readonly="1" sum="down_payment_amount"/>
+                    <field name="invoice_sales_id" string="Sales Invoice" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_cancel_reservations_list_action_window" model="ir.actions.act_window">
+            <field name="name">Cancel Reservations List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.cancel_reservations</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="view_id" ref="housemaid_applicant_cancel_reservations_list_tree_view"/>
+        </record>
+
+    </data>
+</odoo>

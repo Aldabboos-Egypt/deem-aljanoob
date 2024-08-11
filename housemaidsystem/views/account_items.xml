@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="housemaid_accounting_accountitems_form_view" model="ir.ui.view">
+            <field name="name">Account Items</field>
+            <field name="model">housemaidsystem.configuration.accountitems</field>
+            <field name="arch" type="xml">
+                <form string="Projects">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_accounting_accountitems_tree_view" model="ir.ui.view">
+            <field name="name">Account Items List</field>
+            <field name="model">housemaidsystem.configuration.accountitems</field>
+            <field name="arch" type="xml">
+                <tree string="Module Name">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_accounting_accountitems_form_action" model="ir.actions.act_window">
+            <field name="name">Account Items List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.accountitems</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new Account Items
+                </p>
+                <p>
+                    Account Items
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

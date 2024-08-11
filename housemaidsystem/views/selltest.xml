@@ -1,0 +1,266 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_selltest_form_view" model="ir.ui.view">
+            <field name="name">Re-Sell As test Housemaid Form view</field>
+            <field name="model">housemaidsystem.applicant.selltest</field>
+
+            <field name="arch" type="xml">
+                <form delete="false" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group string="Sell As Test Details">
+                                <field name="test_date"/>
+                                <field name="deal_amount"/>
+                                <field name="down_payment_amount"/>
+                                <field name="new_customer_id" options="{'no_quick_create': True}"/>
+                                <field name="sales_man"/>
+                            </group>
+                            <group string="Invoice Details">
+                                <field name="application_id" readonly="True" string="Application#"/>
+                                <field name="old_customer_id" readonly="True" string="Sponsor"/>
+                                <field name="old_invoice_id" readonly="True" string="Invoice#"/>
+                                <field name="old_invoice_state" readonly="True" string="Status"/>
+                                <field name="old_invoice_total" readonly="True" string="Total Amount"/>
+                                <field name="old_invoice_due" readonly="True" string="Due Amount"/>
+                                <field name="previous_refund" readonly="True" string="Refund Amount"/>
+
+
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                       <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_selltest_form_view_edit" model="ir.ui.view">
+            <field name="name">Re-Sell As test Housemaid Form view</field>
+            <field name="model">housemaidsystem.applicant.selltest</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="test_date" readonly="True"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="old_customer_id" readonly="True"/>
+                                <field name="old_invoice_id" readonly="True"/>
+                                <field name="old_invoice_state" readonly="True"/>
+                                <field name="old_invoice_total" readonly="True"/>
+                                <field name="old_invoice_due" readonly="True"/>
+                                <field name="previous_refund" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="new_customer_id" string="Customer" readonly="True"/>
+                                <field name="new_invoice_id" string="Rejected Invoice" readonly="True"/>
+                                <field name="deal_amount" readonly="True"/>
+                                <field name="down_payment_amount" readonly="True"/>
+                                <field name="sales_man" readonly="True"/>
+                                <field name="test_status" readonly="True"/>
+                                <field name="reject_date"/>
+                                <field name="rejection_refund_amount"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                       <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_selltest_form_view_edit1" model="ir.ui.view">
+            <field name="name">Re-Sell As test Housemaid Form view</field>
+            <field name="model">housemaidsystem.applicant.selltest</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="test_date" readonly="True"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="old_customer_id" readonly="True"/>
+                                <field name="old_invoice_id" readonly="True"/>
+                                <field name="old_invoice_state" readonly="True"/>
+                                <field name="old_invoice_total" readonly="True"/>
+                                <field name="old_invoice_due" readonly="True"/>
+                                <field name="previous_refund" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="new_customer_id" string="Customer" readonly="True"/>
+                                <field name="new_invoice_id" string="Rejected Invoice" readonly="True"/>
+                                <field name="deal_amount" readonly="True"/>
+                                <field name="down_payment_amount" readonly="True"/>
+                                <field name="sales_man" readonly="True"/>
+                                <field name="test_status" readonly="True"/>
+                                <field name="accept_date"/>
+                                <field name="sepecial_discount_amount"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                       <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_selltest_form_view_action" model="ir.ui.view">
+            <field name="name">Re-Sell As test Housemaid Form view</field>
+            <field name="model">housemaidsystem.applicant.selltest</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <group>
+                            <group string="Testing Results">
+                                <field name="application_id" readonly="True"/>
+                                <field name="test_date" readonly="True"/>
+                                <field name="new_customer_id" string="New Sponsor" readonly="True"/>
+                                <field name="new_invoice_id" string="Invoice" readonly="True"/>
+                                <field name="deal_amount" string="Deal Amount" readonly="True"/>
+                                <field name="down_payment_amount" string="Down Payment" readonly="True"/>
+                                <field name="sales_man" readonly="True"/>
+                                <field name="test_status"/>
+
+                                <field name="reject_date"
+                                       attrs="{'invisible': [('test_status', 'in', ['accepted', 'selectaction'])]}"/>
+
+                                <field name="rejection_refund_amount"
+                                       attrs="{'invisible': [('test_status', 'in', ['accepted', 'selectaction'])]}"/>
+
+                                <field name="hm_salary"
+                                       attrs="{'invisible': [('test_status', 'in', ['accepted', 'selectaction'])]}"/>
+
+                                <field name="sepecial_discount_amount" invisible="1"/>
+<!--                                       attrs="{'invisible': [('test_status', 'in', ['rejected', 'selectaction'])]}"/>-->
+
+                                <field name="accept_date"
+                                       attrs="{'invisible': [('test_status', 'in', ['rejected', 'selectaction'])]}"/>
+                            </group>
+                            <group>
+                                <group string="Current Sponsor Details">
+                                    <field name="old_customer_id" readonly="True" string="Sponsor Name"/>
+                                    <field name="old_invoice_id" readonly="True" string="Invoice#"/>
+                                    <field name="old_invoice_state" readonly="True" string="Status"/>
+                                    <field name="old_invoice_total" readonly="True" string="Total"/>
+                                    <field name="old_invoice_due" readonly="True" string="Due"/>
+                                    <field name="previous_refund" readonly="True" string="Refund Amount"/>
+
+                                </group>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_selltest_list_tree_view" model="ir.ui.view">
+            <field name="name">Sell to Another Sponsor List</field>
+            <field name="model">housemaidsystem.applicant.selltest</field>
+            <field name="arch" type="xml">
+                <tree string="Sell As Test List" editable="top">
+                    <field name="test_date" readonly="True"/>
+                    <field name="application_id" readonly="True"/>
+                    <field name="old_customer_id" readonly="True"/>
+                    <field name="old_invoice_id" readonly="True"/>
+                    <field name="old_invoice_state" readonly="True"/>
+                    <field name="old_invoice_total" readonly="True" sum="old_invoice_total"/>
+                    <field name="old_invoice_due" readonly="True" sum="old_invoice_due"/>
+                    <field name="previous_refund" readonly="True" sum="previous_refund"/>
+                    <field name="new_customer_id" string="Customer" readonly="True"/>
+                    <field name="new_invoice_id" string="Rejected Invoice" readonly="True"/>
+                    <field name="deal_amount" readonly="True" sum="deal_amount"/>
+                    <field name="down_payment_amount" readonly="True" sum="down_payment_amount"/>
+                    <field name="sales_man" readonly="True"/>
+                    <field name="test_status" readonly="True"/>
+                    <field name="reject_date" readonly="True"/>
+                    <field name="rejection_refund_amount" readonly="True"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_selltest_filter" model="ir.ui.view">
+            <field name="name">Sell test search</field>
+            <field name="model">housemaidsystem.applicant.selltest</field>
+            <field name="arch" type="xml">
+                <search string="sell test">
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+
+
+                    <field name="name" string="Sponsor" filter_domain="['|',('new_customer_id.name','ilike',self),('new_customer_id.name_ar','ilike',self)]"/>
+
+
+
+                    <field name="new_customer_id" string="New Sponsor Mobile"
+                           filter_domain="[('new_customer_id.mobile','ilike',self)]"/>
+                    <field name="new_customer_id" string="New Sponsor Phone"
+                           filter_domain="[('new_customer_id.phone','ilike',self)]"/>
+                    <field name="new_customer_id" string="New Sponsor Civil ID"
+                           filter_domain="[('new_customer_id.civil_id','ilike',self)]"/>
+
+
+                    <field name="name" string="Sponsor" filter_domain="['|',('old_customer_id.name','ilike',self),('old_customer_id.name_ar','ilike',self)]"/>
+
+                    <field name="old_customer_id" string="Old Sponsor Mobile"
+                           filter_domain="[('old_customer_id.mobile','ilike',self)]"/>
+                    <field name="old_customer_id" string="Old Sponsor Phone"
+                           filter_domain="[('old_customer_id.phone','ilike',self)]"/>
+                    <field name="old_customer_id" string="Old Sponsor Civil ID"
+                           filter_domain="[('old_customer_id.civil_id','ilike',self)]"/>
+
+                    <filter name="state_test" string="Sell Test Only"
+                            domain="[('application_id.state','in',('sellastest','sellasfinall'))]"/>
+
+
+                 </search>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_selltest_list_action_window" model="ir.actions.act_window">
+            <field name="name">Sell to Another Sponsor List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.selltest</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="context">{"search_default_state_test" : True}</field>
+            <field name="view_id" ref="housemaid_applicant_selltest_list_tree_view"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="payment_receipt_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center">
+                        <h3>
+                            <strong>Payment Receipt</strong>
+                        </h3>
+                    </div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">
+                                    <strong>Payment Date</strong>
+                                </td>
+                                <td class="text-center">
+                                    <t t-esc="payment_date"/>
+                                </td>
+                                <td class="text-right">
+                                    <strong>تاريخ الدفعه</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <strong>Payment Ref</strong>
+                                </td>
+                                <td class="text-center">
+                                    <t t-esc="payment_name"/>
+                                </td>
+                                <td class="text-right">
+                                    <strong>رقم الدفعة</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <strong>Recived From</strong>
+                                </td>
+                                <td class="text-center">
+                                    <t t-esc="sponsor_name"/>
+                                </td>
+                                <td class="text-right">
+                                    <strong>أستلمنا من السيد</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <strong>Payment Amount</strong>
+                                </td>
+                                <td class="text-center">
+                                    <t t-esc="payment_paid"/>
+                                </td>
+                                <td class="text-right">
+                                    <strong>المبلغ المسدد</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+
+                                </td>
+                                <td class="text-center">
+                                    <t t-esc="payment_amount_str"/>
+                                </td>
+                                <td class="text-right">
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <strong>Payment Reason</strong>
+                                </td>
+                                <td class="text-center">
+                                    <t t-esc="payment_reason"/>
+                                </td>
+                                <td class="text-right">
+                                    <strong>وذلك عن</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

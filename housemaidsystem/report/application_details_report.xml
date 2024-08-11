@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="application_details_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <center>
+                        <h3>
+                            <u>Application Report</u>
+                        </h3>
+                        <span class=" badge badge-danger">
+                            (Print Date\Time :<t
+                                t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/>)
+                        </span>
+                    </center>
+                    <br/>
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="row col-12">
+                            <div class="col-9 table-responsive">
+                                <div class="row">
+                                    <!-- 1) Code\Name\Nationality\Religion-->
+                                    <table class="table table-borderless table-sm table-bordered">
+                                        <thead>
+                                            <th class="text-left">Code</th>
+                                            <th class="text-left">Name</th>
+                                            <th class="text-left">Nationality</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span t-field="doc.external_office_id"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="doc.full_name"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="doc.country_id.name"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <!-- 2) Passport\Birth\Age\Salary\Marital\kids-->
+                                    <table class="table table-borderless table-sm table-bordered">
+                                        <thead>
+                                            <th class="text-left">Birth Date</th>
+                                            <th class="text-left">Age</th>
+                                            <th class="text-left">Salary</th>
+                                            <th class="text-left">Marital Status</th>
+                                            <th class="text-left">Kids</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span t-field="doc.birth_date"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="doc.age"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="doc.hm_salary"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="doc.marital_status"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="doc.kids"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <!-- 3) Expected Arrival Date /-->
+                                    <table class="table table-borderless table-sm table-bordered">
+                                        <thead>
+                                            <th class="text-left">Religion</th>
+                                            <th class="text-left">Passport</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span t-field="doc.religion"/>
+                                                </td>
+                                                <td>
+                                                    <span t-field="doc.passport_id"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <span widget="image"
+                                      t-options="{'widget': 'image', 'style':'width: 250px; height: 250px;margin-bottom: 10px;'}"
+                                      t-field="doc.labor_image"/>
+                            </div>
+                        </div>
+
+                        <!--Table: Expected Arrival\Arrival\Visa\warranty-->
+                        <div class="row col-12 table-responsive">
+                            <t t-set="visa_found" t-value="False"/>
+                            <t t-foreach="doc.get_application_details_report_values('visa')"
+                               t-as="visa">
+                                <t t-set="visa_found" t-value="True"/>
+                            </t>
+                            <t t-if="visa_found == True">
+                                <table class="table table-borderless table-sm table-bordered">
+                                    <thead>
+                                        <th class="text-left">Expected Arrival Date</th>
+                                        <th class="text-left">Arrival Date</th>
+                                        <th class="text-left">unified No</th>
+                                        <th class="text-left">Issue Date</th>
+                                        <th class="text-left">Expiry Date</th>
+                                        <th class="text-left">Received Date</th>
+                                        <th class="text-left">Warranty Days</th>
+                                        <th class="text-left">Warranty (180 Days) </th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <t t-set="expected_arrival_date" t-value=""/>
+                                            <t t-set="arrival_date" t-value=""/>
+                                            <t t-set="unified_no" t-value=""/>
+                                            <t t-set="visa_issue_date" t-value=""/>
+                                            <t t-set="visa_exp_date" t-value=""/>
+                                            <t t-set="visa_rec_date" t-value=""/>
+                                            <t t-set="arrival_days" t-value="0"/>
+                                            <t t-set="arrival_warantly" t-value=""/>
+
+                                            <t t-foreach="doc.get_application_details_report_values('expectedarrival')"
+                                               t-as="myexpectedarrival">
+                                                <t t-set="expected_arrival_date"
+                                                   t-value="myexpectedarrival['expected_arrival_date']"/>
+                                            </t>
+                                            <t t-foreach="doc.get_application_details_report_values('arrival')"
+                                               t-as="myarrival">
+                                                <t t-set="arrival_date" t-value="myarrival['arrival_date']"/>
+                                                <t t-set="arrival_days" t-value="myarrival['arrival_days']"/>
+                                                <t t-set="arrival_warantly" t-value="myarrival['arrival_warantly']"/>
+                                            </t>
+                                            <t t-foreach="doc.get_application_details_report_values('visa')"
+                                               t-as="myvisa">
+                                                <t t-set="unified_no" t-value="myvisa['unified_no']"/>
+                                                <t t-set="visa_issue_date" t-value="myvisa['visa_issue_date']"/>
+                                                <t t-set="visa_exp_date" t-value="myvisa['visa_exp_date']"/>
+                                                <t t-set="visa_rec_date" t-value="myvisa['visa_rec_date']"/>
+                                            </t>
+                                            <td>
+                                                <span class="font-weight-light" t-esc="expected_arrival_date"/>
+                                            </td>
+                                            <td>
+                                                <span class="font-weight-light" t-esc="arrival_date"/>
+                                            </td>
+                                            <td>
+                                                <span class="font-weight-light" t-esc="unified_no"/>
+                                            </td>
+
+                                            <td>
+                                                <span class="font-weight-light" t-esc="visa_issue_date"/>
+                                            </td>
+                                            <td>
+                                                <span class="font-weight-light" t-esc="visa_exp_date"/>
+                                            </td>
+
+                                            <td>
+                                                <span class="font-weight-light" t-esc="visa_rec_date"/>
+                                            </td>
+                                            <td>
+                                                <span class="font-weight-light" t-esc="arrival_days"/>
+                                            </td>
+                                            <td>
+                                                <span class="font-weight-light" t-esc="arrival_warantly"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </div>
+
+
+                        <!--Table: Application status + Experience-->
+                        <div class="row col-12 table-responsive">
+                            <table class="table table-borderless table-sm table-bordered">
+                                <thead>
+                                    <th class="text-left">Application Status</th>
+                                    <th class="text-left">Experience</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span t-field="doc.state"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.experience"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                        <!--Financial Details-->
+                        <div class="row col-12 table-responsive">
+                            <table class="table table-borderless table-sm table-bordered">
+                                <thead>
+                                    <t t-set="reservation_found" t-value="False"/>
+                                    <t t-foreach="doc.get_application_details_report_values('reservation')"
+                                       t-as="reservation">
+                                        <t t-set="reservation_found" t-value="True"/>
+                                    </t>
+                                    <t t-if="reservation_found == True">
+                                        <tr class="text-center">
+                                            <th class="text-left">Date</th>
+                                            <th class="text-left">Action</th>
+                                            <th class="text-left">Civil ID</th>
+                                            <th class="text-right">Deal</th>
+                                            <th class="text-right">Paid\Refund</th>
+                                            <th class="text-right">Discount</th>
+                                            <th class="text-right">Remain</th>
+                                        </tr>
+                                    </t>
+
+                                </thead>
+                                <tbody>
+                                    <!--  Reservations Section-->
+                                    <t t-set="reservation_found" t-value="False"/>
+                                    <t t-foreach="doc.get_application_details_report_values('reservation')"
+                                       t-as="reservation">
+                                        <t t-set="reservation_found" t-value="True"/>
+                                    </t>
+                                    <t t-if="reservation_found == True">
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['reservation_date']"/>
+                                            </td>
+                                            <td class="text-left">
+                                                Reservation
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['sponsor_civilid']"/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['deal_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['down_payment_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right">
+                                                0
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['remain_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['sponsor']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['sponsor_address']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['sponsor_mobile']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('reservation')"
+                                                t-as="reservation">
+                                                <span class="font-weight-light"
+                                                      t-esc="reservation['sponsor_mobile2']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+
+                                    <!--  First Deliver Section-->
+                                    <t t-set="deliver_found" t-value="False"/>
+                                    <t t-foreach="doc.get_application_details_report_values('deliver')" t-as="deliver">
+                                        <t t-set="deliver_found" t-value="True"/>
+                                    </t>
+                                    <t t-if="deliver_found == True">
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['deliver_date']"/>
+                                            </td>
+                                            <td class="text-left">
+                                                Deliver to First Sponsor
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['sponsor_civilid']"/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['deal_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['paid_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['discount_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['remain_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['sponsor']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['sponsor_address']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['sponsor_mobile']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('deliver')"
+                                                t-as="deliver">
+                                                <span class="font-weight-light"
+                                                      t-esc="deliver['sponsor_mobile2']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+
+                                    <!--  Return Back From First Sponsor Section-->
+                                    <t t-set="returnbackfromfirstsponsor_found" t-value="False"/>
+                                    <t t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                       t-as="returnbackfromfirstsponsor">
+                                        <t t-set="returnbackfromfirstsponsor_found" t-value="True"/>
+                                    </t>
+                                    <t t-if="returnbackfromfirstsponsor_found == True">
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['returnbackfromfirstsponsor_date']"/>
+                                            </td>
+                                            <td class="text-left">
+                                                Return Back From First Sponsor
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['sponsor_civilid']"/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['deal_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['paid_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['discount_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['remain_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['sponsor']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['sponsor_address']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['sponsor_mobile']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromfirstsponsor')"
+                                                t-as="returnbackfromfirstsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromfirstsponsor['sponsor_mobile2']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+
+                                    <!--  sell as test Section-->
+                                    <t t-set="selltest_found" t-value="False"/>
+                                    <t t-foreach="doc.get_application_details_report_values('sellastest')"
+                                       t-as="selltest">
+                                        <t t-set="selltest_found" t-value="True"/>
+                                    </t>
+                                    <t t-if="selltest_found == True">
+                                        <t t-foreach="doc.get_application_details_report_values('sellastest')"
+                                           t-as="selltest">
+                                            <tr>
+                                                <td class="text-left">
+                                                    <span t-esc="selltest['test_date']"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-esc="selltest['action']"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-esc="selltest['sponsor_civilid']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="selltest['deal_amount']"
+                                                          t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="selltest['paid_amount']"
+                                                          t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="selltest['discount_amount']"
+                                                          t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-esc="selltest['remain_amount']"
+                                                          t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <span t-esc="selltest['sponsor']"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-esc="selltest['sponsor_address']"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-esc="selltest['sponsor_mobile']"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <span t-esc="selltest['sponsor_mobile2']"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+
+                                    
+                                     <!--  Return Back From Last Sponsor Section-->
+                                    <t t-set="returnbackfromlastsponsor_found" t-value="False"/>
+                                    <t t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                       t-as="returnbackfromlastsponsor">
+                                        <t t-set="returnbackfromlastsponsor_found" t-value="True"/>
+                                    </t>
+                                    <t t-if="returnbackfromlastsponsor_found == True">
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['returnbackfromlastsponsor_date']"/>
+                                            </td>
+                                            <td class="text-left">
+                                                Return Back From Last Sponsor
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['sponsor_civilid']"/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['deal_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['paid_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['discount_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                            <td class="text-right"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['remain_amount']"
+                                                      t-options='{"widget": "float", "decimal_precision": "3"}'/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['sponsor']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['sponsor_address']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['sponsor_mobile']"/>
+                                            </td>
+                                            <td class="text-left"
+                                                t-foreach="doc.get_application_details_report_values('returnbackfromlastsponsor')"
+                                                t-as="returnbackfromlastsponsor">
+                                                <span class="font-weight-light"
+                                                      t-esc="returnbackfromlastsponsor['sponsor_mobile2']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <!--Notes-->
+                        <div class="row col-12">
+                            <h3>
+                                <u>Notes</u>
+                            </h3>
+                        </div>
+
+
+
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="internal_layout_noheader">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-raw="0"/>
+        </div>
+    </template>
+
+
+</odoo>

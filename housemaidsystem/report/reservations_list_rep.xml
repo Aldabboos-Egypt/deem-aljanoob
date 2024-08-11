@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reservations_list_rep">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="font">
+                    <div class="page">
+                        <br></br>
+                        <div class="text-center">
+                            <h3>
+                                <strong>Reservations List Report</strong>
+                            </h3>
+                            <br>
+                                <small>
+                                    <t t-esc="rep_head_line1"/> - <t t-esc="rep_head_line2"/> - <t t-esc="rep_head_line3"/>
+                                </small>
+                            </br>
+                        </div>
+                        <br></br>
+                        <table class="table table-sm table-hover table-bordered">
+                            <thead class="thead-light small">
+
+                                <t t-if="accumulated">
+                                    <th colspan="8"> </th>
+                                </t>
+                                <t t-else="">
+                                    <th>SN</th>
+                                    <th>Reservation Date</th>
+                                    <th>HM Ref</th>
+                                    <th>HM Name</th>
+                                    <th>Passport</th>
+                                    <th>Sponsor Name(En)</th>
+                                    <th>Sponsor Name(Ar)</th>
+                                    <th>Mobile</th>
+                                    <th>Invoice</th>
+                                </t>
+                                <th style="text-align:right">Deal Amount</th>
+                                <th style="text-align:right">Paid Amount</th>
+                                <th style="text-align:right">Remain Amount</th>
+
+                            </thead>
+                            <tbody class="thead-light small">
+                                <t t-set="line_num" t-value="1"/>
+                                <t t-set="tot_deal_amount" t-value="0.000"/>
+                                <t t-set="tot_paid_payment_amount" t-value="0.000"/>
+                                <t t-set="tot_remain_amount" t-value="0.000"/>
+                                <t t-foreach="docs" t-as="doc">
+
+                                    <t t-set="paid_payment_amount" t-value="0.000"/>
+                                    <t t-set="paid_payment_amount" t-value="doc.invoice_sales_id.amount_total-doc.invoice_sales_id.amount_residual_signed"/>
+
+                                    <t t-if="accumulated == False">
+                                        <tr>
+                                            <td>
+                                                <t t-esc="line_num"/>
+                                            </td>
+                                            <td>
+                                                <t t-raw="doc.reservation_date"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="doc.application_id.external_office_id"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="doc.application_id.full_name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="doc.application_id.passport_id"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="doc.customer_id.name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="doc.customer_id.name_ar"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="doc.customer_id.mobile"/> - <t t-esc="doc.customer_id.mobile2"/>
+                                            </td>
+
+                                            <td>
+                                                <t t-esc="doc.invoice_sales_id.name"/>
+                                            </td>
+
+                                            <td align="right">
+                                                <span t-esc="doc.invoice_sales_id.amount_total"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+                                            <td align="right">
+                                                <span t-esc="paid_payment_amount"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+
+                                            <td align="right">
+                                                <span t-esc="doc.invoice_sales_id.amount_residual_signed"
+                                                      t-options='{"widget": "float", "precision": 3}'/>
+                                            </td>
+
+
+                                        </tr>
+                                    </t>
+
+
+                                    <t t-set="line_num" t-value="line_num+1"/>
+                                    <t t-set="tot_deal_amount" t-value="tot_deal_amount+doc.invoice_sales_id.amount_total"/>
+                                    <t t-set="tot_paid_payment_amount" t-value="tot_paid_payment_amount+paid_payment_amount"/>
+                                    <t t-set="tot_remain_amount" t-value="tot_remain_amount+doc.invoice_sales_id.amount_residual_signed"/>
+                                </t>
+                            </tbody>
+                            <tfoot class="thead-light small">
+                                <tr>
+                                    <td colspan="8">
+                                        <span>Total of
+                                            <span t-esc="line_num - 1"/>
+                                            Records
+                                        </span>
+
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="tot_deal_amount"
+                                              t-options='{"widget": "float", "precision": 3}'/>
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="tot_paid_payment_amount"
+                                              t-options='{"widget": "float", "precision": 3}'/>
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="tot_remain_amount"
+                                              t-options='{"widget": "float", "precision": 3}'/>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

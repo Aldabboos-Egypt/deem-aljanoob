@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="housemaid_configuration_systemreports_form_view" model="ir.ui.view">
+            <field name="name">System Reports form view</field>
+            <field name="model">housemaidsystem.configuration.systemreports</field>
+
+            <field name="arch" type="xml">
+                <form string="System Reports" delete="false" create="false">
+                    <sheet>
+                        <group>
+                            <field name="name" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="report_parameters" nolabel="1">
+                                <tree editable="top" delete="false" create="false">
+                                    <field name="name" readonly="1"/>
+                                    <field name="parameter_type" string="Type" readonly="1"/>
+                                    <field name="parameter_value_account" string="Account ID"
+                                           attrs="{'invisible': [('parameter_type','!=','account')]}"/>
+                                    <field name="parameter_value_str" string="String"
+                                           attrs="{'invisible': [('parameter_type','!=','string')]}"/>
+                                    <field name="parameter_value_number" string="Number"
+                                           attrs="{'invisible': [('parameter_type','!=','number')]}"/>
+                                    <field name="parameter_value_boolean" string="Boolean"
+                                           attrs="{'invisible': [('parameter_type','!=','boolean')]}"/>
+                                    <field name="notes" string="Notes" readonly="1"/>
+                                </tree>
+                            </field>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_configuration_systemreports_tree_view" model="ir.ui.view">
+            <field name="name">System Reports tree view</field>
+            <field name="model">housemaidsystem.configuration.systemreports</field>
+            <field name="arch" type="xml">
+                <tree string="System Reports">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_configuration_systemreports_action_window" model="ir.actions.act_window">
+            <field name="name">System Reports List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.systemreports</field>
+            <field name="view_mode">tree,form</field>
+
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <!--&lt;!&ndash;Expected Arrival Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_expectedarrival_1" model="housemaidsystem.applicant.expectedarrival">-->
+            <!--<field name="expected_arrival_date" eval="datetime.now()+timedelta(days=8)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_6"/>-->
+            <!--<field name="flight_no">JSC:12215</field>-->
+            <!--<field name="flight_name">Jazera Airway</field>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_expectedarrival_2" model="housemaidsystem.applicant.expectedarrival">-->
+            <!--<field name="expected_arrival_date" eval="datetime.now()+timedelta(days=7)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_7"/>-->
+            <!--<field name="expectedarrival_no">5454232</field>-->
+            <!--<field name="flight_no">KWT:875</field>-->
+            <!--<field name="flight_name">Kuwait Airways</field>-->
+        <!--</record>-->
+        <!--&lt;!&ndash;Arrival Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_expectedarrival_3" model="housemaidsystem.applicant.expectedarrival">-->
+            <!--<field name="expected_arrival_date" eval="datetime.now()-timedelta(days=5)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_8"/>-->
+            <!--<field name="flight_no">JSC:12215</field>-->
+            <!--<field name="flight_name">Jazera Airway</field>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_expectedarrival_4" model="housemaidsystem.applicant.expectedarrival">-->
+            <!--<field name="expected_arrival_date" eval="datetime.now()-timedelta(days=4)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_9"/>-->
+            <!--<field name="expectedarrival_no">5454232</field>-->
+            <!--<field name="flight_no">KWT:875</field>-->
+            <!--<field name="flight_name">Kuwait Airways</field>-->
+        <!--</record>-->
+
+        <!--&lt;!&ndash;deliver Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_expectedarrival_5" model="housemaidsystem.applicant.expectedarrival">-->
+            <!--<field name="expected_arrival_date" eval="datetime.now()-timedelta(days=3)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_10"/>-->
+            <!--<field name="flight_no">JSC:12215</field>-->
+            <!--<field name="flight_name">Jazera Airway</field>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_expectedarrival_6" model="housemaidsystem.applicant.expectedarrival">-->
+            <!--<field name="expected_arrival_date" eval="datetime.now()-timedelta(days=2)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_11"/>-->
+            <!--<field name="expectedarrival_no">5454232</field>-->
+            <!--<field name="flight_no">KWT:875</field>-->
+            <!--<field name="flight_name">Kuwait Airways</field>-->
+        <!--</record>-->
+
+    </data>
+
+</odoo>

@@ -1,0 +1,112 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_returnbackfromfirstsponsor_form_view" model="ir.ui.view">
+            <field name="name">Housemaid Return Back From First Sponsor Form view</field>
+            <field name="model">housemaidsystem.applicant.returnbackfromfirstsponsor</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="return_date"/>
+                                <field name="insurance" string="Action Taken" widget="radio"/>
+                                <field name="refund_amount"/>
+                                <field name="hm_salary"/>
+                            </group>
+                            <group>
+                                <field name="deliver_date" readonly="True"/>
+                                <field name="deliver_days" readonly="True"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="customer_id" readonly="True"/>
+                                <field name="invoice_id" readonly="True"/>
+                                <field name="invoice_state" readonly="True"/>
+                                <field name="invoice_total" readonly="True"/>
+                                <field name="previouse_discount" readonly="True"/>
+                                <field name="net_amount" readonly="True"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                       <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_returnbackfromfirstsponsor_list_tree_view" model="ir.ui.view">
+            <field name="name">Return Back From First Sponsor List</field>
+            <field name="model">housemaidsystem.applicant.returnbackfromfirstsponsor</field>
+            <field name="arch" type="xml">
+                <tree string="returnbackfromfirstsponsor List" editable="top">
+                    <field name="deliver_date" readonly="True"/>
+                    <field name="return_date" readonly="True"/>
+                    <field name="application_id" readonly="True"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="invoice_id" readonly="True"/>
+                    <field name="invoice_state" readonly="True"/>
+                    <field name="invoice_total" readonly="True" sum="invoice_total"/>
+                    <field name="previouse_discount" readonly="True" sum="previouse_discount"/>
+                    <field name="net_amount" readonly="True" sum="net_amount"/>
+                    <field name="refund_amount" readonly="True" sum="refund_amount"/>
+                    <field name="hm_salary" readonly="True" sum="hm_salary"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_returnbackfromfirstsponsor_list_action_window" model="ir.actions.act_window">
+            <field name="name">Return Back From First Sponsor List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.returnbackfromfirstsponsor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="view_id" ref="housemaid_applicant_returnbackfromfirstsponsor_list_tree_view"/>
+        </record>
+
+
+        <record id="housemaid_applicant_returnbackfromfirstsponsor_filter" model="ir.ui.view">
+            <field name="name">Return Back From First Sponsor search</field>
+            <field name="model">housemaidsystem.applicant.returnbackfromfirstsponsor</field>
+            <field name="arch" type="xml">
+                <search string="Return Back From First Sponsor">
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+                   <field name="name" string="Sponsor" filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+                    <filter name="returnbackfromfirstsponsor_only" string="Return Back From First Sponsor Only"
+                            domain="[('application_id.state','=','returnback')]"/>
+
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_returnbackfromfirstsponsor_list_action_window" model="ir.actions.act_window">
+            <field name="name">Return Back From First Sponsor List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.returnbackfromfirstsponsor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="context">{"search_default_returnbackfromfirstsponsor_only" : True,}</field>
+            <field name="view_id" ref="housemaid_applicant_returnbackfromfirstsponsor_list_tree_view"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,200 @@
+<odoo>
+    <data>
+        <record id="housemaid_customer_res_partner_form_view" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button o_res_partner_tip_opp"
+                            type="action"
+                            name="%(housemaidsystem.housemaid_applicant_applications_action_window)d"
+                            icon="fa-female"
+                            context="{'search_default_customer_id': active_id}">
+                        <field string="Housemaids" name="hm_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button o_res_partner_tip_opp"
+                            type="action"
+                            name="%(housemaidsystem.housemaid_configuration_contracts_print_form_action)d"
+                            icon="fa-print"
+                           >
+                        <field string="Contracts" name="contracts_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+
+                <xpath expr="//field[@name='street']" position="replace">
+                    <field name="street" string="English Address" placeholder="English Address..."/>
+                </xpath>
+                <xpath expr="//field[@name='street2']" position="replace">
+                    <field name="street2" string="Arabic Address" placeholder="Arabic Address ....."/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="name_ar" string="Name (Ar)" placeholder="Name (Ar)"/>
+                </xpath>
+
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="options">{'no_create': True, 'no_edit': True, 'delete': False}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='state_id']" position="after">
+                    <field name="area_id" string="Area" placeholder="Area" domain="[('state_id', '=', state_id)]" options="{'no_open': True, 'no_create': True, 'delete': False}"/>
+                </xpath>
+
+<!--                <xpath expr="//field[@name='mobile']" position="replace">-->
+<!--                    <field name="mobile"   placeholder="Mobile 1" widget="phone" string="Mobile 1"/>-->
+<!--                </xpath>-->
+
+<!--                <field name="mobile" position="after">-->
+<!--                    <field name="mobile2" string="Mobile 2" placeholder="Mobile 2" widget="phone"/>-->
+<!--                    <field name="mobile3" string="Mobile 3" placeholder="Mobile 3" widget="phone"/>-->
+<!--                    <field name="mobile4" string="Mobile 4" placeholder="Mobile 4" widget="phone"/>-->
+<!--                </field>-->
+
+                <field name="user_ids" position="after">
+                    <field name="sponsor_birth_dt"/>
+                    <field name="sponsor_salary" string="Salary" widget="monetary"/>
+                    <field name="sponsor_occupation" string="Occupation"/>
+                    <field name="num_family" string="Family Members"/>
+                    <field name="sponsor_house_type" string="House Type"/>
+                    <field name="customer_blood" string="Customer Blood"/>
+                    <field name="sponsor_gender" string="Gender" widget="selection_badge" required="1"/>
+                    <field name="is_black_list" string="Black List"/>
+                </field>
+
+
+
+                <xpath expr="//field[@name='is_black_list']" position="after">
+                    <field name="civil_id_copy" widget='image' class="oe_avatar"
+                           options='{"preview_image":"civil_id_copy"}'/>
+                </xpath>
+
+                <field name="area_id" position="after">
+                    <field name="sponsor_block" string="Block" placeholder="Block Number"/>
+                    <field name="sponsor_street" string="Block" placeholder="Street Number"/>
+                    <field name="sponsor_avenue" string="Block" placeholder="Avenue"/>
+                    <field name="sponsor_building" string="Block" placeholder="Building Number"/>
+                    <field name="sponsor_floor" string="Floor" placeholder="Floor Number"/>
+                    <field name="sponsor_flat" string="Flat" placeholder="Flat Number"/>
+                    <field name="sponsor_zip" string="Block" placeholder="Zip"/>
+                </field>
+
+
+                <field name="vat" position="after">
+                    <field name="civil_id" placeholder="Civil ID"/>
+                    <field name="civil_id_expiry_dt" placeholder="Civil ID Expiry Date"/>
+                    <field name="unified_id" placeholder="Unified ID"/>
+                    <field name="civil_id_serial" placeholder="Civil ID Serial No."/>
+                    <field name="nationality_id" placeholder="Nationality ID"/>
+                    <field name="nationality" placeholder="Nationality"/>
+                    <field name="sponsor_address_id" placeholder="Address ID"/>
+                </field>
+
+
+                <xpath expr="//field[@name='company_type']" position="replace">
+                    <field name="company_type" invisible="1"/>
+                </xpath>
+
+
+                <xpath expr="//field[@name='vat']" position="replace">
+                    <field name="vat" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='function']" position="replace">
+                    <field name="function" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='city']" position="replace">
+                    <field name="city" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='zip']" position="replace">
+                    <field name="zip" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="replace">
+                    <field name="website" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='title']" position="replace">
+                    <field name="title" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="replace">
+                    <field name="category_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="replace">
+                    <field name="parent_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="user_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='team_id']" position="replace">
+                    <field name="team_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="housemaid_customer_res_partner_tree_view" model="ir.ui.view">
+            <field name="name">res.partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">is_black_list==True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='display_name']" position="replace">
+                    <field name="display_name" string="Sponsor Name (En)"/>
+                </xpath>
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="name_ar" string="Sponsor Name (Ar)"/>
+                </xpath>
+
+                <tree>
+                    <field name="civil_id"/>
+                    <field name="mobile" string="Mobile 1"/>
+                    <field name="mobile2" string="Mobile 2"/>
+                    <field name="mobile3" string="Mobile 3"/>
+                    <field name="mobile4" string="Mobile 4"/>
+                    <field name="hm_count"/>
+                    <field name="contracts_count"/>
+                    <field name="is_black_list"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_res_partner_enherited_search_view" model="ir.ui.view">
+            <field name="name">res.partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="replace">
+                    <field name="name" invisible="1"/>
+                </xpath>
+                <field name="name" position="after">
+                    <field name="name" string="Sponsor"
+                           filter_domain="['|',('name','ilike',self),('name_ar','ilike',self)]"/>
+                    <field name="phone" string="Phone\Mobile"
+                           filter_domain="['|','|', '|','|', ('phone', 'ilike', self), ('mobile', 'ilike', self), ('mobile2', 'ilike', self), ('mobile3', 'ilike', self), ('mobile4', 'ilike', self)]"/>
+                    <field name="civil_id" string="Civil ID" filter_domain="[('civil_id','ilike',self)]"/>
+                    <filter string="Black Listed" name="is_black_list" domain="[('is_black_list','=',True)]"/>
+                </field>
+
+            </field>
+        </record>
+        <record id="housemaid_action_partner_action" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{"search_default_customer": 1, "default_customer_rank": 1}</field>
+            <!--             <field name="search_view_id" ref="view_res_partner_filter"/> -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a contact in your address book.
+                </p>
+                <p>
+                    Odoo helps you easily track all activities related to
+                    a customer: discussions, history of business opportunities,
+                    documents, etc.
+                </p>
+            </field>
+        </record>
+    </data>
+
+
+</odoo>

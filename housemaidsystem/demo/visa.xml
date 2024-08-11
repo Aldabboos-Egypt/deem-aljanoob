@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+
+
+        <!--&lt;!&ndash;visa Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_visa_1" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=12)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_4"/>-->
+            <!--<field name="visa_no">12254555</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=5)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=55)"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_visa_2" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=12)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_5"/>-->
+            <!--<field name="visa_no">5454232</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=4)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=56)"/>-->
+        <!--</record>-->
+
+         <!--&lt;!&ndash;Expected Arrival Status&ndash;&gt;-->
+             <!--<record id="housemaid_applicant_visa_3" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=10)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_6"/>-->
+            <!--<field name="visa_no">12254555</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=5)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=55)"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_visa_4" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=9)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_7"/>-->
+            <!--<field name="visa_no">5454232</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=4)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=56)"/>-->
+        <!--</record>-->
+
+         <!--&lt;!&ndash;Arrival Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_visa_5" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=8)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_8"/>-->
+            <!--<field name="visa_no">12254555</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=5)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=55)"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_visa_6" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=6)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_9"/>-->
+            <!--<field name="visa_no">5454232</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=4)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=56)"/>-->
+        <!--</record>-->
+
+         <!--&lt;!&ndash;deliver Status&ndash;&gt;-->
+        <!--<record id="housemaid_applicant_visa_7" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=8)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_10"/>-->
+            <!--<field name="visa_no">12254555</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=5)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=55)"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_visa_8" model="housemaidsystem.applicant.visa">-->
+            <!--<field name="transaction_date" eval="datetime.now()-timedelta(days=6)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_11"/>-->
+            <!--<field name="visa_no">5454232</field>-->
+            <!--<field name="visa_issue_date" eval="datetime.now()-timedelta(days=4)"/>-->
+            <!--<field name="visa_exp_date" eval="datetime.now()+timedelta(days=56)"/>-->
+        <!--</record>-->
+
+
+    </data>
+
+</odoo>

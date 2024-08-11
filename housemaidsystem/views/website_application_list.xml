@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="website_ready_applications_menu" model="website.menu">
+        <field name="name">Ready Applications</field>
+        <field name="url">/readyapplications</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">100</field>
+    </record>
+
+    <template id="readyapplications_template" name="Ready Application Template">
+        <t t-call="website.layout">
+
+
+            <!--            <t t-foreach="applications" t-as="application">-->
+
+            <!--                <div t-field="application.full_name" class="oe_no_empty"/>-->
+
+            <!--            </t>-->
+            <div class="container">
+                <!--                <div class="row">-->
+                <!--                    <div class="col-lg-12 my-3">-->
+                <!--                        <div class="pull-right">-->
+                <!--                            <div class="btn-group">-->
+                <!--                                <button class="btn btn-info" id="list">-->
+                <!--                                    List View-->
+                <!--                                </button>-->
+                <!--                                <button class="btn btn-danger" id="grid">-->
+                <!--                                    Grid View-->
+                <!--                                </button>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div id="products" class="row view-group">
+                    <t t-foreach="results" t-as="result">
+
+                        <div class="item col-xs-4 col-lg-4">
+                            <div class="thumbnail card">
+                                <div class="img-event">
+                                    <img class="group list-group-image img-fluid"
+                                         src="http://placehold.it/400x250/000/fff"
+                                         alt=""/>
+                                </div>
+                                <div class="caption card-body">
+                                    <h4 class="group card-title inner list-group-item-heading">
+                                        <b>Name: </b><span><t t-esc="result['name']"/></span>
+                                    </h4>
+
+                                    <p class="group inner list-group-item-text">
+                                        <b>Nationality: </b><span><t t-esc="result['nationality']"/></span>
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <p class="lead">
+                                                KWD990.000</p>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to
+                                                cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+
+    <!--    <record id="website_ready_applications_menu" model="website.menu">-->
+    <!--        <field name="name">Ready Applications</field>-->
+    <!--        <field name="url">/ready_applications</field>-->
+    <!--        <field name="parent_id" ref="website.main_menu"/>-->
+    <!--        <field name="sequence">100</field>-->
+    <!--    </record>-->
+
+    <!--    <record id="website_ready_applications_page" model="website.page">-->
+    <!--        <field name="name">Ready Applications</field>-->
+    <!--        <field name="type">qweb</field>-->
+    <!--        <field name="url">/ready_applications</field>-->
+    <!--        <field name="website_published">True</field>-->
+    <!--        <field name="key">housemaidsystem.housemaidsystem.applicant.applications</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <t name="Thanks" t-name="om_hospital.patient_thanks">-->
+    <!--                <t t-call="website.layout">-->
+    <!--                    <div id="wrap">-->
+    <!--                        <div class="container">-->
+    <!--                            <h1>Thanks!</h1>-->
+    <!--                            <div class="row">-->
+    <!--                                <div class="col-lg-8">-->
+    <!--                                    <div class="alert alert-success" role="status">-->
+    <!--                                        The Patient has been Created successfully.-->
+    <!--                                    </div>-->
+    <!--                                    <p>-->
+    <!--                                        Visit Hospital At ANy Time-->
+    <!--                                    </p>-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </t>-->
+    <!--            </t>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <!--    <template id="applications_page" name="Application Page">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            Bassam Mannaa-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+
+    <!--    <record id="website_applicationslist1_menu" model="website.menu">-->
+    <!--        <field name="name">Applications List 1</field>-->
+    <!--        <field name="url">/applicationslist1</field>-->
+    <!--        <field name="parent_id" ref="website.main_menu"/>-->
+    <!--        <field name="sequence">100</field>-->
+    <!--    </record>-->
+    <!--    <record id="website_applicationslist1_page" model="website.page">-->
+    <!--        <field name="url">/applicationslist1/</field>-->
+    <!--    </record>-->
+
+    <!--    <template id="website_applicationslist_template" name="Applications List">-->
+    <!--        <t t-call="website.layout">-->
+    <!--            <div id="wrap">-->
+    <!--                Hiiiiiiii-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
+
+</odoo>

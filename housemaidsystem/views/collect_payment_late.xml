@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_collect_payment_form_view" model="ir.ui.view">
+            <field name="name">Collect Payment Late</field>
+            <field name="model">housemaidsystem.applicant.collect_payment_late</field>
+            <field name="arch" type="xml">
+                <form delete="false" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="transaction_date"/>
+                                <field name="deal_amount" readonly="True"/>
+                                <field name="down_payment_amount" readonly="True"/>
+                                <field name="due_amount" readonly="True"/>
+                                <field name="payment_amount" string="New Payment"/>
+                                <field name="journal" string="Payment Method" options="{'no_quick_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="application_id" readonly="True"/>
+                                <field name="invoice_sales_id" readonly="True"/>
+                                <field name="down_payment_invoice" readonly="True"/>
+                                <field name="customer_id" readonly="True"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <group>
+                            <span>
+                                <span>
+                                    <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                                    or
+                                </span>
+                                <button string="Skip" class="btn-default" special="cancel"/>
+                            </span>
+                        </group>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

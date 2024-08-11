@@ -1,0 +1,16 @@
+<odoo>
+    <data >
+        <!--deliver Status-->
+        <!--<record id="housemaid_applicant_deliver_1" model="housemaidsystem.applicant.deliver">-->
+            <!--<field name="delivery_date" eval="datetime.now()-timedelta(days=8)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_10"/>-->
+        <!--</record>-->
+        <!--<record id="housemaid_applicant_deliver_2" model="housemaidsystem.applicant.deliver">-->
+            <!--<field name="delivery_date" eval="datetime.now()-timedelta(days=7)"/>-->
+            <!--<field name="application_id" ref="housemaid_applicant_applications_11"/>-->
+        <!--</record>-->
+
+
+    </data>
+
+</odoo>

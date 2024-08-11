@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+	<record id="post_applied_highschool" model="housemaidsystem.configuration.education">
+	    <field name="name">High School</field>
+	</record>
+	<record id="post_applied_elementary_school" model="housemaidsystem.configuration.education">
+	    <field name="name">Elementary school</field>
+	</record>
+        	<record id="post_applied_uneducated" model="housemaidsystem.configuration.education">
+	    <field name="name">Uneducated</field>
+	</record>
+
+    </data>
+</odoo>

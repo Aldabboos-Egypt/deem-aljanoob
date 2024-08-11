@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="list_arrival">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="font">
+                    <div class="page">
+                        <div class="text-center">
+                            <h3>
+                                <strong><u>Arrival List Report</u></strong>
+                            </h3>
+                        </div>
+                        <table class="table table-sm table-hover table-bordered">
+                            <thead>
+                                <th>SN</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Arrival Date</th>
+                                <th>Sponsor</th>
+                                <th>Mobile</th>
+                                <th>Telephone</th>
+                                <th class="text-right">Total</th>
+                                <th class="text-right">Due</th>
+                            </thead>
+                            <tbody>
+                                <t t-set="line_num" t-value="1"/>
+                                <t t-set="tot_amount_total" t-value="0"/>
+                                <t t-set="tot_residual" t-value="0"/>
+                                <t t-set="decimal_precision" t-value="0"/>
+                                <t t-foreach="docs" t-as="doc">
+                                    <tr>
+                                        <td class="small">
+                                            <t t-esc="line_num"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-esc="doc.application_id.external_office_id"/>
+                                        </td>
+                                         <td class="small">
+                                            <t t-esc="doc.application_id.full_name"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.arrival_date"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.customer_id.name"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.customer_id.mobile"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.customer_id.phone"/>
+                                        </td>
+
+                                        <td  class="small" align="right">
+                                            <t t-raw="doc.invoice_id.amount_total"
+                                               t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                        <td  class="small" align="right">
+
+                                            <t t-raw="doc.invoice_id.amount_residual"
+                                               t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="line_num" t-value="line_num+1"/>
+                                    <t t-set="decimal_precision" t-value="doc.currency_id.decimal_places"/>
+                                    <t t-set="tot_amount_total" t-value="tot_amount_total+doc.invoice_id.amount_total"/>
+                                    <t t-set="tot_residual" t-value="tot_residual+doc.invoice_id.amount_residual"/>
+                                </t>
+                            </tbody>
+                             <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <span>Total</span>
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="tot_amount_total" t-options='{"widget": "float", "decimal_precision": "decimal_precision"}'/>
+                                    </td>
+                                    <td align="right">
+                                        <span t-esc="tot_residual" t-options='{"widget": "float", "decimal_precision": "decimal_precision"}'/>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

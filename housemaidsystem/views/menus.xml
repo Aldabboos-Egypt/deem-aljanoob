@@ -1,0 +1,620 @@
+<odoo>
+    <data>
+        <!-- ROOT MENU -->
+        <menuitem id="housemaid_menu_root"
+                  name="Housemaid"
+                  sequence="0"
+                  web_icon="housemaidsystem,static/description/icon.jpeg"/>
+
+
+        <!-- CATEGORY MENU -->
+        <menuitem id="main_process_menu_category"
+                  name="Main Process"
+                  parent="housemaid_menu_root"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="0"/>
+        <menuitem id="main_applicationlist_menu_category"
+                  name="Applications list"
+                  parent="housemaid_menu_root"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="1"/>
+        <menuitem id="report_menu_category"
+                  name="Reports"
+                  parent="housemaid_menu_root"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="2"/>
+        <menuitem id="configuration_menu_category"
+                  name="Configuration"
+                  parent="housemaid_menu_root"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="3"/>
+
+        <!-- ACTION MENU / Main Process -->
+        <menuitem id="application_menu_action"
+                  name="Applications"
+                  parent="main_process_menu_category"
+                  action="housemaid_applicant_applications_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="0"/>
+        <menuitem id="sponsor_menu_action"
+                  name="Sponsors"
+                  parent="main_process_menu_category"
+                  action="housemaid_action_partner_action"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="1"/>
+        <menuitem id="contracting_menu_action"
+                  name="Contracting"
+                  parent="main_process_menu_category"
+                  action="housemaid_configuration_contracts_print_form_action_main"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="2"/>
+
+
+        <!-- ACTION MENU / Applications List -->
+        <menuitem id="cancel_applications_state_menu_action"
+                  name="Canceled Applications"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_cancelapplication_action_window"
+                  sequence="0"/>
+        <menuitem id="activate_applications_state_menu_action"
+                  name="Activated Applications"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_activateapplication_action_window"
+                  sequence="1"/>
+        <menuitem id="reservation_applications_state_menu_action"
+                  name="Reservations"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_reservations_list_action_window"
+                  sequence="2"/>
+        <menuitem id="cancel_reservation_applications_state_menu_action"
+                  name="Cancel Reservations"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_cancel_reservations_list_action_window"
+                  sequence="2"/>
+        <menuitem id="visa_applications_state_menu_action"
+                  name="Visa"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_visa_list_action_window"
+                  sequence="3"/>
+        <menuitem id="cancel_visa_applications_state_menu_action"
+                  name="Cancel Visa"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_cancel_visa_list_action_window"
+                  sequence="3"/>
+        <menuitem id="expectedarrival_applications_state_menu_action"
+                  name="Expected Arrival"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_expectedarrival_list_action_window"
+                  sequence="4"/>
+        <menuitem id="cancel_expectedarrival_applications_state_menu_action"
+                  name="Cancel Expected Arrival"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_cancel_expectedarrival_list_action_window"
+                  sequence="4"/>
+        <menuitem id="arrival_applications_state_menu_action"
+                  name="Arrival"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_arrival_list_action_window"
+                  sequence="5"/>
+        <menuitem id="cancel_arrival_applications_state_menu_action"
+                  name="Cancel Arrival"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_cancel_arrival_list_action_window"
+                  sequence="5"/>
+        <menuitem id="deliver_applications_state_menu_action"
+                  name="Deliver to First Sponsor"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_deliver_list_action_window"
+                  sequence="6"/>
+        <menuitem id="returnbackfromfirstsponsor_applications_state_menu_action"
+                  name="Return Back From First Sponsor"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_returnbackfromfirstsponsor_list_action_window"
+                  sequence="7"/>
+        <menuitem id="resell_applications_state_menu_action"
+                  name="Re-Sell"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_resell_list_action_window"
+                  sequence="8"/>
+        <menuitem id="selltest_applications_state_menu_action"
+                  name="Deliver to Another Sponsor"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_selltest_list_action_window"
+                  sequence="9"/>
+        <menuitem id="back_to_country_after_first_sponsor_menu_action"
+                  name="Back To Country After Return Back From First Sponsor"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_backtocountryafterfirstsponsor_list_action_window"
+                  sequence="10"/>
+        <menuitem id="back_to_country_after_last_sponsor_menu_action"
+                  name="Back To Country After Return Back From Last Sponsor"
+                  parent="main_applicationlist_menu_category"
+                  action="housemaid_applicant_backtocountryafterlastsponsor_list_action_window"
+                  sequence="11"/>
+
+
+        <!-- ACTION MENU / Report Process -->
+        <menuitem id="application_cancellation_menu_action"
+                  name="Applications Cancellation List"
+                  parent="report_menu_category"
+                  action="application_cancellation_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="0"/>
+        <menuitem id="application_activation_menu_action"
+                  name="Applications Activation List"
+                  parent="report_menu_category"
+                  action="application_activation_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="1"/>
+        <menuitem id="application_list_menu_action"
+                  name="Applications List"
+                  parent="report_menu_category"
+                  action="application_list_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="2"/>
+        <menuitem id="reservations_list_menu_action"
+                  name="Reservations List"
+                  parent="report_menu_category"
+                  action="reservations_list_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="3"/>
+        <menuitem id="visa_list_menu_action"
+                  name="Visa List"
+                  parent="report_menu_category"
+                  action="visa_list_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="4"/>
+        <menuitem id="expected_arrival_list_menu_action"
+                  name="Expected Arrival List"
+                  parent="report_menu_category"
+                  action="expected_arrival_list_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="5"/>
+        <menuitem id="arrival_list_menu_action"
+                  name="Arrival List"
+                  parent="report_menu_category"
+                  action="arrival_list_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="6"/>
+        <menuitem id="deliver_list_menu_action"
+                  name="Deliver List"
+                  parent="report_menu_category"
+                  action="deliver_list_wz_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                  sequence="7"/>
+
+        <!--        <menuitem id="reservations_list_menu_action"-->
+        <!--                  name="Reservations List"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="reservations_list_wz_action_window"-->
+        <!--                  groups="system_manager_user_group,sales_manager_user_group,sales_user_group"-->
+        <!--                  sequence="2"/>-->
+
+
+        <!--                <menuitem id="late_reservation_report_menu_action"-->
+        <!--                          name="Late Reservation"-->
+        <!--                          parent="report_menu_category"-->
+        <!--                          action="latereservation_report_action"-->
+        <!--                          sequence="0"/>-->
+
+        <!--        <menuitem id="salespermonth_report_menu_action"-->
+        <!--                  name="Sales"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="salespermonths_report_action"-->
+        <!--                  sequence="1"/>-->
+
+        <!--        <menuitem id="salesreturnpermonth_report_menu_action"-->
+        <!--                  name="Sales Return"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="salesreturnpermonths_report_action"-->
+        <!--                  sequence="2"/>-->
+
+        <!--        <menuitem id="expected_arrival_report_menu_action"-->
+        <!--                  name="Expected Arrival List"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="housemaid_applicant_expectedarrival_action_window"-->
+        <!--                  sequence="3"/>-->
+
+        <!--        <menuitem id="app_sum_rep_wiz_wizard_menu_action"-->
+        <!--                  name="Application Summary"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="app_sum_rep_wiz_wizard_action_window"-->
+        <!--                  sequence="4"/>-->
+
+        <!--        <menuitem id="sales_details_menu_action"-->
+        <!--                  name="Sales Details"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="sales_details_wz_action_window"-->
+        <!--                  sequence="5"/>-->
+
+        <!--        <menuitem id="reservations_list_menu_action"-->
+        <!--                  name="Reservations List"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="reservations_list_wz_action_window"-->
+        <!--                  groups="system_manager_user_group,sales_manager_user_group,sales_user_group"-->
+        <!--                  sequence="6"/>-->
+
+        <!--        <menuitem id="visa_list_menu_action"-->
+        <!--                  name="Visa List"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="visa_list_wz_action_window"-->
+        <!--                  sequence="7"/>-->
+
+        <!--        <menuitem id="staff_dues_menu_action"-->
+        <!--                  name="Staff Dues"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="staff_dues_wz_action_window"-->
+        <!--                  groups="system_manager_user_group,sales_manager_user_group,sales_user_group"-->
+        <!--                  sequence="8"/>-->
+
+        <!--        <menuitem id="housemaid_salaries_dues_menu_action"-->
+        <!--                  name="Housemaid Salary Dues"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="housemaid_salaries_dues_wz_action_window"-->
+        <!--                  groups="system_manager_user_group,sales_manager_user_group,sales_user_group"-->
+        <!--                  sequence="9"/>-->
+        <!--        -->
+
+        <!--        <menuitem id="sponsor_payments_menu_action"-->
+        <!--                  name="Sponsor Payments"-->
+        <!--                  parent="report_menu_category"-->
+        <!--                  action="housemaid_sponsor_payments_list_action_window"-->
+        <!--                  sequence="11"/>-->
+
+
+        <!-- ACTION MENU / Configuration -->
+        <menuitem id="externaloffices_menu_action"
+                  name="External Offices"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_externaloffices_window_action"
+                  groups="system_manager_user_group,accounting_user_group,accounting_manager_user_group"
+                  sequence="0"/>
+        <menuitem id="external_transactions_menu_action"
+                  name="External Transactions"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_externalofficetransdet_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="1"/>
+        <menuitem id="education_menu_action"
+                  name="Educations"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_education_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="2"/>
+        <menuitem id="postapplied_menu_action"
+                  name="Post Applied"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_postapplied_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="3"/>
+        <menuitem id="religion_menu_action"
+                  name="Religion"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_religion_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="4"/>
+        <menuitem id="officebrabches_menu_action"
+                  name="Office Branches"
+                  parent="configuration_menu_category"
+                  action="housemaid_accounting_officebranches_form_action"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="5"/>
+        <!--        <menuitem id="accountitems_menu_action"-->
+        <!--                  name="Account Items"-->
+        <!--                  parent="configuration_menu_category"-->
+        <!--                  action="housemaid_accounting_accountitems_form_action"-->
+        <!--                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"-->
+        <!--                  sequence="6"/>-->
+        <!--        <menuitem id="systemreports_menu_action"-->
+        <!--                  name="System Reports"-->
+        <!--                  parent="configuration_menu_category"-->
+        <!--                  action="housemaid_configuration_systemreports_action_window"-->
+        <!--                  sequence="7"/>-->
+        <menuitem id="sponsor_occupation_menu_action"
+                  name="Sponsor Occupation"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_sponsor_occupation_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="8"/>
+        <menuitem id="sponsor_house_type_menu_action"
+                  name="Sponsor House Type"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_sponsor_house_type_action_window"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="9"/>
+        <menuitem id="housemaid_config_settings_menu"
+                  name="Settings"
+                  parent="configuration_menu_category"
+                  action="housemaid_config_settings_action"
+                  sequence="10"/>
+
+        <!-- ACTION MENU / Dynamic Reports / automatic appear in the model screen -->
+        <report id="application_details"
+                string="Application details"
+                model="housemaidsystem.applicant.applications"
+                report_type="qweb-html"
+                file="housemaidsystem.application_details_report"
+                name="housemaidsystem.application_details_report"
+                menu="True"/>
+
+        <!--        <record id="application_details" model="ir.actions.report">-->
+        <!--            <field name="name">Application details</field>-->
+        <!--            <field name="model">housemaidsystem.applicant.applications</field>-->
+        <!--            <field name="report_type">qweb-pdf</field>-->
+        <!--            <field name="report_name">housemaidsystem.application_details_report</field>-->
+        <!--            <field name="report_file">housemaidsystem.application_details_report</field>-->
+        <!--&lt;!&ndash;            <field name="binding_model_id" ref="model_account_move"/>&ndash;&gt;-->
+        <!--            <field name="binding_type">report</field>-->
+        <!--        </record>-->
+
+        <!-- ACTION MENU / Hidden Reports (Called by Python code)-->
+        <!-- New Reports-->
+        <report
+                id="application_cancellation_rep_wiz_action"
+                model="housemaidsystem.applicant.cancelapplication"
+                string="Application Cancellation Report"
+                report_type="qweb-html"
+                name="housemaidsystem.application_cancellation_rep"
+                file="housemaidsystem.application_cancellation_rep"
+                menu="False"/>
+        <report
+                id="application_activation_rep_wiz_action"
+                model="housemaidsystem.applicant.activateapplication"
+                string="Application Activation Report"
+                report_type="qweb-html"
+                name="housemaidsystem.application_activation_rep"
+                file="housemaidsystem.application_activation_rep"
+                menu="False"/>
+        <report
+                id="application_list_rep_wiz_action"
+                model="housemaidsystem.applicant.applications"
+                string="Applications List Report"
+                report_type="qweb-html"
+                name="housemaidsystem.application_list_rep"
+                file="housemaidsystem.application_list_rep"
+                menu="False"/>
+        <report
+                id="reservations_list_rep_wiz_action"
+                model="housemaidsystem.applicant.reservations"
+                string="Reservations List Report"
+                report_type="qweb-html"
+                name="housemaidsystem.reservations_list_rep"
+                file="housemaidsystem.reservations_list_rep"
+                menu="False"/>
+        <report
+                id="visa_list_rep_wiz_action"
+                model="housemaidsystem.applicant.visa"
+                string="Visa List Report"
+                report_type="qweb-html"
+                name="housemaidsystem.visa_list_rep"
+                file="housemaidsystem.visa_list_rep"
+                menu="False"/>
+        <report
+                id="expected_arrival_list_rep_wiz_action"
+                model="housemaidsystem.applicant.expectedarrival"
+                string="Expected Arrival List Report"
+                report_type="qweb-html"
+                name="housemaidsystem.expected_arrival_list_rep"
+                file="housemaidsystem.expected_arrival_list_rep"
+                menu="False"/>
+        <report
+                id="arrival_list_rep_wiz_action"
+                model="housemaidsystem.applicant.arrival"
+                string="Arrival List Report"
+                report_type="qweb-html"
+                name="housemaidsystem.arrival_list_rep"
+                file="housemaidsystem.arrival_list_rep"
+                menu="False"/>
+        <report
+                id="deliver_list_rep_wiz_action"
+                model="housemaidsystem.applicant.deliver"
+                string="Deliver List Report"
+                report_type="qweb-html"
+                name="housemaidsystem.deliver_list_rep"
+                file="housemaidsystem.deliver_list_rep"
+                menu="False"/>
+        <!-- Old Reports-->
+        <report
+                id="action_report_app_sum_wiz_rep_wiz"
+                model="housemaidsystem.configuration.externalofficetrans"
+                string="Application Summary"
+                report_type="qweb-html"
+                name="housemaidsystem.app_sum_rep"
+                file="housemaidsystem.app_sum_rep"
+                menu="False"/>
+        <report
+                id="sales_details_rep_wiz_action"
+                model="account.invoice"
+                string="Sales Details"
+                report_type="qweb-html"
+                name="housemaidsystem.sales_details_rep"
+                file="housemaidsystem.sales_details_rep"
+                menu="False"/>
+        <report
+                id="staff_dues_rep_wiz_action"
+                model="account.move"
+                string="Staff Dues"
+                report_type="qweb-html"
+                name="housemaidsystem.staff_dues_rep"
+                file="housemaidsystem.staff_dues_rep"
+                menu="False"/>
+        <report
+                id="housemaid_salaries_dues_rep_wiz_action"
+                model="account.move"
+                string="Housemaid Salaries Dues"
+                report_type="qweb-html"
+                name="housemaidsystem.housemaid_salaries_dues_rep"
+                file="housemaidsystem.housemaid_salaries_dues_rep"
+                menu="False"/>
+        <report
+                id="report_payment_receipt_action"
+                model="housemaidsystem.sponsorpayments"
+                string="Sponsor Payments"
+                report_type="qweb-html"
+                name="housemaidsystem.report_payment_receipt"
+                file="housemaidsystem.report_payment_receipt"
+                menu="True"/>
+        <report
+                id="payment_receipt_report_action"
+                model="account.payment"
+                string="Receipt Payment"
+                report_type="qweb-html"
+                name="housemaidsystem.payment_receipt_report"
+                file="housemaidsystem.payment_receipt_report"
+                menu="False"/>
+        <report
+                id="payment_refund_report_action"
+                model="account.payment"
+                string="refund Payment"
+                report_type="qweb-html"
+                name="housemaidsystem.payment_refund_report"
+                file="housemaidsystem.payment_refund_report"
+                menu="False"/>
+        <report
+                id="expected_arrival_report_action"
+                model="housemaidsystem.applicant.expectedarrival"
+                string="Expected Arrival Report"
+                report_type="qweb-html"
+                name="housemaidsystem.expectedarrival"
+                file="housemaidsystem.expectedarrival"
+                menu="False"/>
+        <report
+                id="list_reservations_report_menu_action"
+                model="housemaidsystem.applicant.reservations"
+                string="Reservation List"
+                report_type="qweb-html"
+                name="housemaidsystem.list_reservations"
+                file="housemaidsystem.list_reservations"
+                menu="True"/>
+        <report
+                id="list_cancelapplication_report_menu_action"
+                model="housemaidsystem.applicant.cancelapplication"
+                string="Cancellation List"
+                report_type="qweb-html"
+                name="housemaidsystem.list_canceled_applications"
+                file="housemaidsystem.list_canceled_applications"
+                menu="True"/>
+        <report
+                id="list_activateapplication_report_menu_action"
+                model="housemaidsystem.applicant.activateapplication"
+                string="Activation List"
+                report_type="qweb-html"
+                name="housemaidsystem.list_activated_applications"
+                file="housemaidsystem.list_activated_applications"
+                menu="True"/>
+        <report
+                id="list_visa_report_menu_action"
+                model="housemaidsystem.applicant.visa"
+                string="Visa List"
+                report_type="qweb-html"
+                name="housemaidsystem.list_visa"
+                file="housemaidsystem.list_visa"
+                menu="True"/>
+        <report
+                id="list_expectedarrival_report_menu_action"
+                model="housemaidsystem.applicant.expectedarrival"
+                string="Expected Arrival List"
+                report_type="qweb-html"
+                name="housemaidsystem.list_expectedarrival"
+                file="housemaidsystem.list_expectedarrival"
+                menu="True"/>
+        <report
+                id="list_arrival_report_menu_action"
+                model="housemaidsystem.applicant.arrival"
+                string="Arrival List"
+                report_type="qweb-html"
+                name="housemaidsystem.list_arrival"
+                file="housemaidsystem.list_arrival"
+                menu="True"/>
+        <report
+                id="list_deliver_report_menu_action"
+                model="housemaidsystem.applicant.deliver"
+                string="Deliver List"
+                report_type="qweb-html"
+                name="housemaidsystem.list_deliver"
+                file="housemaidsystem.list_deliver"
+                menu="True"/>
+
+
+        <record id="contracts_print_paperformat" model="report.paperformat">
+            <field name="name">Contract Print Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">8</field>
+            <field name="margin_bottom">8</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="contracts_print_report_menu_action" model="ir.actions.report">
+            <field name="name">Three Parties Contract Print (English and Arabic)</field>
+            <field name="model">housemaidsystem.configuration.contracts_print</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">housemaidsystem.contract_print</field>
+            <field name="report_file">housemaidsystem.contract_print</field>
+            <field name="paperformat_id" ref="housemaidsystem.contracts_print_paperformat"/>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_housemaidsystem_configuration_contracts_print"/>
+        </record>
+
+        <record id="civilid_print_paperformat" model="report.paperformat">
+            <field name="name">Civil ID Print Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="civilid_print_report_menu_action" model="ir.actions.report">
+            <field name="name">Civil ID Card</field>
+            <field name="model">housemaidsystem.configuration.contracts_print</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">housemaidsystem.civilid_print</field>
+            <field name="report_file">housemaidsystem.civilid_print</field>
+            <field name="paperformat_id" ref="housemaidsystem.civilid_print_paperformat"/>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_housemaidsystem_configuration_contracts_print"/>
+        </record>
+
+        <record id="visa_translate_print_paperformat" model="report.paperformat">
+            <field name="name">Visa Translate Print Paper Format</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">8</field>
+            <field name="margin_bottom">8</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="visa_translate_report_menu_action" model="ir.actions.report">
+            <field name="name">Visa Translate</field>
+            <field name="model">housemaidsystem.configuration.contracts_print</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">housemaidsystem.visa_translate_print</field>
+            <field name="report_file">housemaidsystem.visa_translate_print</field>
+            <field name="paperformat_id" ref="housemaidsystem.visa_translate_print_paperformat"/>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" ref="model_housemaidsystem_configuration_contracts_print"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="deliver_list_wz_form">
+        <field name="name">housemaidsystem.wizard.deliver_list_wz.form</field>
+        <field name="model">housemaidsystem.wizard.deliver_list_wz</field>
+        <field name="arch" type="xml">
+            <form string="Reservations List">
+                <group>
+                    <group>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <group>
+                        <field name="external_office"/>
+                        <field name="invoice_status"/>
+                        <field name="accumulated" />
+                    </group>
+                </group>
+
+                <footer groups="base.group_user">
+                    <button name="print_report" type="object" string="Print"
+                            class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="deliver_list_wz_action_window">
+        <field name="name">Deliver List</field>
+        <field name="res_model">housemaidsystem.wizard.deliver_list_wz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="deliver_list_wz_form"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

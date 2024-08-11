@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="externalofficetransdet_1" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Back to Country</field>
+        </record>
+        <record id="externalofficetransdet_2" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Booking Ticket</field>
+        </record>
+        <record id="externalofficetransdet_3" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Contracting</field>
+        </record>
+
+
+        <record id="externalofficetransdet_4" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Contract sent to empassy</field>
+        </record>
+
+        <record id="externalofficetransdet_5" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Deported</field>
+        </record>
+
+        <record id="externalofficetransdet_6" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">DFA Authentication</field>
+        </record>
+
+        <record id="externalofficetransdet_7" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Medical</field>
+        </record>
+
+        <record id="externalofficetransdet_8" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Medical Pending</field>
+        </record>
+
+        <record id="externalofficetransdet_9" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Training</field>
+        </record>
+
+
+        <record id="externalofficetransdet_10" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Passport Renwal</field>
+        </record>
+
+        <record id="externalofficetransdet_11" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Contracting</field>
+        </record>
+
+        <record id="externalofficetransdet_12" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Visa Renewal</field>
+        </record>
+
+        <record id="externalofficetransdet_13" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Rnuway not found</field>
+        </record>
+
+        <record id="externalofficetransdet_14" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">POEA</field>
+        </record>
+
+        <record id="externalofficetransdet_15" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">Cusomer Complaint</field>
+        </record>
+
+        <record id="externalofficetransdet_16" model="housemaidsystem.configuration.externalofficetransdet">
+            <field name="name">General Note</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_applicationhistory_form_view" model="ir.ui.view">
+            <field name="name">Application History</field>
+            <field name="model">housemaidsystem.applicant.applicationhistory</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="tran_date"/>
+                                <field name="name" attrs="{'invisible': True}"/>
+                                 <field name="created_by"/>
+                                <field name="notes"/>
+                            </group>
+                        </group>
+
+
+                        <notebook>
+                            <page string="Application Cancelation"
+                                  attrs="{'invisible': [('name','!=','Application Canceled')]}">
+                                <group>
+                                    <field name="cancel_reason"/>
+                                </group>
+                            </page>
+                            <page string="Application Activation"
+                                  attrs="{'invisible': [('name','!=','Application Activated')]}">
+                                <group>
+                                    <field name="activate_reason"/>
+                                </group>
+                            </page>
+                            <page string="Reservation Details"
+                                  attrs="{'invisible': [('name','!=','Reservation Created')]}">
+                                <group>
+                                    <field name="sales_man"/>
+                                    <field name="deal_amount"/>
+                                    <field name="customer_id"/>
+                                    <field name="invoice_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_applicationhistory_action_window" model="ir.actions.act_window">
+            <field name="name">Application History</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.applicationhistory</field>
+            <field name="view_mode">form</field>
+            <field name="target">current</field>
+        </record>
+    </data>
+</odoo>

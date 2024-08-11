@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="housemaid_configuration_contracts_print_form_view" model="ir.ui.view">
+            <field name="name">Contracts Print View Form</field>
+            <field name="model">housemaidsystem.configuration.contracts_print</field>
+            <field name="arch" type="xml">
+                <form string="Projects" create="0" duplicate="0" delete="0">
+                    <header>
+                        <button name="update_data_action"
+                                string="Fetch Data"
+                                type="object"
+                                class="oe_highlight oe_inline"/>
+                    </header>
+                    <sheet>
+                        <group string="Contract Details Information">
+                            <group>
+                                <field name="contract_date"/>
+                                <field name="contract_end_date"/>
+                                <field name="contract_valid_years"/>
+                                <field name="day_name"/>
+                                <field name="day_ar_name"/>
+
+                            </group>
+                            <group>
+                                <field name="application_no"/>
+                                <field name="name_external_office"/>
+                                <field name="name_ar_external_office"/>
+                            </group>
+                        </group>
+
+                        <group string="Company Information">
+                            <group>
+                                <field name="company_en_name"/>
+                                <field name="company_ar_name"/>
+                                <field name="company_reg_id"/>
+                                <field name="company_unique_num"/>
+                                <field name="company_unified_num"/>
+                            </group>
+                            <group>
+                                <field name="company_address"/>
+                                <field name="company_address_ar"/>
+                                <field name="company_telephone"/>
+                                <field name="company_presenter"/>
+                                <field name="company_presenter_ar"/>
+                                <field name="company_email"/>
+                            </group>
+                        </group>
+
+
+                        <group string="Sponsor Information">
+                            <group>
+                                <field name="customer_name"/>
+                                <field name="customer_name_ar"/>
+                                <field name="customer_civil_id"/>
+                                <field name="customer_civilid_expiry"/>
+                                <field name="customer_civil_id_serial"/>
+                                <field name="customer_nationality"/>
+                                <field name="customer_ar_nationality"/>
+                                <field name="customer_nationality_no"/>
+                                <field name="customer_unfied"/>
+                                <field name="customer_civil_id_serial"/>
+                                <field name="customer_address_id"/>
+                                <field name="customer_nationality_no"/>
+                                <field name="customer_mobile"/>
+                                <field name="customer_mobile2"/>
+                                <field name="customer_email"/>
+                                <field name="customer_gender"/>
+                            </group>
+                            <group>
+                                <field name="customer_occupation"/>
+                                <field name="customer_ar_occupation"/>
+                                <field name="customer_house_type"/>
+                                <field name="customer_ar_house_type"/>
+                                <field name="customer_salary"/>
+                                <field name="customer_family_member"/>
+                                <field name="customer_date_birth"/>
+                                <field name="customer_blood"/>
+                                <field name="customer_address"/>
+                                <field name="customer_address_area"/>
+                                <field name="customer_address_block"/>
+                                <field name="customer_address_street"/>
+                                <field name="customer_address_avenue"/>
+                                <field name="customer_address_house"/>
+                                <field name="customer_address_floor"/>
+                                <field name="customer_address_flat"/>
+                                <field name="customer_address_house"/>
+                            </group>
+                        </group>
+
+
+                        <group string="Housemaid Information">
+                            <group>
+                                <field name="application_id"/>
+                                <field name="hm_name"/>
+                                <field name="hm_nationality"/>
+                                <field name="hm_ar_nationality"/>
+                                <field name="hm_sex"/>
+                                <field name="hm_ar_sex"/>
+                                <field name="hm_passport_number"/>
+                                <field name="hm_passport_type"/>
+                                <field name="hm_office_name"/>
+                            </group>
+                            <group>
+                                <field name="hm_passport_expiry"/>
+                                <field name="hm_place_of_issue"/>
+                                <field name="hm_passport_courier"/>
+                                <field name="hm_occupation"/>
+                                <field name="hm_ar_occupation"/>
+                                <field name="hm_dob"/>
+                                <field name="hm_salary"/>
+                                <field name="hm_deal_amount"/>
+
+                            </group>
+                        </group>
+
+                        <group string="Visa Information">
+                            <group>
+                                <field name="visa_no"/>
+                                <field name="visa_type"/>
+                                <field name="visa_purpose"/>
+                                <field name="visa_unified_no"/>
+                                <field name="visa_applicant_no"/>
+                            </group>
+                            <group>
+                                <field name="visa_place_issue"/>
+                                <field name="visa_issue_date"/>
+                                <field name="hm_passport_courier"/>
+                                <field name="visa_exp_date"/>
+                            </group>
+                        </group>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_configuration_contracts_print_tree_view" model="ir.ui.view">
+            <field name="name">Contracts Print List View</field>
+            <field name="model">housemaidsystem.configuration.contracts_print</field>
+            <field name="arch" type="xml">
+                <tree string="Contracts Print" create="false" delete="false">
+                    <field name="application_id"/>
+                    <field name="customer_id"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_configuration_contracts_print_search_view" model="ir.ui.view">
+            <field name="name">Contract Search View</field>
+            <field name="model">housemaidsystem.configuration.contracts_print</field>
+            <field name="arch" type="xml">
+                <search string="Contracts Print">
+                    <field name="customer_id" string="Current Sponsor" filter_domain="[('customer_id','ilike',self)]"/>
+                    <field name="application_id" string="Current Housemaid" filter_domain="[('application_id','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_configuration_contracts_print_form_action_main" model="ir.actions.act_window">
+            <field name="name">Contracts Print Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.contracts_print</field>
+            <field name="view_mode">tree,form</field>
+
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new Contracts Print
+                </p>
+                <p>
+                    Contracts Print
+                </p>
+            </field>
+        </record>
+
+
+
+        <record id="housemaid_configuration_contracts_print_form_action" model="ir.actions.act_window">
+            <field name="name">Contracts Print Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.contracts_print</field>
+            <field name="view_mode">tree,form</field>
+           <field name="domain">[('customer_id','=', active_id) ]</field>
+
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new Contracts Print
+                </p>
+                <p>
+                    Contracts Print
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Reports -->
+        <record id="housemaid_configuration_systemreports_0" model="housemaidsystem.configuration.systemreports">
+            <field name="name">Staff Dues</field>
+        </record>
+        <record id="housemaid_configuration_systemreports_1" model="housemaidsystem.configuration.systemreports">
+            <field name="name">Housemaid Dues</field>
+        </record>
+
+        <!-- Staff Dues Report Paramters-->
+        <record id="housemaid_configuration_systemreportparameters_0"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Salary Payable GL</field>
+            <field name="parameter_type">account</field>
+            <field name="systemreports_id" search="[('name','=','Staff Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+        </record>
+        <record id="housemaid_configuration_systemreportparameters_1"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Salary Expense GL</field>
+            <field name="parameter_type">account</field>
+            <field name="systemreports_id" search="[('name','=','Staff Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+        </record>
+        <record id="housemaid_configuration_systemreportparameters_2"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Salary Paid in Advance GL</field>
+            <field name="parameter_type">account</field>
+            <field name="parameter_value_str"/>
+            <field name="systemreports_id" search="[('name','=','Staff Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+        </record>
+        <record id="housemaid_configuration_systemreportparameters_3"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Bounce GL</field>
+            <field name="parameter_type">account</field>
+            <field name="systemreports_id" search="[('name','=','Staff Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+        </record>
+
+        <!-- Housemaid Dues Report Paramters-->
+        <record id="housemaid_configuration_systemreportparameters_4"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Liability GL</field>
+            <field name="parameter_type">account</field>
+            <field name="systemreports_id" search="[('name','=','Housemaid Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+            <field name="notes">Housemaid Salary Liability GL</field>
+        </record>
+        <record id="housemaid_configuration_systemreportparameters_5"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Receivable</field>
+            <field name="parameter_type">account</field>
+            <field name="systemreports_id" search="[('name','=','Housemaid Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+            <field name="notes">Account Receivable that receive Housemaid Salary from Sponsor.</field>
+        </record>
+        <record id="housemaid_configuration_systemreportparameters_6"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Salary Paid By Office</field>
+            <field name="parameter_type">string</field>
+            <field name="systemreports_id" search="[('name','=','Housemaid Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+            <field name="notes">Post Ref. for transfer salary to housemaidsystem</field>
+        </record>
+        <record id="housemaid_configuration_systemreportparameters_7"
+                model="housemaidsystem.configuration.systemreportparameters">
+            <field name="name">Salary Paid By Sponsor</field>
+            <field name="parameter_type">string</field>
+            <field name="systemreports_id" search="[('name','=','Housemaid Dues')]"
+                   model="housemaidsystem.configuration.systemreports"/>
+            <field name="notes">Post Ref. for collect salary from sponsor to housemaidsystem</field>
+        </record>
+    </data>
+</odoo>

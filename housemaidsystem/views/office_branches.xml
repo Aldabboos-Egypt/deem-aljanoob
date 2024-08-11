@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="housemaid_accounting_officebranches_form_view" model="ir.ui.view">
+            <field name="name">Office Branches</field>
+            <field name="model">housemaidsystem.configuration.officebranches</field>
+            <field name="arch" type="xml">
+                <form string="Projects">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="name_ar"/>
+                                <field name="address"/>
+                                <field name="address_ar"/>
+                                <field name="telephones"/>
+                                <field name="telephone1"/>
+                                <field name="telephone2"/>
+                                <field name="telephone3"/>
+                                <field name="telephone4"/>
+                                <field name="telephone5"/>
+                            </group>
+                            <group>
+
+                                <field name="reg_number"/>
+                                <field name="unique_num"/>
+                                <field name="unified_num"/>
+                                <field name="presenter"/>
+                                <field name="presenter_ar"/>
+                                <field name="email"/>
+
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_accounting_officebranches_tree_view" model="ir.ui.view">
+            <field name="name">Office Branches List</field>
+            <field name="model">housemaidsystem.configuration.officebranches</field>
+            <field name="arch" type="xml">
+                <tree string="Module Name">
+                    <field name="name"/>
+                    <field name="name_ar"/>
+                    <field name="address"/>
+                    <field name="address_ar"/>
+                    <field name="telephones"/>
+                    <field name="telephone1"/>
+                    <field name="telephone2"/>
+                    <field name="telephone3"/>
+                    <field name="telephone4"/>
+                    <field name="telephone5"/>
+                    <field name="reg_number"/>
+                    <field name="unique_num"/>
+                    <field name="unified_num"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_accounting_officebranches_form_action" model="ir.actions.act_window">
+            <field name="name">Office Branches List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.officebranches</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new Office Branch
+                </p>
+                <p>
+                    Office Branch
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

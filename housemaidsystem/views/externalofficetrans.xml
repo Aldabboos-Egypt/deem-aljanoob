@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <record id="housemaid_configuration_externalofficetrans_form_view" model="ir.ui.view">
+            <field name="name">External office transaction form view</field>
+            <field name="model">housemaidsystem.configuration.externalofficetrans</field>
+
+            <field name="arch" type="xml">
+                <form string="external office transaction details">
+                    <sheet>
+                            <group>
+                                <field name="tran_date"/>
+                                <field name="name"/>
+                                <field name="application_id"/>
+                                 <field name="notes"/>
+                            </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_configuration_externalofficetrans_tree_view" model="ir.ui.view">
+            <field name="name">External office transaction tree view</field>
+            <field name="model">housemaidsystem.configuration.externalofficetrans</field>
+            <field name="arch" type="xml">
+                <tree string="external office transaction">
+                    <field name="tran_date"/>
+                                <field name="name"/>
+                                <field name="application_id"/>
+                                 <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_configuration_externalofficetrans_action_window" model="ir.actions.act_window">
+            <field name="name">External Office Transaction List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.externalofficetrans</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new external office transaction
+                </p>
+                <p>
+                    External office transaction .....
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

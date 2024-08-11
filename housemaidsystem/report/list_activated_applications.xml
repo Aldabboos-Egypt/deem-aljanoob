@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="list_activated_applications">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="font">
+                    <div class="page">
+                        <div class="text-center">
+                            <h3>
+                                <strong><u>Activated Applications List Report</u></strong>
+                            </h3>
+                        </div>
+                        <table class="table table-sm table-hover table-bordered">
+                            <thead>
+                                <th>SN</th>
+                                <th>Activation Date</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Activate Reason</th>
+                            </thead>
+                            <tbody>
+                                <t t-set="line_num" t-value="1"/>
+                                <t t-foreach="docs" t-as="doc">
+                                    <tr>
+                                        <td class="small">
+                                            <t t-esc="line_num"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.activate_date"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-esc="doc.application_id.external_office_id"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-esc="doc.application_id.full_name"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-esc="doc.activate_reason"/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="line_num" t-value="line_num+1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

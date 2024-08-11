@@ -1,0 +1,124 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_returnback_form_view" model="ir.ui.view">
+            <field name="name">Return Back Form view</field>
+            <field name="model">housemaidsystem.applicant.returnback</field>
+
+            <field name="arch" type="xml">
+                <form delete="false">
+                    <header>
+                    <button name="action_cancel_returnback" confirm="Are you sure you want to delete this Return Back?"
+                            string="Cancel This Return Back" type="object"
+                                                    states="returnback"/>
+                    <field name="state" widget="statusbar"
+                               statusbar_visible="application,reservation,visa,expectedarrival,arrival,returnback,returnback"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="return_back_date"/>
+                                <field name="application_id"/>
+                                <field name="refund"/>
+                            </group>
+                            <group>
+                                <field name="customer_id" readonly="True"/>
+                                <field name="invoice_id" readonly="True"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_returnback_tree_view" model="ir.ui.view">
+            <field name="name">returnback Form view</field>
+            <field name="model">housemaidsystem.applicant.returnback</field>
+            <field name="arch" type="xml">
+                <tree string="returnback" delete="false">
+                    <field name="return_back_date"/>
+                    <field name="application_id"/>
+                    <field name="customer_id"/>
+                    <field name="refund"/>
+                    <field name="invoice_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+<!--        <record id="housemaid_applicant_returnback_kanban_view" model="ir.ui.view">-->
+<!--            <field name="name">housemaidsystem.applicant.returnback.kanban</field>-->
+<!--            <field name="model">housemaidsystem.applicant.returnback</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <kanban class="o_kanban_small_column o_opportunity_kanban">-->
+<!--                    <field name="full_name"/>-->
+<!--                    <field name="office_code"/>-->
+<!--                    <field name="return_back_date"/>-->
+<!--                    <field name="invoice_id"/>-->
+<!--                    <templates>-->
+<!--                        <t t-name="kanban-box">-->
+<!--                            <div class="oe_kanban_global_click">-->
+<!--                                <div class="o_kanban_image">-->
+<!--                                    <img t-att-src="kanban_image('housemaidsystem.applicant.returnback', 'labor_image', record.id.value)"/>-->
+<!--                                </div>-->
+<!--                                <div class="oe_kanban_details">-->
+<!--                                    <strong>-->
+<!--                                        <field name="full_name"/>-->
+<!--                                    </strong>-->
+<!--                                    <div tag="tags">-->
+<!--                                        <strong>-->
+<!--                                            <field name="code"/>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                    <div tag="tags">-->
+<!--                                        <strong>-->
+<!--                                            <field name="return_back_date"/>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                    <div tag="tags">-->
+<!--                                        <strong>-->
+<!--                                            <field name="invoice_id"/>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                    <div tag="tags">-->
+<!--                                        <strong>-->
+<!--                                            <field name="state"/>-->
+<!--                                        </strong>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </t>-->
+<!--                    </templates>-->
+<!--                </kanban>-->
+<!--            </field>-->
+<!--        </record>-->
+        <record id="housemaid_applicant_returnback_filter" model="ir.ui.view">
+            <field name="name">returnback search</field>
+            <field name="model">housemaidsystem.applicant.returnback</field>
+            <field name="arch" type="xml">
+                <search string="returnback">
+                    <field name="name" filter_domain="[('application_id','ilike',self)]"/>
+                    <filter string="Application Status" name="state"
+                            domain="[('state','=','returnback')]"/>
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_returnback_action_window" model="ir.actions.act_window">
+            <field name="name">returnback List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.returnback</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="limit">1000</field>
+            <field name="context">{"search_default_state":1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new returnback
+                </p>
+                <p>
+                    returnback .....
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

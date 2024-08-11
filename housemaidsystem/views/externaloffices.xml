@@ -1,0 +1,87 @@
+<odoo>
+    <data>
+
+        <!--        <div class="oe_edit_only o_row">-->
+        <!--                    <label for="street_number"/>-->
+        <!--                    <span> </span>-->
+        <!--                    <field name="street_number" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>-->
+        <!--                    <label for="street_number2"/>-->
+        <!--                    <field name="street_number2" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>-->
+        <!--                </div>-->
+
+        <record id="housemaid_configuration_externaloffices_form_view" model="ir.ui.view">
+            <field name="name">External offices Form View</field>
+            <field name="model">housemaidsystem.configuration.externaloffices</field>
+            <field name="arch" type="xml">
+                <form string="External offices">
+                    <sheet>
+                        <separator string="Office Details" colspan="4"/>
+                        <group colspan="4" col="4">
+                            <field name="code" placeholder="Code"/>
+                            <field name="name" placeholder="Office Name"/>
+                            <field name="office_country" placeholder="Office Country"/>
+                            <field name="commission" placeholder="Office Commission"/>
+                            <field name="sales_price" placeholder="Sales Price"/>
+                            <field name="vendor_id" readonly="True"/>
+                            <field name="office_currency_id" readonly="True"/>
+                        </group>
+                        <separator string="Accounting Details" colspan="4"/>
+                        <group colspan="4" col="4">
+                            <field name="journal" readonly="True" placeholder="Deferred Journal (Miscellaneous)"
+                                   options="{'no_create': True}"/>
+                            <field name="journal_recognized" readonly="True"
+                                   placeholder="Recognized Journal (Purchase)" options="{'no_create': True}"/>
+                            <field name="suspense_account" readonly="True" placeholder="Office Suspense Account"
+                                   options="{'no_create': True}"/>
+                            <field name="account" readonly="True" placeholder="Office Main Account"
+                                   options="{'no_create': True}"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_tree_view" model="ir.ui.view">
+            <field name="name">External offices List View</field>
+            <field name="model">housemaidsystem.configuration.externaloffices</field>
+            <field name="arch" type="xml">
+                <tree string="External Offices">
+                    <field name="code"/>
+                    <field name="office_country"/>
+                    <field name="journal"/>
+                    <field name="journal_recognized"/>
+                    <field name="account"/>
+                    <field name="suspense_account"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_employee_filter" model="ir.ui.view">
+            <field name="name">External offices Search</field>
+            <field name="model">housemaidsystem.configuration.externaloffices</field>
+            <field name="arch" type="xml">
+                <search string="External Offices">
+                    <field name="name"/>
+                    <field name="code"/>
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_window_action" model="ir.actions.act_window">
+            <field name="name">External offices List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.externaloffices</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new External Office
+                </p>
+                <p>
+                    External office is supporting housemaidsystem office to find out labors.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

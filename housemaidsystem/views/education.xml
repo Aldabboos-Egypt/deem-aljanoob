@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="housemaid_configuration_education_form_view" model="ir.ui.view">
+            <field name="name">Education form view</field>
+            <field name="model">housemaidsystem.configuration.education</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_configuration_education_tree_view" model="ir.ui.view">
+            <field name="name">Education tree view</field>
+            <field name="model">housemaidsystem.configuration.education</field>
+            <field name="arch" type="xml">
+                <tree string="Education details">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_configuration_education_action_window" model="ir.actions.act_window">
+            <field name="name">Education List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.education</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new education
+                </p>
+                <p>
+                    Education details .....
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

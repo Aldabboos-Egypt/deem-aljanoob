@@ -1,0 +1,310 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_visa_form_view" model="ir.ui.view">
+            <field name="name">Visa Form view</field>
+            <field name="model">housemaidsystem.applicant.visa</field>
+
+            <field name="arch" type="xml">
+                <form delete="false" create="false" edit="false">
+                    <sheet>
+                        <separator string="Main Info" colspan="4"/>
+                        <group colspan="2" col="4">
+                            <field name="application_id" readonly="True"/>
+                            <field name="customer_id" readonly="True"/>
+                            <field name="visa_days" readonly="True"/>
+                            <field name="visa_rec_days" readonly="True"/>
+                        </group>
+
+                        <separator string="Visa Details" colspan="4"/>
+                        <group colspan="2" col="4">
+                            <field name="transaction_date"/>
+                            <field name="visa_no"/>
+                                <field name="unified_no"/>
+                                <field name="applicant_no"/>
+                                <field name="visa_issue_date"/>
+                                <field name="visa_exp_date"/>
+                                <field name="visa_rec_date"/>
+                                <field name="visa_snd_date"/>
+                        </group>
+
+                        <separator string="Sponsor Info (As Per Previous Visa \ Civil ID)" colspan="4"/>
+                        <group>
+                            <field name="visa_sponsor_name"/>
+                        </group>
+                        <group colspan="2" col="4">
+
+                            <field name="country_id"
+                                   options="{'no_open': True, 'no_create': True, 'delete': False}"/>
+                            <field name="state_id" domain="[('country_id', '=', country_id)]"
+                                   options="{'no_open': True, 'no_create': True, 'delete': False}"/>
+                            <field name="area_id" domain="[('state_id', '=', state_id)]"
+                                   options="{'no_open': True, 'no_create': True, 'delete': False}"/>
+
+                            <field name="sponsor_block"/>
+                            <field name="sponsor_street"/>
+                            <field name="sponsor_avenue"/>
+                            <field name="sponsor_building"/>
+                            <field name="visa_mobile"/>
+
+                        </group>
+                        <separator string="General Notes" colspan="4"/>
+                        <field name="notes" string="Notes"/>
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_visa_editform_view" model="ir.ui.view">
+            <field name="name">Visa Form view</field>
+            <field name="model">housemaidsystem.applicant.visa</field>
+            <field name="arch" type="xml">
+                <form delete="false" create="false" edit="false">
+                    <sheet>
+                        <group string="Main Info">
+                            <group>
+                                <field name="transaction_date"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="customer_id" readonly="True"/>
+                                <field name="visa_days" readonly="True"/>
+                                <field name="visa_rec_days" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="visa_no"/>
+                                <field name="unified_no"/>
+                                <field name="applicant_no"/>
+                                <field name="visa_issue_date"/>
+                                <field name="visa_exp_date"/>
+                                <field name="visa_rec_date"/>
+                                <field name="visa_snd_date"/>
+                            </group>
+                        </group>
+
+                        <separator string="Visa Data (As per previous visa)" colspan="4"/>
+                        <group>
+                            <field name="visa_sponsor_name"/>
+                        </group>
+                        <group colspan="2" col="4">
+
+                            <field name="country_id"
+                                   options="{'no_open': True, 'no_create': True, 'delete': False}"/>
+                            <field name="state_id" domain="[('country_id', '=', country_id)]"
+                                   options="{'no_open': True, 'no_create': True, 'delete': False}"/>
+                            <field name="area_id" domain="[('state_id', '=', state_id)]"
+                                   options="{'no_open': True, 'no_create': True, 'delete': False}"/>
+
+                            <field name="sponsor_block"/>
+                            <field name="sponsor_street"/>
+                            <field name="sponsor_avenue"/>
+                            <field name="sponsor_building"/>
+                            <field name="visa_mobile"/>
+
+                        </group>
+                        <separator string="General Notes" colspan="4"/>
+                        <field name="notes" string="Notes"/>
+                    </sheet>
+                    <footer>
+                        <group>
+                            <span>
+                                <span>
+                                    <button string="Save" name="save" type="object" class="btn-primary"/>
+                                    or
+                                </span>
+
+                                <button string="Cancel" class="btn-default" special="cancel"/>
+                            </span>
+                        </group>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_visa_tree_view" model="ir.ui.view">
+            <field name="name">Visa Form view</field>
+            <field name="model">housemaidsystem.applicant.visa</field>
+            <field name="arch" type="xml">
+                <tree string="Reservation" delete="false">
+                    <field name="transaction_date"/>
+                    <field name="application_id"/>
+                    <field name="visa_no"/>
+                    <field name="visa_issue_date"/>
+                    <field name="visa_exp_date"/>
+                    <field name="visa_days"/>
+                    <field name="visa_rec_days"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_visa_filter" model="ir.ui.view">
+            <field name="name">visa search</field>
+            <field name="model">housemaidsystem.applicant.visa</field>
+            <field name="arch" type="xml">
+                <search string="Visa">
+
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+
+
+                    <field name="name" string="Sponsor"
+                           filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+
+
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+                    <filter name="visa_only" string="Visa Only"
+                            domain="[('application_id.state','=','visa')]"/>
+                    <filter name="visa_issue_date" string="Expired Visa"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_exp_date', '&lt;', (context_today() - relativedelta(days=1)).strftime('%%Y-%%m-%%d'))]"/>
+
+
+                    <separator/>
+                    <filter name="visa_issue_date" string="Visa Issue Date is over one week"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_issue_date', '&lt;', (context_today() - relativedelta(weeks=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="visa_issue_date" string="Visa Issue Date is over 2 weeks"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_issue_date', '&lt;', (context_today() - relativedelta(weeks=2)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="visa_issue_date" string="Visa Issue Date is over 3 weeks"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_issue_date', '&lt;', (context_today() - relativedelta(weeks=3)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="visa_issue_date" string="Visa Issue Date is over 1 Month"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_issue_date', '&lt;', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <separator/>
+                    <filter name="visa_snd_date" string="Visa Send Date is over one week"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_snd_date', '&lt;', (context_today() - relativedelta(weeks=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="visa_snd_date" string="Visa Send Date is over 2 weeks"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_snd_date', '&lt;', (context_today() - relativedelta(weeks=2)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="visa_snd_date" string="Visa Send Date is over 3 weeks"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_snd_date', '&lt;', (context_today() - relativedelta(weeks=3)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="visa_snd_date" string="Visa Send Date is over 1 Month"
+                            domain="['&amp;',(('application_id.state','=','visa')),('visa_snd_date', '&lt;', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_visa_action_window" model="ir.actions.act_window">
+            <field name="name">Visa List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.visa</field>
+            <field name="view_mode">kanban,tree,form</field>
+
+
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new visa
+                </p>
+                <p>
+                    visa .....
+                </p>
+            </field>
+        </record>
+        <record id="housemaid_applicant_visa_list_tree_view" model="ir.ui.view">
+            <field name="name">visa List</field>
+            <field name="model">housemaidsystem.applicant.visa</field>
+            <field name="arch" type="xml">
+                <tree string="visa List" editable="top" default_order="transaction_date desc">
+                    <field name="transaction_date" readonly="1"/>
+                    <field name="application_id" readonly="1"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="visa_no"/>
+                    <field name="unified_no"/>
+                    <field name="visa_issue_date"/>
+                    <field name="visa_exp_date"/>
+                    <field name="visa_rec_date"/>
+                    <field name="visa_snd_date"/>
+                    <field name="visa_days"/>
+                    <field name="visa_rec_days"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_visa_list_action_window" model="ir.actions.act_window">
+            <field name="name">visa List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.visa</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="context">{"search_default_visa_only": True, }</field>
+            <field name="view_id" ref="housemaid_applicant_visa_list_tree_view"/>
+        </record>
+
+        <!--*******************************Cancel Visa******************************************-->
+        <record id="housemaid_applicant_cancel_visa_filter" model="ir.ui.view">
+            <field name="name">Cancel visa search</field>
+            <field name="model">housemaidsystem.applicant.cancel_visa</field>
+            <field name="arch" type="xml">
+                <search string="Cancel Visa">
+
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+
+
+                    <field name="name" string="Sponsor"
+                           filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+
+
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+                    <filter string="Visa Entry Date" name="filter_transaction_date" date="transaction_date"/>
+                    <filter string="Cancelation Date" name="filter_cancelation_date" date="cancelation_date"/>
+
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_cancel_visa_list_tree_view" model="ir.ui.view">
+            <field name="name">Cancel visa List</field>
+            <field name="model">housemaidsystem.applicant.cancel_visa</field>
+            <field name="arch" type="xml">
+                <tree string="Cancel Visa List" editable="top" default_order="cancelation_date desc">
+                    <field name="cancelation_date" readonly="1"/>
+                    <field name="transaction_date" readonly="1"/>
+                    <field name="office_code" readonly="1"/>
+                    <field name="application_id" readonly="1"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="visa_no" readonly="1"/>
+                    <field name="unified_no" readonly="1"/>
+                    <field name="visa_issue_date" readonly="1"/>
+                    <field name="visa_exp_date" readonly="1"/>
+                    <field name="visa_rec_date" readonly="1"/>
+                    <field name="visa_snd_date" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_cancel_visa_list_action_window" model="ir.actions.act_window">
+            <field name="name">Cancel visa List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.cancel_visa</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="view_id" ref="housemaid_applicant_cancel_visa_list_tree_view"/>
+        </record>
+
+    </data>
+
+</odoo>

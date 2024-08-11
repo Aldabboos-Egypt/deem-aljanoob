@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_activeatepplication_form_view" model="ir.ui.view">
+            <field name="name">Activate Application Form View</field>
+            <field name="model">housemaidsystem.applicant.activateapplication</field>
+            <field name="arch" type="xml">
+                <form string="Activate Reason" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <field name="application_id" invisible="1"/>
+                            <field name="application_state" invisible="1"/>
+                            <field name="activate_reason"/>
+                        </group>
+
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="housemaid_applicant_activateapplication_tree_view" model="ir.ui.view">
+            <field name="name">Activation Applications List</field>
+            <field name="model">housemaidsystem.applicant.activateapplication</field>
+            <field name="arch" type="xml">
+                <tree string="Canceled Applications List" editable="top">
+
+                    <field name="application_id" readonly="1"/>
+                    <field name="activate_date" readonly="1"/>
+                    <field name="activate_reason"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_activateapplication_filter" model="ir.ui.view">
+            <field name="name">activate application search</field>
+            <field name="model">housemaidsystem.applicant.activateapplication</field>
+            <field name="arch" type="xml">
+                <search string="activate application">
+                    <field name="application_id" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]" context="{'group_by':'office_code'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_activateapplication_action_window" model="ir.actions.act_window">
+            <field name="name">Activation Applications List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.activateapplication</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="view_id" ref="housemaid_applicant_activateapplication_tree_view"/>
+        </record>
+
+
+    </data>
+</odoo>

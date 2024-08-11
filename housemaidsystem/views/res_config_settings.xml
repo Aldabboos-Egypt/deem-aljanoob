@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="housemaid_res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">housemaidsystem.res.config.settings.view.form.inherit.crm</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+
+
+                <div class="app_settings_block" data-string="Housemaid" string="Housemaid" data-key="housemaidsystem">
+<!--                    <div class="row mt16 o_settings_container" >-->
+<!--                        <div class="row text-muted">-->
+<!--                            Use this button to install the system first only, this button will create the required-->
+<!--                            accounts\journals then link it to below-->
+<!--                        </div>-->
+<!--                        <newline/>-->
+<!--                        <div class="row text-muted">-->
+<!--                            <button name="action_setup_housemaid" type="object" string="Setup housemaid First Time"-->
+<!--                                class="btn-primary"/>-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+                    <h2>WhatsApp Service</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div>
+                            <div>
+                                <div colspan="4">
+                                    <label string="Allow Whatsapp Services" for="whatsapp_service_status"/>
+                                    <field colspan="4" name="whatsapp_service_status"/>
+                                    <newline/>
+                                    <label string="Whatsapp Service Endpoint URL" for="whatsapp_endpoint"/>
+                                    <field colspan="4" name="whatsapp_endpoint" />
+                                    <newline/>
+                                    <label string="Whatsapp Service token" for="whatsapp_token"/>
+                                    <field colspan="4" name="whatsapp_token" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>System Common Dynamic Validations</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div>
+                            <div>
+                                <div colspan="4">
+                                    <label string="Number of expiry years validations" for="passport_expiry_years"/>
+                                    <field colspan="4" name="passport_expiry_years"/>
+                                    <newline/>
+                                    <label string="Is Branch Office Required?" for="branch_office_required"/>
+                                    <field colspan="4" name="branch_office_required"/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Reservation Screen</h2>
+                    <div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Cash Box Journal (Cash\Bank Journals)"
+                                   for="direct_journal_arrival_cash"/>
+                            <field name="direct_journal_arrival_cash" domain="[('type', 'in', ['cash','bank'])]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+
+                        <div class="d-flex p-2">
+                            <label string="Arrival Deferred Sales Journal (Sales Journal)"
+                                   for="direct_journal_deferred_income"/>
+                            <field name="direct_journal_deferred_income" domain="[('type', '=', 'sale')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Sponsor Dues Account - (Account Receivables)"
+                                   for="direct_accounts_receivable"/>
+                            <field name="direct_accounts_receivable" style="width:400px"
+                                   domain="[('internal_type', '=', 'receivable')]"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Deferred Sales Account (Liability Account)"
+                                   for="direct_deferred_income"/>
+                            <field name="direct_deferred_income" style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Deferred Purchase Account (Assets Foreign Account)"
+                                   for="direct_deferred_purchase"
+                            />
+                            <field name="direct_deferred_purchase" domain="[('internal_group', '=', 'asset')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                    </div>
+                    <h2>Arrival Screen</h2>
+                    <div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Recognized Purchase Account (Assets Foreign Account)"
+                                   for="direct_arrival_purchase"
+                            />
+                            <field name="direct_arrival_purchase" domain="[('internal_group', '=', 'asset')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Recognized Sales Journal (Miscellaneous Journal)"
+                                   for="direct_journal_recognized_income"/>
+                            <field name="direct_journal_recognized_income" domain="[('type', '=', 'general')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Recognized Sales Account (Income Account)"
+                                   for="direct_recognized_income"/>
+                            <field name="direct_recognized_income" style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                    </div>
+                    <h2>Deliver to First Sponsor Screen</h2>
+                    <div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Sales Discount Account (Expense Account)"
+                                   for="direct_discount_expense"/>
+                            <field name="direct_discount_expense" style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <!--At new version, no need to this account-->
+                        <!--                        <div class="d-flex p-2">-->
+                        <!--                            <label string="Arrival Recognized Purchase Account (Expense Foreign Account)"-->
+                        <!--                                   for="direct_recognized_purchase"-->
+                        <!--                            />-->
+                        <!--                            <field name="direct_recognized_purchase" style="width:400px"-->
+                        <!--                                   domain="[('internal_group', '=', 'expense')]"-->
+                        <!--                                   options="{'no_create': True, 'no_open': True}"/>-->
+                        <!--                        </div>-->
+
+                    </div>
+                    <h2>Re-Sell Screen</h2>
+                    <div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Recognized Sales Journal - Sponsor Rejected Deliver (Miscellaneous Journal)"
+                                   for="journal_deliver_reject"/>
+                            <field name="journal_deliver_reject" domain="[('type', '=', 'general')]" style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <!--                        At new version, no need to have 2 account for manage return housemaid-->
+                        <!--                        <div class="d-flex p-2">-->
+                        <!--                            <label string="Return Office Management Account For Reject Deliver (Assets Account)"-->
+                        <!--                                   for="deliver_reject"/>-->
+                        <!--                            <field name="deliver_reject" domain="[('internal_group', '=', 'asset')]" style="width:400px"-->
+                        <!--                                   options="{'no_create': True, 'no_open': True}"/>-->
+                        <!--                        </div>-->
+                    </div>
+
+                    <h2>Return Back From First Sponsor Screen</h2>
+                    <div>
+                        <div class="d-flex p-2">
+                            <label string="Return Cash Box Journal (Cash\Bank Journals)"
+                                   for="return_journal_cash"/>
+                            <field name="return_journal_cash" domain="[('type','in', ['cash','bank'])]" style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Reject After Deliver Housemaid to First Sponsor journal (Miscellaneous Journal)"
+                                   for="journal_reject_after_deliver"/>
+                            <field name="journal_reject_after_deliver" domain="[('type', '=', 'general')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+
+                        <div class="d-flex p-2">
+                            <label string="Return Office Management Account For Reject After Deliver (Assets Account)"
+                                   for="reject_after_deliver"/>
+                            <field name="reject_after_deliver" domain="[('internal_group', '=', 'asset')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Return Recognized Purchase Account - (Expense Account)"
+                                   for="return_recognized_purchase"/>
+                            <field name="return_recognized_purchase" style="width:400px"
+                                   domain="[('internal_group', '=', 'expense')]"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Housemaid Dues (Payable Account)" for="return_sales_hm_dues"/>
+                            <field name="return_sales_hm_dues" domain="[('internal_type', '=', 'payable')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+
+                        <div class="d-flex p-2">
+                            <label string="Housemaid Dues Contact (Partner)" for="return_hm_dues_contact"/>
+                            <field name="return_hm_dues_contact" style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+
+                        <div class="d-flex p-2">
+                            <label string="Return Back - Profit And Loss (Income Account)"
+                                   for="return_pay_extra_loss"/>
+                            <field name="return_pay_extra_loss" style="width:400px"
+                                   domain="[('internal_group', '=', 'income')]"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+
+
+                    </div>
+
+
+                    <h2>Back To Country</h2>
+                    <div>
+                        <div class="d-flex p-2">
+                            <label string="Sales Returned Items Account - (Income Account)"
+                                   for="direct_sales_returned"/>
+                            <field name="direct_sales_returned" domain="[('internal_group', '=', 'income')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Purchases Returned Items Account - (Expense Account)"
+                                   for="direct_purchase_returned"/>
+                            <field name="direct_purchase_returned" domain="[('internal_group', '=', 'expense')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Arrival Back To Country Profit And Loss (Income Account)"
+                                   for="return_sales_unrecognized_profit_loss"/>
+                            <field name="return_sales_unrecognized_profit_loss" style="width:400px"
+                                   domain="[('internal_group', '=', 'income')]"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                    </div>
+
+                    <h2>Return Sales</h2>
+                    <div>
+                        <div class="d-flex p-2">
+                            <label string="Return Deferred Sales Journal (Sales Journal)"
+                                   for="return_journal_deferred"/>
+                            <field name="return_journal_deferred" domain="[('type', '=', 'sale')]" style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Return Recognized Sales Journal (Miscellaneous Journal)"
+                                   for="return_journal_recognized"/>
+                            <field name="return_journal_recognized" domain="[('type', '=', 'general')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Reject After Testing By Second Sponsor Journal (Miscellaneous Journal)"
+                                   for="return_reject_after_testing"/>
+                            <field name="return_reject_after_testing" domain="[('type', '=', 'general')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Return Sponsor Dues Account - (Account Receivables)"
+                                   for="return_accounts_receivable"/>
+                            <field name="return_accounts_receivable" style="width:400px"
+                                   domain="[('internal_type', '=', 'receivable')]"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Return Deferred Sales Account - (Liability Account)"
+                                   for="return_sales_deferred"/>
+                            <field name="return_sales_deferred" domain="[('internal_group', '=', 'liability')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+                        <div class="d-flex p-2">
+                            <label string="Return Recognized Sales Account - (Income Account)"
+                                   for="return_sales_recognized"/>
+                            <field name="return_sales_recognized" domain="[('internal_group', '=', 'income')]"
+                                   style="width:400px"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+
+                        <div class="d-flex p-2">
+                            <label string="Sell As test - Profit And Loss (Income Account)"
+                                   for="return_re_sales_profit_loss"/>
+                            <field name="return_re_sales_profit_loss" style="width:400px"
+                                   domain="[('internal_group', '=', 'income')]"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="housemaid_config_settings_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="housemaid_res_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'housemaidsystem'}</field>
+    </record>
+</odoo>

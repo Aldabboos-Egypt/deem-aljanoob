@@ -1,0 +1,115 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_deliver_form_view" model="ir.ui.view">
+            <field name="name">Deliver Housemaid Form view</field>
+            <field name="model">housemaidsystem.applicant.deliver</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Deliver Details">
+                                <field name="transaction_date"/>
+                                <field name="deliver_date"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="paid_amount"/>
+                                <field name="discount_amount" invisible="1"/>
+                                <field name="journal" string="Payment Method" options="{'no_quick_create': True}"/>
+                            </group>
+                            <group string="Sales Invoice Details">
+                                <field name="customer_id" readonly="True" string="Sponsor Name"/>
+                                <field name="invoice_id" readonly="True" string="Invoice"/>
+                                <field name="invoice_state" readonly="True" string="Status"/>
+                                <field name="invoice_total" readonly="True" string="Total"/>
+                                <field name="invoice_due" readonly="True" string="Due"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+
+
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_deliver_list_tree_view" model="ir.ui.view">
+            <field name="name">Delivered List</field>
+            <field name="model">housemaidsystem.applicant.deliver</field>
+            <field name="arch" type="xml">
+                <tree string="Deliver List" editable="top" default_order="transaction_date desc">
+                    <field name="transaction_date"/>
+                    <field name="deliver_date"/>
+                    <field name="application_id" readonly="1"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="paid_amount" readonly="1" sum="paid_amount"/>
+                    <field name="discount_amount" invisible="1" readonly="1" sum="discount_amount"/>
+                    <field name="paid_payment_invoice" readonly="1"/>
+                    <field name="invoice_id" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_deliver_list_action_window" model="ir.actions.act_window">
+            <field name="name">Delivered List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.deliver</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="context">{"search_default_deliverpaidfull" : True, "search_default_deliverpaidpartial" : True,}</field>
+            <field name="view_id" ref="housemaid_applicant_deliver_list_tree_view"/>
+        </record>
+        <record id="housemaid_applicant_deliver_filter" model="ir.ui.view">
+            <field name="name">Deliver search</field>
+            <field name="model">housemaidsystem.applicant.deliver</field>
+            <field name="arch" type="xml">
+                <search string="Deliver">
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+                  <field name="name" string="Sponsor" filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+
+                    <filter name="deliverpaidfull" string="Delivered Paid Full Only"
+                            domain="[('application_id.state','=','deliverpaidfull')]"/>
+                    <filter name="deliverpaidpartial" string="Delivered Paid Partial Only"
+                            domain="[('application_id.state','=','deliverpaidpartial')]"/>
+                    <filter name="discount_amount" string="Discount"
+                            domain="[('discount_amount','>','0')]"/>
+
+                    <separator/>
+
+                    <filter name="deliver_date" string="Delivered is over one week"
+                            domain="['&amp;',(('application_id.state','in',('deliverpaidpartial','deliverpaidfull'))),('deliver_date', '&lt;', (context_today() - relativedelta(weeks=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="deliver_date" string="Delivered is over 2 weeks"
+                            domain="['&amp;',(('application_id.state','in',('deliverpaidpartial','deliverpaidfull'))),('deliver_date', '&lt;', (context_today() - relativedelta(weeks=2)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="deliver_date" string="Delivered is over 3 weeks"
+                            domain="['&amp;',(('application_id.state','in',('deliverpaidpartial','deliverpaidfull'))),('deliver_date', '&lt;', (context_today() - relativedelta(weeks=3)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="deliver_date" string="Delivered is over 1 Month"
+                            domain="['&amp;',(('application_id.state','in',('deliverpaidpartial','deliverpaidfull'))),('deliver_date', '&lt;', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-%%d'))]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                        <filter name="customer_id" string="Sponsor" domain="[]"
+                                context="{'group_by':'customer_id'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

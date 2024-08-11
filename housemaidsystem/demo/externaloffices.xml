@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+        <record id="housemaid_configuration_externaloffices_1" model="housemaidsystem.configuration.externaloffices">
+            <field name="code">HSM</field>
+            <field name="office_country" ref="base.in"/>
+            <field name="full_name">Office 1</field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_2" model="housemaidsystem.configuration.externaloffices">
+            <field name="code">MMQ</field>
+            <field name="office_country" ref="base.id"/>
+            <field name="full_name">Office 2</field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_3" model="housemaidsystem.configuration.externaloffices">
+            <field name="code">ASD</field>
+            <field name="office_country" ref="base.ph"/>
+            <field name="full_name">Office 3</field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_4" model="housemaidsystem.configuration.externaloffices">
+            <field name="code">MDG</field>
+            <field name="office_country" ref="base.mg"/>
+            <field name="full_name">Office 4</field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_5" model="housemaidsystem.configuration.externaloffices">
+            <field name="code">SKF</field>
+            <field name="office_country" ref="base.ao"/>
+            <field name="full_name">Office 5</field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_6" model="housemaidsystem.configuration.externaloffices">
+            <field name="code">ULO</field>
+            <field name="office_country" ref="base.er"/>
+            <field name="full_name">Office 6</field>
+        </record>
+        <record id="housemaid_configuration_externaloffices_7" model="housemaidsystem.configuration.externaloffices">
+            <field name="code">WED</field>
+            <field name="office_country" ref="base.et"/>
+            <field name="full_name">Office 7</field>
+        </record>
+    </data>
+</odoo>

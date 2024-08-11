@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_resell_form_view" model="ir.ui.view">
+            <field name="name">Re-Sell Form view</field>
+            <field name="model">housemaidsystem.applicant.resell</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="resell_date"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="refund" string="Sponsor Refund" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="invoice_id" readonly="True"/>
+                                <field name="invoice_state" readonly="True"/>
+                                <field name="invoice_total" readonly="True"/>
+                                <field name="invoice_due" readonly="True"/>
+                                <field name="customer_id" readonly="True"/>
+
+
+                            </group>
+                        </group>
+                        <group>
+
+
+                            <field name="notes" string="Notes"/>
+
+
+                        </group>
+
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_resell_list_tree_view" model="ir.ui.view">
+            <field name="name">ReSell List</field>
+            <field name="model">housemaidsystem.applicant.resell</field>
+            <field name="arch" type="xml">
+                <tree string="ReSell List" editable="top">
+                    <field name="resell_date" readonly="1"/>
+                    <field name="application_id" readonly="True"/>
+                    <field name="invoice_id" readonly="True"/>
+                    <field name="customer_id" readonly="True"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_resell_list_action_window" model="ir.actions.act_window">
+            <field name="name">Resell List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.resell</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="view_id" ref="housemaid_applicant_resell_list_tree_view"/>
+        </record>
+    </data>
+</odoo>

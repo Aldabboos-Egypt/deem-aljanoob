@@ -1,0 +1,455 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_applications_form_view" model="ir.ui.view">
+            <field name="name">Application Form view</field>
+            <field name="model">housemaidsystem.applicant.applications</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!--Print Sponsor Payment-->
+
+                        <!--State: Application: {1-cancel application \ 2-reservation}-->
+                        <button name="application_cancelapplication_action"
+                                string="Cancel This Application"
+                                type="object"
+                                states="application"
+                                confirm="Are you sure you want to cancel this application?"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <button name="application_reservation_action"
+                                string="Reservation Process"
+                                type="object"
+                                states="application"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <!--State: Canceled Application: {1-Activate Application }-->
+                        <button name="cancelapplication_application_action"
+                                string="Activate This Application"
+                                type="object"
+                                states="cancelapplication"
+                                confirm="Are you sure you want to activate this application?"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <!--State: Reservation: {1- Cancel Reservation 2-Visa}-->
+                        <button name="cancel_reservation_action"
+                                string="Cancel Reservation"
+                                type="object"
+                                states="reservation"
+                                confirm="Are you sure you want to cancel this reservation?"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <button name="reservation_visa_action"
+                                string="Visa Process"
+                                type="object"
+                                states="reservation"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <!-- State: Visa {1- cancel visa / 2- Record expected arrival / 3- Edit Visa}-->
+                        <button name="cancel_visa_action"
+                                string="Cancel Visa"
+                                type="object"
+                                states="visa"
+                                confirm="Are you sure you want to cancel this visa?"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <button name="edit_visa_action"
+                                string="Edit Visa"
+                                type="object"
+                                states="visa"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <button name="visa_expectedarrival_action"
+                                string="Record Expected Arrival"
+                                type="object"
+                                states="visa"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <!--State: Expected Arrival {1- cancel Expected Arrival / 2- Record arrival / 3- Edit Expected arrival}-->
+                        <button name="cancel_expectedarrival_action"
+                                string="Cancel Expected Arrival"
+                                type="object"
+                                states="expectedarrival"
+                                confirm="Are you sure you want to cancel this Expected Arrival?"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <!--                        <button name="edit_expectedarrival_action"-->
+                        <!--                                string="Edit Expected Arrival"-->
+                        <!--                                type="object"-->
+                        <!--                                states="expectedarrival"-->
+                        <!--                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"-->
+                        <!--                                class="oe_highlight oe_inline"/>-->
+                        <button name="expectedarrival_arrival_action"
+                                string="Record New Arrival"
+                                type="object"
+                                states="expectedarrival"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <!-- State: Arrival {1- cancel Arrival / 2- Record arrival / 3- Edit arrival / 4- Re-Sell}-->
+                        <button name="cancel_arrival_action"
+                                string="Cancel Arrival"
+                                type="object"
+                                states="arrival"
+                                confirm="Are you sure you want to cancel this arrival?"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <button name="edit_arrival_action"
+                                string="Edit Arrival"
+                                type="object"
+                                states="arrival"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <button name="arrival_deliver_action"
+                                string="Deliver Housemaid to First Sponsor"
+                                type="object"
+                                states="arrival"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <button name="resell_for_first_spons_action"
+                                string="Re-Sell"
+                                states="arrival"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"
+                                type="object"/>
+                        <!--                         State: re-sell {1- cancel resell / 2- Sell as test}-->
+                        <button name="cancel_resell_for_first_spons_action"
+                                string="Cancel Re-Sell"
+                                states="resell"
+                                class="oe_highlight oe_inline"
+                                confirm="Are you sure you want to cancel Re-Sell?"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="sell_as_test_after_resell_action"
+                                string="Sell As Test"
+                                states="resell"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!-- State: Delivered partial paid {1- step back / 2- full pay } -->
+                        <button name="step_back_arrival_action"
+                                string="Step Back"
+                                states="deliverpaidpartial"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="pay_all_action"
+                                string="Pay All"
+                                states="deliverpaidpartial"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!-- State:  Delivered paid full {1- step back / 2- Return Back from first sponsor /
+                        3- Sell As test / 4- Back to country after first sponsor} -->
+                        <button name="step_back_to_arrival_action"
+                                string="Cancel Deliver Paid Full"
+                                states="deliverpaidfull"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="return_back_from_first_spons_action"
+                                string="Return Back from First Sponsor"
+                                states="deliverpaidfull"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="sell_as_test_after_returnback_from_first_sponsor_action"
+                                string="Sell As Test"
+                                states="returnback"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="back_to_country_after_returnback_from_first_sponsor_action"
+                                string="Back to Country"
+                                states="returnback"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="runaway_after_returnback_from_first_sponsor_action"
+                                string="Run Away"
+                                states="returnback"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!-- State: Sell As test {1- Test Results / 2- Test Accepted / 3- Test Rejected /
+                        4- View Invoice / 5- Print sponsor voucher} -->
+                        <button name="sellastest_test_result_action"
+                                string="Test Result Action"
+                                states="sellastest"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="sellasfinal_retunback_action"
+                                string="Return Back From Last Sponsor"
+                                states="sellasfinall"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!--                        <button name="sellasfinal_step_back_sell_test_results_action"-->
+                        <!--                                string="Step Back to Testing Results"-->
+                        <!--                                states="sellasfinall"-->
+                        <!--                                class="oe_highlight oe_inline"-->
+                        <!--                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"-->
+                        <!--                                type="object"/>-->
+                        <!-- State: return Back from Last Sponsor {1- Sell As Test / 2- Return Back To Country} -->
+                        <button name="sell_as_test_after_returnback_from_last_sponsor_action"
+                                string="Sell As Test"
+                                states="returnbackagain"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"
+                                type="object"/>
+                        <button name="back_to_country_after_returnback_from_last_sponsor_action"
+                                string="Back to Country"
+                                states="returnbackagain"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="runaway_after_returnback_from_last_sponsor_action"
+                                string="Run Away"
+                                states="returnbackagain"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!--  State: Return Back to country after return back from first sponsor
+                        {1- step Back from back to country to return back to first sponsor} ***-->
+                        <button name="step_back_from_backtocountry_to_returnback_action"
+                                string="Step Back To Return Back From First Sponsor"
+                                states="backtocountry,runaway1"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!--  State: Return Back to country after return back from Last sponsor
+                        {1- step Back from back to country to return back to Last sponsor} ***-->
+                        <button name="step_back_from_backtocountry_to_returnback_again_action"
+                                string="Step Back To Return Back From Last Sponsor"
+                                states="backtocountry1,runaway2"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!--  State: Rejected by sponsor {1- Sell As test /2- View Invoice} ***-->
+                        <button name="sell_as_test_after_rejected_by_sponsor_action"
+                                string="Sell As Test"
+                                states="rejectedbysponsor"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <!--  ***  Common Actions ***-->
+                        <button name="view_sponsor_action"
+                                string="View Sponsor"
+                                states="reservation,visa,expectedarrival,arrival,deliverpaidpartial,deliverpaidfull,sellasfinall,returnback,sellastest,rejectedbysponsor,returnbackagain"
+                                class="oe_highlight oe_inline"
+                                type="object"/>
+                        <button name="print_sponsor_payment_action"
+                                string="Print Sponsor Voucher"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <button name="print_sponsor_contract_action"
+                                string="Print Sponsor Contract"
+                                states="reservation,visa,expectedarrival,arrival,deliverpaidpartial,deliverpaidfull"
+                                class="oe_highlight oe_inline"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+
+                        <button name="register_payment_action"
+                                string="Register Payment"
+                                type="object"
+                                states="visa,expectedarrival,arrival"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                class="oe_highlight oe_inline"/>
+                        <!--                        <button name="print_sponsor_hm_payment_action"-->
+                        <!--                                string="Print Sponsor Payment For Housemaid Salary"-->
+                        <!--                                class="oe_highlight oe_inline"-->
+                        <!--                                states="returnback,returnbackagain"-->
+                        <!--                                type="object"/>-->
+                        <!--                        <button name="sponsor_dues_action"-->
+                        <!--                                string="Sponsor Dues"-->
+                        <!--                                class="oe_highlight oe_inline"-->
+                        <!--                                type="object"/>-->
+                        <button name="step_back_deliverfullpay_action"
+                                string="Step Back to Deliver Paid Full"
+                                class="oe_highlight oe_inline"
+                                states="returnback"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="application,reservation,visa,expectedarrival,arrival,deliverpaidfull,
+                               returnback,sellastest,sellasfinall,returnbackagain"/>
+                    </header>
+                    <sheet>
+                        <field name="labor_image" widget='image' class="oe_avatar"
+                               options='{"preview_image":"labor_image"}'/>
+                        <div class="oe_title">
+
+                            <h1>
+                                <field name="full_name" placeholder="Full Name" string="Name:"/>
+                            </h1>
+                            <field name="office_code" placeholder="ٍSelect External Office"/>
+                            <br/>
+                            <field name="external_office_id" placeholder="External Office Housemaid Code"/>
+                            <br/>
+                            <field name="office_commission" string="Office Commission"
+                                   groups="housemaidsystem.accounting_manager_user_group,housemaidsystem.accounting_user_group,housemaidsystem.system_manager_user_group"
+                                   placeholder="External Office Commission"/>
+                            <field name="currency_id" string="Currency" readonly="True"
+                                   groups="housemaidsystem.accounting_manager_user_group,housemaidsystem.accounting_user_group,housemaidsystem.system_manager_user_group"/>
+                            <br/>
+                            <field name="officebranches" string="Office Sales Branch"
+                                   placeholder="Office Sales Branch"/>
+                            <br/>
+                        </div>
+
+
+                        <separator string="Personal Details" colspan="4"/>
+                        <group colspan="4" col="4">
+                            <field name="applicant_date"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="country_id"/>
+                            <field name="place_of_birth"/>
+                            <field name="marital_status" widget="selection_badge"/>
+                            <field name="gender" widget="selection_badge"/>
+                            <field name="kids"/>
+                            <field name="hm_salary"/>
+
+                        </group>
+                        <separator string="Passport Details" colspan="4"/>
+                        <group colspan="4" col="4">
+                            <field name="passport_id"/>
+                            <field name="passport_issue_date"/>
+                            <field name="passport_country_id"/>
+                            <field name="passport_expiry_date"/>
+                        </group>
+                        <separator string="Skill Details" colspan="4"/>
+                        <group col="4">
+                            <field name="english_skils" widget="radio"/>
+                            <field name="arabic_skils" widget="radio"/>
+                            <field name="post_applied"/>
+                            <field name="religion"/>
+                            <field name="education"/>
+                        </group>
+                        <separator string="Application Financial Details" colspan="4"/>
+                        <group col="4">
+                            <field name="analytic_account"/>
+                            <field name="analytic_tag"/>
+                        </group>
+
+                        <group colspan="4">
+                            <field name="experience"/>
+                        </group>
+                        <separator string="External Office Transactions" colspan="4"/>
+                        <group>
+                            <field name="External_office_trans_ids" nolabel="1">
+                                <tree editable="top">
+                                    <field name="tran_date"/>
+                                    <field name="tran_name"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_applications_tree_view" model="ir.ui.view">
+            <field name="name">Application Tree view</field>
+            <field name="model">housemaidsystem.applicant.applications</field>
+            <field name="arch" type="xml">
+
+                <!--                <progressbar field="kanban_state" colors='{"done": "success", "blocked": "danger"}'/>-->
+
+                <tree default_order="applicant_date desc">
+                    <field name="external_office_id"/>
+                    <field name="office_code"/>
+                    <field name="office_commission"
+                           groups="housemaidsystem.accounting_manager_user_group,housemaidsystem.accounting_user_group,housemaidsystem.system_manager_user_group"/>
+                    <field name="full_name"/>
+                    <field name="country_id"/>
+                    <field name="passport_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_applications_search_view" model="ir.ui.view">
+            <field name="name">Application Search view</field>
+            <field name="model">housemaidsystem.applicant.applications</field>
+            <field name="arch" type="xml">
+                <search string="Application">
+                    <field name="external_office_id" string="External Office Code"
+                           filter_domain="[('external_office_id','ilike',self)]"/>
+                    <field name="full_name" string="Name" filter_domain="[('full_name','ilike',self)]"/>
+
+                    <field name="customer_id" string="Current Sponsor"
+                           filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+
+
+                    <field name="passport_id" string="Passport Number" filter_domain="[('passport_id','ilike',self)]"/>
+                    <field name="passport_issue_date" string="Passport Issue Date"
+                           filter_domain="[('passport_issue_date','ilike',self)]"/>
+                    <field name="passport_expiry_date" string="Passport Expiry Date"
+                           filter_domain="[('passport_expiry_date','ilike',self)]"/>
+                    <field name="religion" string="Religion" filter_domain="[('religion','ilike',self)]"/>
+                    <field name="education" string="Education" filter_domain="[('education','ilike',self)]"/>
+                    <field name="age" string="Age" filter_domain="[('age','ilike',self)]"/>
+                    <field name="kids" string="kids" filter_domain="[('kids','ilike',self)]"/>
+                    <field name="country_id" string="Country" filter_domain="[('country_id','ilike',self)]"/>
+                    <field name="english_skils" string="english skils"
+                           filter_domain="[('english_skils','ilike',self)]"/>
+                    <field name="arabic_skils" string="arabic skils" filter_domain="[('arabic_skils','ilike',self)]"/>
+                    <filter name="application_only" string="Applications" domain="[('state','=','application')]"/>
+                    <filter name="cancelapplication_only" string="Canceled Application"
+                            domain="[('state','=','cancelapplication')]"/>
+                    <filter name="reservation_only" string="Reservations"
+                            domain="[('state','=','reservation') or ('state','=','printsposnorreceipt')]"/>
+                    <filter name="visa_only" string="visa" domain="[('state','=','visa')]"/>
+                    <filter name="expectedarrival_only" string="Expected Arrival"
+                            domain="[('state','=','expectedarrival')]"/>
+                    <filter name="arrival_only" string="Arrival" domain="[('state','=','arrival')]"/>
+                    <filter name="deliverpaidfull_only" string="Delivered Paid Full"
+                            domain="[('state','=','deliverpaidfull')]"/>
+                    <filter name="deliverpaidpartial_only" string="Delivered Paid Partial"
+                            domain="[('state','=','deliverpaidpartial')]"/>
+                    <filter name="resell_only" string="Resell" domain="[('state','=','resell')]"/>
+                    <filter name="returnback_only" string="Return Back From Fist Sponsor"
+                            domain="[('state','=','returnback')]"/>
+                    <filter name="sellastest_only" string="Sell As Test" domain="[('state','=','sellastest')]"/>
+                    <filter name="sellasfinall_only" string="Sell As Final" domain="[('state','=','sellasfinall')]"/>
+                    <filter name="rejectedbysponsor_only" string="Rejected By Sponsor"
+                            domain="[('state','=','rejectedbysponsor')]"/>
+                    <filter name="returnbackagain_only" string="Return Back From Last Sponsor"
+                            domain="[('state','=','returnbackagain')]"/>
+                    <filter name="backtocountry_only" string="Back to Country After Return Back From First Sponsor"
+                            domain="[('state','=','backtocountry')]"/>
+                    <filter name="backtocountry_only" string="Back to Country After Return Back From Last Sponsor"
+                            domain="[('state','=','backtocountry1')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="country" string="Country" domain="[]" context="{'group_by':'country_id'}"/>
+                        <filter name="external_office" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                        <filter name="state" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_applications_action_window" model="ir.actions.act_window">
+            <field name="name">Applications List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.applications</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new application
+                </p>
+                <p>
+                    You can add new application
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

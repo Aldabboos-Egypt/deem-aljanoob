@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record id="housemaid_configuration_postapplied_form_view" model="ir.ui.view">
+            <field name="name">Post Applied form view</field>
+            <field name="model">housemaidsystem.configuration.postapplied</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <!--<field name="activity_ids" widget="mail_activity"/>-->
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_configuration_postapplied_tree_view" model="ir.ui.view">
+            <field name="name">Post Applied tree view</field>
+            <field name="model">housemaidsystem.configuration.postapplied</field>
+            <field name="arch" type="xml">
+                <tree string="Post Applied">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_configuration_postapplied_action_window" model="ir.actions.act_window">
+            <field name="name">Post Applied List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.configuration.postapplied</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new Post Applied
+                </p>
+                <p>
+                    Post Applied .....
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

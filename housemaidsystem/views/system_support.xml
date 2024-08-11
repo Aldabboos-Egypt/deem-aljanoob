@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="housemaid_system_support_form_view" model="ir.ui.view">
+            <field name="name">System Support</field>
+            <field name="model">housemaidsystem.system.support</field>
+            <field name="arch" type="xml">
+                <form string="System Support">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="document_type"/>
+                                <field name="document_url" widget="url"/>
+                            </group>
+                        </group>
+                        <field name="description"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_system_support_tree_view" model="ir.ui.view">
+            <field name="name">System Support List</field>
+            <field name="model">housemaidsystem.system.support</field>
+            <field name="arch" type="xml">
+                <tree string="System Support">
+                    <field name="name"/>
+                    <field name="document_type"/>
+                    <field name="document_url" widget="url"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_system_support_form_action" model="ir.actions.act_window">
+            <field name="name">System Support List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.system.support</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add New System Support
+                </p>
+                <p>
+                    System Support
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

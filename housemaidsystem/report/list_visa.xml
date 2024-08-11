@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="list_visa">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="font">
+                    <div class="page">
+                        <div class="text-center">
+                            <h3>
+                                <strong><u>Visa List Report</u></strong>
+                            </h3>
+                        </div>
+                            <table class="table table-sm table-hover table-bordered">
+                            <thead>
+                                <th>SN</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Visa no</th>
+                                <th>Unified no</th>
+                                <th>Visa Issue Date</th>
+                                <th>Visa Expiry Date</th>
+                                <th>Visa Received Date</th>
+                                <th>Visa Send Date</th>
+                            </thead>
+                            <tbody>
+                                <t t-set="line_num" t-value="1"/>
+                                <t t-foreach="docs" t-as="doc">
+                                    <tr>
+                                        <td class="small">
+                                            <t t-esc="line_num"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-esc="doc.application_id.external_office_id"/>
+                                        </td>
+                                         <td class="small">
+                                            <t t-esc="doc.application_id.full_name"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.visa_no"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.unified_no"/>
+                                        </td>
+                                        <td>
+                                            <t t-raw="doc.visa_issue_date"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.visa_exp_date"/>
+                                        </td>
+                                         <td class="small">
+                                            <t t-raw="doc.visa_rec_date"/>
+                                        </td>
+                                        <td class="small">
+                                            <t t-raw="doc.visa_snd_date"/>
+                                        </td>
+                                    </tr>
+                                    <t t-set="line_num" t-value="line_num+1"/>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

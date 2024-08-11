@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="application_cancellation_wz_form">
+        <field name="name">housemaidsystem.wizard.application_cancellation_wz.form</field>
+        <field name="model">housemaidsystem.wizard.application_cancellation_wz</field>
+        <field name="arch" type="xml">
+            <form string="Application Cancellation List">
+                <group>
+                    <group>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                    </group>
+                    <group>
+                        <field name="external_office"/>
+                        <field name="accumulated" />
+                    </group>
+                </group>
+
+                <footer groups="base.group_user">
+                    <button name="print_report" type="object" string="Print"
+                            class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="application_cancellation_wz_action_window">
+        <field name="name">Application Cancellation List</field>
+        <field name="res_model">housemaidsystem.wizard.application_cancellation_wz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="application_cancellation_wz_form"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

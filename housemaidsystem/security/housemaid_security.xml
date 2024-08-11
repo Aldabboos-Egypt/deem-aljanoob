@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sales_user_group" model="res.groups">
+            <field name="name">Housemaid System - Sales User</field>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+        <record id="sales_manager_user_group" model="res.groups">
+            <field name="name">Housemaid System - Sales Manager</field>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <record id="accounting_user_group" model="res.groups">
+            <field name="name">Housemaid System - Accounting User</field>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+        <record id="accounting_manager_user_group" model="res.groups">
+            <field name="name">Housemaid System - Accounting Manager</field>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+        <record id="system_manager_user_group" model="res.groups">
+            <field name="name">Housemaid System - Manager</field>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+    </data>
+</odoo>

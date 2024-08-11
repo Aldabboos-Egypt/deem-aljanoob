@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="housemaid_sponsor_payments_form_view" model="ir.ui.view">
+            <field name="name">Sponsor Payments</field>
+            <field name="model">housemaidsystem.sponsorpayments</field>
+            <field name="arch" type="xml">
+                <form string="Sponsor Payment">
+                    <header>
+                        <button name="post_pending_action"
+                                string="Post Pending Payment"
+                                class="oe_highlight oe_inline"
+                                states="draft"
+                                groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group,housemaidsystem.sales_user_group"
+                                type="object"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirmed"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="effective_dt" readonly="1"/>
+                                <field name="OfficeBranches"/>
+                                <field name="OfficeBranches_name"/>
+                                <field name="OfficeBranches_address"/>
+                                <field name="OfficeBranches_telephones"/>
+                                <field name="OfficeBranches_reg_number"/>
+                                <field name="application_id" readonly="1"/>
+                                <field name="customer_id" readonly="1"/>
+                                <field name="payment_prepared_by" readonly="1"/>
+                                <field name="app_state" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="sposnor_payment" readonly="1"/>
+                                <field name="payment_ref" readonly="1"/>
+                                <field name="invoice_ref" readonly="1"/>
+                                <field name="payment_reason" readonly="1"/>
+                                <field name="convert_amount_to_word" readonly="1"/>
+                                <field name="sposnor_total" readonly="1"/>
+                                <field name="sposnor_dues" readonly="1"/>
+                                <field name="sposnor_previous_paid" readonly="1"/>
+                                <field name="payment_type" readonly="1"/>
+                                <field name="move_obj" readonly="1"/>
+                                <field name="payment_obj" readonly="1"/>
+                                <field name="invoice_obj" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_sponsor_payments_form_action" model="ir.actions.act_window">
+            <field name="name">Sponsor Payments List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.sponsorpayments</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new Sponsor Payments
+                </p>
+                <p>
+                    Sponsor Payments
+                </p>
+            </field>
+        </record>
+        <record id="housemaid_sponsor_payments_filter" model="ir.ui.view">
+            <field name="name">Sponsor Payments search</field>
+            <field name="model">housemaidsystem.sponsorpayments</field>
+            <field name="arch" type="xml">
+                <search string="Sponsor Payments">
+                    <field name="application_id" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Name"
+                           filter_domain="[('customer_id.name','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+                    <field name="state" string="Payment State"
+                           filter_domain="[('state','ilike',self)]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="application_group" string="Housemaid" domain="[]"
+                                context="{'group_by':'application_id'}"/>
+                        <filter name="sponsor_group" string="Sponsor" domain="[]"
+                                context="{'group_by':'customer_id'}"/>
+                        <filter name="state_group" string="Status" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_sponsor_payments_list_tree_view" model="ir.ui.view">
+            <field name="name">Sponsor Payment List</field>
+            <field name="model">housemaidsystem.sponsorpayments</field>
+            <field name="arch" type="xml">
+                <tree string="Sponsor Payments List" create="false" delete="false" duplicate="false"
+                      default_order="effective_dt desc">
+                    <field name="effective_dt"/>
+                    <field name="state"/>
+                    <field name="OfficeBranches"/>
+                    <field name="application_id"/>
+                    <field name="customer_id"/>
+                    <field name="sposnor_payment_dt"/>
+                    <field name="payment_ref"/>
+                    <field name="invoice_ref"/>
+                    <field name="payment_type"/>
+                    <field name="payment_reason"/>
+                    <field name="sposnor_total"/>
+                    <field name="sposnor_payment"/>
+                    <field name="convert_amount_to_word"/>
+                    <field name="sposnor_previous_paid"/>
+                    <field name="sposnor_discount"/>
+                    <field name="sposnor_dues"/>
+                    <field name="payment_prepared_by"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_sponsor_payments_list_action_window" model="ir.actions.act_window">
+            <field name="name">Sponsor Payments List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.sponsorpayments</field>
+            <field name="limit">80</field>
+            <field name="view_mode">tree,form</field>
+            <!--            <field name="view_id" ref="housemaid_sponsor_payments_list_tree_view"/>-->
+        </record>
+    </data>
+</odoo>

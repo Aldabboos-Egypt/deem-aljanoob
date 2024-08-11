@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--States-->
+        <record id="ahm" model="res.country.state">
+            <field name="name">Ahmadi</field>
+            <field name="code">AHM</field>
+            <field name="country_id" ref="base.kw"/>
+        </record>
+        <record id="asm" model="res.country.state">
+            <field name="name">Al-Asimah</field>
+            <field name="code">ASM</field>
+            <field name="country_id" ref="base.kw"/>
+        </record>
+        <record id="far" model="res.country.state">
+            <field name="name">Farwaniya</field>
+            <field name="code">FAR</field>
+            <field name="country_id" ref="base.kw"/>
+        </record>
+        <record id="haw" model="res.country.state">
+            <field name="name">Hawalli</field>
+            <field name="code">HAW</field>
+            <field name="country_id" ref="base.kw"/>
+        </record>
+        <record id="jah" model="res.country.state">
+            <field name="name">Jahra</field>
+            <field name="code">JAH</field>
+            <field name="country_id" ref="base.kw"/>
+        </record>
+        <record id="mub" model="res.country.state">
+            <field name="name">Mubarak Al-Kabeer</field>
+            <field name="code">MUB</field>
+            <field name="country_id" ref="base.kw"/>
+        </record>
+
+        <!--Area-->
+        <!--Ahmadi-->
+        <record id="res_country_stat_ahu" model="housemaidsystem.configuration.area">
+            <field name="name">Abu Hulaifa</field>
+            <field name="code">AHU</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_ahm" model="housemaidsystem.configuration.area">
+            <field name="name">Ahmadi</field>
+            <field name="code">AHM</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_agl" model="housemaidsystem.configuration.area">
+            <field name="name">Aqila</field>
+            <field name="code">AGL</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_dhr" model="housemaidsystem.configuration.area">
+            <field name="name">Daher</field>
+            <field name="code">DHR</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_fah" model="housemaidsystem.configuration.area">
+            <field name="name">Fahaheel</field>
+            <field name="code">FAH</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_fnt" model="housemaidsystem.configuration.area">
+            <field name="name">Fintas</field>
+            <field name="code">FNT</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_hdi" model="housemaidsystem.configuration.area">
+            <field name="name">Hadiya</field>
+            <field name="code">HDI</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_jss" model="housemaidsystem.configuration.area">
+            <field name="name">Jabir al-Ali Suburb</field>
+            <field name="code">JSS</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_mhh" model="housemaidsystem.configuration.area">
+            <field name="name">Mahbula</field>
+            <field name="code">MHH</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_mnq" model="housemaidsystem.configuration.area">
+            <field name="name">Mangaf</field>
+            <field name="code">MNQ</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_riq" model="housemaidsystem.configuration.area">
+            <field name="name">Rigga</field>
+            <field name="code">RIQ</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_sub" model="housemaidsystem.configuration.area">
+            <field name="name">Subahiya</field>
+            <field name="code">SUB</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_sac" model="housemaidsystem.configuration.area">
+            <field name="name">Sabah al-Ahmad City</field>
+            <field name="code">SAC</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_waf" model="housemaidsystem.configuration.area">
+            <field name="name">Wafra</field>
+            <field name="code">WAF</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+
+        <!--Al-Asimah-->
+        <record id="res_country_stat_ass" model="housemaidsystem.configuration.area">
+            <field name="name">Abdullah as-Salim suburb</field>
+            <field name="code">ASS</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_adi" model="housemaidsystem.configuration.area">
+            <field name="name">Adiliya</field>
+            <field name="code">ADI</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_bgr" model="housemaidsystem.configuration.area">
+            <field name="name">Bneid il-Gar</field>
+            <field name="code">BGR</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_dya" model="housemaidsystem.configuration.area">
+            <field name="name">Daiya</field>
+            <field name="code">DYA</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_das" model="housemaidsystem.configuration.area">
+            <field name="name">Dasma</field>
+            <field name="code">DAS</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_fih" model="housemaidsystem.configuration.area">
+            <field name="name">Faylakah</field>
+            <field name="code">FAY</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_jba" model="housemaidsystem.configuration.area">
+            <field name="name">Jabir al-Ahmad City</field>
+            <field name="code">JBA</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_jib" model="housemaidsystem.configuration.area">
+            <field name="name">Jibla</field>
+            <field name="code">JIB</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_kef" model="housemaidsystem.configuration.area">
+            <field name="name">Keifan</field>
+            <field name="code">KEF</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_khd" model="housemaidsystem.configuration.area">
+            <field name="name">Khaldiya</field>
+            <field name="code">KHD</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_mns" model="housemaidsystem.configuration.area">
+            <field name="name">Mansoriya</field>
+            <field name="code">MNS</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_mir" model="housemaidsystem.configuration.area">
+            <field name="name">Mirgab</field>
+            <field name="code">MIR</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_nuz" model="housemaidsystem.configuration.area">
+            <field name="name">Nuzha</field>
+            <field name="code">NUZ</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_qad" model="housemaidsystem.configuration.area">
+            <field name="name">Qadsiya</field>
+            <field name="code">QAD</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_qur" model="housemaidsystem.configuration.area">
+            <field name="name">Qurtuba</field>
+            <field name="code">QUR</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_rad" model="housemaidsystem.configuration.area">
+            <field name="name">Rawda</field>
+            <field name="code">RAD</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_smy" model="housemaidsystem.configuration.area">
+            <field name="name">Shamiya</field>
+            <field name="code">SMY</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_shq" model="housemaidsystem.configuration.area">
+            <field name="name">Sharq</field>
+            <field name="code">SHQ</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_shw" model="housemaidsystem.configuration.area">
+            <field name="name">Shuwaikh</field>
+            <field name="code">SHW</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_slb" model="housemaidsystem.configuration.area">
+            <field name="name">Sulaibikhat</field>
+            <field name="code">SLB</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_sur" model="housemaidsystem.configuration.area">
+            <field name="name">Surra</field>
+            <field name="code">SUR</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_yrm" model="housemaidsystem.configuration.area">
+            <field name="name">Yarmuk</field>
+            <field name="code">YRM</field>
+            <field name="state_id" ref="housemaidsystem.ahm"/>
+        </record>
+        <record id="res_country_stat_dsm" model="housemaidsystem.configuration.area">
+            <field name="name">Dasman</field>
+            <field name="code">DSM</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_saw" model="housemaidsystem.configuration.area">
+            <field name="name">Sawabir</field>
+            <field name="code">SAW</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_slh" model="housemaidsystem.configuration.area">
+            <field name="name">Salhiya</field>
+            <field name="code">SLH</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+        <record id="res_country_stat_bnd" model="housemaidsystem.configuration.area">
+            <field name="name">Bneidar</field>
+            <field name="code">BND</field>
+            <field name="state_id" ref="housemaidsystem.asm"/>
+        </record>
+
+        <!--Farwaniya-->
+        <record id="res_country_stat_aam" model="housemaidsystem.configuration.area">
+            <field name="name">Abdullah Al-Mubarak</field>
+            <field name="code">AAM</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_apo" model="housemaidsystem.configuration.area">
+            <field name="name">Abdullah Port</field>
+            <field name="code">APO</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_and" model="housemaidsystem.configuration.area">
+            <field name="name">Andalous</field>
+            <field name="code">AND</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_ady" model="housemaidsystem.configuration.area">
+            <field name="name">Ardiya</field>
+            <field name="code">ADY</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_daj" model="housemaidsystem.configuration.area">
+            <field name="name">Dhajeej</field>
+            <field name="code">DAJ</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_ash" model="housemaidsystem.configuration.area">
+            <field name="name">Ashbelya</field>
+            <field name="code">ASH</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_far" model="housemaidsystem.configuration.area">
+            <field name="name">Farwaniya</field>
+            <field name="code">FAR</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_for" model="housemaidsystem.configuration.area">
+            <field name="name">Fordous</field>
+            <field name="code">FOR</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_shk" model="housemaidsystem.configuration.area">
+            <field name="name">Jleeb Al-Shuyoukh</field>
+            <field name="code">SHK</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_kht" model="housemaidsystem.configuration.area">
+            <field name="name">Khaitan</field>
+            <field name="code">KHT</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_omr" model="housemaidsystem.configuration.area">
+            <field name="name">Omariya</field>
+            <field name="code">OMR</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_rab" model="housemaidsystem.configuration.area">
+            <field name="name">Rabiya</field>
+            <field name="code">RAB</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_rai" model="housemaidsystem.configuration.area">
+            <field name="name">Rai</field>
+            <field name="code">RAI</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_rih" model="housemaidsystem.configuration.area">
+            <field name="name">Rihab</field>
+            <field name="code">RIH</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_nas" model="housemaidsystem.configuration.area">
+            <field name="name">Sabah Al-Nasser</field>
+            <field name="code">NAS</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+        <record id="res_country_stat_sah" model="housemaidsystem.configuration.area">
+            <field name="name">Sabaq Al Hajan</field>
+            <field name="code">SAH</field>
+            <field name="state_id" ref="housemaidsystem.far"/>
+        </record>
+
+        <!--Hawali-->
+        <record id="res_country_stat_hwl" model="housemaidsystem.configuration.area">
+            <field name="name">Hawally</field>
+            <field name="code">HWL</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_bay" model="housemaidsystem.configuration.area">
+            <field name="name">Bayan</field>
+            <field name="code">BAY</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_mis" model="housemaidsystem.configuration.area">
+            <field name="name">Mishrif</field>
+            <field name="code">MIS</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_mhl" model="housemaidsystem.configuration.area">
+            <field name="name">Maidan Hawalli</field>
+            <field name="code">MHL</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_jbb" model="housemaidsystem.configuration.area">
+            <field name="name">Jabriya</field>
+            <field name="code">JBB</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_rum" model="housemaidsystem.configuration.area">
+            <field name="name">Rumaithiya</field>
+            <field name="code">RUM</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_sal" model="housemaidsystem.configuration.area">
+            <field name="name">Salmiya</field>
+            <field name="code">SAL</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_slw" model="housemaidsystem.configuration.area">
+            <field name="name">Salwa</field>
+            <field name="code">SLW</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_shb" model="housemaidsystem.configuration.area">
+            <field name="name">Al Shaab</field>
+            <field name="code">SHB</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_als" model="housemaidsystem.configuration.area">
+            <field name="name">Al-salam</field>
+            <field name="code">ALS</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_hit" model="housemaidsystem.configuration.area">
+            <field name="name">Hittin</field>
+            <field name="code">HIT</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_zuh" model="housemaidsystem.configuration.area">
+            <field name="name">Zuhar</field>
+            <field name="code">ZUH</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_mua" model="housemaidsystem.configuration.area">
+            <field name="name">Mubarak Al-Abdullah</field>
+            <field name="code">MUA</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_shd" model="housemaidsystem.configuration.area">
+            <field name="name">Al-shuhada</field>
+            <field name="code">SHD</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_bad" model="housemaidsystem.configuration.area">
+            <field name="name">Al-badae</field>
+            <field name="code">BAD</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+        <record id="res_country_stat_sid" model="housemaidsystem.configuration.area">
+            <field name="name">Al-Siddiq</field>
+            <field name="code">SID</field>
+            <field name="state_id" ref="housemaidsystem.haw"/>
+        </record>
+
+        <!--Mubarak Al-Kabeer-->
+        <record id="res_country_stat_abh" model="housemaidsystem.configuration.area">
+            <field name="name">Abu Al Hasaniya</field>
+            <field name="code">ABH</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_aft" model="housemaidsystem.configuration.area">
+            <field name="name">Abu Fteira</field>
+            <field name="code">AFT</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_adn" model="housemaidsystem.configuration.area">
+            <field name="name">Adan</field>
+            <field name="code">ADN</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_qir" model="housemaidsystem.configuration.area">
+            <field name="name">Qurain</field>
+            <field name="code">QIR</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_qus" model="housemaidsystem.configuration.area">
+            <field name="name">Qusor</field>
+            <field name="code">QUS</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_fun" model="housemaidsystem.configuration.area">
+            <field name="name">Funaitis</field>
+            <field name="code">FUN</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_mil" model="housemaidsystem.configuration.area">
+            <field name="name">Misila</field>
+            <field name="code">MIL</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_mke" model="housemaidsystem.configuration.area">
+            <field name="name">Mubarak al-Kabeer</field>
+            <field name="code">MKE</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_ssu" model="housemaidsystem.configuration.area">
+            <field name="name">Sabah as-Salim suburb</field>
+            <field name="code">SSU</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+        <record id="res_country_stat_sbh" model="housemaidsystem.configuration.area">
+            <field name="name">Sabhan</field>
+            <field name="code">SBH</field>
+            <field name="state_id" ref="housemaidsystem.mub"/>
+        </record>
+
+
+        <!--Jahra-->
+        <record id="res_country_stat_abd" model="housemaidsystem.configuration.area">
+            <field name="name">Alabdally</field>
+            <field name="code">ABD</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_alb" model="housemaidsystem.configuration.area">
+            <field name="name">Albhaith</field>
+            <field name="code">alb</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_jah" model="housemaidsystem.configuration.area">
+            <field name="name">Aljahra</field>
+            <field name="code">JAH</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_alk" model="housemaidsystem.configuration.area">
+            <field name="name">Alkhwaisat</field>
+            <field name="code">ALK</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_alm" model="housemaidsystem.configuration.area">
+            <field name="name">Almutlaa</field>
+            <field name="code">ALM</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_aln" model="housemaidsystem.configuration.area">
+            <field name="name">Alnaeem</field>
+            <field name="code">ALN</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_ale" model="housemaidsystem.configuration.area">
+            <field name="name">Alnaseem</field>
+            <field name="code">ALE</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_alo" model="housemaidsystem.configuration.area">
+            <field name="name">Aloyoon</field>
+            <field name="code">ALO</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_alq" model="housemaidsystem.configuration.area">
+            <field name="name">Alqaser</field>
+            <field name="code">ALQ</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_alr" model="housemaidsystem.configuration.area">
+            <field name="name">Alretqah</field>
+            <field name="code">ALR</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_ald" model="housemaidsystem.configuration.area">
+            <field name="name">Alroudhatain</field>
+            <field name="code">ALD</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_asm" model="housemaidsystem.configuration.area">
+            <field name="name">Alsalmy</field>
+            <field name="code">ASM</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_ghi" model="housemaidsystem.configuration.area">
+            <field name="name">Ghirnata</field>
+            <field name="code">GHI</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_doh" model="housemaidsystem.configuration.area">
+            <field name="name">Doha</field>
+            <field name="code">DOH</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_nah" model="housemaidsystem.configuration.area">
+            <field name="name">Nahdha</field>
+            <field name="code">NAH</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_qai" model="housemaidsystem.configuration.area">
+            <field name="name">Qairawān</field>
+            <field name="code">QAI</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_bid" model="housemaidsystem.configuration.area">
+            <field name="name">Bidi</field>
+            <field name="code">BID</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_nig" model="housemaidsystem.configuration.area">
+            <field name="name">Nigra</field>
+            <field name="code">NIG</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_mus" model="housemaidsystem.configuration.area">
+            <field name="name">Mubarak aj-Jabir suburb</field>
+            <field name="code">MUS</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_ssr" model="housemaidsystem.configuration.area">
+            <field name="name">South Surra</field>
+            <field name="code">SSR</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_miq" model="housemaidsystem.configuration.area">
+            <field name="name">Miqwa</field>
+            <field name="code">MIQ</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_sab" model="housemaidsystem.configuration.area">
+            <field name="name">Sabahiya</field>
+            <field name="code">SAB</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_zor" model="housemaidsystem.configuration.area">
+            <field name="name">Zoor</field>
+            <field name="code">ZOR</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_khi" model="housemaidsystem.configuration.area">
+            <field name="name">Khairan</field>
+            <field name="code">KHI</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_awf" model="housemaidsystem.configuration.area">
+            <field name="name">Agricultural Wafra</field>
+            <field name="code">AWF</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_jia" model="housemaidsystem.configuration.area">
+            <field name="name">Jileia</field>
+            <field name="code">JIA</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_fss" model="housemaidsystem.configuration.area">
+            <field name="name">Fahd al-Ahmad Suburb</field>
+            <field name="code">FSS</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_shu" model="housemaidsystem.configuration.area">
+            <field name="name">Shuaiba</field>
+            <field name="code">SHU</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_nuw" model="housemaidsystem.configuration.area">
+            <field name="name">Nuwaiseeb</field>
+            <field name="code">NUW</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_kir" model="housemaidsystem.configuration.area">
+            <field name="name">Khairan City</field>
+            <field name="code">KIR</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_asl" model="housemaidsystem.configuration.area">
+            <field name="name">Ali as-Salim suburb</field>
+            <field name="code">ASL</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+        <record id="res_country_stat_sbc" model="housemaidsystem.configuration.area">
+            <field name="name">Sabah al-Ahmad Nautical City</field>
+            <field name="code">SBC</field>
+            <field name="state_id" ref="housemaidsystem.jah"/>
+        </record>
+    </data>
+</odoo>

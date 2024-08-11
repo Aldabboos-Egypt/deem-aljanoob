@@ -1,0 +1,478 @@
+<odoo>
+    <data>
+
+        <record id="housemaid_applicant_applications_1" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_1"/>
+            <field name="full_name">SYLVIA VILLA</field>
+            <field name="birth_date" eval="'%s-09-28' %(datetime.now().year-19)"/>
+            <field name="age">19</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                5 years at Saudi
+                3 years at Bahrain
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">ASX-123321-15</field>
+            <field name="english_skils">excellent</field>
+            <field name="arabic_skils">excellent</field>
+            <field name="passport_issue_date" eval="'%s-04-22' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-04-22' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.in"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/1.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_2" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_1"/>
+            <field name="full_name">ARLENE FLORES</field>
+            <field name="birth_date" eval="'%s-10-05' %(datetime.now().year-21)"/>
+            <field name="age">21</field>
+            <field name="gender">female</field>
+            <field name="marital_status">married</field>
+            <field name="experience">
+                5 years at Saudi
+            </field>
+            <field name="passport_id">SWE-554458-15</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-01-03' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-01-02' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.in"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/2.jpg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_3" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_1"/>
+            <field name="full_name">REGINA SERRANO</field>
+            <field name="birth_date" eval="'%s-08-28' %(datetime.now().year-25)"/>
+            <field name="age">25</field>
+            <field name="gender">female</field>
+            <field name="marital_status">married</field>
+            <field name="experience">
+                3 years at UAE
+            </field>
+            <field name="passport_id">QWE-55444-15</field>
+            <field name="english_skils">poor</field>
+            <field name="arabic_skils">good</field>
+            <field name="passport_issue_date" eval="'%s-06-22' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-06-22' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.in"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/3.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_4" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_2"/>
+            <field name="full_name">SIONY CUETO</field>
+            <field name="birth_date" eval="'%s-11-28' %(datetime.now().year-19)"/>
+            <field name="age">19</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">WWE-787878-15</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">good</field>
+            <field name="passport_issue_date" eval="'%s-03-22' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-03-22' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.id"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/4.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_5" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_2"/>
+            <field name="full_name">RHODA BORROMEO</field>
+            <field name="birth_date" eval="'%s-12-28' %(datetime.now().year-16)"/>
+            <field name="age">16</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                1 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">WQQ-454542-15</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-01-09' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-01-09' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.id"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/5.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_6" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_2"/>
+            <field name="full_name">JOYCE TIU</field>
+            <field name="birth_date" eval="'%s-03-07' %(datetime.now().year-25)"/>
+            <field name="age">27</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                3 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">WKS-5454545-15</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-01-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-01-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.id"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/6.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_7" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_3"/>
+            <field name="full_name">MARY RITCHE BRIAN</field>
+            <field name="birth_date" eval="'%s-04-27' %(datetime.now().year-26)"/>
+            <field name="age">26</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                8 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">ASD-4455-25</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-03-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-03-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.ph"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/7.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_8" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_3"/>
+            <field name="full_name">CRESENCIA DELIN</field>
+            <field name="birth_date" eval="'%s-05-27' %(datetime.now().year-23)"/>
+            <field name="age">23</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">WSR-45544-33</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-08-21' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-08-21' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.ph"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/8.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_9" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_3"/>
+            <field name="full_name">FRANCHESCA DIANO</field>
+            <field name="birth_date" eval="'%s-05-27' %(datetime.now().year-22)"/>
+            <field name="age">22</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                8 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">UUT-45454-2</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-12-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-12-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.ph"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/9.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_10" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_4"/>
+            <field name="full_name">NINETA DELA CRUZ</field>
+            <field name="birth_date" eval="'%s-07-26' %(datetime.now().year-18)"/>
+            <field name="age">18</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">HHG-4554-235</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-08-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-08-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.mg"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/10.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_11" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_4"/>
+            <field name="full_name">GRTA DUF WSDTR</field>
+            <field name="birth_date" eval="'%s-08-03' %(datetime.now().year-22)"/>
+            <field name="age">22</field>
+            <field name="gender">female</field>
+            <field name="marital_status">single</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">HHG-4554-235</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.mg"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/11.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_12" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_4"/>
+            <field name="full_name">MILNA HATTI</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">27</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-878782-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-06-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-06-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.mg"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/12.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_13" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_5"/>
+            <field name="full_name">OPUNTEE DESTI</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">38</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-454545-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.ao"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/13.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_14" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_5"/>
+            <field name="full_name">LIANA GEDS WANA</field>
+            <field name="birth_date" eval="'%s-10-03' %(datetime.now().year-27)"/>
+            <field name="age">22</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-3322-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-08-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-08-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.ao"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/14.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_15" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_5"/>
+            <field name="full_name">MYLTEE DE FUNDOO</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">38</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-454545-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.ao"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/15.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_16" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_6"/>
+            <field name="full_name">WANA DESTI QANA</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">38</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-454545-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.er"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/16.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_17" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_6"/>
+            <field name="full_name">YUTO WSHYTI</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">23</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-454545-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.er"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/17.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_18" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_6"/>
+            <field name="full_name">SWATI RANY</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">38</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-454545-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.er"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/18.jpeg"/>
+        </record>
+
+        <record id="housemaid_applicant_applications_19" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_7"/>
+            <field name="full_name">PRYADA MUDO LATA</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">38</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-45454-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.et"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/19.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_20" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_7"/>
+            <field name="full_name">RANATII ERNA KOTO</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">21</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-45454-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.et"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/20.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_21" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_7"/>
+            <field name="full_name">ALIENTA DOS</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">18</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-7788-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.et"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/21.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_22" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_7"/>
+            <field name="full_name">ALERNA HYATT</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">29</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-7878-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.et"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/22.jpeg"/>
+        </record>
+        <record id="housemaid_applicant_applications_23" model="housemaidsystem.applicant.applications">
+            <field name="office_code" ref="housemaid_configuration_externaloffices_7"/>
+            <field name="full_name">HAYDI MULTO</field>
+            <field name="birth_date" eval="'%s-11-03' %(datetime.now().year-27)"/>
+            <field name="age">29</field>
+            <field name="gender">female</field>
+            <field name="marital_status">divorced</field>
+            <field name="experience">
+                2 years at Saudi
+                1 year at Kuwait
+            </field>
+            <field name="passport_id">TTY-77777-222</field>
+            <field name="english_skils">good</field>
+            <field name="arabic_skils">poor</field>
+            <field name="passport_issue_date" eval="'%s-09-15' %(datetime.now().year-5)"/>
+            <field name="passport_expiry_date" eval="'%s-09-15' %(datetime.now().year+5)"/>
+            <field name="country_id" ref="base.et"/>
+            <field name="state">application</field>
+            <field name="labor_image" type="base64" file="housemaidsystem/static/img/23.jpeg"/>
+        </record>
+    </data>
+</odoo>

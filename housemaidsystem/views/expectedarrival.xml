@@ -1,0 +1,219 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_expectedarrival_form_view_noaction" model="ir.ui.view">
+            <field name="name">Expected Arrival Form view</field>
+            <field name="model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="arch" type="xml">
+                <form create="false">
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_expectedarrival_form_view" model="ir.ui.view">
+            <field name="name">Expected Arrival Form view</field>
+            <field name="model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="transaction_date"/>
+                                <field name="expected_arrival_date"/>
+                                <field name="application_id" readonly="True"/>
+                                <field name="email_date"/>
+                            </group>
+                            <group>
+                                <field name="flight_no"/>
+                                <field name="flight_name"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="notes" string="Notes"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Apply" name="apply" type="object" class="btn-primary"/>
+                        <button string="Skip" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="housemaid_applicant_expectedarrival_tree_view" model="ir.ui.view">
+            <field name="name">Expected Arrival Form view</field>
+            <field name="model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="arch" type="xml">
+                <tree string="Expected Arrival" delete="false" create="false">
+                    <field name="transaction_date"/>
+                    <field name="expected_arrival_date"/>
+                    <field name="application_id"/>
+                    <field name="customer_id"/>
+                    <field name="flight_no"/>
+                    <field name="flight_name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_expectedarrival_calendar_view" model="ir.ui.view">
+            <field name="name">Expected Arrival Calendar</field>
+            <field name="model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Expected Arrival" date_start="expected_arrival_date">
+                    <field name="application_id"/>
+                    <field name="flight_no"/>
+                    <field name="flight_name"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="housemaid_applicant_expectedarrival_filter" model="ir.ui.view">
+            <field name="name">Expected Arrival search</field>
+            <field name="model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="arch" type="xml">
+                <search string="Expected Arrival">
+
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+                   <field name="name" string="Sponsor" filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+                    <filter name="expected_arrival_only" string="Expected Arrival Only"
+                            domain="[('application_id.state','=','expectedarrival')]"/>
+
+                    <separator/>
+                    <filter name="expected_arrival_date" string="Expected Arrival is Today"
+                            domain="['&amp;',(('application_id.state','=','expectedarrival')),('expected_arrival_date', '&lt;', (context_today() - relativedelta(days=-1)).strftime('%%Y-%%m-%%d')), ('expected_arrival_date', '&gt;', (context_today() - relativedelta(days=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="expected_arrival_date" string="Expected Arrival is Tomorrow"
+                            domain="['&amp;',(('application_id.state','=','expectedarrival')),('expected_arrival_date', '&lt;', (context_today() - relativedelta(days=-2)).strftime('%%Y-%%m-%%d')), ('expected_arrival_date', '&gt;', (context_today() - relativedelta(days=0)).strftime('%%Y-%%m-%%d'))]"/>
+
+
+                    <filter name="expected_arrival_date" string="Expected Arrival is this week"
+                            domain="['&amp;',(('application_id.state','=','expectedarrival')),('expected_arrival_date', '&gt;=', (context_today() - relativedelta(weeks=0)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="expected_arrival_date" string="Expected Arrival is over one week"
+                            domain="['&amp;',(('application_id.state','=','expectedarrival')),('expected_arrival_date', '&gt;=', (context_today() - relativedelta(weeks=-1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="expected_arrival_date" string="Expected Arrival is over 2 weeks"
+                            domain="['&amp;',(('application_id.state','=','expectedarrival')),('expected_arrival_date', '&gt;=', (context_today() - relativedelta(weeks=2)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="expected_arrival_date" string="Expected Arrival is over 3 weeks"
+                            domain="['&amp;',(('application_id.state','=','expectedarrival')),('expected_arrival_date', '&gt;=', (context_today() - relativedelta(weeks=3)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter name="expected_arrival_date" string="Expected Arrival is over 1 Month"
+                            domain="['&amp;',(('application_id.state','=','expectedarrival')),('expected_arrival_date', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-%%d'))]"/>
+                    <separator/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <record id="housemaid_applicant_expectedarrival_action_window" model="ir.actions.act_window">
+            <field name="name">Expected Arrival List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="housemaidsystem.housemaid_applicant_expectedarrival_form_view_noaction"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add new Expected Arrival
+                </p>
+                <p>
+                    Expected Arrival .....
+                </p>
+            </field>
+        </record>
+        <record id="housemaid_applicant_expectedarrival_list_tree_view" model="ir.ui.view">
+            <field name="name">Expected Arrival List</field>
+            <field name="model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="arch" type="xml">
+                <tree string="Expected Arrival List" editable="top" default_order="transaction_date desc">
+                    <field name="transaction_date"/>
+                    <field name="expected_arrival_date"/>
+                    <field name="application_id" readonly="1"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="flight_no"/>
+                    <field name="flight_name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="housemaid_applicant_expectedarrival_list_action_window" model="ir.actions.act_window">
+            <field name="name">Expected Arrival List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.expectedarrival</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="context">{"search_default_expected_arrival_only" : True,}</field>
+            <field name="view_id" ref="housemaid_applicant_expectedarrival_list_tree_view"/>
+        </record>
+
+        <!-- ********************** Cancel Expected Arrival***************************************************-->
+
+        <record id="housemaid_applicant_cancel_expectedarrival_filter" model="ir.ui.view">
+            <field name="name">Cancel Expected Arrival search</field>
+            <field name="model">housemaidsystem.applicant.cancel_expectedarrival</field>
+            <field name="arch" type="xml">
+                <search string="Cancel Expected Arrival">
+
+                    <field name="name" string="Application Code"
+                           filter_domain="[('application_id.external_office_id','ilike',self)]"/>
+                    <field name="name" string="Application Name"
+                           filter_domain="[('application_id.full_name','ilike',self)]"/>
+                    <field name="name" string="Sponsor" filter_domain="['|',('customer_id.name','ilike',self),('customer_id.name_ar','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Mobile"
+                           filter_domain="[('customer_id.mobile','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Phone"
+                           filter_domain="[('customer_id.phone','ilike',self)]"/>
+                    <field name="customer_id" string="Sponsor Civil ID"
+                           filter_domain="[('customer_id.civil_id','ilike',self)]"/>
+                    <field name="office_code" string="External Office"
+                           filter_domain="[('office_code.code','ilike',self)]"/>
+
+
+                    <filter string="Expected Arrival Entry Date" name="filter_transaction_date" date="transaction_date"/>
+                    <filter string="Cancelation Date" name="filter_cancelation_date" date="cancelation_date"/>
+
+                    <group expand="0" string="Group By">
+                        <filter name="office_code" string="External Office" domain="[]"
+                                context="{'group_by':'office_code'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_cancel_expectedarrival_list_tree_view" model="ir.ui.view">
+            <field name="name">Cancel Expected Arrival List</field>
+            <field name="model">housemaidsystem.applicant.cancel_expectedarrival</field>
+            <field name="arch" type="xml">
+                <tree string="Cancel Expected Arrival List" editable="top" default_order="cancelation_date desc">
+                    <field name="cancelation_date" readonly="1"/>
+                    <field name="transaction_date" readonly="1"/>
+                    <field name="expected_arrival_date" readonly="1"/>
+                    <field name="application_id" readonly="1"/>
+                    <field name="customer_id" readonly="1" string="Sponsor Name (En)"/>
+                    <field name="customer_name_ar" readonly="1" string="Sponsor Name (Ar)"/>
+                    <field name="flight_no" readonly="1"/>
+                    <field name="flight_name" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="housemaid_applicant_cancel_expectedarrival_list_action_window" model="ir.actions.act_window">
+            <field name="name">Cancel Expected Arrival List</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">housemaidsystem.applicant.cancel_expectedarrival</field>
+            <field name="view_mode">tree,form</field>
+            <field name="limit">1000</field>
+            <field name="view_id" ref="housemaid_applicant_cancel_expectedarrival_list_tree_view"/>
+        </record>
+
+
+    </data>
+</odoo>
