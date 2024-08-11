@@ -1,0 +1,588 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* housemid_dev_dabbos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-07 11:20+0000\n"
+"PO-Revision-Date: 2023-10-07 11:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__visa_grant_request_date
+msgid "  Date"
+msgstr " التاريخ "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__visa_grant_request_number
+msgid "  Number"
+msgstr " الرقم "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__visa_grant_request_date
+msgid "  Visa Date"
+msgstr " تاريخ الفيزا "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__office_book_minister
+msgid "  office book Minister  "
+msgstr " مذكرة مكتب الوزير "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__office_book_minister_date
+msgid "  office book Minister  Date"
+msgstr " تاريخ مذكرة مكتب الوزير"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__workers_department_forigner
+msgid " foreign workers  "
+msgstr " العمال الاجانب "
+
+#. module: housemid_dev_dabbos
+#: model_terms:ir.ui.view,arch_db:housemid_dev_dabbos.view_task_form2_inherited
+msgid ""
+"<strong>\n"
+"                                Electronic List\n"
+"                            </strong>\n"
+"\n"
+"                            <br/>\n"
+"                            <br/>"
+msgstr "القائمة الالكترونية"
+
+#. module: housemid_dev_dabbos
+#: model_terms:ir.ui.view,arch_db:housemid_dev_dabbos.view_task_form2_inherited
+msgid ""
+"<strong>\n"
+"                                Other Values\n"
+"                            </strong>\n"
+"\n"
+"                            <br/>\n"
+"                            <br/>"
+msgstr ""
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__a2N_email
+msgid "A2N email"
+msgstr " أيميل A2N "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__a2N_email_date
+msgid "A2N email Date"
+msgstr " تاريخ أيميل A2N"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__electronic_list__order_state__accepted
+msgid "Accepted"
+msgstr " تمت الموافقة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__age
+msgid "Age"
+msgstr " العمر "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model,name:housemid_dev_dabbos.model_housemaidsystem_applicant_applications
+msgid "Applications"
+msgstr "الطلبات"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__arab_workers_section
+msgid "Arab Workers  "
+msgstr " العمال العرب "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__arab_workers_section_date
+msgid "Arab Workers   Date"
+msgstr " تاريخ العمال العرب"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__housemaidsystem_applicant_applications__visa_grant_request__ar
+msgid "Arabs"
+msgstr " عرب "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__barcode_elist_number
+msgid "Barcode Electronic  List"
+msgstr " قائمة الباركود الإلكترونية "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__barcode_elist_date
+msgid "Barcode Electronic  List Date"
+msgstr " تاريخ قائمة الباركود الإلكترونية"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__birth_date
+msgid "Birth Date"
+msgstr " تاريخ الميلاد "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__arabs_in_residence_date
+msgid "Book section of the Arabs in residence Date"
+msgstr " قسم كتاب تاريخ إقامة العرب "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__country_id
+msgid "Country"
+msgstr " الدولة "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__create_uid
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__create_uid
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__create_uid
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type__create_uid
+msgid "Created by"
+msgstr " انشأ بواسطة "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__create_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__create_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__create_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type__create_date
+msgid "Created on"
+msgstr " تم إنشاؤها على "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__date
+msgid "Date"
+msgstr " التاريخ "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__workers_department_forigner_date
+msgid "Department of foreign workers Date"
+msgstr " تاريخ قسم العمال الأجانب "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__display_name
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__display_name
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__display_name
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__display_name
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__display_name
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__einv_date
+msgid "Electronic  Invoice Date"
+msgstr " تاريخ القائمة الالكترونية "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__einv_number
+#: model_terms:ir.ui.view,arch_db:housemid_dev_dabbos.housemaid_applicant_applications_search_view_invoice_details
+msgid "Electronic  Invoice Number"
+msgstr "رقم القائمه الالكترونية "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__elist_number
+msgid "Electronic  List"
+msgstr " القائمة الإلكترونية "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__elist_date
+msgid "Electronic  List    Date"
+msgstr "تاريخ القائمة الالكترونية"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__electronic_list_ids
+msgid "Electronic List"
+msgstr "القائمة الالكترونية"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__employee
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__employee
+msgid "Employee"
+msgstr " الموظف "
+
+#. module: housemid_dev_dabbos
+#: model_terms:ir.ui.view,arch_db:housemid_dev_dabbos.view_task_form2_inherited
+msgid "Enter Card"
+msgstr " كارت الادخال "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__enter_card_ids
+msgid "Enter Card Lines"
+msgstr "خطوط كارت الادخال "
+
+#. module: housemid_dev_dabbos
+#: model_terms:ir.ui.view,arch_db:housemid_dev_dabbos.view_task_form2_inherited
+msgid "Exit Card"
+msgstr " كارت الاخراج "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__exit_line_ids
+msgid "Exit Line "
+msgstr " خطوط الاخراج "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__electronic_list__gender__female
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__exit_line_card__gender__female
+msgid "Female"
+msgstr "انثي "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__fine_date
+msgid "Fine Date"
+msgstr "تاريخ المعاملة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__fine_number
+msgid "Fine Number"
+msgstr "رقم المعاملة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__fine_reason
+msgid "Fine Reason"
+msgstr "سبب المعاملة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__foreigners_in_residence_date
+msgid "Foreigners section book in residence Date"
+msgstr "تاريخ قسم مذكرة اقامة الاجانب"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__gender
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__gender
+msgid "Gender"
+msgstr " الجنس"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__id
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__id
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__id
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__id
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__id
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__invoice_ids
+msgid "Invoices"
+msgstr "الفواتير"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__iqama_issuance
+msgid "Iqama Issuance"
+msgstr "اصدار الاقامة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__iqama_issuance_date
+msgid "Iqama Issuance Date"
+msgstr "تاريخ إصدار الإقامة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__iqama_effective_date
+msgid "Iqama effective Date"
+msgstr "تاريخ سريان الإقامة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__iraq_enter_date
+msgid "Iraq Enter Date"
+msgstr "تاريخ دخول العراق"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__lawsuit
+msgid "Is there a lawsuit"
+msgstr "هل هناك دعوى قضائية"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__jake_insurance_ministry_date
+msgid "Jake Insurance to the Ministry Date"
+msgstr "تاريخ جيك التأمين الي الوزارة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list____last_update
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line____last_update
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card____last_update
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications____last_update
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task____last_update
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__write_uid
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__write_uid
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__write_uid
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type__write_uid
+msgid "Last Updated by"
+msgstr "اخر تحديث بواسطة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__write_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__write_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__write_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type__write_date
+msgid "Last Updated on"
+msgstr "اخر تحديث علي"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__lawyer_name
+msgid "Lawyer "
+msgstr "محامي"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__name
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__work_info
+msgid "List Number"
+msgstr "قائمة الارقام"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__electronic_list__gender__male
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__exit_line_card__gender__male
+msgid "Male"
+msgstr "ذكر"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__jake_insurance_ministry
+msgid "Ministry Jake     "
+msgstr "جيك الوزارة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__ministry_fees
+msgid "Ministry fees  "
+msgstr "رسوم الوزارة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__project_task__lawsuit__no
+msgid "NO"
+msgstr "لا "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_unknown_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__nationality
+msgid "Nationality"
+msgstr "الجنسية"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__notes
+msgid "Notes"
+msgstr "ملحوظات"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__operating_request
+msgid "Operating Request"
+msgstr "طلب التشغيل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__operating_request_date
+msgid "Operating Request Date"
+msgstr "تاريخ طلب التشغيل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__order_state
+msgid "Order State"
+msgstr "حالة الطلب"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__passport_expiry_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__passport_expiry_date
+msgid "Passport Expiry Date"
+msgstr "تاريخ انتهاء الباسبور"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__passport_number
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__passport_number
+msgid "Passport Number"
+msgstr "رقم الباسبور"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__project_id
+msgid "Project"
+msgstr "المشروع"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__recruitment_request
+msgid "Recruitment request   "
+msgstr "طلب التوظيف"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__recruitment_request_date
+msgid "Recruitment request Date "
+msgstr "تاريخ طلب التوظيف"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__electronic_list__order_state__refused
+msgid "Refused"
+msgstr "مرفوض"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__refused_reason
+msgid "Refused Reason"
+msgstr "سبب الرفض"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__registering_work_id
+msgid "Registering Work ID"
+msgstr "معرف تسجيل العمل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__registering_work_id_date
+msgid "Registering Work ID Date"
+msgstr "تاريخ معرف تسجيل العمل "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__residence_address
+msgid "Residence address"
+msgstr "عنوان السكن"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__residency_transfer_place
+msgid "Residency Transfer Place"
+msgstr "مكان نقل الإقامة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__sponsorship_transfer_date
+msgid "Sponsorship Transfer Date"
+msgstr "تاريخ نقل الكفالة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model,name:housemid_dev_dabbos.model_project_task
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_electronic_list__task_id
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__task_id
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__task_id
+msgid "Task"
+msgstr "المهمة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__ticket_validity_book
+msgid "Ticket validity book "
+msgstr "كتاب صلاحية التذكرة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__ticket_validity_book_date
+msgid "Ticket validity book Date"
+msgstr "تاريخ كتاب صلاحية التذكرة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__value
+msgid "Value"
+msgstr "القيمة"
+
+#. module: housemid_dev_dabbos
+#: model_terms:ir.ui.view,arch_db:housemid_dev_dabbos.housemaid_applicant_applications_search_view_invoice_details
+msgid "Visa Grant Request Number"
+msgstr "رقم طلب منحة التأشيرة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__visa_grant_request_number
+msgid "Visa Number"
+msgstr "رقم الفيزا"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__visa_grant_request
+msgid "Visa grant request"
+msgstr "طلب منح التأشيرة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_exit_line_card__work
+msgid "Work"
+msgstr "العمل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__work_permit_issuing
+msgid "Work Permit Issuing"
+msgstr "إصدار تصريح العمل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__work_permit_issuing_date
+msgid "Work Permit Issuing Date"
+msgstr "تاريخ اصدار تصريح العمل"
+
+#. module: housemid_dev_dabbos
+#: model_terms:ir.ui.view,arch_db:housemid_dev_dabbos.housemaid_applicant_applications_search_view_invoice_details
+msgid "Work Permit Number"
+msgstr "رقم تصريح العمل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__work_permit_request
+msgid "Work Permit Request"
+msgstr "طلب تصريح العمل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__work_permit_request_date
+msgid "Work Permit Request Date"
+msgstr "تاريخ طلب تصريح العمل "
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__work_permit_date
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__work_permit_date
+msgid "Work permit Date"
+msgstr "تاريخ تصريح العمل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_housemaidsystem_applicant_applications__work_permit_number
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__work_permit_number
+msgid "Work permit number"
+msgstr "رقم تصريح العمل"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__project_task__lawsuit__yes
+msgid "Yes"
+msgstr "نعم"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model,name:housemid_dev_dabbos.model_electronic_list
+msgid "electronic.list"
+msgstr "القائمة الالكترونية"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model,name:housemid_dev_dabbos.model_enter_card_line
+msgid "enter.card.line"
+msgstr "خطوط كارت الادخال"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model,name:housemid_dev_dabbos.model_exit_line_card
+msgid "exit.line.card"
+msgstr "خطوط كارت الاخراج"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__ministry_fees_date
+msgid "fees to the Ministry Date"
+msgstr "تاريخ رسوم الاوزارة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields.selection,name:housemid_dev_dabbos.selection__housemaidsystem_applicant_applications__visa_grant_request__fo
+msgid "foreigners"
+msgstr "أجانب"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_enter_card_line__unknown_type_id
+msgid "key"
+msgstr "مفتاح"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__arabs_in_residence
+msgid "residence Arabs   "
+msgstr "سكن العرب"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__foreigners_in_residence
+msgid "residence Foreigners    "
+msgstr "سكن الاجانب"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model,name:housemid_dev_dabbos.model_unknown_type
+msgid "unknown.type"
+msgstr "نوع غير معلوم"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__wish_book
+msgid "wish book"
+msgstr "كتاب الرغبة"
+
+#. module: housemid_dev_dabbos
+#: model:ir.model.fields,field_description:housemid_dev_dabbos.field_project_task__wish_book_date
+msgid "wish book Date"
+msgstr "تاريخ كتاب الرغبة"

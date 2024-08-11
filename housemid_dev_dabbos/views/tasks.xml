@@ -1,0 +1,168 @@
+<odoo>
+    <data>
+
+
+        <record id="view_task_form2_inherited" model="ir.ui.view">
+            <field name="name">project.task</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="invoice_ids" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
+                </xpath>
+
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                     <group>
+                         <field name="elist_number"/>
+                        <field name="barcode_elist_number"/>
+                        <field name="work_permit_number"/>
+
+                    </group>
+                    <group>
+                        <field name="elist_date"/>
+                        <field name="barcode_elist_date"/>
+                        <field name="work_permit_date"/>
+
+                    </group>
+
+
+                </xpath>
+
+                <xpath expr="//page[@name='extra_info']" position="after">
+                    <page name="enter_card" string="Enter Card">
+                        <group>
+                            <group>
+                                <field name="recruitment_request"/>
+                                <field name="ministry_fees"/>
+                                <field name="arab_workers_section"/>
+                                <field name="workers_department_forigner"/>
+                                <field name="a2N_email"/>
+                                <field name="arabs_in_residence"/>
+                                <field name="foreigners_in_residence"/>
+                                <field name="office_book_minister"/>
+                                <field name="jake_insurance_ministry"/>
+                                <field name="ticket_validity_book"/>
+
+                            </group>
+                            <group>
+                                <field name="recruitment_request_date" string=" "/>
+                                <field name="ministry_fees_date" string=" "/>
+                                <field name="arab_workers_section_date" string=" "/>
+                                <field name="workers_department_forigner_date" string=" "/>
+                                <field name="a2N_email_date" string=" "/>
+                                <field name="arabs_in_residence_date" string=" "/>
+                                <field name="foreigners_in_residence_date" string=" "/>
+                                <field name="office_book_minister_date" string=" "/>
+                                <field name="jake_insurance_ministry_date" string=" "/>
+                                <field name="ticket_validity_book_date" string=" "/>
+
+                            </group>
+
+                            <field name="enter_card_ids">
+                                <tree editable="bottom">
+                                    <field name="unknown_type_id"/>
+                                    <field name="value"/>
+                                    <field name="date"/>
+
+                                </tree>
+                            </field>
+
+
+
+
+
+                            <field name="electronic_list_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="employee"/>
+                                    <field name="passport_number"/>
+                                    <field name="passport_expiry_date"/>
+                                    <field name="country_id"/>
+                                    <field name="gender"/>
+                                    <field name="age"/>
+                                    <field name="work_info"/>
+                                    <field name="order_state"/>
+                                    <field name="refused_reason"
+                                           attrs="{'invisible': [('order_state', '!=', 'refused')]}"/>
+                                    <field name="notes"/>
+
+                                </tree>
+                            </field>
+
+
+                        </group>
+
+
+                    </page>
+                    <page name="exit_card" string="Exit Card">
+                             <group>
+                                    <field name="sponsorship_transfer_date"/>
+                                    <field name="residence_address"/>
+                                </group>
+                        <group>
+                            <group>
+
+
+
+                                <field name="wish_book"/>
+                                <field name="operating_request"/>
+                                <field name="work_permit_request"/>
+                                <field name="work_permit_issuing"/>
+                                <field name="registering_work_id"/>
+                                <field name="iqama_issuance"/>
+                                <field name="iqama_effective_date"/>
+                                <field name="fine_number"/>
+                                <field name="fine_reason"/>
+                                <field name="residency_transfer_place"/>
+                                <field name="lawsuit"/>
+                                <field name="lawyer_name"/>
+
+
+                            </group>
+                            <group>
+                                <field name="wish_book_date"  />
+                                <field name="operating_request_date"  />
+                                <field name="work_permit_request_date" />
+                                <field name="work_permit_issuing_date"  />
+                                <field name="registering_work_id_date"  />
+                                <field name="iqama_issuance_date"  />
+                                <field name="fine_date"  />
+
+
+                            </group>
+
+
+                            <br/>
+                            <br/>
+
+                            <field name="exit_line_ids">
+                                <tree editable="bottom">
+                                    <field name="employee"/>
+                                    <field name="passport_number"/>
+                                    <field name="passport_expiry_date"/>
+                                    <field name="gender"/>
+                                    <field name="birth_date"/>
+                                    <field name="nationality"/>
+                                    <field name="work"/>
+                                    <field name="iraq_enter_date"/>
+
+
+                                </tree>
+                            </field>
+
+
+                        </group>
+
+
+                    </page>
+
+
+
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

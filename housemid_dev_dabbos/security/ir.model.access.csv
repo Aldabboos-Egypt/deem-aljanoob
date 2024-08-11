@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+unknown_type_id,unknown_type,model_unknown_type,,1,1,1,1
+enter_card_line_id,enter_card_line,model_enter_card_line,,1,1,1,1
+electronic_list_id,electronic_list,model_electronic_list,,1,1,1,1
+exit_line_card_id,exit_line_card,model_exit_line_card,,1,1,1,1

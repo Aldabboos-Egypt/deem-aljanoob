@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record id="housemaid_applicant_applications_form_view_invoice_detail" model="ir.ui.view">
+            <field name="name">housemaidsystem.applicant.applications</field>
+            <field name="model">housemaidsystem.applicant.applications</field>
+            <field name="inherit_id" ref="housemaidsystem.housemaid_applicant_applications_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='experience']" position="before">
+                    <field name="project_id"/>
+                </xpath>
+
+                <xpath expr="//div[1]" position="after">
+                    <group>
+                        <group>
+                            <field name="einv_number"/>
+                            <field name="work_permit_number"/>
+                            <field name="visa_grant_request" widget="radio"/>
+
+                        </group>
+                        <group>
+                            <field name="einv_date"/>
+                            <field name="work_permit_date"/>
+                            <field name="visa_grant_request_number"/>
+                            <field name="visa_grant_request_date"/>
+
+                        </group>
+
+                    </group>
+
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="housemaid_applicant_applications_search_view_invoice_details" model="ir.ui.view">
+            <field name="name">housemaidsystem.applicant.applications</field>
+            <field name="model">housemaidsystem.applicant.applications</field>
+            <field name="inherit_id" ref="housemaidsystem.housemaid_applicant_applications_search_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group" position="inside">
+                    <filter name="einv_number" string="Electronic  Invoice Number" domain="[]"
+                            context="{'group_by':'einv_number'}"/>
+                    <filter name="work_permit_number" string="Work Permit Number" domain="[]"
+                            context="{'group_by':'work_permit_number'}"/>
+                    <filter name="visa_grant_request_number" string="Visa Grant Request Number" domain="[]"
+                            context="{'group_by':'visa_grant_request_number'}"/>
+
+                </xpath>
+
+                <!--                                                <field name="visa_grant_request" widget="radio"/>-->
+
+            </field>
+        </record>
+
+
+  
+
+    </data>
+</odoo>
