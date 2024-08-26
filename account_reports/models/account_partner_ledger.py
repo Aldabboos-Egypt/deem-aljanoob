@@ -493,11 +493,14 @@ class ReportPartnerLedger(models.AbstractModel):
 
         date_maturity = aml['date_maturity'] and format_date(self.env, fields.Date.from_string(aml['date_maturity']))
         columns = [
-            {'name': aml['journal_code']},
-            {'name': aml['account_code']},
+            {'name': ''},
+            # {'name': aml['journal_code']},
+            # {'name': aml['account_code']},
+            {'name': ''},
             {'name': self._format_aml_name(aml['name'], aml['ref'], aml['move_name'])},
             {'name': date_maturity or '', 'class': 'date'},
-            {'name': aml['matching_number'] or ''},
+            {'name':   ''},
+            # {'name': aml['matching_number'] or ''},
             {'name': self.format_value(cumulated_init_balance), 'class': 'number'},
             {'name': self.format_value(aml['debit'], blank_if_zero=True), 'class': 'number'},
             {'name': self.format_value(aml['credit'], blank_if_zero=True), 'class': 'number'},
@@ -695,11 +698,14 @@ class ReportPartnerLedger(models.AbstractModel):
     def _get_columns_name(self, options):
         columns = [
             {},
-            {'name': _('JRNL')},
-            {'name': _('Account')},
+            { },
+            # {'name': _('JRNL')},
+            # {'name': _('Account')},
+            {},
             {'name': _('Ref')},
             {'name': _('Due Date'), 'class': 'date'},
-            {'name': _('Matching Number')},
+            # {'name': _('Matching Number')},
+            { },
             {'name': _('Initial Balance'), 'class': 'number'},
             {'name': _('Debit'), 'class': 'number'},
             {'name': _('Credit'), 'class': 'number'}]

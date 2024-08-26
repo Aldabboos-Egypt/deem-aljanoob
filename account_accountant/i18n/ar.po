@@ -19,14 +19,15 @@
 # Yazeed Dandashi <lay@odoo.com>, 2020
 # MOHAMMAD IBRAHIM <m.moamir@outlook.com>, 2020
 # Saleh Albannay <saleh@cm.codes>, 2020
+# Malaz Abuidris <msea@odoo.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Saleh Albannay <saleh@cm.codes>, 2020\n"
+"Last-Translator: Malaz Abuidris <msea@odoo.com>, 2022\n"
 "Language-Team: Arabic (https://www.transifex.com/odoo/teams/41243/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgstr "تسوية"
 #. module: account_accountant
 #: model_terms:digest.tip,tip_description:account_accountant.digest_tip_account_accountant_0
 msgid "<b class=\"tip_title\">Tip: Bulk update journal items</b>"
-msgstr ""
+msgstr "<b class=\"tip_title\">نصيحة: قم بتحديث بنود اليومية بالجملة</b>"
 
 #. module: account_accountant
 #. openerp-web
@@ -52,6 +53,7 @@ msgid ""
 "<br>See how to manage your customer invoices in the "
 "<b>Customers/Invoices</b> menu"
 msgstr ""
+"<br>تعرف على كيفية إدارة فواتير عملائك في <b>قائمة العملاء/الفواتير</b> "
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -80,7 +82,7 @@ msgstr "<span class=\"o_form_label\">التحويلات بين البنوك</spa
 #, python-format
 msgid ""
 "<strong><b>Good job!</b> You went through all steps of this tour.</strong>"
-msgstr ""
+msgstr "<strong><b>عمل رائع!</b> لقد تخطيت كافة مراحل هذه الجولة.</strong>"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
@@ -224,6 +226,8 @@ msgid ""
 "Check & validate the bill. If no vendor has been found, add one before "
 "validating."
 msgstr ""
+"تحقق من الفاتورة وقم بتصديقها، وفي حال عدم إيجادك لمورّد، قم بإضافة واحد قبل"
+" التصديق. "
 
 #. module: account_accountant
 #. openerp-web
@@ -237,7 +241,7 @@ msgstr "تحقق من الكل"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Check that you have no bank statement lines to"
-msgstr ""
+msgstr "تأكد من عدم وجود بنود في كشف الحساب البنكي "
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit
@@ -305,7 +309,7 @@ msgstr "تهانينا، لقد انتهيت!"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Connect your bank and get your latest transactions."
-msgstr ""
+msgstr "قم بربط مصرفك لتتمكن من رؤية أحدث معاملاتك. "
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_reconcile_model_widget_wizard
@@ -316,7 +320,7 @@ msgstr "قيم مقابلة"
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
 #, python-format
 msgid "Create Reconciliation Model"
-msgstr ""
+msgstr "قم بإنشاء أداة التسوية "
 
 #. module: account_accountant
 #. openerp-web
@@ -345,6 +349,8 @@ msgid ""
 "Create your first vendor bill.<br/><br/><i>Tip: If you don’t have one on "
 "hand, use our sample bill.</i>"
 msgstr ""
+"قم بإنشاء فاتورة المورّد الأولى. <br/><br/><i>نصيحة: إذا لم يكن لديكا فاتورة"
+" في متناول اليد، فبإمكانك الاستعانة بنموذج الفاتورة الخاص بنا.</i> "
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__create_uid
@@ -438,6 +444,10 @@ msgid ""
 "after installing Accounting if you were using only Invoicing before, before "
 "importing all your actual accounting data in to Odoo."
 msgstr ""
+"سوف تصل كل فاتورة وعملية دفع قبل هذا التاريخ حالة ’من تطبيق الفوترة‘ والتي "
+"ستخفي كافة القيود المحاسبية المتعلقة بها. استخدم هذا الخيار بعد تثبيت تطبيق "
+"المحاسبة إذا كنت تستخدم تطبيق الفوترة وحده من قبل، قبل إدخالك لكافة بياناتك "
+"المحاسبية الفعلية في أودو. "
 
 #. module: account_accountant
 #. openerp-web
@@ -454,7 +464,7 @@ msgstr "رابط خارجي"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Filter on account, label, partner, amount,..."
-msgstr ""
+msgstr "قم بالتصفية حسب الحساب أو العلامة أو الشريك أو المبلغ،... "
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_fiscal_year
@@ -492,20 +502,24 @@ msgid ""
 "feature to update multiple journal entries from the General Ledger, or any "
 "Journal view."
 msgstr ""
+"قم باختيار سجلات متعددة من أي نافذة عرض القائمة، وستصبح القائمة قابلة "
+"للتحرير. إذا قمت بتحديث إحدى الخلايا، يتم تحديث كافة السجلات المختارة دفعة "
+"واحدة. استخدم هذه الخاصية لتحديث عدة بنود في اليومية من دفتر الأستاذ العام "
+"أو أي نافذة عرض لليومية. "
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "From now on, you may want to:"
-msgstr ""
+msgstr "من الآن فصاعداً، قد ترغب في: "
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Get back to the dashboard using your previous path…"
-msgstr ""
+msgstr "عد إلى لوحة البيانات باستخدام المسار السابق... "
 
 #. module: account_accountant
 #. openerp-web
@@ -521,7 +535,7 @@ msgstr "الذهاب لكشوفات الحساب البنكي"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Go to invoicing"
-msgstr ""
+msgstr "اذهب إلى الفوترة "
 
 #. module: account_accountant
 #. openerp-web
@@ -535,7 +549,7 @@ msgstr "عمل رائع!"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Great! Let’s continue."
-msgstr ""
+msgstr "رائع! فلنكمل الآن. "
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_account__id
@@ -574,7 +588,7 @@ msgstr "يُستخدم حساب وسيط عند نقل الأموال من حس�
 #: model:ir.model.fields,field_description:account_accountant.field_res_company__invoicing_switch_threshold
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__invoicing_switch_threshold
 msgid "Invoicing Switch Threshold"
-msgstr ""
+msgstr "الحد الأدنى لتبديل الفوترة "
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
@@ -680,28 +694,28 @@ msgstr "آخر تحديث في"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s automate your bills, bank transactions and accounting processes."
-msgstr ""
+msgstr "فلنقم بأتمتة فواتيرك ومعاملاتك البنكية وعملياتك المحاسبية. "
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s go back to the dashboard."
-msgstr ""
+msgstr "فلنعد إلى لوحة البيانات. "
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s reconcile the fetched bank transactions."
-msgstr ""
+msgstr "لنقم بتسوية معاملات البنك التي تم إحضارها. "
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s see how a bill looks like in form view."
-msgstr ""
+msgstr "فلنرَ كيف تبدو إحدى الفواتير في طريقة عرض الاستمارة. "
 
 #. module: account_accountant
 #. openerp-web
@@ -711,6 +725,8 @@ msgid ""
 "Let’s use AI to fill in the form<br/><br/><i>Tip: If the OCR is not done "
 "yet, wait a few more seconds and try again.</i>"
 msgstr ""
+"فلنقم باستخدام الذكاء الاصطناعي لتعبئة الاستمارة. <br/><br/><i>نصيحة: انتظر "
+"لمدة ثوان قليلة ثم حاول مجدداً.</i> "
 
 #. module: account_accountant
 #. openerp-web
@@ -746,7 +762,20 @@ msgstr "إقفال الفترة المالية"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Manual Operations"
+msgstr "العمليات اليدوية "
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
 msgstr ""
+"قم بمطابقة كشوفات الحسابات مع البنود الموجودة بالفعل في الحسابات مستحقة "
+"القبض وحسابات الدائنين <br>* الخط الأسود: بند يومية موجود بالفعل بحاجة إلى "
+"المطابقة <br>* الخطوط الزرقاء: دفعة موجودة بالفعل بحاجة إلى المطابقة "
 
 #. module: account_accountant
 #. openerp-web
@@ -754,6 +783,8 @@ msgstr ""
 #, python-format
 msgid "Match with entries that are not from receivable/payable accounts"
 msgstr ""
+"المطابقة مع القيود التي لا تندرج ضمن الحسابات مستحقة القبض أو حسابات "
+"الدائنين. "
 
 #. module: account_accountant
 #. openerp-web
@@ -791,7 +822,7 @@ msgstr "جديد"
 #: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
 #, python-format
 msgid "No attachments linked."
-msgstr ""
+msgstr "لم يتم ربط أي مرفقات. "
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__tax_lock_date
@@ -831,7 +862,7 @@ msgstr "لا شيء لتفعله!"
 #: code:addons/account_accountant/wizard/account_change_lock_date.py:0
 #, python-format
 msgid "Only Billing Administrators are allowed to change lock dates!"
-msgstr ""
+msgstr "مديرو الفوترة وحدهم المصرح لهم بتغيير تواريخ الإقفال! "
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__period_lock_date
@@ -885,7 +916,7 @@ msgstr "مطابقة المدفوعات"
 #: model:ir.model.fields,field_description:account_accountant.field_account_move__payment_state_before_switch
 #: model:ir.model.fields,field_description:account_accountant.field_account_payment__payment_state_before_switch
 msgid "Payment State Before Switch"
-msgstr ""
+msgstr "حالة الدفع قبل التحويل "
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_payment
@@ -913,14 +944,14 @@ msgstr "توقعات أعمار الديون لحسابات الموردين"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Presets config"
-msgstr ""
+msgstr "ضبط الإعدادات المعدة مسبقاً "
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Process this transaction."
-msgstr ""
+msgstr "معالجة هذه المعاملة. "
 
 #. module: account_accountant
 #. openerp-web
@@ -1058,6 +1089,10 @@ msgid ""
 " allows keeping the former payment state, so that we can restore it if the "
 "user misconfigured the switch date and wants to change it."
 msgstr ""
+"حقل تقني لإبقاء قيمة payment_state عند الانتقال من تطبيق الفوترة إلى تطبيق "
+"المحاسبة (استخدام حقل إعداد invoicing_switch_threshold). يسمح بإبقاء حالة "
+"الدفع السابقة حتى نتمكن من استعادتها في حال فشل المستخدم في تهيئة تاريخ "
+"التحويل بشكل صحيح ورغب في تغييره. "
 
 #. module: account_accountant
 #. openerp-web
@@ -1071,7 +1106,7 @@ msgstr "هذا في المتوسط"
 #: code:addons/account_accountant/static/src/js/reconciliation/reconciliation_model.js:0
 #, python-format
 msgid "The amount %s is not a valid partial amount"
-msgstr ""
+msgstr "لا يعد المبلغ %s مبلغاً جزئياً صالحاً. "
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/account_fiscal_year.py:0
@@ -1084,7 +1119,7 @@ msgstr "يجب ألا يتجاوز تاريخ الانتهاء تاريخ الب
 msgid ""
 "The invoices up to this date will not be taken into account as accounting "
 "entries"
-msgstr ""
+msgstr "لن يتم اعتبار الفواتير حتى هذا التاريخ كقيود محاسبية "
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -1124,12 +1159,12 @@ msgstr "عملية السداد هذه مُسجلة ولكن لم تتم تسو�
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "This was the model that generated the lines suggested"
-msgstr ""
+msgstr "هذا هو النموذج الذي قام بتوليد البنود المقترحة "
 
 #. module: account_accountant
 #: model:digest.tip,name:account_accountant.digest_tip_account_accountant_0
 msgid "Tip: Bulk update journal items"
-msgstr ""
+msgstr "نصيحة: قم بتحديث قيود اليومية بالجملة "
 
 #. module: account_accountant
 #. openerp-web
@@ -1161,7 +1196,7 @@ msgstr "حساب التحويلات الوسيط"
 #: code:addons/account_accountant/models/account_move.py:0
 #, python-format
 msgid "Transfer Accounts"
-msgstr ""
+msgstr "حسابات التحويل "
 
 #. module: account_accountant
 #. openerp-web
@@ -1210,6 +1245,7 @@ msgid ""
 "You cannot reconcile the payable and receivable accounts of multiple "
 "partners together at the same time."
 msgstr ""
+"لا يمكن تسوية الحسابات مستحقة القبض وحسابات الدائنين لعدة شركاء في آن واحد. "
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit

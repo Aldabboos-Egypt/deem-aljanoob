@@ -4,7 +4,6 @@
 # 
 # Translators:
 # Martin Trigaux, 2020
-# liAnGjiA <liangjia@qq.com>, 2020
 # guohuadeng <guohuadeng@hotmail.com>, 2020
 # 黎伟杰 <674416404@qq.com>, 2020
 # 敬雲 林 <chingyun@yuanchih-consult.com>, 2020
@@ -14,20 +13,22 @@
 # 开源智造OSCG-老杨 <yangxunbo@163.com>, 2020
 # John An <johnxan@163.com>, 2020
 # Manga Tsang <mts@odoo.com>, 2020
-# Felix Yang - Elico Corp <felixyangsh@aliyun.com>, 2020
+# Felix Yang <felixyangsh@aliyun.com>, 2020
 # as co02 <asco02@163.com>, 2020
 # ChinaMaker <liuct@chinamaker.net>, 2020
 # 稀饭~~ <wangwhai@qq.com>, 2020
-# Jeffery CHEN Fan <jeffery9@gmail.com>, 2020
 # Daniel Yang <daniel.yang.zhenyu@gmail.com>, 2021
+# Jeffery CHEN <jeffery9@gmail.com>, 2021
+# liAnGjiA <liangjia@qq.com>, 2021
+# 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Daniel Yang <daniel.yang.zhenyu@gmail.com>, 2021\n"
+"Last-Translator: 山西清水欧度(QQ:54773801) <54773801@qq.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -439,8 +440,8 @@ msgid ""
 "after installing Accounting if you were using only Invoicing before, before "
 "importing all your actual accounting data in to Odoo."
 msgstr ""
-"在此日期之前，每个付款和结算单都将收到\"从开票\"状态，隐藏与它相关的所有会计分录。如果在将所有实际会计数据导入 Odoo "
-"之前仅使用开票，则在安装会计后使用此选项。"
+"在此日期之前，每个付款和结算单都将收到\"从结算\"状态，隐藏与它相关的所有会计分录。如果在将所有实际会计数据导入 Odoo "
+"之前仅使用结算，则在安装会计后使用此选项。"
 
 #. module: account_accountant
 #. openerp-web
@@ -604,7 +605,7 @@ msgstr "日记账"
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_move
 msgid "Journal Entry"
-msgstr "会计凭证"
+msgstr "日记账分录"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_move_line
@@ -751,6 +752,16 @@ msgstr "锁定会计期间"
 #, python-format
 msgid "Manual Operations"
 msgstr "手动操作"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr "将报表与应收/应付账款的现有行匹配<br>*黑线：应匹配的现有日记帐分录 <br>* 蓝线：应匹配的现有付款"
 
 #. module: account_accountant
 #. openerp-web
@@ -953,7 +964,7 @@ msgstr "在你的会计凭证中记录销售的货物的成本"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Ref"
-msgstr "参考"
+msgstr "编号"
 
 #. module: account_accountant
 #. openerp-web
@@ -1029,20 +1040,20 @@ msgstr "税组"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Tax Included in Price"
-msgstr "含税价"
+msgstr "税金包含在价格内"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__tax_lock_date
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__tax_lock_date
 msgid "Tax Lock Date"
-msgstr "税金锁定日期"
+msgstr "税锁定日期"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Taxes"
-msgstr "税金设置"
+msgstr "税率设置"
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_bank_statement_line__payment_state_before_switch
@@ -1131,7 +1142,7 @@ msgstr "提示：批量更新日记账项目"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "To Check"
-msgstr "勾选"
+msgstr "勾选核验"
 
 #. module: account_accountant
 #. openerp-web
@@ -1273,7 +1284,7 @@ msgstr "账单明细"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.account_journal_dashboard_kanban_view
 msgid "to check"
-msgstr "勾选"
+msgstr "勾选核验"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit

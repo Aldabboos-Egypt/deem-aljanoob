@@ -189,10 +189,18 @@ var db = {
         fields: {
             id: {string: 'id', type: 'integer'},
             display_name: {string: 'display_name', type: 'char'},
+            company_id: {string: 'id', type: 'integer'},
         },
         records: [
-            {id: 1, display_name: 'Come together'},
-            {id: 2, display_name: 'Right now'},
+            {id: 1, display_name: 'Come together', company_id: false},
+            {id: 2, display_name: 'Right now', company_id: false},
+            {id: 3, display_name: 'Tag-3', company_id: false},
+            {id: 4, display_name: 'Tag-4', company_id: false},
+            {id: 5, display_name: 'Tag-5', company_id: false},
+            {id: 6, display_name: 'Tag-6', company_id: false},
+            {id: 7, display_name: 'Tag-7', company_id: false},
+            {id: 8, display_name: 'Tag-8', company_id: false},
+            {id: 9, display_name: 'Tag-9', company_id: false},
         ],
     },
     'account.bank.statement': {
@@ -251,13 +259,13 @@ var db = {
             }
             return Promise.resolve();
         },
-        get_move_lines_for_bank_statement_line: function (args) {
-            var partner_id = args.splice(1, 1)[0];
-            var excluded_ids = args.splice(1, 1)[0];
-            var mode = args.splice(-1, 1) [0]
-            if (mode === 'other') return Promise.resolve([])
-            args.splice(-1,1); // ignore limit
-            var key = JSON.stringify(args);
+        get_move_lines_for_bank_statement_line: function (args, kwargs) {
+            var partner_id = kwargs.partner_id;
+            var excluded_ids = kwargs.excluded_ids;
+            var mode = kwargs.mode;
+            if (mode === 'other') return Promise.resolve([]);
+            var limit = kwargs.limit;
+            var key = JSON.stringify({st_line_id: kwargs.st_line_id, search_str: kwargs.search_str});
             if (!Datas.used.mv_lines[key]) {
                 throw new Error("Unknown parameters for get_move_lines_for_bank_statement_line: '"+ key + "'");
             }
@@ -269,7 +277,11 @@ var db = {
                     line.recs_count = src.length;
                     return line;
                 })
-                .slice(0, options.params.limitMoveLines);
+            var recs_count = lines.length;
+            lines = lines.slice(0, limit);
+            for (var i = 0; i < lines.length; i++) {
+                lines[i]['recs_count'] = recs_count;
+            }
             return Promise.resolve(lines);
         },
         get_bank_statement_line_data: function (args) {
@@ -286,10 +298,10 @@ var db = {
             results.lines = _.filter(Datas.used.data_widget, function (w) {return _.contains(results.st_lines_ids, w.st_line.id);});
             return Promise.resolve(results);
         },
-        get_move_lines_for_manual_reconciliation: function (args) {
-            var excluded_ids = args.splice(2, 1)[0];
-            args.splice(-1,1); // ignore limit
-            var key = JSON.stringify(args);
+        get_move_lines_for_manual_reconciliation: function (args, kwargs) {
+            var excluded_ids = kwargs.excluded_ids;
+            var limit = kwargs.limit;
+            var key = JSON.stringify({account_id: kwargs.account_id, partner_id: kwargs.partner_id, search_str: kwargs.search_str});
             if (!Datas.used.move_lines_for_manual_reconciliation[key]) {
                 throw new Error("Unknown parameters for get_move_lines_for_manual_reconciliation: '"+ key + "'");
             }
@@ -301,7 +313,11 @@ var db = {
                     line.recs_count = src.length;
                     return line;
                 })
-                .slice(0, options.params.limitMoveLines);
+            var recs_count = lines.length;
+            lines = lines.slice(0, limit);
+            for (var i = 0; i < lines.length; i++) {
+                lines[i]['recs_count'] = recs_count;
+            }
             return Promise.resolve(lines);
         },
         get_all_data_for_manual_reconciliation: function (args) {
@@ -494,19 +510,22 @@ var data_widget = [
 ];
 
 var mv_lines = {
-    '[]': [],
-    '[5,"",0]': [
+    '{"search_str":""}': [],
+    '{"st_line_id":5,"search_str":""}': [
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-07", 'date': "2017-01-08", 'total_amount_str': "$ 650.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0002", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 109, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 650.00", 'debit': 650.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-07", 'date': "2017-01-08", 'total_amount_str': "$ 525.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0003", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 112, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 525.00", 'debit': 525.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-07", 'date': "2017-01-08", 'total_amount_str': "$ 650.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0012", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 134, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 650.00", 'debit': 650.0, 'account_id': [287, "101200 Account Receivable"], 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 4,610.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 106, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 4,610.00", 'debit': 4610.0, 'account_id': [287, "101200 Account Receivable"], 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
-        {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 10,000.00", 'partner_id': 12, 'account_name': "Account Payable", 'name': "BILL/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 114, 'credit': 10000.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 10,000.00", 'debit': 0.0, 'account_id': [284, "101110 Stock Valuation Account"], 'account_code': "111100", 'ref': "", 'is_liquidity_line': false}
+        {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 10,000.00", 'partner_id': 12, 'account_name': "Account Payable", 'name': "BILL/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 114, 'credit': 10000.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 10,000.00", 'debit': 0.0, 'account_id': [284, "101110 Stock Valuation Account"], 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
+        {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 4,610.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 106, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 4,610.00", 'debit': 4610.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
+        {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 10,000.00", 'partner_id': 12, 'account_name': "Account Payable", 'name': "BILL/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 114, 'credit': 10000.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 10,000.00", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
+        {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-15", 'total_amount_str': "$ 5,749.99", 'partner_id': 7, 'account_name': "Account Payable", 'name': "BILL/2017/0002", 'partner_name': "ASUSTeK", 'total_amount_currency_str': "", 'id': 117, 'credit': 5749.99, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 5,749.99", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false}
     ],
-    '[5,"b",0]': [
+    '{"st_line_id":5,"search_str":"b"}': [
         {'account_type': "liquidity", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-01-23", 'date': "2017-01-23", 'total_amount_str': "$ 100.00", 'partner_id': 8, 'account_name': "Bank", 'name': "BNK1/2017/0003: CUST.IN/2017/0001", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 394, 'credit': 0.0, 'journal_id': "Bank", 'amount_str': "$ 100.00", 'debit': 100.0, 'account_code': "101401", 'ref': "", 'is_liquidity_line': true},
         {'account_type': "liquidity", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-01-23", 'date': "2017-01-23", 'total_amount_str': "$ 525.50", 'partner_id': 8, 'account_name': "Bank", 'name': "BNK1/2017/0004: CUST.IN/2017/0002", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 396, 'credit': 0.0, 'journal_id': "Bank", 'amount_str': "$ 525.50", 'debit': 525.5, 'account_code': "101401", 'ref': "INV/2017/0003", 'is_liquidity_line': true},
     ],
-    '[6,"",0]': [
+    '{"st_line_id":6,"search_str":""}': [
         {'account_type': "liquidity", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-01-23", 'date': "2017-01-23", 'total_amount_str': "$ 376.00", 'partner_id': 7, 'account_name': "Bank", 'name': "BNK1/2017/0002: SUPP.OUT/2017/0002", 'partner_name': "ASUSTeK", 'total_amount_currency_str': "", 'id': 392, 'credit': 376.0, 'journal_id': "Bank", 'amount_str': "$ 376.00", 'debit': 0.0, 'account_code': "101401", 'ref': "BILL/2017/0003", 'is_liquidity_line': true},
         {'account_type': "liquidity", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-01-23", 'date': "2017-01-23", 'total_amount_str': "$ 100.00", 'partner_id': 8, 'account_name': "Bank", 'name': "BNK1/2017/0003: CUST.IN/2017/0001", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 394, 'credit': 0.0, 'journal_id': "Bank", 'amount_str': "$ 100.00", 'debit': 100.0, 'account_code': "101401", 'ref': "", 'is_liquidity_line': true},
         {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 10,000.00", 'partner_id': 12, 'account_name': "Account Payable", 'name': "BILL/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 114, 'credit': 10000.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 10,000.00", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
@@ -514,14 +533,12 @@ var mv_lines = {
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-07", 'date': "2017-01-08", 'total_amount_str': "$ 650.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0002", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 109, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 650.00", 'debit': 650.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-22", 'date': "2017-01-23", 'total_amount_str': "$ 525.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0004", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 399, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 525.00", 'debit': 525.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 4,610.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 106, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 4,610.00", 'debit': 4610.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
-        {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-15", 'total_amount_str': "$ 5,749.99", 'partner_id': 7, 'account_name': "Account Payable", 'name': "BILL/2017/0002", 'partner_name': "ASUSTeK", 'total_amount_currency_str': "", 'id': 117, 'credit': 5749.99, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 5,749.99", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false}
-    ],
-    '[6,"",5]': [
+        {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-15", 'total_amount_str': "$ 5,749.99", 'partner_id': 7, 'account_name': "Account Payable", 'name': "BILL/2017/0002", 'partner_name': "ASUSTeK", 'total_amount_currency_str': "", 'id': 117, 'credit': 5749.99, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 5,749.99", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 4,610.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 106, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 4,610.00", 'debit': 4610.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 10,000.00", 'partner_id': 12, 'account_name': "Account Payable", 'name': "BILL/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 114, 'credit': 10000.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 10,000.00", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-15", 'total_amount_str': "$ 5,749.99", 'partner_id': 7, 'account_name': "Account Payable", 'name': "BILL/2017/0002", 'partner_name': "ASUSTeK", 'total_amount_currency_str': "", 'id': 117, 'credit': 5749.99, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 5,749.99", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false}
     ],
-    '[7,"",0]': [
+    '{"st_line_id":7,"search_str":""}': [
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-07", 'date': "2017-01-08", 'total_amount_str': "$ 650.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0012", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 133, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 650.00", 'debit': 650.0, 'account_id': [287, "101200 Account Receivable"], 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 4,610.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 106, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 4,610.00", 'debit': 4610.0, 'account_id': [287, "101200 Account Receivable"], 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "payable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-28", 'date': "2017-01-01", 'total_amount_str': "$ 10,000.00", 'partner_id': 12, 'account_name': "Account Payable", 'name': "BILL/2017/0001", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 114, 'credit': 10000.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 10,000.00", 'debit': 0.0, 'account_id': [284, "101110 Stock Valuation Account"], 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
@@ -531,7 +548,7 @@ var mv_lines = {
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-07", 'date': "2017-01-08", 'total_amount_str': "$ 650.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0002", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 109, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 650.00", 'debit': 650.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-22", 'date': "2017-01-23", 'total_amount_str': "$ 525.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0004", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 399, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 525.00", 'debit': 525.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
     ],
-    '[8,"",0]': [],
+    '{"st_line_id":8,"search_str":""}': []
 };
 
 var auto_reconciliation = {
@@ -589,7 +606,7 @@ var data_for_manual_reconciliation_widget = {
 };
 
 var move_lines_for_manual_reconciliation = {
-    '[287,8,"",0]': [
+    '{"account_id":287,"partner_id":8,"search_str":""}': [
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency_str': "10,222.00 €", 'currency_id': 1, 'date_maturity': "2017-02-08", 'date': "2017-02-08", 'total_amount_str': "$ 11,000.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0004: Customer Payment", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 17, 'credit': 11000.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 11,000.00", 'debit': 0.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [7, "101200 Account Receivable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-09", 'date': "2017-02-09", 'total_amount_str': "$ 1,000.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0005: Customer Payment", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 19, 'credit': 1000.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 1,000.00", 'debit': 0.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-09", 'date': "2017-02-09", 'total_amount_str': "$ 180.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "BILL/2017/0003: Customer Payment", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 21, 'credit': 180.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 180.00", 'debit': 0.0, 'account_code': "101200", 'ref': "fddfgfdgfdgsdfg", 'is_liquidity_line': false},
@@ -597,7 +614,7 @@ var move_lines_for_manual_reconciliation = {
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-03-10", 'date': "2017-02-08", 'total_amount_str': "$ 650.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0012", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 6, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 1000.00", 'debit': 1000.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-03-10", 'date': "2017-02-08", 'total_amount_str': "$ 525.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0003", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 9, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 525.00", 'debit': 525.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false}
     ],
-    '[7,12,"",0]': [
+    '{"account_id":7,"partner_id":12,"search_str":""}': [
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-08", 'date': "2017-02-08", 'total_amount_str': "$ 11,000.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0004: Customer Payment", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 17, 'credit': 11000.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 11,000.00", 'debit': 0.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [7, "101200 Account Receivable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-09", 'date': "2017-02-09", 'total_amount_str': "$ 1,000.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0005: Customer Payment", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 19, 'credit': 1000.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 1,000.00", 'debit': 0.0, 'account_code': "101200", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency': 100, 'amount_currency_str': "100.00 €", 'currency_id': 1, 'date_maturity': "2017-02-09", 'date': "2017-02-09", 'total_amount_str': "$ 170.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0003: Customer Payment", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 21, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 170.00", 'debit': 170.0, 'account_code': "101200", 'ref': "INV fddfgfdgfdgsdfg", 'is_liquidity_line': false},
@@ -605,16 +622,16 @@ var move_lines_for_manual_reconciliation = {
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency': 170, 'amount_currency_str': "170.00 €", 'currency_id': 1, 'date_maturity': "2017-02-09", 'date': "2017-02-09", 'total_amount_str': "$ 100.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0003: Customer Payment", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 23, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 100.00", 'debit': 100.0, 'account_code': "101200", 'ref': "INV fddfgfdgfdgsdfg", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [287, "101200 Account Receivable"], 'amount_currency': 180, 'amount_currency_str': "180.00 €", 'currency_id': 1, 'date_maturity': "2017-02-10", 'date': "2017-02-10", 'total_amount_str': "$ 100.00", 'partner_id': 12, 'account_name': "101200 Account Receivable", 'name': "BILL/2017/0003: Customer Payment", 'partner_name': "Camptocamp", 'total_amount_currency_str': "", 'id': 24, 'credit': 100.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 100.00", 'debit': 0.0, 'account_code': "101200", 'ref': "fddfgfdgfdgsdfg", 'is_liquidity_line': false},
     ],
-    '[284,8,"",0]': [
+    '{"account_id":284,"partner_id":8,"search_str":""}': [
         {'account_type': "receivable", 'account_id': [284, "111100 Account Payable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-08", 'date': "2017-02-08", 'total_amount_str': "$ 11,000.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0004: Customer Payment", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 17, 'credit': 11000.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 11,000.00", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [284, "111100 Account Payable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-09", 'date': "2017-02-09", 'total_amount_str': "$ 1,000.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "INV/2017/0005: Customer Payment", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 19, 'credit': 1000.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 1,000.00", 'debit': 0.0, 'account_code': "111100", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "receivable", 'account_id': [284, "111100 Account Payable"], 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-09", 'date': "2017-02-09", 'total_amount_str': "$ 180.00", 'partner_id': 8, 'account_name': "101200 Account Receivable", 'name': "BILL/2017/0003: Customer Payment", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 21, 'credit': 180.0, 'journal_id': [2, "Vendor Bills"], 'amount_str': "$ 180.00", 'debit': 0.0, 'account_code': "111100", 'ref': "fddfgfdgfdgsdfg", 'is_liquidity_line': false},
     ],
-    '[283,null,"",0]': [
+    '{"account_id":283,"search_str":""}': [
         {'account_type': "other", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-02-16", 'date': "2017-02-16", 'total_amount_str': "$ 1,000.00", 'partner_id': 8, 'account_name': "101000 Current Assets", 'name': "BNK1/2017/0006: Customer Payment", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 399, 'credit': 1000.0, 'journal_id': [3, "Bank"], 'amount_str': "$ 1,000.00", 'debit': 0.0, 'account_code': "101000", 'ref': "", 'is_liquidity_line': false},
         {'account_type': "other", 'amount_currency_str': "", 'currency_id': false, 'date_maturity': "2017-03-18", 'date': "2017-02-16", 'total_amount_str': "$ 1,000.00", 'partner_id': 8, 'account_name': "101000 Current Assets", 'name': "INV/2017/0006", 'partner_name': "Agrolait", 'total_amount_currency_str': "", 'id': 402, 'credit': 0.0, 'journal_id': [1, "Customer Invoices"], 'amount_str': "$ 1,000.00", 'debit': 1000.0, 'account_code': "101000", 'ref': "", 'is_liquidity_line': false}
     ],
-    '[284,12,"",0]': [],
+    '{"account_id":284,"partner_id":12,"search_str":""}': []
 };
 
 var session = {
@@ -685,6 +702,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -765,15 +783,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -800,7 +810,7 @@ QUnit.module('account', {
 
         // load more
         assert.ok(clientAction.widgets[1].$('.match:first div.load-more a:visible').length, "should display the 'load more' button");
-        assert.equal(clientAction.widgets[1].$('.match:first div.load-more span').text(), 3, "should display 3 items remaining");
+        assert.equal(clientAction.widgets[1].$('.match:first div.load-more span').text(), 6, "should display 6 items remaining");
         await testUtils.dom.click(clientAction.widgets[1].$('.match:first div.load-more a'));
         assert.containsN(clientAction.widgets[1], '.mv_line', 8, "should load 3 more records");
         assert.notOk(clientAction.widgets[1].$('.match:first div.load-more a:visible').length, "should not display the 'load more' button anymore");
@@ -862,15 +872,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -915,15 +917,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -974,6 +968,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             mockRPC: function (route, args) {
                 if (args.method === 'process_bank_statement_line') {
                     var lines = args.args['1'];
@@ -994,15 +989,6 @@ QUnit.module('account', {
                     ], "should call process_bank_statement_line with partial reconcile values");
                 }
                 return this._super(route, args);
-            },
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
             },
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
@@ -1054,6 +1040,110 @@ QUnit.module('account', {
         clientAction.destroy();
     });
 
+    QUnit.test('Reconciliation with rounding different representation (but same value) is not partial', async function (assert) {
+        assert.expect(6);
+
+        this.params.data_preprocess = {
+            value_min: 0,
+            value_max: 1,
+            notifications: [],
+            statement_id: 2,
+            journal_id: 7,
+            st_lines_ids: [8],
+            statement_name: 'BNK/2014/001',
+        };
+
+        this.params.data_widget = [
+            {
+                st_line: { id: 8, ref: false, note: "", name: "test", date: "09/09/2021", amount: 956.06, amount_str: "$ 956.06", currency_id: 3, partner_id: 10, journal_id: 7, statement_id: 2, account_id: [ 40, "101402 Bank" ], account_code: "101402", account_name: "Bank", partner_name: "Deco Addict", communication_partner_name: false, amount_currency_str: "", amount_currency: 956.06, has_no_partner: false, company_id: 1, open_balance_account_id: 6},
+                reconciliation_proposition: [{
+                    id: 36,
+                    name: "INV/2021/09/0004",
+                    ref: "",
+                    date: "09/09/2021",
+                    date_maturity: "10/09/2021",
+                    account_id: [ 6, "121000 Account Receivable" ],
+                    account_code: "121000",
+                    account_name: "Account Receivable",
+                    account_type: "receivable",
+                    journal_id: [ 1, "Customer Invoices" ],
+                    partner_id: 10,
+                    partner_name: "Deco Addict",
+                    is_liquidity_line: false,
+                    currency_id: 3,
+                    debit: 956.0600000000001,
+                    credit: 0,
+                    amount_str: "$ 956.06",
+                    amount_currency: 0,
+                    amount_currency_str: "",
+                    total_amount_currency_str: "",
+                    total_amount_str: "$ 956.06",
+                    recs_count: 0,
+                }],
+                model_id: 1,
+                partner_id: 10,
+                partner_name: "Deco Addict"
+            }
+        ]
+
+        // tweak the data to fit our needs
+        this.params.move_lines_for_manual_reconciliation = {
+            '[283,null,"",0]': [
+                { id: 26,
+                        name: "INV/2021/08/0001", ref: "", date: "08/25/2021", date_maturity: "08/25/2021", account_id: [ 6, "121000 Account Receivable" ], account_code: "121000", account_name: "Account Receivable", account_type: "receivable", journal_id: [ 1, "Customer Invoices" ], partner_id: 10, partner_name: "Deco Addict", is_liquidity_line: false, currency_id: 3, debit: 365125, credit: 0, amount_str: "$ 365,125.00", amount_currency: 0, amount_currency_str: "", total_amount_currency_str: "", total_amount_str: "$ 365,125.00", recs_count: 3 },
+                { id: 20, name: "INV/2021/09/0002", ref: "", date: "09/08/2021", date_maturity: "10/08/2021", account_id: [ 6, "121000 Account Receivable" ], account_code: "121000", account_name: "Account Receivable", account_type: "receivable", journal_id: [ 1, "Customer Invoices" ], partner_id: 10, partner_name: "Deco Addict", is_liquidity_line: false, currency_id: 3, debit: 169625, credit: 0, amount_str: "$ 169,625.00", amount_currency: 0, amount_currency_str: "", total_amount_currency_str: "", total_amount_str: "$ 169,625.00", recs_count: 3 },
+                { id: 23, name: "INV/2021/09/0003", ref: "", date: "09/08/2021", date_maturity: "10/08/2021", account_id: [ 6, "121000 Account Receivable" ], account_code: "121000", account_name: "Account Receivable", account_type: "receivable", journal_id: [ 1, "Customer Invoices" ], partner_id: 10, partner_name: "Deco Addict", is_liquidity_line: false, currency_id: 3, debit: 143750, credit: 0, amount_str: "$ 143,750.00", amount_currency: 0, amount_currency_str: "", total_amount_currency_str: "", total_amount_str: "$ 143,750.00", recs_count: 3 }
+              ],
+        };
+
+        var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
+        await testUtils.mock.addMockEnvironment(clientAction, {
+            data: this.params.data,
+            mockRPC: function (route, args) {
+                if (args.method === 'process_bank_statement_line') {
+                    assert.deepEqual(args.args, [
+                            [8],
+                            [{
+                                lines_vals_list: [
+                                    {
+                                        analytic_tag_ids: [[6, null, []]],
+                                        balance: -956.0600000000001,
+                                        currency_id: 3,
+                                        id: 36,
+                                        name: "INV/2021/09/0004",
+                                    }
+                                ],
+                                partner_id: 10,
+                                to_check: false
+                            }],
+                          ], "should call process_bank_statement_line");
+                }
+
+                return this._super(route, args);
+            },
+            session: this.params.session,
+            archs: {
+                'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
+            },
+        });
+
+        await clientAction.appendTo($('#qunit-fixture'));
+        await testUtils.nextTick();
+
+        // The first reconciliation "line" is where it happens
+        var widget = clientAction.widgets[0];
+
+        assert.strictEqual(widget.$('.accounting_view div[name="partner_id"] input').val(), "Deco Addict", "Display the partner in input");
+        assert.strictEqual(widget.$('.accounting_view thead .cell_left').text(), "$ 956.06", "Display the amount on left.");
+        assert.strictEqual(widget.$('.accounting_view thead').text().replace(/[\s\n]+/g, ' ').trim(), "101402 09/09/2021 test $ 956.06", "Display the line to reconcile");
+        assert.strictEqual(widget.$('.accounting_view .strike_amount').length, 0, "Should not display the proposal as partial reconcile.");
+        assert.strictEqual(widget.$('.accounting_view tbody').text().replace(/[\s\n]+/g, ' ').trim(), "121000​ 10/09/2021 INV/2021/09/0004 $ 956.06", "Display the line proposal to reconcile");
+
+        await testUtils.dom.click(widget.$('.o_reconcile.btn-primary'));
+
+        clientAction.destroy();
+    });
+
     QUnit.test('Reconciliation currencies', async function (assert) {
         assert.expect(2);
 
@@ -1098,6 +1188,7 @@ QUnit.module('account', {
 
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             archs: {
                 'res.partner,false,list': '<tree string="Partners"><field name="display_name"/></tree>',
                 'res.partner,false,search': '<search string="Partners">' +
@@ -1172,15 +1263,7 @@ QUnit.module('account', {
 
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -1268,15 +1351,7 @@ QUnit.module('account', {
 
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 "account.account,false,list": '<tree string="Account"><field name="code"/><field name="name"/></tree>',
                 "account.account,false,search": '<search string="Account"><field name="code"/></search>',
@@ -1327,15 +1402,7 @@ QUnit.module('account', {
 
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -1387,6 +1454,7 @@ QUnit.module('account', {
 
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -1526,8 +1594,8 @@ QUnit.module('account', {
          */
 
         // modify the second line that is already in db to put it at $999
-        var indexModif = _.findIndex(this.params.mv_lines['[5,"",0]'], function (line) {return line.id === 112});
-        this.params.mv_lines['[5,"",0]'][indexModif] =
+        var indexModif = _.findIndex(this.params.mv_lines['{"st_line_id":5,"search_str":""}'], function (line) {return line.id === 112});
+        this.params.mv_lines['{"st_line_id":5,"search_str":""}'][indexModif] =
             {account_type: "receivable", amount_currency_str: "", currency_id: false, date_maturity: "2017-02-07", date: "2017-01-08",
              total_amount_str: "$ 999.00", partner_id: 8, account_name: "101200 Account Receivable", name: "INV/2017/0003",
              partner_name: "Agrolait", total_amount_currency_str: "", id: 112, credit: 0.0, journal_id: [1, "Customer Invoices"],
@@ -1536,6 +1604,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             mockRPC: function (route, args) {
                 if (args.method === 'process_bank_statement_line') {
                     assert.deepEqual(args.args, [
@@ -1561,15 +1630,6 @@ QUnit.module('account', {
                     ], "should call process_bank_statement_line with partial reconcile values");
                 }
                 return this._super(route, args);
-            },
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
             },
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
@@ -1614,15 +1674,15 @@ QUnit.module('account', {
          */
 
         // modify the invoice line to have their amount > payment
-        var indexInv1 = _.findIndex(this.params.mv_lines['[5,"",0]'], function (line) {return line.id === 109});
-        this.params.mv_lines['[5,"",0]'][indexInv1] =
+        var indexInv1 = _.findIndex(this.params.mv_lines['{"st_line_id":5,"search_str":""}'], function (line) {return line.id === 109});
+        this.params.mv_lines['{"st_line_id":5,"search_str":""}'][indexInv1] =
             {account_type: "receivable", amount_currency_str: "", currency_id: false, date_maturity: "2017-02-07", date: "2017-01-08",
              total_amount_str: "$ 1200.00", partner_id: 8, account_name: "101200 Account Receivable", name: "INV/2017/0002", partner_name: "Agrolait",
              total_amount_currency_str: "", id: 109, credit: 0.0, journal_id: [1, "Customer Invoices"], amount_str: "$ 1200.00", debit: 1200.0,
              account_code: "101200", ref: "", is_liquidity_line: false};
 
-        var indexInv2 = _.findIndex(this.params.mv_lines['[5,"",0]'], function (line) {return line.id === 112});
-        this.params.mv_lines['[5,"",0]'][indexInv2] =
+        var indexInv2 = _.findIndex(this.params.mv_lines['{"st_line_id":5,"search_str":""}'], function (line) {return line.id === 112});
+        this.params.mv_lines['{"st_line_id":5,"search_str":""}'][indexInv2] =
             {account_type: "receivable", amount_currency_str: "", currency_id: false, date_maturity: "2017-02-07", date: "2017-01-08",
              total_amount_str: "$ 1200.00", partner_id: 8, account_name: "101200 Account Receivable", name: "INV/2017/0003",
              partner_name: "Agrolait", total_amount_currency_str: "", id: 112, credit: 0.0, journal_id: [1, "Customer Invoices"],
@@ -1631,6 +1691,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             mockRPC: function (route, args) {
                 if (args.method === 'process_bank_statement_line') {
                     assert.deepEqual(args.args, [
@@ -1662,15 +1723,6 @@ QUnit.module('account', {
                     ], "should call process_bank_statement_line with new aml dict reconcile values");
                 }
                 return this._super(route, args);
-            },
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
             },
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
@@ -1741,15 +1793,15 @@ QUnit.module('account', {
          */
 
         // modify the invoice line to have their amount > payment
-        var indexInv1 = _.findIndex(this.params.mv_lines['[5,"",0]'], function (line) {return line.id === 109});
-        this.params.mv_lines['[5,"",0]'][indexInv1] =
+        var indexInv1 = _.findIndex(this.params.mv_lines['{"st_line_id":5,"search_str":""}'], function (line) {return line.id === 109});
+        this.params.mv_lines['{"st_line_id":5,"search_str":""}'][indexInv1] =
             {account_type: "receivable", amount_currency_str: "", currency_id: false, date_maturity: "2017-02-07", date: "2017-01-08",
              total_amount_str: "$ 1200.00", partner_id: 8, account_name: "101200 Account Receivable", name: "INV/2017/0002", partner_name: "Agrolait",
              total_amount_currency_str: "", id: 109, credit: 0.0, journal_id: [1, "Customer Invoices"], amount_str: "$ 1200.00", debit: 1200.0,
              account_code: "101200", ref: "", is_liquidity_line: false};
 
-        var indexInv2 = _.findIndex(this.params.mv_lines['[5,"",0]'], function (line) {return line.id === 112});
-        this.params.mv_lines['[5,"",0]'][indexInv2] =
+        var indexInv2 = _.findIndex(this.params.mv_lines['{"st_line_id":5,"search_str":""}'], function (line) {return line.id === 112});
+        this.params.mv_lines['{"st_line_id":5,"search_str":""}'][indexInv2] =
             {account_type: "receivable", amount_currency_str: "", currency_id: false, date_maturity: "2017-02-07", date: "2017-01-08",
              total_amount_str: "$ 1200.00", partner_id: 8, account_name: "101200 Account Receivable", name: "INV/2017/0003",
              partner_name: "Agrolait", total_amount_currency_str: "", id: 112, credit: 0.0, journal_id: [1, "Customer Invoices"],
@@ -1758,6 +1810,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             mockRPC: function (route, args) {
                 if (args.method === 'process_bank_statement_line') {
                     assert.deepEqual(args.args, [
@@ -1783,15 +1836,6 @@ QUnit.module('account', {
                     ], "should call process_bank_statement_line with correct lines_vals_list");
                 }
                 return this._super(route, args);
-            },
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
             },
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
@@ -1861,6 +1905,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.ManualAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
+            session: this.params.session,
             mockRPC: function (route, args) {
                 if (args.method === 'process_move_lines') {
                     assert.deepEqual(args.args,
@@ -1873,15 +1918,6 @@ QUnit.module('account', {
                 }
 
                 return this._super(route, args);
-            },
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
             },
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
@@ -1908,7 +1944,7 @@ QUnit.module('account', {
         assert.equal(writeOffCreate.length, 1,
             'A write-off creation should be present');
 
-        assert.equal(writeOffCreate.find('input[name=amount]').val(), 500,
+        assert.equal(writeOffCreate.find('input[name=amount]').val(), 1000,
             'The right amount should be proposed for the write-off');
 
         // remove the first line, the other two will balance one another
@@ -1929,15 +1965,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.ManualAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -1972,7 +2000,7 @@ QUnit.module('account', {
         var clientAction = new ReconciliationClientAction.ManualAction(null, this.params.options);
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {},
+            session: this.params.session,
             mockRPC: function(route, args) {
                 if (args.method === "name_search") {
                     switch (args.model) {
@@ -2018,7 +2046,7 @@ QUnit.module('account', {
                     assert.deepEqual(
                         _.pick(args.args[0][0].new_mv_line_dicts[1 - idx],
                                'account_id', 'name', 'balance', 'tax_repartition_line_id'),
-                        {account_id: 287, name: "Tax 20.00%", balance: 36, tax_repartition_line_id: 2},
+                        {account_id: 287, name: "dummy text Tax 20.00%", balance: 36, tax_repartition_line_id: 2},
                         "Reconciliation rpc payload, new_mv_line_dicts.tax is correct"
                     );
                 }
@@ -2073,7 +2101,7 @@ QUnit.module('account', {
             "Gift line is flagged as new");
         assert.equal($($newLineGiftTds[2]).text().trim(), "dummy text",
             "Gift line has the correct label");
-        assert.equal($($newLineGiftTds[3]).text().trim(), "180.00",
+        assert.equal($($newLineGiftTds[3]).text().trim(), "$\u00a0180.00",
             "Gift line has the correct left amount");
         assert.equal($($newLineGiftTds[4]).text().trim(), "",
             "Gift line has the correct right amount");
@@ -2083,15 +2111,15 @@ QUnit.module('account', {
             "Tax line account number is valid");
         assert.equal($($newLineTaxeTds[1]).text().trim(), "New",
             "Tax line is flagged as new");
-        assert.equal($($newLineTaxeTds[2]).text().trim(), "Tax 20.00%",
+        assert.equal($($newLineTaxeTds[2]).text().trim(), "dummy text Tax 20.00%",
             "Tax line has the correct label");
-        assert.equal($($newLineTaxeTds[3]).text().trim(), "36.00",
+        assert.equal($($newLineTaxeTds[3]).text().trim(), "$\u00a036.00",
             "Tax line has the correct left amount");
         assert.equal($($newLineTaxeTds[4]).text().trim(), "",
             "Tax line has the correct right amount");
 
         // Reconcile
-        await testUtils.dom.click(widget.$("button.o_reconcile.btn.btn-primary:first"));
+        await testUtils.dom.click(widget.$("button.o_validate.btn.btn-secondary:first"));
         assert.ok(true, "No error in reconciliation");
 
         clientAction.destroy();
@@ -2104,15 +2132,7 @@ QUnit.module('account', {
 
         await testUtils.mock.addMockEnvironment(clientAction, {
             data: this.params.data,
-            session: {
-                currencies: {
-                    3: {
-                        digits: [69, 2],
-                        position: "before",
-                        symbol: "$"
-                    }
-                }
-            },
+            session: this.params.session,
             archs: {
                 'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
             },
@@ -2221,6 +2241,101 @@ QUnit.module('account', {
 
         await testUtilsDom.click(widget.$('.o_reconcile:visible'));
 
+        clientAction.destroy();
+    });
+
+    QUnit.test('Reconciliation Models: display analytic tags with Search More - Checkboxes', async function (assert) {
+        assert.expect(4);
+
+        const clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
+        const env = await testUtils.addMockEnvironment(clientAction, {
+            data: this.params.data,
+            mockRPC: function (route, args) {
+                if (args.method === "name_search" && args.model ==='account.analytic.tag') {
+                    return Promise.resolve(this.data[args.model].records.map(record => [record.id, record.display_name]));
+                }
+                return this._super(route, args);
+            },
+            session: {
+                currencies: {
+                    3: {
+                        digits: [69, 2],
+                        position: "before",
+                        symbol: "$"
+                    }
+                },
+                user_has_group: function (group) {
+                    const groups = [
+                        'analytic.group_analytic_tags',
+                        'analytic.group_analytic_accounting',
+                        'base.group_allow_export',
+                    ];
+                    if (groups.includes(group)) {
+                        return Promise.resolve(true);
+                    }
+                    return this._super.apply(this, arguments);
+                },
+            },
+            archs: {
+                'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
+                'account.analytic.tag,false,search': '<search string="Analytic Tags"><field name="display_name"/></search>',
+                'account.analytic.tag,false,list': '<list string="Analytic Tags"><field name="display_name"/></list>',
+            },
+        });
+
+        const target = env.debug ? $(document.body) : $('#qunit-fixture');
+        await clientAction.appendTo(target);
+        await testUtils.nextTick();
+
+        // The first reconciliation "line" is where it happens
+        const widget = clientAction.widgets[0];
+
+        await testUtils.dom.click(widget.$('.o_notebook .nav-link[href*="notebook_page_create"]'));
+        await testUtils.fields.many2one.clickOpenDropdown('analytic_tag_ids');
+        const $dropdown = widget.$('.o_field_many2one input').autocomplete('widget');
+        await testUtils.fields.many2one.clickItem('analytic_tag_ids', 'Search More');
+        await testUtils.nextTick();
+        assert.equal($('.modal-title').text(), "Search: analytic_tag_ids");
+
+        await testUtils.dom.click($('.modal-body input[type="checkbox"]').eq(1));
+        await testUtils.dom.click($('.modal-body input[type="checkbox"]').eq(2));
+        await testUtils.dom.click($('.modal-footer .o_select_button'));
+
+        assert.containsN(widget, '.create_analytic_tag_ids .o_field_many2manytags .badge', 2,
+            'Two tags are loaded');
+        assert.containsOnce(widget, '.create_analytic_tag_ids .o_field_many2manytags .badge:contains("Come together")',
+            'Tags should have a name');
+        assert.containsOnce(widget, '.create_analytic_tag_ids .o_field_many2manytags .badge:contains("Right now")',
+            'Tags should have a name');
+
+        clientAction.destroy();
+    });
+
+    QUnit.test('Reconciliation Models: float compare', async function (assert) {
+        assert.expect(8);
+
+        const clientAction = new ReconciliationClientAction.StatementAction(null, this.params.options);
+        await testUtils.mock.addMockEnvironment(clientAction, {
+            data: this.params.data,
+            session: this.params.session,
+            archs: {
+                'account.bank.statement.line,false,search': '<search string="Statement Line"><field name="display_name"/></search>',
+            },
+        });
+        var amounts = [
+            [258.49, 258.50, -1],
+            [0.02, 0.03, -1],
+            [0.99, 1.00, -1],
+            [258.50, 258.49, 1],
+            [0.03, 0.02, 1],
+            [1.00, 0.99, 1],
+            [0.01, 0.01, 0],
+            [956.0600000000001, 956.06, 0],
+        ];
+        var currency_id = 3;
+        for (let i = 0; i < amounts.length; i++) {
+            assert.strictEqual(clientAction.model._amountCompare(amounts[i][0], amounts[i][1], currency_id), amounts[i][2], "should compare the float amounts correctly");
+        }
         clientAction.destroy();
     });
 });

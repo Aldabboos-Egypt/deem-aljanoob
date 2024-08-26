@@ -58,7 +58,7 @@
                     rel="do_action"
                     data-action_name="Unreconciled Entries"
                     data-model="account.move.line"
-                    data-context="{'search_default_unreconciled': 1}">unreconciled entries</a></li>
+                    data-context="{'search_default_unreconciled': 1, 'search_default_posted': 1}">unreconciled entries</a></li>
             </ul>
         </p>
     </t>
@@ -76,7 +76,7 @@
             <t t-if="context.journal_id">
                 <button class="button_back_to_statement btn btn-secondary" t-att-data_journal_id='context.journal_id'>Go to bank statement(s)</button>
             </t>
-            <t t-if="context['active_model'] === 'account.bank.statement'">
+            <t t-if="bank_statement_id">
                 <button class="button_close_statement btn btn-primary" style="display: inline-block;">Close statement</button>
             </t>
         </p>
@@ -114,7 +114,7 @@
         <div class="o_notebook">
             <div class="o_notebook_headers">
                 <ul class="nav nav-tabs ml-0 mr-0">
-                    <li class="nav-item" t-attf-title="{{'Match statement with existing lines on receivable/payable accounts&lt;br&gt;* Black line: existing journal entry that should be matched&lt;br&gt;* Blue lines: existing payment that should be matched'}}" data-toggle="tooltip"><a data-toggle="tab" disable_anchor="true" t-attf-href="#notebook_page_match_rp_#{state.st_line.id}" class="nav-link active nav-match_rp" role="tab" aria-selected="true">Customer/Vendor Matching</a></li>
+                    <li class="nav-item" title="Match statement with existing lines on receivable/payable accounts&lt;br&gt;* Black line: existing journal entry that should be matched&lt;br&gt;* Blue lines: existing payment that should be matched" data-toggle="tooltip"><a data-toggle="tab" disable_anchor="true" t-attf-href="#notebook_page_match_rp_#{state.st_line.id}" class="nav-link active nav-match_rp" role="tab" aria-selected="true">Customer/Vendor Matching</a></li>
                     <li class="nav-item" title="Match with entries that are not from receivable/payable accounts" data-toggle="tooltip"><a data-toggle="tab" disable_anchor="true" t-attf-href="#notebook_page_match_other_#{state.st_line.id}" class="nav-link nav-match_other" role="tab" aria-selected="false">Miscellaneous Matching</a></li>
                     <li class="nav-item" title="Create a counterpart" data-toggle="tooltip"><a data-toggle="tab" disable_anchor="true" t-attf-href="#notebook_page_create_#{state.st_line.id}" class="nav-link nav-create" role="tab" aria-selected="false">Manual Operations</a></li>
                 </ul>
@@ -228,7 +228,7 @@
                     <td class="o_td_label"><label class="o_form_label">Taxes</label></td>
                     <td class="o_td_field"></td>
                 </tr>
-                <tr class="create_analytic_account_id" t-if="group_tags">
+                <tr class="create_analytic_account_id" t-if="group_acc">
                     <td class="o_td_label"><label class="o_form_label">Analytic Acc.</label></td>
                     <td class="o_td_field"></td>
                 </tr>
@@ -308,7 +308,7 @@
         </td>
         <td class="cell_label">
             <t t-if="line.partner_id &amp;&amp; line.partner_id !== state.st_line.partner_id">
-                <t t-if="line.partner_name.length">
+                <t t-if="line.partner_name &amp;&amp; line.partner_name.length">
                     <span class="font-weight-bold" t-esc="line.partner_name"/>:
                 </t>
             </t>

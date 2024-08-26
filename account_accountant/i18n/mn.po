@@ -3,21 +3,22 @@
 # 	* account_accountant
 # 
 # Translators:
-# Baskhuu Lodoikhuu <baskhuujacara@gmail.com>, 2020
 # Martin Trigaux, 2020
 # Otgonbayar.A <gobi.mn@gmail.com>, 2020
-# Khishigbat Ganbold <khishigbat@asterisk-tech.mn>, 2020
+# hish, 2020
 # Minj P <pminj322@gmail.com>, 2020
 # Батболд <batbold.ts@gmail.com>, 2020
 # Cheemee Bumtsend <cheemeesun@gmail.com>, 2020
+# Bayarkhuu Bataa, 2022
+# Baskhuu Lodoikhuu <baskhuujacara@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Cheemee Bumtsend <cheemeesun@gmail.com>, 2020\n"
+"Last-Translator: Baskhuu Lodoikhuu <baskhuujacara@gmail.com>, 2022\n"
 "Language-Team: Mongolian (https://www.transifex.com/odoo/teams/41243/mn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,6 +35,8 @@ msgstr "-> Тулгах"
 #: model_terms:digest.tip,tip_description:account_accountant.digest_tip_account_accountant_0
 msgid "<b class=\"tip_title\">Tip: Bulk update journal items</b>"
 msgstr ""
+"<b class=\"tip_title\">Заавар: Журналын бичилтүүдийг бөөнөөр нь "
+"засварлах</b>"
 
 #. module: account_accountant
 #. openerp-web
@@ -43,6 +46,8 @@ msgid ""
 "<br>See how to manage your customer invoices in the "
 "<b>Customers/Invoices</b> menu"
 msgstr ""
+"<br> <b>Customers/Invoices</b>  Захиалагчид / Нэхэмжлэл цэсээр орж та "
+"захиалагчийн нэхэмжлэлүүдийг удирдан зохион байгуулах боломжтой."
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -517,7 +522,7 @@ msgstr "Банкны хуулга руу очно уу"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Go to invoicing"
-msgstr ""
+msgstr "Нэхэмжлэл рүү очих"
 
 #. module: account_accountant
 #. openerp-web
@@ -556,6 +561,8 @@ msgid ""
 "Incorrect fiscal year date: day is out of range for month. Month: %s; Day: "
 "%s"
 msgstr ""
+"Санхүүгийн жилийн огноо тохирохгүй байна: өдөр нь сарын мужаасаа хэтэрч "
+"байна. Сар: %s; Өдөр: %s"
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__transfer_account_id
@@ -745,6 +752,16 @@ msgstr "Санхүүгийн мөчлөг түгжих"
 #, python-format
 msgid "Manual Operations"
 msgstr "Гараар хийх үйлдлүүд"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr ""
 
 #. module: account_accountant
 #. openerp-web
@@ -1133,7 +1150,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "To Check"
-msgstr ""
+msgstr "Шалгах"
 
 #. module: account_accountant
 #. openerp-web
@@ -1158,7 +1175,7 @@ msgstr "Шилжүүлгийн данс"
 #: code:addons/account_accountant/models/account_move.py:0
 #, python-format
 msgid "Transfer Accounts"
-msgstr ""
+msgstr "Шилжүүлгийн данс"
 
 #. module: account_accountant
 #. openerp-web
@@ -1277,7 +1294,7 @@ msgstr "гүйлгээний мөрүүд"
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.account_journal_dashboard_kanban_view
 msgid "to check"
-msgstr ""
+msgstr " шалгах"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit

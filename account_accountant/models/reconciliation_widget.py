@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from collections import defaultdict
 import re
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.osv import expression
-from odoo.tools.misc import formatLang, format_date, parse_date
+from odoo.tools.misc import formatLang, format_date, parse_date, frozendict
 
 
 class AccountReconciliation(models.AbstractModel):
@@ -36,7 +37,7 @@ class AccountReconciliation(models.AbstractModel):
                 st_line.write({'partner_id': datum['partner_id']})
 
             st_line.with_context(ctx).reconcile(datum.get('lines_vals_list', []), to_check=datum.get('to_check', False))
-        return {'statement_line_ids': st_lines}
+        return {'statement_line_ids': st_lines, 'moves': st_lines.move_id}
 
     @api.model
     def get_move_lines_for_bank_statement_line(self, st_line_id, partner_id=None, excluded_ids=None, search_str=False, offset=0, limit=None, mode=None):
@@ -50,7 +51,7 @@ class AccountReconciliation(models.AbstractModel):
                 result
             :param search_str: optional search (can be the amout, display_name,
                 partner name, move line name)
-            :param offset: offset of the search result (to display pager)
+            :param offset: offset of the search result (to display pager) DEPRECATED
             :param limit: number of the result to search
             :param mode: 'rp' for receivable/payable or 'other'
         """
@@ -61,7 +62,6 @@ class AccountReconciliation(models.AbstractModel):
         else:
             domain = []
 
-        partner_id = partner_id or statement_line.partner_id.id
         if partner_id:
             domain.append(('partner_id', '=', partner_id))
 
@@ -73,14 +73,19 @@ class AccountReconciliation(models.AbstractModel):
         else:
             query, params = self._get_query_reconciliation_widget_miscellaneous_matching_lines(statement_line, domain=domain)
 
-        trailing_query, trailing_params = self._get_trailing_query(statement_line, limit=limit, offset=offset)
+        trailing_query, trailing_params = self._get_trailing_query(statement_line, limit=limit)
 
         self._cr.execute(query + trailing_query, params + trailing_params)
-        move_lines = self.env['account.move.line'].browse(res['id'] for res in self._cr.dictfetchall())
+        results = self._cr.dictfetchall()
+        if results:
+            recs_count = results[0].get('full_count', 0)
+        else:
+            recs_count = 0
+        move_lines = self.env['account.move.line'].browse(res['id'] for res in results)
 
         js_vals_list = []
         for line in move_lines:
-            js_vals_list.append(self._prepare_js_reconciliation_widget_move_line(statement_line, line))
+            js_vals_list.append(self._prepare_js_reconciliation_widget_move_line(statement_line, line, recs_count=recs_count))
         return js_vals_list
 
     @api.model
@@ -104,7 +109,7 @@ class AccountReconciliation(models.AbstractModel):
         self.env['res.partner']._apply_ir_rules(ir_rules_query, 'read')
         from_clause, where_clause, where_clause_params = ir_rules_query.get_sql()
         if where_clause:
-            where_partner = re.sub(r"\bres_partner\b", "p3", ('AND %s' % where_clause))
+            where_partner = re.sub(r"(?<! FROM \")\bres_partner\b", "p3", ('AND %s' % where_clause))
             params += where_clause_params
         else:
             where_partner = ''
@@ -196,7 +201,8 @@ class AccountReconciliation(models.AbstractModel):
 
                 # Add writeoff info if necessary
                 if matching_amls[line.id].get('status') == 'write_off':
-                    line_vals['write_off_vals'] = matching_amls[line.id]['write_off_vals']
+                    line_vals['write_off_vals'] = [matching_amls[line.id]['model']._prepare_widget_writeoff_vals(line, x)
+                                                   for x in matching_amls[line.id]['write_off_vals']]
                     self._complete_write_off_vals_for_widget(line_vals['write_off_vals'])
 
                 results['lines'].append(line_vals)
@@ -216,7 +222,7 @@ class AccountReconciliation(models.AbstractModel):
         if not bank_statement_line_ids:
             return {}
 
-        domain = [['id', 'in', tuple(bank_statement_line_ids)], ('is_reconciled', '=', False)] + srch_domain
+        domain = [['id', 'in', tuple(bank_statement_line_ids)], '|', ('is_reconciled', '=', False), ('move_id.to_check', '=', True)] + srch_domain
         bank_statement_lines = self.env['account.bank.statement.line'].search(domain)
         bank_statements = bank_statement_lines.mapped('statement_id')
 
@@ -256,7 +262,7 @@ class AccountReconciliation(models.AbstractModel):
 
         domain = self._domain_move_lines_for_manual_reconciliation(account_id, partner_id, excluded_ids, search_str)
         recs_count = Account_move_line.search_count(domain)
-        lines = Account_move_line.search(domain, offset=offset, limit=limit, order="date_maturity desc, id desc")
+        lines = Account_move_line.search(domain, limit=limit, order="date_maturity desc, id desc")
         if target_currency_id:
             target_currency = Currency.browse(target_currency_id)
         else:
@@ -574,24 +580,25 @@ class AccountReconciliation(models.AbstractModel):
     @api.model
     def _get_query_reconciliation_widget_liquidity_lines(self, statement_line, domain=[]):
         journal = statement_line.journal_id
-        tables, where_clause, where_params = self._prepare_reconciliation_widget_query(statement_line, domain=domain)
-        matching_account_clauses = []
+
+        account_ids = []
 
         # Matching on debit account.
         allow_debit_statement_matching = journal.payment_debit_account_id != journal.default_account_id
         if allow_debit_statement_matching:
-            matching_account_clauses.append('account_move_line.account_id = %s')
-            where_params.append(journal.payment_debit_account_id.id)
+            account_ids.append(journal.payment_debit_account_id.id)
 
         # Matching on credit account.
         allow_credit_statement_matching = journal.payment_credit_account_id != journal.default_account_id
         if allow_credit_statement_matching:
-            matching_account_clauses.append('account_move_line.account_id = %s')
-            where_params.append(journal.payment_credit_account_id.id)
+            account_ids.append(journal.payment_credit_account_id.id)
 
-        # Matching on internal transfer account.
-        matching_account_clauses.append('(journal.id != %s AND account_move_line.account_id = company.transfer_account_id)')
-        where_params.append(journal.id)
+        domain = domain + [
+            ('journal_id.type', 'in', ('bank', 'cash')),
+            ('account_id', 'in', account_ids),
+        ]
+
+        tables, where_clause, where_params = self._prepare_reconciliation_widget_query(statement_line, domain=domain)
 
         query = '''
             SELECT ''' + self._get_query_select_clause() + '''
@@ -601,7 +608,6 @@ class AccountReconciliation(models.AbstractModel):
             JOIN account_journal journal ON journal.id = account_move_line.journal_id
             JOIN res_company company ON company.id = journal.company_id
             WHERE ''' + where_clause + '''
-            AND (''' + ' OR '.join(matching_account_clauses) + ''')
         '''
         return query, where_params
 
@@ -609,7 +615,7 @@ class AccountReconciliation(models.AbstractModel):
     def _get_query_reconciliation_widget_receivable_payable_lines(self, statement_line, domain=[]):
         domain = domain + [
             ('account_id.internal_type', 'in', ('receivable', 'payable')),
-            ('journal_id.type', 'not in', ('bank', 'cash')),
+            ('payment_id', '=', False),
         ]
         tables, where_clause, where_params = self._prepare_reconciliation_widget_query(statement_line, domain=domain)
 
@@ -625,8 +631,9 @@ class AccountReconciliation(models.AbstractModel):
         query_1, params_1 = self._get_query_reconciliation_widget_liquidity_lines(statement_line, domain=domain)
         query_2, params_2 = self._get_query_reconciliation_widget_receivable_payable_lines(statement_line, domain=domain)
 
+        # Using 'count(*) OVER()' to get total count despite the limit of query.
         query = '''
-            SELECT *
+            SELECT *, count(*) OVER() AS full_count
             FROM (
                 ''' + query_1 + '''
 
@@ -648,14 +655,30 @@ class AccountReconciliation(models.AbstractModel):
         :param domain:          A applicable domain on the account.move.line model.
         :return:                (query, params)
         '''
-        domain += [
+        journal = statement_line.journal_id
+
+        account_ids = []
+
+        # Matching on debit account.
+        allow_debit_statement_matching = journal.payment_debit_account_id != journal.default_account_id
+        if allow_debit_statement_matching:
+            account_ids.append(journal.payment_debit_account_id.id)
+
+        # Matching on credit account.
+        allow_credit_statement_matching = journal.payment_credit_account_id != journal.default_account_id
+        if allow_credit_statement_matching:
+            account_ids.append(journal.payment_credit_account_id.id)
+
+        domain = domain + [
             ('account_id.internal_type', 'not in', ('receivable', 'payable')),
+            '|',
             ('journal_id.type', 'not in', ('bank', 'cash')),
+            ('account_id', 'not in', account_ids),
         ]
         tables, where_clause, where_params = self._prepare_reconciliation_widget_query(statement_line, domain=domain)
 
         query = '''
-            SELECT ''' + self._get_query_select_clause() + '''
+            SELECT ''' + self._get_query_select_clause() + ''', count(*) OVER() AS full_count
             FROM ''' + tables + '''
             JOIN account_account account ON account.id = account_move_line.account_id
             LEFT JOIN res_partner partner ON partner.id = account_move_line.partner_id
@@ -664,7 +687,7 @@ class AccountReconciliation(models.AbstractModel):
         return query, where_params
 
     @api.model
-    def _prepare_js_reconciliation_widget_move_line(self, statement_line, line):
+    def _prepare_js_reconciliation_widget_move_line(self, statement_line, line, recs_count=0):
         def format_name(line):
             if (line.name or '/') == '/':
                 line_name = line.move_id.name
@@ -687,14 +710,14 @@ class AccountReconciliation(models.AbstractModel):
             amount_str = formatLang(self.env, abs(balance), currency_obj=currency)
             amount_currency_str = formatLang(self.env, abs(amount_currency), currency_obj=line.company_currency_id)
             total_amount_currency_str = formatLang(self.env, abs(rec_vals['debit'] - rec_vals['credit']), currency_obj=line.company_currency_id)
-            total_amount_str = formatLang(self.env, abs(rec_vals['amount_currency']), currency_obj=line.company_currency_id)
+            total_amount_str = formatLang(self.env, abs(rec_vals['amount_currency']), currency_obj=currency)
         else:
             balance = rec_vals_residual['debit'] - rec_vals_residual['credit']
             amount_currency = 0.0
             amount_str = formatLang(self.env, abs(balance), currency_obj=line.company_currency_id)
             amount_currency_str = ''
             total_amount_currency_str = ''
-            total_amount_str = formatLang(self.env, abs(rec_vals['debit'] - rec_vals['credit']), currency_obj=line.company_currency_id)
+            total_amount_str = formatLang(self.env, abs(rec_vals['debit'] - rec_vals['credit']), currency_obj=line.currency_id)
 
         js_vals = {
             'id': line.id,
@@ -719,6 +742,7 @@ class AccountReconciliation(models.AbstractModel):
             'amount_currency_str': amount_currency_str,
             'total_amount_currency_str': total_amount_currency_str,
             'total_amount_str': total_amount_str,
+            'recs_count': recs_count,
         }
 
         return js_vals
@@ -930,6 +954,14 @@ class AccountReconciliation(models.AbstractModel):
             return Account_move_line.browse(pairs[0])
         return Account_move_line
 
+    def _prepare_writeoff_move_vals(self, move_lines, vals_list):
+        aggr = defaultdict(list)
+        for vals in vals_list:
+            move_vals = self._prepare_writeoff_moves(move_lines, vals)
+            grouping = frozendict({k: v for k, v in move_vals.items() if k != 'line_ids'})
+            aggr[grouping].extend(move_vals['line_ids'])
+        return [{**grouping, 'line_ids': line_ids} for grouping, line_ids in aggr.items()]
+
     @api.model
     def _prepare_writeoff_moves(self, move_lines, vals):
         if 'account_id' not in vals or 'journal_id' not in vals:
@@ -949,7 +981,7 @@ class AccountReconciliation(models.AbstractModel):
         }
 
         if 'debit' not in vals and 'credit' not in vals:
-            balance = sum(move_lines.mapped('amount_residual'))
+            balance = -vals.get('balance', 0.0) or sum(move_lines.mapped('amount_residual'))
         else:
             balance = vals.get('credit', 0.0) - vals.get('debit', 0.0)
         line_vals['debit'] = balance if balance > 0.0 else 0.0
@@ -993,7 +1025,7 @@ class AccountReconciliation(models.AbstractModel):
 
         # Create writeoff move lines
         if len(new_mv_line_dicts) > 0:
-            move_vals_list = [self._prepare_writeoff_moves(move_lines, vals) for vals in new_mv_line_dicts]
+            move_vals_list = self._prepare_writeoff_move_vals(move_lines, new_mv_line_dicts)
             moves = self.env['account.move'].create(move_vals_list)
             moves.action_post()
             account = move_lines[0].account_id

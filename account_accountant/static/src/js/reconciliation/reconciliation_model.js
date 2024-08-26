@@ -19,7 +19,7 @@ var _t = core._t;
  *  {
  *      valuenow: integer
  *      valuenow: valuemax
- *      [bank_statement_line_id]: {
+ *      [bank_statement_id]: {
  *          id: integer
  *          display_name: string
  *      }
@@ -66,7 +66,6 @@ var _t = core._t;
  *      }
  *      mv_lines_match_rp: object - idem than reconciliation_proposition
  *      mv_lines_match_other: object - idem than reconciliation_proposition
- *      offset: integer
  *      limitMoveLines: integer
  *      filter: string
  *      [createForm]: {
@@ -145,34 +144,32 @@ var StatementModel = BasicModel.extend({
             var balance = line.balance.amount
             var prop_amount = prop.partial_amount || prop.amount;
             var format_options = {currency_id: line.st_line.currency_id};
-            if (balance > 0.0 && prop_amount > balance) {
+            if (balance > 0.0 && this._amountCompare(prop_amount, balance, line.st_line.currency_id) > 0) {
                 // Adding a line to the credit (right side).
                 prop.partial_amount = balance
                 prop.partial_amount_str = field_utils.format.monetary(prop.partial_amount, {}, format_options);
-            } else if (balance < 0.0 && prop_amount < balance) {
+            } else if (balance < 0.0 && this._amountCompare(prop_amount, balance, line.st_line.currency_id) < 0) {
                 // Adding a line to the debit (left side).
                 prop.partial_amount = balance
                 prop.partial_amount_str = field_utils.format.monetary(-prop.partial_amount, {}, format_options);
             }
-
         }
 
         this._addProposition(line, prop);
-        line.limit_override = (line.offset + 1) + this.limitMoveLines;
 
         // remove all non valid lines
-        line.reconciliation_proposition = _.filter(line.reconciliation_proposition, function (prop) {return !prop.invalid;});
+        line.reconciliation_proposition = _.filter(line.reconciliation_proposition, function (prop) {return prop && !prop.invalid;});
 
         // Onchange the partner if not already set on the statement line.
         if(!line.st_line.partner_id && line.reconciliation_proposition
             && line.reconciliation_proposition.length == 1 && prop.partner_id && line.type === undefined){
             return this.changePartner(handle, {'id': prop.partner_id, 'display_name': prop.partner_name}, true)
-                .then(function () {
-                    return Promise.all([self._computeLine(line), self._performMoveLine(handle, 'match_rp'), self._performMoveLine(handle, 'match_other')]);
-                });
         }
 
-        return Promise.all([this._computeLine(line), this._performMoveLine(handle, 'match_rp'), self._performMoveLine(handle, 'match_other')]);
+        return Promise.all([
+            this._computeLine(line),
+            this._performMoveLine(handle, line.mode, 1)
+        ]);
     },
     /**
      * change the filter for the target line and fetch the new matched lines
@@ -184,7 +181,7 @@ var StatementModel = BasicModel.extend({
     changeFilter: function (handle, filter) {
         var line = this.getLine(handle);
         line['filter_'+line.mode] = filter;
-        line.offset = 0;
+        line['mv_lines_'+line.mode] = [];
         return this._performMoveLine(handle, line.mode);
     },
     /**
@@ -223,7 +220,7 @@ var StatementModel = BasicModel.extend({
             if (!(line['mv_lines_' + line.mode] && line['mv_lines_' + line.mode].length)) {
                 return this._performMoveLine(handle, line.mode);
             } else {
-                return this._formatMoveLine(handle, line.mode, line['mv_lines_' + line.mode]);
+                return this._formatMoveLine(handle, line.mode, []);
             }
         }
         if (line.mode === 'create') {
@@ -232,15 +229,13 @@ var StatementModel = BasicModel.extend({
         return Promise.resolve();
     },
     /**
-     * change the offset for the matched lines, and fetch the new matched lines
+     * fetch more matched lines
      *
      * @param {string} handle
-     * @param {number} offset
      * @returns {Promise}
      */
-    changeOffset: function (handle, offset) {
+    loadMore: function (handle) {
         var line = this.getLine(handle);
-        line.offset += (offset > 0 ? 1 : -1) * this.limitMoveLines;
         return this._performMoveLine(handle, line.mode);
     },
     /**
@@ -258,6 +253,9 @@ var StatementModel = BasicModel.extend({
         var line = this.getLine(handle);
         line.st_line.partner_id = partner && partner.id;
         line.st_line.partner_name = partner && partner.display_name || '';
+        self.modes.filter(x => x.startsWith('match')).forEach(function (mode) {
+            line["mv_lines_"+mode] = [];
+        });
         return Promise.resolve(partner && this._changePartner(handle, partner.id))
                 .then(function() {
                     if(line.st_line.partner_id){
@@ -284,10 +282,7 @@ var StatementModel = BasicModel.extend({
         return this._rpc({
                 model: 'account.bank.statement',
                 method: 'button_validate',
-                args: [self.statement.statement_id],
-            })
-            .then(function () {
-                return self.statement.statement_id;
+                args: [self.bank_statement_id.id],
             });
     },
     /**
@@ -377,8 +372,9 @@ var StatementModel = BasicModel.extend({
      * @param {Array} excluded_ids list of move_line ids that needs to be excluded from search
      * @returns {Promise}
      */
-    loadData: function(ids, excluded_ids) {
+    loadData: function(ids) {
         var self = this;
+        var excluded_ids = this._getExcludedIds();
         return self._rpc({
             model: 'account.reconciliation.widget',
             method: 'get_bank_statement_line_data',
@@ -404,7 +400,7 @@ var StatementModel = BasicModel.extend({
             })
             .then(function (statement) {
                 self.statement = statement;
-                self.bank_statement_line_id = self.statement_line_ids.length === 1 ? {id: self.statement_line_ids[0], display_name: statement.statement_name} : false;
+                self.bank_statement_id = statement.statement_id ? {id: statement.statement_id, display_name: statement.statement_name} : false;
                 self.valuenow = self.valuenow || statement.value_min;
                 self.valuemax = self.valuemax || statement.value_max;
                 self.context.journal_id = statement.journal_id;
@@ -418,7 +414,6 @@ var StatementModel = BasicModel.extend({
                         mode: 'inactive',
                         mv_lines_match_rp: [],
                         mv_lines_match_other: [],
-                        offset: 0,
                         filter_match_rp: "",
                         filter_match_other: "",
                         reconciliation_proposition: [],
@@ -586,8 +581,6 @@ var StatementModel = BasicModel.extend({
         var self = this;
         var line = this.getLine(handle);
         var defs = [];
-        // new limit = previous limit + 1, the one put back
-        line.limit_override = (line.offset + 1) + this.limitMoveLines;
 
         // If the line was an aml proposition
         var prop = _.find(line.reconciliation_proposition, {'id' : id});
@@ -661,7 +654,7 @@ var StatementModel = BasicModel.extend({
             // Amount can't be greater than line.amount and can not be negative and must be a number
             // the amount we receive will be a string, so take sign of previous line amount in consideration in order to put
             // the amount in the correct left or right column
-            if (amount >= Math.abs(prop.amount) || amount <= 0 || isNaN(amount)) {
+            if (amount <= 0 || isNaN(amount) || this._amountCompare(amount, Math.abs(prop.amount), line.st_line.currency_id) >= 0) {
                 delete prop.partial_amount_str;
                 delete prop.partial_amount;
                 if (isNaN(amount) || amount < 0) {
@@ -753,7 +746,7 @@ var StatementModel = BasicModel.extend({
         if ('amount' in values) {
             prop.base_amount = values.amount;
         }
-        if ('force_tax_included' in values || 'amount' in values || 'account_id' in values) {
+        if ('name' in values || 'force_tax_included' in values || 'amount' in values || 'account_id' in values) {
             prop.__tax_to_recompute = true;
         }
         line.createForm = _.pick(prop, this.quickCreateFields);
@@ -794,7 +787,7 @@ var StatementModel = BasicModel.extend({
         var handlesPromises = [];
         _.each(handles, function (handle) {
             var line = self.getLine(handle);
-            var props = _.filter(line.reconciliation_proposition, function (prop) {return !prop.invalid;});
+            var props = _.filter(line.reconciliation_proposition, function (prop) {return prop && !prop.invalid;});
             var computeLinePromise;
             if (props.length === 0) {
                 // Usability: if user has not chosen any lines and click validate, it has the same behavior
@@ -864,6 +857,9 @@ var StatementModel = BasicModel.extend({
      * @param {Object} prop
      */
     _addProposition: function (line, prop) {
+        _.each(this.modes.filter(x => x.startsWith('match')), mode => {
+            line['mv_lines_' + mode] = line['mv_lines_' + mode].filter(p => p.id != prop.id)
+        })
         line.reconciliation_proposition.push(prop);
     },
     /**
@@ -962,6 +958,7 @@ var StatementModel = BasicModel.extend({
                                 'tax_ids': tax.tax_ids,
                                 'tax_repartition_line_id': tax.tax_repartition_line_id,
                                 'tax_tag_ids': tax.tag_ids,
+                                'tax_base_amount': tax.base,
                                 'amount': tax.amount,
                                 'name': prop.name ? prop.name + " " + tax.name : tax.name,
                                 'date': prop.date,
@@ -1151,7 +1148,7 @@ var StatementModel = BasicModel.extend({
     **/
     _refresh_partial_rec_preview: function (line) {
         var st_line_balance_left = line.st_line.amount;
-        _.each(line.reconciliation_proposition, function (proposition) {
+        _.each(line.reconciliation_proposition, proposition => {
             var prop_amount = st_line_balance_left < 0 ? proposition.credit : proposition.debit;
 
             // Invoice matching reconciliation models may have defined some write off rules as well
@@ -1163,7 +1160,7 @@ var StatementModel = BasicModel.extend({
 
             st_line_balance_left -= signed_impact;
 
-            if (prop_impact > 0 && prop_impact != prop_amount) {
+            if (prop_impact > 0 && this._amountCompare(prop_impact, prop_amount, line.st_line.currency_id) !== 0) {
                 // Then it'll be a partial reconciliation
                 proposition.partial_amount = signed_impact;
                 proposition.partial_amount_str = field_utils.format.monetary(Math.abs(proposition.partial_amount), {}, {currency_id: line.st_line.currency_id});
@@ -1189,23 +1186,50 @@ var StatementModel = BasicModel.extend({
     _formatMoveLine: function (handle, mode, mv_lines) {
         var self = this;
         var line = this.getLine(handle);
-        if (line.offset === 0 || line.limit_override) {
-            line['mv_lines_'+mode] = mv_lines;
-            delete line.limit_override;
-        } else {
-            line['mv_lines_'+mode] = line['mv_lines_'+mode].concat(mv_lines);
+        line['mv_lines_'+mode] = _.uniq([].concat(line['mv_lines_'+mode] || [], mv_lines), l => l.id);
+        if (mv_lines[0]){
+            line['remaining_'+mode] = mv_lines[0].recs_count - mv_lines.length;
+        } else if (line['mv_lines_'+mode].length == 0) {
+            line['remaining_'+mode] = 0;
         }
+
         this._formatLineProposition(line, mv_lines);
 
-        if ((line.mode == 'match_other' || line.mode == "match_rp") && !line['mv_lines_'+mode].length && !line['filter_'+mode].length) {
+        if (!line.balance.amount || ((line.mode == 'match_other' || line.mode == "match_rp") && line['mv_lines_'+mode] && line['mv_lines_'+mode].length == 0 && line['filter_'+mode].length == 0)) {
             line.mode = self._getDefaultMode(handle);
             if (line.mode !== 'match_rp' && line.mode !== 'match_other' && line.mode !== 'inactive') {
                 return this._computeLine(line).then(function () {
                     return self.createProposition(handle);
                 });
             }
+        }
+        return this._computeLine(line);
+    },
+    /**
+     * Compare two amounts.
+     *
+     * Some amounts may be represented differently and are therefore compared
+     * to an epsilon deviation (depending on currency). The values to be
+     * compared have already been rounded according to the currency.
+     * (eg: 956.06 digit is rounded and represented as 956.0600000000001 float
+     * with the python method `odoo.tools.float_round`)
+     *
+     * @param float value1: first value to compare
+     * @param float value2: second value to compare
+     * @param int currency_id: currency ID used for the comparison
+     *    (associated digit used to compute the epsilon)
+     * @return -1, 0 or 1: if ``value1`` is (resp.) lower than,
+     *    equal to, or greater than ``value2``, at the given currency.
+     */
+    _amountCompare: function (value1, value2, currency_id) {
+        const currency = session.get_currency(currency_id);
+        const delta = parseFloat((value1 - value2).toFixed(currency.digits[1]));
+        if (delta > 0) {
+            return 1;
+        } else if (delta < 0) {
+            return -1;
         } else {
-            return this._computeLine(line);
+            return 0;
         }
     },
     /**
@@ -1217,6 +1241,9 @@ var StatementModel = BasicModel.extend({
             && (!line.st_line.mv_lines_match_rp || line.st_line.mv_lines_match_rp.length === 0)
             && (!line.st_line.mv_lines_match_other || line.st_line.mv_lines_match_other.length === 0)) {
             return 'inactive';
+        }
+        if (line['mv_lines_'+line.mode] && (line['mv_lines_'+line.mode].length || line['filter_'+line.mode].length)) {
+            return line.mode;
         }
         if (line.mv_lines_match_rp && line.mv_lines_match_rp.length) {
             return 'match_rp';
@@ -1268,6 +1295,7 @@ var StatementModel = BasicModel.extend({
             'tax_ids': this._formatMany2ManyTagsTax(values.tax_ids || []),
             'tax_tag_ids': this._formatMany2ManyTagsTax(values.tax_tag_ids || []),
             'tax_repartition_line_id': values.tax_repartition_line_id,
+            'tax_base_amount': values.tax_base_amount,
             'debit': 0,
             'credit': 0,
             'date': values.date ? values.date : field_utils.parse.date(today, {}, {isUTC: true}),
@@ -1342,26 +1370,24 @@ var StatementModel = BasicModel.extend({
      * @param {string} handle
      * @returns {Promise}
      */
-    _performMoveLine: function (handle, mode) {
+    _performMoveLine: function (handle, mode, limit) {
+        limit = limit || this.limitMoveLines;
         var line = this.getLine(handle);
-        var excluded_ids = _.map(line.reconciliation_proposition, function (prop) {
+        var excluded_ids = _.map(_.union(line.reconciliation_proposition, line.mv_lines_match_rp, line.mv_lines_match_other), function (prop) {
             return _.isNumber(prop.id) ? prop.id : null;
         }).filter(id => id != null);
         var filter = line['filter_'+mode] || "";
-        var limit = this.limitMoveLines;
-        var offset = line.offset;
-        if (line.limit_override) {
-            // If we have a limit_override, it means we are either adding/removing
-            // a line from the matching table, hence keep same number of displayed
-            // proposition below by setting offset to 0 and limit to the current
-            // number of proposition loaded
-            offset = 0;
-            limit = line.limit_override;
-        }
         return this._rpc({
                 model: 'account.reconciliation.widget',
                 method: 'get_move_lines_for_bank_statement_line',
-                args: [line.id, line.st_line.partner_id, excluded_ids, filter, offset, limit, mode === 'match_rp' ? 'rp' : 'other'],
+                kwargs: {
+                    st_line_id: line.id,
+                    partner_id: line.st_line.partner_id,
+                    excluded_ids: excluded_ids,
+                    search_str: filter,
+                    limit: limit,
+                    mode: mode === 'match_rp' ? 'rp' : 'other',
+                },
                 context: this.context,
             })
             .then(this._formatMoveLine.bind(this, handle, mode));
@@ -1399,6 +1425,7 @@ var StatementModel = BasicModel.extend({
         if (prop.tax_ids && prop.tax_ids.length) result.tax_ids = [[6, null, _.pluck(prop.tax_ids, 'id')]];
         if (prop.tax_tag_ids && prop.tax_tag_ids.length) result.tax_tag_ids = [[6, null, _.pluck(prop.tax_tag_ids, 'id')]];
         if (prop.tax_repartition_line_id) result.tax_repartition_line_id = prop.tax_repartition_line_id;
+        if (prop.tax_base_amount) result.tax_base_amount = prop.tax_base_amount;
         if (prop.reconcile_model_id) result.reconcile_model_id = prop.reconcile_model_id
         if (prop.currency_id) result.currency_id = prop.currency_id;
         return result;
@@ -1430,20 +1457,6 @@ var ManualModel = StatementModel.extend({
     //--------------------------------------------------------------------------
     // Public
     //--------------------------------------------------------------------------
-
-    /**
-     * OVERRIDE
-     * Don't allow partial amount on the manual reconciliation widget.
-     */
-    addProposition: function (handle, mv_line_id) {
-        var line = this.getLine(handle);
-        var res = this._super(handle, mv_line_id);
-        _.each(line.reconciliation_proposition, function(prop){
-            delete prop["partial_amount"]
-            delete prop["partial_amount_str"]
-        });
-        return res;
-    },
 
     /**
      * load data from
@@ -1633,7 +1646,6 @@ var ManualModel = StatementModel.extend({
                     return;
                 }
                 line.filter_match = "";
-                line.offset = 0;
                 defs.push(self._performMoveLine(handle, 'match').then(function () {
                     if(!line.mv_lines_match.length) {
                         self.valuenow++;
@@ -1663,7 +1675,6 @@ var ManualModel = StatementModel.extend({
         var self = this;
         var line = this.getLine(handle);
         var defs = [];
-        // new limit = previous limit + 1, the one put back
         var prop = _.find(line.reconciliation_proposition, {'id' : id});
         if (prop) {
             line.reconciliation_proposition = _.filter(line.reconciliation_proposition, function (p) {
@@ -1726,7 +1737,6 @@ var ManualModel = StatementModel.extend({
             type: type,
             reconciled: false,
             mode: 'inactive',
-            offset: 0,
             limitMoveLines: this.limitMoveLines,
             filter_match: "",
             reconcileModels: this.reconcileModels,
@@ -1803,23 +1813,23 @@ var ManualModel = StatementModel.extend({
      * @param {string} handle
      * @returns {Promise}
      */
-    _performMoveLine: function (handle, mode) {
+    _performMoveLine: function (handle, mode, limit) {
+        limit = limit || this.limitMoveLines;
         var line = this.getLine(handle);
-        var excluded_ids = _.map(line.reconciliation_proposition, function (prop) {
+        var excluded_ids = _.map(_.union(line.reconciliation_proposition, line['mv_lines_'+mode]), function (prop) {
             return _.isNumber(prop.id) ? prop.id : null;
         }).filter(id => id != null);
         var filter = line.filter_match || "";
-        var limit = this.limitMoveLines;
-        var offset = line.offset;
-        if (line.limit_override) {
-            limit = line.limit_override;
-            offset = 0;
-        }
-        var args = [line.account_id.id, line.partner_id, excluded_ids, filter, offset, limit];
         return this._rpc({
                 model: 'account.reconciliation.widget',
                 method: 'get_move_lines_for_manual_reconciliation',
-                args: args,
+                kwargs: {
+                    account_id: line.account_id.id,
+                    partner_id: line.partner_id,
+                    excluded_ids: excluded_ids,
+                    search_str: filter,
+                    limit: limit,
+                },
                 context: this.context,
             })
             .then(this._formatMoveLine.bind(this, handle, ''));
@@ -1840,11 +1850,11 @@ var ManualModel = StatementModel.extend({
     _formatMoveLine: function (handle, mode, mv_lines) {
         var self = this;
         var line = this.getLine(handle);
-        if (line.offset === 0 || line.limit_override) {
-            line.mv_lines_match = mv_lines;
-            delete line.limit_override;
-        } else {
-            line.mv_lines_match = line.mv_lines_match.concat(mv_lines);
+        line.mv_lines_match = _.uniq([].concat(line.mv_lines_match || [], mv_lines), l => l.id);
+        if (mv_lines[0]){
+            line.remaining_match = mv_lines[0].recs_count - mv_lines.length;
+        } else if (line.mv_lines_match.length == 0) {
+            line.remaining_match = 0;
         }
         this._formatLineProposition(line, mv_lines);
 

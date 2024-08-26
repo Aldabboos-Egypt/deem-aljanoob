@@ -10,16 +10,16 @@
 # Jordy Blankestijn <jblankestijn@erpopen.nl>, 2020
 # dpms <pieter.van.de.wygaert@telenet.be>, 2020
 # Antoine Gilard <ang@odoo.com>, 2020
-# Erwin van der Ploeg <erwin@odooexperts.nl>, 2020
 # Odoo Experts Consultants <consultants@odooexperts.nl>, 2020
+# Erwin van der Ploeg <erwin@odooexperts.nl>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Odoo Experts Consultants <consultants@odooexperts.nl>, 2020\n"
+"Last-Translator: Erwin van der Ploeg <erwin@odooexperts.nl>, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/odoo/teams/41243/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -774,6 +774,19 @@ msgstr "Handmatige bewerkingen"
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr ""
+"Match afschrift met bestaande regels op debiteuren/crediteuren<br>* Zwarte "
+"regel: bestaande boeking die moet worden gematcht<br>* Blauwe regels: "
+"bestaande betaling die moet worden gematcht"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
 msgid "Match with entries that are not from receivable/payable accounts"
 msgstr ""
 "Match met boekingen die niet van debiteuren/crediteuren rekeningen zijn"
@@ -823,8 +836,8 @@ msgid ""
 "No users can edit journal entries related to a tax prior and inclusive of "
 "this date."
 msgstr ""
-"Er zijn geen gebruikers die de dagboek boekingen kunnen wijzigen gerelateerd"
-" aan een BTW voorafgaand of op deze datum."
+"Er zijn geen gebruikers die de boekingen kunnen wijzigen gerelateerd aan een"
+" BTW voorafgaand of op deze datum."
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__fiscalyear_lock_date

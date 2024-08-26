@@ -6,16 +6,16 @@
 # Martin Trigaux, 2020
 # Fekete Mihai <mihai.fekete@forestandbiomass.ro>, 2020
 # Hongu Cosmin <cosmin513@gmail.com>, 2020
-# Dorin Hongu <dhongu@gmail.com>, 2020
 # Foldi Robert <foldirobert@nexterp.ro>, 2020
+# Dorin Hongu <dhongu@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Foldi Robert <foldirobert@nexterp.ro>, 2020\n"
+"Last-Translator: Dorin Hongu <dhongu@gmail.com>, 2021\n"
 "Language-Team: Romanian (https://www.transifex.com/odoo/teams/41243/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -501,8 +501,8 @@ msgstr ""
 "Din orice vizualizare de listă, selectați mai multe înregistrări și lista "
 "devine modificabilă. Dacă actualizați o celulă, înregistrările selectate "
 "sunt actualizate simultan. Utilizați această caracteristică pentru a "
-"actualiza mai multe intrări în jurnal din Registrul General sau orice "
-"vizualizare în Jurnal."
+"actualiza mai multe intrări în jurnal de Carte Mare sau orice vizualizare în"
+" Jurnal."
 
 #. module: account_accountant
 #. openerp-web
@@ -767,6 +767,16 @@ msgstr "Blocați Perioada Fiscală"
 #, python-format
 msgid "Manual Operations"
 msgstr "Operațiuni manuale"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr ""
 
 #. module: account_accountant
 #. openerp-web

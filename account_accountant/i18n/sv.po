@@ -2,12 +2,31 @@
 # This file contains the translation of the following modules:
 # 	* account_accountant
 # 
+# Translators:
+# Kristoffer Grundström <lovaren@gmail.com>, 2021
+# Martin Trigaux, 2021
+# lasch a <bmail440@gmail.com>, 2021
+# Haojun Zou <apollo_zhj@msn.com>, 2021
+# Martin Wilderoth <martin.wilderoth@linserv.se>, 2021
+# Patrik Lermon <patrik.lermon@gmail.com>, 2021
+# lynnliuying <lynn.liu1971@gmail.com>, 2021
+# Egils Verkstad <egils@riseup.net>, 2021
+# Chrille Hedberg <hedberg.chrille@gmail.com>, 2021
+# Daniel Osser <danielosser@gmail.com>, 2021
+# Jakob Krabbe <jakob.krabbe@vertel.se>, 2021
+# Kim Asplund <kim.asplund@gmail.com>, 2021
+# Robin Calvin, 2022
+# CJ Dahlin <claes-johan.dahlin@dermanord.se>, 2022
+# Simon S, 2022
+# Anders Wallenquist <anders.wallenquist@vertel.se>, 2022
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
+"Last-Translator: Anders Wallenquist <anders.wallenquist@vertel.se>, 2022\n"
 "Language-Team: Swedish (https://www.transifex.com/odoo/teams/41243/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +37,7 @@ msgstr ""
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_form
 msgid "-> Reconcile"
-msgstr ""
+msgstr "-> Avstäm"
 
 #. module: account_accountant
 #: model_terms:digest.tip,tip_description:account_accountant.digest_tip_account_accountant_0
@@ -41,11 +60,14 @@ msgid ""
 "specific.\" role=\"img\" aria-label=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "<span class=\"o_form_label\">Fiscal Year</span>"
-msgstr ""
+msgstr "<span class=\"o_form_label\">Räkenskapsår</span>"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -59,6 +81,8 @@ msgstr ""
 msgid ""
 "<strong><b>Good job!</b> You went through all steps of this tour.</strong>"
 msgstr ""
+"<strong><b>Bra jobbat!</b> Du gick igenom alla steg på den här "
+"genomgången.</strong>"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
@@ -76,13 +100,13 @@ msgstr ""
 #: model:ir.model,name:account_accountant.model_account_account
 #, python-format
 msgid "Account"
-msgstr ""
+msgstr "Konto"
 
 #. module: account_accountant
 #: model:ir.actions.act_window,name:account_accountant.action_account_group_tree
 #: model:ir.ui.menu,name:account_accountant.menu_account_group
 msgid "Account Groups"
-msgstr ""
+msgstr "Kontogrupper"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__module_account_predictive_bills
@@ -92,13 +116,13 @@ msgstr ""
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_reconciliation_widget
 msgid "Account Reconciliation widget"
-msgstr ""
+msgstr "Avstämningsverktyget"
 
 #. module: account_accountant
 #: model:ir.actions.act_window,name:account_accountant.account_tag_action
 #: model:ir.ui.menu,name:account_accountant.account_tag_menu
 msgid "Account Tags"
-msgstr ""
+msgstr "Kontoetiketter"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -110,12 +134,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_partner_view_form
 msgid "Accounting"
-msgstr ""
+msgstr "Bokföring"
 
 #. module: account_accountant
 #: model_terms:ir.actions.act_window,help:account_accountant.account_tag_action
 msgid "Add a new tag"
-msgstr ""
+msgstr "Lätt till ny etikett"
 
 #. module: account_accountant
 #. openerp-web
@@ -125,11 +149,13 @@ msgid ""
 "All invoices and payments have been matched, your accounts' balances are "
 "clean."
 msgstr ""
+"Alla fakturor och betalningar har matchats, dina konton saldon är avstämda."
 
 #. module: account_accountant
 #: model:res.groups,name:account_accountant.group_fiscal_year
 msgid "Allow to define fiscal years of more or less than a year"
 msgstr ""
+"Tillåt att definiera räkenskapsår som är längre eller kortare än ett år"
 
 #. module: account_accountant
 #. openerp-web
@@ -138,14 +164,14 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Amount"
-msgstr ""
+msgstr "Belopp"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Analytic Acc."
-msgstr ""
+msgstr "Objektkonto"
 
 #. module: account_accountant
 #. openerp-web
@@ -164,7 +190,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_accountant.field_account_move__attachment_ids
 #: model:ir.model.fields,field_description:account_accountant.field_account_payment__attachment_ids
 msgid "Attachments"
-msgstr ""
+msgstr "Bilagor"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash
@@ -176,23 +202,23 @@ msgstr ""
 #: code:addons/account_accountant/static/src/js/reconciliation/reconciliation_action.js:0
 #, python-format
 msgid "Bank Reconciliation"
-msgstr ""
+msgstr "Bankavstämning"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_bank_statement
 msgid "Bank Statement"
-msgstr ""
+msgstr "Kontoutdrag"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_change_lock_date
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_reconcile_model_widget_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_change_lock_date
 msgid "Change Lock Date"
-msgstr ""
+msgstr "Ändra låsdatum"
 
 #. module: account_accountant
 #. openerp-web
@@ -208,7 +234,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Check all"
-msgstr ""
+msgstr "Välj alla"
 
 #. module: account_accountant
 #. openerp-web
@@ -234,12 +260,12 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Choose counterpart or Create Write-off"
-msgstr ""
+msgstr "Välj en motpart eller skriv av"
 
 #. module: account_accountant
 #: model_terms:ir.actions.act_window,help:account_accountant.actions_account_fiscal_year
 msgid "Click here to create a new fiscal year."
-msgstr ""
+msgstr "Klicka här för att skapa ett nytt räkneskapsår."
 
 #. module: account_accountant
 #. openerp-web
@@ -247,7 +273,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #. module: account_accountant
 #. openerp-web
@@ -259,17 +285,17 @@ msgstr ""
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Bolag"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__company_id
 msgid "Company"
-msgstr ""
+msgstr "Bolag"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurationsinställningar"
 
 #. module: account_accountant
 #. openerp-web
@@ -283,7 +309,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Connect your bank and get your latest transactions."
-msgstr ""
+msgstr "Anslut din bank och hämta dina senaste transaktioner"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_reconcile_model_widget_wizard
@@ -313,7 +339,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Create model"
-msgstr ""
+msgstr "Skapa modell"
 
 #. module: account_accountant
 #. openerp-web
@@ -328,13 +354,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__create_uid
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Skapad av"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__create_date
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Skapad den"
 
 #. module: account_accountant
 #. openerp-web
@@ -349,24 +375,24 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Define fiscal years of more or less than one year"
-msgstr ""
+msgstr "Definiera räkenskapsår som är längre eller kortare än ett år"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_digest_digest
 msgid "Digest"
-msgstr ""
+msgstr "Sammanställning"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_account__display_name
@@ -382,25 +408,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_accountant.field_res_company__display_name
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Visningsnamn"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/digest.py:0
 #, python-format
 msgid "Do not have access, skip this data for user's digest email"
 msgstr ""
+"Saknar åtkomsträttighet, skippa det här för kundens sammanställnings epost"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Due Date"
-msgstr ""
+msgstr "Förfallodatum"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__date_to
 msgid "End Date"
-msgstr ""
+msgstr "Slutdatum"
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_fiscal_year__date_to
@@ -425,7 +452,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "External link"
-msgstr ""
+msgstr "Extern länk"
 
 #. module: account_accountant
 #. openerp-web
@@ -437,12 +464,12 @@ msgstr ""
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_fiscal_year
 msgid "Fiscal Year"
-msgstr ""
+msgstr "Räkenskapsår"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.action_account_fiscal_year_form
 msgid "Fiscal Year 2018"
-msgstr ""
+msgstr "Räkenskapsår 2018"
 
 #. module: account_accountant
 #: model:ir.actions.act_window,name:account_accountant.actions_account_fiscal_year
@@ -450,7 +477,7 @@ msgstr ""
 #: model:ir.ui.menu,name:account_accountant.menu_account_fiscal_year
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Fiscal Years"
-msgstr ""
+msgstr "Räkenskapsår"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__fiscalyear_last_day
@@ -506,7 +533,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Good Job!"
-msgstr ""
+msgstr "Bra jobbat!"
 
 #. module: account_accountant
 #. openerp-web
@@ -529,7 +556,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_accountant.field_res_company__id
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/res_config_settings.py:0
@@ -558,11 +585,13 @@ msgstr ""
 msgid ""
 "It is mandatory to specify an account and a journal to create a write-off."
 msgstr ""
+"Det är obligatoriskt att ange ett konto och en journal för att skapa en "
+"avskrivning."
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.account_journal_dashboard_kanban_view
 msgid "Items"
-msgstr ""
+msgstr "Artiklar"
 
 #. module: account_accountant
 #. openerp-web
@@ -571,23 +600,23 @@ msgstr ""
 #: model:ir.model,name:account_accountant.model_account_journal
 #, python-format
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Verifikat"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Transaktion"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
 #, python-format
 msgid "Journal Items"
-msgstr ""
+msgstr "Journalrader"
 
 #. module: account_accountant
 #. openerp-web
@@ -595,7 +624,7 @@ msgstr ""
 #: model:ir.actions.client,name:account_accountant.action_manual_reconcile
 #, python-format
 msgid "Journal Items to Reconcile"
-msgstr ""
+msgstr "Journalrader att stämma av"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_digest_digest__kpi_account_bank_cash_value
@@ -609,7 +638,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Label"
-msgstr ""
+msgstr "Etikett"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -630,26 +659,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_accountant.field_res_company____last_update
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Senast redigerad"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Last Reconciliation:"
-msgstr ""
+msgstr "Senaste avstämningen"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__write_uid
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Senast uppdaterad av"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__write_date
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Senast uppdaterad"
 
 #. module: account_accountant
 #. openerp-web
@@ -693,7 +722,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Load more... ("
-msgstr ""
+msgstr "Ladda mer...("
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__fiscalyear_lock_date
@@ -705,7 +734,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__period_lock_date
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__period_lock_date
 msgid "Lock Date for Non-Advisers"
-msgstr ""
+msgstr "Lås-datum för andra än ekonomi"
 
 #. module: account_accountant
 #: model:ir.ui.menu,name:account_accountant.menu_action_change_lock_date
@@ -722,6 +751,16 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Manual Operations"
+msgstr ""
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
 msgstr ""
 
 #. module: account_accountant
@@ -753,14 +792,14 @@ msgstr ""
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__name
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Ny"
 
 #. module: account_accountant
 #. openerp-web
@@ -784,13 +823,15 @@ msgid ""
 "No users, including Advisers, can edit accounts prior to and inclusive of "
 "this date. Use it for fiscal year locking for example."
 msgstr ""
+"Inga användare, inklusive ekonomi-personal, kan ändra bokföringen före och "
+"inklusive detta datum. Använd detta för att exempelvis låsa bokföringsåret."
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Note"
-msgstr ""
+msgstr "Anteckning"
 
 #. module: account_accountant
 #. openerp-web
@@ -803,7 +844,7 @@ msgstr ""
 #: code:addons/account_accountant/wizard/account_change_lock_date.py:0
 #, python-format
 msgid "Only Billing Administrators are allowed to change lock dates!"
-msgstr ""
+msgstr "Endast faktureringsadministratörer får ändra låsdatum!"
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_res_config_settings__period_lock_date
@@ -812,6 +853,9 @@ msgid ""
 "of this date. Use it for period locking inside an open fiscal year, for "
 "example."
 msgstr ""
+"Endast användare med rättighetern 'Controller' kan korrigera bokföringen "
+"till och med detta datum. Använd för periodlåstning inuti ett öppet "
+"bokföringsår."
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__period_lock_date
@@ -826,7 +870,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Open balance"
-msgstr ""
+msgstr "Öppna saldon"
 
 #. module: account_accountant
 #. openerp-web
@@ -834,7 +878,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Partner"
-msgstr ""
+msgstr "Samarbetspartner"
 
 #. module: account_accountant
 #. openerp-web
@@ -858,12 +902,12 @@ msgstr ""
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_payment
 msgid "Payments"
-msgstr ""
+msgstr "Betalningar"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.account_journal_dashboard_kanban_view
 msgid "Payments Matching"
-msgstr ""
+msgstr "Matchande betalningar"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/account_payment.py:0
@@ -902,18 +946,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_line_tree_grouped
 #, python-format
 msgid "Reconcile"
-msgstr ""
+msgstr "Avstämning"
 
 #. module: account_accountant
 #: model:ir.actions.client,name:account_accountant.action_manual_reconciliation
 #: model:ir.ui.menu,name:account_accountant.menu_action_manual_reconciliation
 msgid "Reconciliation"
-msgstr ""
+msgstr "Avstämning"
 
 #. module: account_accountant
 #: model:ir.actions.client,name:account_accountant.action_bank_reconcile
 msgid "Reconciliation on Bank Statements"
-msgstr ""
+msgstr "Avstämning av bankkonton"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -925,19 +969,19 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Ref"
-msgstr ""
+msgstr "Ref"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Residual"
-msgstr ""
+msgstr "Kvarvarande"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_change_lock_date
 msgid "Save"
-msgstr ""
+msgstr "Bokför"
 
 #. module: account_accountant
 #. openerp-web
@@ -951,28 +995,28 @@ msgstr ""
 #: code:addons/account_accountant/static/src/js/reconciliation/reconciliation_renderer.js:0
 #, python-format
 msgid "Select Partner"
-msgstr ""
+msgstr "Välj partner"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Select a partner or choose a counterpart"
-msgstr ""
+msgstr "Välj en kontakt eller en motpart"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Skip"
-msgstr ""
+msgstr "Hoppa över"
 
 #. module: account_accountant
 #. openerp-web
@@ -984,7 +1028,7 @@ msgstr ""
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__date_from
 msgid "Start Date"
-msgstr ""
+msgstr "Startdatum"
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_fiscal_year__date_from
@@ -1014,7 +1058,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Taxes"
-msgstr ""
+msgstr "Moms"
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_bank_statement_line__payment_state_before_switch
@@ -1066,7 +1110,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "There is nothing to reconcile."
-msgstr ""
+msgstr "Inget att stämma av"
 
 #. module: account_accountant
 #. openerp-web
@@ -1082,7 +1126,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "This payment is registered but not reconciled."
-msgstr ""
+msgstr "Betalningen registrerad men inte avstämd."
 
 #. module: account_accountant
 #. openerp-web
@@ -1101,7 +1145,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "To Check"
-msgstr ""
+msgstr "Att kontrollera"
 
 #. module: account_accountant
 #. openerp-web
@@ -1115,12 +1159,12 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Transaction"
-msgstr ""
+msgstr "Transaktion"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__transfer_account_id
 msgid "Transfer Account"
-msgstr ""
+msgstr "Överför konto"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/account_move.py:0
@@ -1136,27 +1180,27 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_reconcile_model_widget_wizard
 #, python-format
 msgid "Validate"
-msgstr ""
+msgstr "Bekräfta"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Verify"
-msgstr ""
+msgstr "Verifiera"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
 #, python-format
 msgid "Write-Off"
-msgstr ""
+msgstr "Avskrivning"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Writeoff Date"
-msgstr ""
+msgstr "Avskrivningsdatum"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/account_fiscal_year.py:0
@@ -1165,6 +1209,8 @@ msgid ""
 "You can not have an overlap between two fiscal years, please correct the "
 "start and/or end dates of your fiscal years."
 msgstr ""
+"Ni kan inte ha en överlappning mellan två räkenskapsår, vänligen ändra start"
+" och/eller slutdatumen på era räkenskapsår."
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/account_move.py:0
@@ -1177,7 +1223,7 @@ msgstr ""
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit
 msgid "You have suspense account moves that match this invoice."
-msgstr ""
+msgstr "Du har observationskontorader som matchar denna faktura."
 
 #. module: account_accountant
 #. openerp-web
@@ -1196,7 +1242,7 @@ msgstr ""
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_reconcile_model_widget_wizard
 msgid "e.g. Bank Fees"
-msgstr ""
+msgstr "t.ex Bankavgifter"
 
 #. module: account_accountant
 #. openerp-web
@@ -1217,21 +1263,21 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "reconciliation models"
-msgstr ""
+msgstr "avstämningsmodeller"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "remaining)"
-msgstr ""
+msgstr "återstående)"
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "seconds per transaction."
-msgstr ""
+msgstr "sekunder per transaktion."
 
 #. module: account_accountant
 #. openerp-web
@@ -1243,7 +1289,7 @@ msgstr ""
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.account_journal_dashboard_kanban_view
 msgid "to check"
-msgstr ""
+msgstr "att kontrollera"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit
@@ -1262,7 +1308,7 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "unpaid invoices"
-msgstr ""
+msgstr "Utestående fakturor"
 
 #. module: account_accountant
 #. openerp-web
@@ -1276,4 +1322,4 @@ msgstr ""
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "vendor bills"
-msgstr ""
+msgstr "Leverantörskvitton"

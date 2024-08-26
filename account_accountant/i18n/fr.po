@@ -23,21 +23,24 @@
 # Christelle Pinchart <cpi@odoo.com>, 2020
 # Julien Goergen <jgo@odoo.com>, 2020
 # Arnaud Willem <contact@arnaud-willem.eu>, 2020
-# Anthony Chaussin <chaussin.anthony@gmail.com>, 2021
+# anthony chaussin <chaussin.anthony@gmail.com>, 2021
+# Geoffrey_GMF <gmf@odoo.com>, 2021
+# Alexandra Jubert, 2021
+# Benjamin Stienon <tsb@odoo.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Anthony Chaussin <chaussin.anthony@gmail.com>, 2021\n"
+"Last-Translator: Benjamin Stienon <tsb@odoo.com>, 2022\n"
 "Language-Team: French (https://www.transifex.com/odoo/teams/41243/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_account_form
@@ -270,7 +273,7 @@ msgstr "Choisissez une ligne pour prévisualiser ses pièces jointes."
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Choose counterpart or Create Write-off"
-msgstr "Choisissez la contrepartie ou créez une annulation"
+msgstr "Choisissez la contrepartie ou créez un Write-off"
 
 #. module: account_accountant
 #: model_terms:ir.actions.act_window,help:account_accountant.actions_account_fiscal_year
@@ -457,6 +460,11 @@ msgid ""
 "after installing Accounting if you were using only Invoicing before, before "
 "importing all your actual accounting data in to Odoo."
 msgstr ""
+"Tous les paiements et factures antérieurs à cette date reçoivent le statut "
+"\"From Invoicing\", qui masque toutes les écritures comptables qui s'y "
+"rapportent. Utilisez cette option après l'installation de la comptabilité si"
+" vous utilisiez uniquement la facturation avant, avant d'importer toutes vos"
+" données comptables réelles dans Odoo."
 
 #. module: account_accountant
 #. openerp-web
@@ -511,6 +519,11 @@ msgid ""
 "feature to update multiple journal entries from the General Ledger, or any "
 "Journal view."
 msgstr ""
+"Dans n'importe quelle vue liste, sélectionnez plusieurs enregistrements et "
+"la liste devient modifiable. Si vous mettez à jour une cellule, les "
+"enregistrements sélectionnés sont mis à jour en une seule fois. Utilisez "
+"cette fonction pour mettre à jour plusieurs mouvements comptables à partir "
+"du Grand livre."
 
 #. module: account_accountant
 #. openerp-web
@@ -524,7 +537,7 @@ msgstr "A partir de maintenant, vous voudrez peut-être:"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Get back to the dashboard using your previous path…"
-msgstr ""
+msgstr "Retournez au tableau de bord par le chemin précédent."
 
 #. module: account_accountant
 #. openerp-web
@@ -540,7 +553,7 @@ msgstr "Voir les relevés bancaires"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Go to invoicing"
-msgstr ""
+msgstr "Allez dans Facturation"
 
 #. module: account_accountant
 #. openerp-web
@@ -554,7 +567,7 @@ msgstr "Bravo!"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Great! Let’s continue."
-msgstr ""
+msgstr "Super ! Continuons."
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_account__id
@@ -595,7 +608,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_accountant.field_res_company__invoicing_switch_threshold
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__invoicing_switch_threshold
 msgid "Invoicing Switch Threshold"
-msgstr ""
+msgstr "Date de basculement comptable"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
@@ -603,8 +616,8 @@ msgstr ""
 msgid ""
 "It is mandatory to specify an account and a journal to create a write-off."
 msgstr ""
-"Il est obligatoire de spécifier un compte et un journal pour créer une "
-"radiation."
+"Il est obligatoire de spécifier un compte et un journal pour créer un Write-"
+"off."
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.account_journal_dashboard_kanban_view
@@ -704,27 +717,28 @@ msgstr "Dernière mise à jour le"
 #, python-format
 msgid "Let’s automate your bills, bank transactions and accounting processes."
 msgstr ""
+"Automatisons vos factures, transactions bancaires et processus comptables."
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s go back to the dashboard."
-msgstr ""
+msgstr "Retournons au tableau de bord."
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s reconcile the fetched bank transactions."
-msgstr ""
+msgstr "Réconcilions les transactions bancaires récupérées."
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s see how a bill looks like in form view."
-msgstr ""
+msgstr "Voyons comment se présente la vue formulaire d'une facture."
 
 #. module: account_accountant
 #. openerp-web
@@ -734,6 +748,8 @@ msgid ""
 "Let’s use AI to fill in the form<br/><br/><i>Tip: If the OCR is not done "
 "yet, wait a few more seconds and try again.</i>"
 msgstr ""
+"Utilisons l'IA pour remplir le formulaire <br> </br> <i> Truc : si l'OCR n'a"
+" pas terminé, ré-essayez dans quelques secondes. </i>"
 
 #. module: account_accountant
 #. openerp-web
@@ -770,6 +786,19 @@ msgstr "Clôturer la période fiscale"
 #, python-format
 msgid "Manual Operations"
 msgstr "Opérations manuelles"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr ""
+"Réconciliez les extraits avec les imputations comptables des comptes "
+"clients/fournisseurs 1* Lignes noires : pièces comptables existantes à "
+"réconcilier 2* Lignes bleues : payements existants à réconcilier."
 
 #. module: account_accountant
 #. openerp-web
@@ -816,7 +845,7 @@ msgstr "Nouveau"
 #: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
 #, python-format
 msgid "No attachments linked."
-msgstr ""
+msgstr "Pas de pièce jointe."
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__tax_lock_date
@@ -915,7 +944,7 @@ msgstr "Correspondance des paiements"
 #: model:ir.model.fields,field_description:account_accountant.field_account_move__payment_state_before_switch
 #: model:ir.model.fields,field_description:account_accountant.field_account_payment__payment_state_before_switch
 msgid "Payment State Before Switch"
-msgstr ""
+msgstr "Etat du payement avant la bascule."
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_payment
@@ -950,7 +979,7 @@ msgstr "Configuration prédéfinies"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Process this transaction."
-msgstr ""
+msgstr "Procédez à cette transaction."
 
 #. module: account_accountant
 #. openerp-web
@@ -1042,7 +1071,7 @@ msgstr "Ignorer"
 #: code:addons/account_accountant/static/src/js/reconciliation/reconciliation_renderer.js:0
 #, python-format
 msgid "Some fields are undefined"
-msgstr "Certains champs sont undéfinis"
+msgstr "Certains champs sont indéfinis"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_fiscal_year__date_from
@@ -1089,6 +1118,11 @@ msgid ""
 " allows keeping the former payment state, so that we can restore it if the "
 "user misconfigured the switch date and wants to change it."
 msgstr ""
+"Champ technique permettant de conserver la valeur de payment_state lors du "
+"passage de la facturation à la comptabilité (en utilisant le champ de "
+"paramétrage invoicing_switch_threshold). Il permet de conserver l'ancien "
+"état de paiement, afin de pouvoir le restaurer si l'utilisateur a mal "
+"configuré la date de basculement et souhaite la modifier."
 
 #. module: account_accountant
 #. openerp-web
@@ -1116,6 +1150,8 @@ msgid ""
 "The invoices up to this date will not be taken into account as accounting "
 "entries"
 msgstr ""
+"Les factures jusqu'à cette date ne seront pas prises en compte comme "
+"écritures comptables."
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -1156,12 +1192,12 @@ msgstr "Ce paiement est enregistré mais pas lettré. "
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "This was the model that generated the lines suggested"
-msgstr ""
+msgstr "Ce modèle a généré les lignes suggérées"
 
 #. module: account_accountant
 #: model:digest.tip,name:account_accountant.digest_tip_account_accountant_0
 msgid "Tip: Bulk update journal items"
-msgstr ""
+msgstr "Truc : Mettez à jour en masse les mouvements comptables."
 
 #. module: account_accountant
 #. openerp-web
@@ -1193,7 +1229,7 @@ msgstr "Compte de transfert"
 #: code:addons/account_accountant/models/account_move.py:0
 #, python-format
 msgid "Transfer Accounts"
-msgstr ""
+msgstr "Comptes de transferts"
 
 #. module: account_accountant
 #. openerp-web
@@ -1216,7 +1252,7 @@ msgstr "Verifier"
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
 #, python-format
 msgid "Write-Off"
-msgstr "Perte"
+msgstr "Write-off"
 
 #. module: account_accountant
 #. openerp-web
@@ -1243,6 +1279,8 @@ msgid ""
 "You cannot reconcile the payable and receivable accounts of multiple "
 "partners together at the same time."
 msgstr ""
+"Vous ne pouvez pas réconcilier les comptes payable et receivable de "
+"plusieurs partenaires en même temps. "
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit

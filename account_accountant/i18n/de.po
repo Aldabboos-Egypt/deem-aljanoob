@@ -10,21 +10,23 @@
 # Michael Schütt <michael.schuett.lwl@gmail.com>, 2020
 # Leon Grill <leg@odoo.com>, 2020
 # Stephan Schulze <stephan.schulze@bmfgroup.de>, 2020
-# Chris Egal <sodaswed@web.de>, 2020
 # philku79 <philip.kuss@gmx.de>, 2020
 # Kevin Harrings <kha@odoo.com>, 2020
 # Andreas Stauder <andreas.stauder@brain-tec.ch>, 2020
 # Florian Pose <fp@igh.de>, 2020
 # Felix Schubert <felix.schubert@go-erp.com>, 2020
 # Udo Hennig <info@udohennig.de>, 2021
+# Chris Egal <sodaswed@web.de>, 2021
+# Jannik Becher, 2021
+# Friederike Fasterling-Nesselbosch, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Udo Hennig <info@udohennig.de>, 2021\n"
+"Last-Translator: Friederike Fasterling-Nesselbosch, 2022\n"
 "Language-Team: German (https://www.transifex.com/odoo/teams/41243/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +42,7 @@ msgstr "-> Abstimmen"
 #. module: account_accountant
 #: model_terms:digest.tip,tip_description:account_accountant.digest_tip_account_accountant_0
 msgid "<b class=\"tip_title\">Tip: Bulk update journal items</b>"
-msgstr ""
+msgstr "<b class=\"tip_title\">Tipp: Bulk-Update von Journaleinträgen</b>"
 
 #. module: account_accountant
 #. openerp-web
@@ -49,7 +51,7 @@ msgstr ""
 msgid ""
 "<br>See how to manage your customer invoices in the "
 "<b>Customers/Invoices</b> menu"
-msgstr ""
+msgstr "Finde einen Buchhalter"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -79,6 +81,8 @@ msgstr "<span class=\"o_form_label\">Zwischenbank Buchungen</span>"
 msgid ""
 "<strong><b>Good job!</b> You went through all steps of this tour.</strong>"
 msgstr ""
+"<strong><b>Gut gemacht!</b> Sie haben alle Schritte dieser Tour "
+"absolviert.</strong>"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
@@ -226,6 +230,8 @@ msgid ""
 "Check & validate the bill. If no vendor has been found, add one before "
 "validating."
 msgstr ""
+"Prüfen und validieren Sie die Rechnung. Wenn kein Lieferant gefunden wurde, "
+"fügen Sie vor der Validierung einen hinzu."
 
 #. module: account_accountant
 #. openerp-web
@@ -347,6 +353,8 @@ msgid ""
 "Create your first vendor bill.<br/><br/><i>Tip: If you don’t have one on "
 "hand, use our sample bill.</i>"
 msgstr ""
+"Erstellen Sie Ihre erste Lieferantenrechnung.<br/><br/><i>Tipp: Wenn Sie "
+"keine Vorlage zur Hand haben, nutzen Sie unsere Musterrechnung.</i>"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__create_uid
@@ -443,6 +451,11 @@ msgid ""
 "after installing Accounting if you were using only Invoicing before, before "
 "importing all your actual accounting data in to Odoo."
 msgstr ""
+"Alle Zahlungen und Rechnungen vor diesem Datum erhalten den Status \"Aus der"
+" Fakturierung\", wodurch alle damit verbundenen Buchungseinträge "
+"ausgeblendet werden. Verwenden Sie diese Option nach der Installation der "
+"Buchhaltung, wenn Sie vorher nur die Rechnungsstellung verwendet haben, "
+"bevor Sie alle Ihre aktuellen Buchhaltungsdaten in Odoo importieren."
 
 #. module: account_accountant
 #. openerp-web
@@ -497,6 +510,11 @@ msgid ""
 "feature to update multiple journal entries from the General Ledger, or any "
 "Journal view."
 msgstr ""
+"Wählen Sie in einer beliebigen Listenansicht mehrere Datensätze aus und die "
+"Liste wird bearbeitbar. Wenn Sie eine Zelle aktualisieren, werden die "
+"ausgewählten Datensätze alle auf einmal aktualisiert. Verwenden Sie diese "
+"Funktion, um mehrere Journaleinträge aus dem Hauptbuch oder einer beliebigen"
+" Journalansicht zu aktualisieren."
 
 #. module: account_accountant
 #. openerp-web
@@ -511,6 +529,7 @@ msgstr "Von jetzt an sollten Sie das tun:"
 #, python-format
 msgid "Get back to the dashboard using your previous path…"
 msgstr ""
+"Kehren Sie zum Dashboard zurück, indem Sie den vorherigen Pfad verwenden..."
 
 #. module: account_accountant
 #. openerp-web
@@ -526,7 +545,7 @@ msgstr "Bankauszüge aufrufen"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Go to invoicing"
-msgstr ""
+msgstr "Zur Rechnungsstellung gehen"
 
 #. module: account_accountant
 #. openerp-web
@@ -540,7 +559,7 @@ msgstr "Gute Arbeit!"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Great! Let’s continue."
-msgstr ""
+msgstr "Großartig! Lassen Sie uns weitermachen."
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_account__id
@@ -686,20 +705,22 @@ msgstr "Zuletzt aktualisiert am"
 #, python-format
 msgid "Let’s automate your bills, bank transactions and accounting processes."
 msgstr ""
+"Lassen Sie uns Ihre Rechnungen, Bankgeschäfte und Buchhaltungsprozesse "
+"automatisieren."
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s go back to the dashboard."
-msgstr ""
+msgstr "Gehen Sie zurück zum Dashboard."
 
 #. module: account_accountant
 #. openerp-web
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s reconcile the fetched bank transactions."
-msgstr ""
+msgstr "Lassen Sie uns die abgerufenen Banktransaktionen abgleichen."
 
 #. module: account_accountant
 #. openerp-web
@@ -707,6 +728,7 @@ msgstr ""
 #, python-format
 msgid "Let’s see how a bill looks like in form view."
 msgstr ""
+"Schauen wir uns an, wie eine Rechnung in der Formularansicht aussieht."
 
 #. module: account_accountant
 #. openerp-web
@@ -716,6 +738,9 @@ msgid ""
 "Let’s use AI to fill in the form<br/><br/><i>Tip: If the OCR is not done "
 "yet, wait a few more seconds and try again.</i>"
 msgstr ""
+"Verwenden wir KI, um das Formular auszufüllen <br/><br/><i>Tipp: Wenn die "
+"Texterkennung noch nicht abgeschlossen ist, warten Sie noch ein paar "
+"Sekunden und versuchen Sie es erneut.</i>"
 
 #. module: account_accountant
 #. openerp-web
@@ -752,6 +777,20 @@ msgstr "Ihre Geschäftsperiode sperren"
 #, python-format
 msgid "Manual Operations"
 msgstr "Manuelle Abarbeitung"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr ""
+"Auszug mit vorhandenen Zeilen auf Forderungs-/Verbindlichkeitskonten "
+"abgleichen <br>* Schwarze Zeile: vorhandene Journalbuchung, die abgeglichen "
+"werden sollte<br>* Blaue Zeilen: vorhandene Zahlung, die abgeglichen werden "
+"sollte"
 
 #. module: account_accountant
 #. openerp-web
@@ -797,7 +836,7 @@ msgstr "Neu"
 #: code:addons/account_accountant/static/src/js/move_line_list_view.js:0
 #, python-format
 msgid "No attachments linked."
-msgstr ""
+msgstr "Keine Anlagen verknüpft."
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__tax_lock_date
@@ -894,7 +933,7 @@ msgstr "Abstimmung Rechnungen & Zahlungen"
 #: model:ir.model.fields,field_description:account_accountant.field_account_move__payment_state_before_switch
 #: model:ir.model.fields,field_description:account_accountant.field_account_payment__payment_state_before_switch
 msgid "Payment State Before Switch"
-msgstr ""
+msgstr "Zahlungsstatus vor dem Wechsel"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_payment
@@ -929,7 +968,7 @@ msgstr "Voreinstellungen konfigurieren"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Process this transaction."
-msgstr ""
+msgstr "Diese Transaktion verarbeiten."
 
 #. module: account_accountant
 #. openerp-web
@@ -1067,6 +1106,11 @@ msgid ""
 " allows keeping the former payment state, so that we can restore it if the "
 "user misconfigured the switch date and wants to change it."
 msgstr ""
+"Technisches Feld zur Beibehaltung des Wertes von payment_state beim Wechsel "
+"von der Rechnungsstellung zur Buchhaltung (mit dem Feld "
+"invoicing_switch_threshold). Es ermöglicht die Beibehaltung des früheren "
+"Zahlungsstatus, so dass wir ihn wiederherstellen können, wenn der Benutzer "
+"das Umschaltdatum falsch konfiguriert hat und es ändern möchte."
 
 #. module: account_accountant
 #. openerp-web
@@ -1094,6 +1138,8 @@ msgid ""
 "The invoices up to this date will not be taken into account as accounting "
 "entries"
 msgstr ""
+"Die Rechnungen, die bis zu diesem Datum ausgestellt wurden, werden nicht als"
+" Buchungsposten berücksichtigt."
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -1134,12 +1180,12 @@ msgstr "Die Zahlung wurde gebucht, aber nicht abgestimmt."
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "This was the model that generated the lines suggested"
-msgstr ""
+msgstr "Dies war das Modell, das die vorgeschlagenen Zeilen erzeugte"
 
 #. module: account_accountant
 #: model:digest.tip,name:account_accountant.digest_tip_account_accountant_0
 msgid "Tip: Bulk update journal items"
-msgstr ""
+msgstr "Tipp: Massenaktualisierung von Journaleinträgen"
 
 #. module: account_accountant
 #. openerp-web
@@ -1220,6 +1266,8 @@ msgid ""
 "You cannot reconcile the payable and receivable accounts of multiple "
 "partners together at the same time."
 msgstr ""
+"Sie können die Debitoren- und Kreditorenkonten mehrerer Partner nicht "
+"gleichzeitig abstimmen."
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit

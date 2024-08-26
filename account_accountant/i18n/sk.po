@@ -12,15 +12,15 @@
 # Radoslav Sloboda <rado.sloboda@gmail.com>, 2020
 # Peter Dovicovic <dovicovic@gmail.com>, 2020
 # karolína schusterová <karolina.schusterova@vdp.sk>, 2020
-# Rastislav Brencic <rastislav.brencic@azet.sk>, 2020
+# Rastislav Brencic <rastislav.brencic@azet.sk>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Rastislav Brencic <rastislav.brencic@azet.sk>, 2020\n"
+"Last-Translator: Rastislav Brencic <rastislav.brencic@azet.sk>, 2021\n"
 "Language-Team: Slovak (https://www.transifex.com/odoo/teams/41243/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,7 +84,7 @@ msgstr ""
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
 #, python-format
 msgid "A reconciliation must involve at least 2 move lines."
-msgstr "Odsúhlasenie musí obsahovať aspoň 2 riadky pohybov."
+msgstr "Párovanie musí obsahovať aspoň 2 riadky pohybov."
 
 #. module: account_accountant
 #. openerp-web
@@ -107,12 +107,12 @@ msgstr "Skupiny účtu"
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__module_account_predictive_bills
 msgid "Account Predictive Bills"
-msgstr "Prediktívne doklady účet"
+msgstr "Účet prediktívnych faktúr"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_reconciliation_widget
 msgid "Account Reconciliation widget"
-msgstr "Widget pre zosúladenie účtu"
+msgstr "Widget pre párovanie účtu"
 
 #. module: account_accountant
 #: model:ir.actions.act_window,name:account_accountant.account_tag_action
@@ -173,7 +173,7 @@ msgstr "Analytický úč."
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Analytic Tags."
-msgstr "Analytické tagy."
+msgstr "Strediská."
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_res_config_settings__use_anglo_saxon
@@ -197,7 +197,7 @@ msgstr "Bankové a hotovostné pohyby"
 #: code:addons/account_accountant/static/src/js/reconciliation/reconciliation_action.js:0
 #, python-format
 msgid "Bank Reconciliation"
-msgstr "Rekonsiliácia bankových dokladov"
+msgstr "Párovanie bankových dokladov"
 
 #. module: account_accountant
 #: model:ir.model,name:account_accountant.model_account_bank_statement
@@ -317,7 +317,7 @@ msgstr "Hodnota protiúčtu"
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
 #, python-format
 msgid "Create Reconciliation Model"
-msgstr "Vytvorte model rekonsiliácie"
+msgstr "Vytvorte model párovania"
 
 #. module: account_accountant
 #. openerp-web
@@ -501,8 +501,8 @@ msgid ""
 msgstr ""
 "V ľubovoľnom zobrazení zoznamu vyberte viac záznamov a zoznam bude možné "
 "upravovať. Ak aktualizujete bunku, vybrané záznamy sa aktualizujú naraz. "
-"Táto funkcia sa používa na aktualizáciu viacerých položiek denníka z hlavnej"
-" knihy alebo z ľubovoľného zobrazenia denníka."
+"Táto funkcia sa používa na aktualizáciu viacerých interných účtovných "
+"dokladov z obratovej predvahy alebo z ľubovoľného zobrazenia denníka."
 
 #. module: account_accountant
 #. openerp-web
@@ -674,7 +674,7 @@ msgstr "Posledná úprava"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Last Reconciliation:"
-msgstr "Posledné odsúhlasenie :"
+msgstr "Posledné párovanie:"
 
 #. module: account_accountant
 #: model:ir.model.fields,field_description:account_accountant.field_account_change_lock_date__write_uid
@@ -693,7 +693,9 @@ msgstr "Naposledy upravované"
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s automate your bills, bank transactions and accounting processes."
-msgstr "Poďme automatizovať vaše účty, bankové transakcie a účtovné procesy."
+msgstr ""
+"Poďme automatizovať vaše prijaté faktúry, bankové transakcie a účtovné "
+"procesy."
 
 #. module: account_accountant
 #. openerp-web
@@ -767,6 +769,16 @@ msgstr "Ručné operácie"
 #. openerp-web
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr ""
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
 msgid "Match with entries that are not from receivable/payable accounts"
 msgstr "Priraďte k položkám, ktoré nie sú z účtov pohľadávok / záväzkov"
 
@@ -775,7 +787,7 @@ msgstr "Priraďte k položkám, ktoré nie sú z účtov pohľadávok / záväzk
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "Miscellaneous Matching"
-msgstr "Rôzne spárovanie"
+msgstr "Rôzne účtovné záznamy"
 
 #. module: account_accountant
 #. openerp-web
@@ -815,8 +827,8 @@ msgid ""
 "No users can edit journal entries related to a tax prior and inclusive of "
 "this date."
 msgstr ""
-"Žiadni používatelia nemôžu upravovať účtovné zápisy súvisiace s daňou pred a"
-" vrátane tohto dátumu."
+"Žiadni používatelia nemôžu upravovať interné účtovné doklady súvisiace s "
+"daňou pred a vrátane tohto dátumu."
 
 #. module: account_accountant
 #: model:ir.model.fields,help:account_accountant.field_account_change_lock_date__fiscalyear_lock_date
@@ -957,17 +969,19 @@ msgstr "Zosúladiť"
 #: model:ir.actions.client,name:account_accountant.action_manual_reconciliation
 #: model:ir.ui.menu,name:account_accountant.menu_action_manual_reconciliation
 msgid "Reconciliation"
-msgstr "Zosúladenie"
+msgstr "Párovanie"
 
 #. module: account_accountant
 #: model:ir.actions.client,name:account_accountant.action_bank_reconcile
 msgid "Reconciliation on Bank Statements"
-msgstr "Zosúladenie na bankových výpisoch"
+msgstr "Párovanie na bankových výpisoch"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
 msgid "Record cost of goods sold in your journal entries"
-msgstr "Zaznamenajte náklady na predaný tovar do svojich účtovných denníkov"
+msgstr ""
+"Zaznamenajte náklady na predaný tovar vo svojich interných účtovných "
+"dokladoch"
 
 #. module: account_accountant
 #. openerp-web
@@ -1114,7 +1128,7 @@ msgid ""
 "history of previous bills"
 msgstr ""
 "Systém sa pokúsi predpovedať účty na účtoch dokladov dodávateľa na základe "
-"histórie predchádzajúcich účtov"
+"histórie predchádzajúcich prijatých faktúr"
 
 #. module: account_accountant
 #. openerp-web
@@ -1165,7 +1179,7 @@ msgstr "Na kontrolu"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "To speed up reconciliation, define"
-msgstr "Pre zrýchlenie odsúhlasenia, definujte"
+msgstr "Pre zrýchlenie párovania, definujte"
 
 #. module: account_accountant
 #. openerp-web
@@ -1277,7 +1291,7 @@ msgstr "reconcile"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "reconciliation models"
-msgstr "modely odsúhlasenia"
+msgstr "modely párovania"
 
 #. module: account_accountant
 #. openerp-web
@@ -1322,7 +1336,7 @@ msgstr "transakcie v"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "unpaid invoices"
-msgstr "neuhradené faktúry"
+msgstr "nezaplatené faktúry"
 
 #. module: account_accountant
 #. openerp-web
@@ -1336,4 +1350,4 @@ msgstr "nezosúladené položky"
 #: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
 #, python-format
 msgid "vendor bills"
-msgstr "Dodávateľské doklady"
+msgstr "Dodávateľské faktúry"

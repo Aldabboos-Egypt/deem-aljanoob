@@ -3,10 +3,8 @@
 # 	* account_accountant
 # 
 # Translators:
-# Ediz Duman <neps1192@gmail.com>, 2020
 # Levent Karakaş <levent@mektup.at>, 2020
 # Murat Kaplan <muratk@projetgrup.com>, 2020
-# Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2020
 # Erdinç Akın, 2020
 # Umur Akın <umura@projetgrup.com>, 2020
 # Buket Şeker <buket_skr@hotmail.com>, 2020
@@ -15,14 +13,16 @@
 # Yedigen, 2020
 # abc Def <hdogan1974@gmail.com>, 2020
 # Nadir Gazioglu <nadirgazioglu@gmail.com>, 2021
+# Ediz Duman <neps1192@gmail.com>, 2021
+# Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2022
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-27 13:47+0000\n"
+"POT-Creation-Date: 2021-04-15 12:58+0000\n"
 "PO-Revision-Date: 2020-09-07 08:17+0000\n"
-"Last-Translator: Nadir Gazioglu <nadirgazioglu@gmail.com>, 2021\n"
+"Last-Translator: Ertuğrul Güreş <ertugrulg@projetgrup.com>, 2022\n"
 "Language-Team: Turkish (https://www.transifex.com/odoo/teams/41243/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,6 +48,8 @@ msgid ""
 "<br>See how to manage your customer invoices in the "
 "<b>Customers/Invoices</b> menu"
 msgstr ""
+"<br><b>Müşteriler/Faturalar</b> menüsünde müşteri faturalarınızı nasıl "
+"yöneteceğinizi görün"
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.res_config_settings_view_form
@@ -76,7 +78,7 @@ msgstr "<span class=\"o_form_label\">Bankalar Arası Transferler</span>"
 #, python-format
 msgid ""
 "<strong><b>Good job!</b> You went through all steps of this tour.</strong>"
-msgstr ""
+msgstr "<strong><b>Aferin! </b> bu turun tüm adımlarından geçtiniz. </strong>"
 
 #. module: account_accountant
 #: code:addons/account_accountant/models/reconciliation_widget.py:0
@@ -693,6 +695,8 @@ msgstr "Son Güncelleme"
 #, python-format
 msgid "Let’s automate your bills, bank transactions and accounting processes."
 msgstr ""
+"Faturalarınızı, banka işlemlerinizi ve muhasebe süreçlerinizi "
+"otomatikleştirelim."
 
 #. module: account_accountant
 #. openerp-web
@@ -713,7 +717,7 @@ msgstr "Let’s reconcile the fetched bank transactions."
 #: code:addons/account_accountant/static/src/js/tours/account_accountant.js:0
 #, python-format
 msgid "Let’s see how a bill looks like in form view."
-msgstr ""
+msgstr "Bir faturanın form görünümünde nasıl göründüğünü görelim."
 
 #. module: account_accountant
 #. openerp-web
@@ -761,6 +765,19 @@ msgstr "Mali Periyodu Kilitleyin"
 #, python-format
 msgid "Manual Operations"
 msgstr "Manuel İşlemler"
+
+#. module: account_accountant
+#. openerp-web
+#: code:addons/account_accountant/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"Match statement with existing lines on receivable/payable accounts<br>* "
+"Black line: existing journal entry that should be matched<br>* Blue lines: "
+"existing payment that should be matched"
+msgstr ""
+"Alacak/borç hesaplarındaki mevcut satırlarla ekstreyi eşleştirin<br>* Siyah "
+"satır: eşleşmesi gereken mevcut yevmiye kaydı<br>* Mavi satırlar: eşleşmesi "
+"gereken mevcut ödeme"
 
 #. module: account_accountant
 #. openerp-web
@@ -1233,6 +1250,8 @@ msgid ""
 "You cannot reconcile the payable and receivable accounts of multiple "
 "partners together at the same time."
 msgstr ""
+"Birden fazla İş ortağının borç ve alacak hesaplarını aynı anda bir arada "
+"mutabakat sağlayamazsınız."
 
 #. module: account_accountant
 #: model_terms:ir.ui.view,arch_db:account_accountant.view_move_form_inherit

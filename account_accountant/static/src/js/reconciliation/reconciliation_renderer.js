@@ -56,6 +56,7 @@ var StatementRenderer = Widget.extend(FieldManagerMixin, {
             'number': state.valuenow,
             'timePerTransaction': Math.round(dt/1000/state.valuemax),
             'context': state.context,
+            'bank_statement_id': state.bank_statement_id,
         }));
         $done.find('*').addClass('o_reward_subcontent');
         $done.find('.button_close_statement').click(this._onCloseBankStatement.bind(this));
@@ -312,9 +313,21 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
         var self = this;
         // isValid
         var to_check_checked = !!(state.to_check);
-        this.$('caption .o_buttons button.o_validate').toggleClass('d-none', !!state.balance.type && !to_check_checked);
-        this.$('caption .o_buttons button.o_reconcile').toggleClass('d-none', state.balance.type <= 0 || to_check_checked);
-        this.$('caption .o_buttons .o_no_valid').toggleClass('d-none', state.balance.type >= 0);
+        let buttonDisplayed;
+        if (state.balance.type === -1) {
+            buttonDisplayed = 'invalid';
+        } else if (state.balance.type === 0) {
+            buttonDisplayed = 'validate';
+        } else if (state.balance.type === 1) {
+            buttonDisplayed = to_check_checked ? 'validate' : 'reconcile';
+        }
+        const buttons = {
+            'validate': this.$('caption .o_buttons button.o_validate'),
+            'reconcile': this.$('caption .o_buttons button.o_reconcile'),
+            'invalid': this.$('caption .o_buttons .o_no_valid'),
+        };
+        Object.entries(buttons).forEach(([name, $button]) =>
+            $button.toggleClass('d-none', name !== buttonDisplayed));
         self.$('caption .o_buttons button.o_validate').toggleClass('text-warning', to_check_checked);
 
         // partner_id
@@ -361,8 +374,7 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
         var matching_modes = self.model.modes.filter(x => x.startsWith('match'));
         for (let i = 0; i < matching_modes.length; i++) {
             var stateMvLines = state['mv_lines_'+matching_modes[i]] || [];
-            var recs_count = stateMvLines.length > 0 ? stateMvLines[0].recs_count : 0;
-            var remaining = recs_count - stateMvLines.length;
+            var remaining = state['remaining_' + matching_modes[i]];
             var $mv_lines = this.$('div[id*="notebook_page_' + matching_modes[i] + '"] .match table tbody').empty();
             this.$('.o_notebook li a[href*="notebook_page_' + matching_modes[i] + '"]').parent().toggleClass('d-none', stateMvLines.length === 0 && !state['filter_'+matching_modes[i]]);
 
@@ -511,7 +523,7 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
             relation: 'account.journal',
             type: 'many2one',
             name: 'journal_id',
-            domain: [['company_id', '=', state.st_line.company_id]],
+            domain: [['company_id', '=', state.st_line.company_id], ['type', '=', 'general']],
         }, {
             relation: 'account.tax',
             type: 'many2many',
@@ -521,10 +533,12 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
             relation: 'account.analytic.account',
             type: 'many2one',
             name: 'analytic_account_id',
+            domain: ["|", ['company_id', '=', state.st_line.company_id], ['company_id', '=', false]],
         }, {
             relation: 'account.analytic.tag',
             type: 'many2many',
             name: 'analytic_tag_ids',
+            domain: ["|", ['company_id', '=', state.st_line.company_id], ['company_id', '=', false]],
         }, {
             type: 'boolean',
             name: 'force_tax_included',
@@ -535,7 +549,7 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
             type: 'float',
             name: 'amount',
         }, {
-            type: 'char', //TODO is it a bug or a feature when type date exists ?
+            type: 'date',
             name: 'date',
         }, {
             type: 'boolean',
@@ -787,7 +801,7 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
      */
     _onLoadMore: function (ev) {
         ev.preventDefault();
-        this.trigger_up('change_offset', {'data': 1});
+        this.trigger_up('load_more');
     },
     /**
      * @private
@@ -816,7 +830,7 @@ var LineRenderer = Widget.extend(FieldManagerMixin, {
      */
     _onQuickCreateProposition: function (event) {
         document.activeElement && document.activeElement.blur();
-        this.trigger_up('quick_create_proposition', {'data': $(event.target).data('reconcile-model-id')});
+        this.trigger_up('quick_create_proposition', {'data': $(event.target).closest('button').data('reconcile-model-id')});
     },
     /**
      * @private
