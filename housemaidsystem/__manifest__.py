@@ -9,7 +9,7 @@
     'author': "Bassam Mannaa",
     'website': "https://housemaidsystem.bassammannaa.com/",
     'category': 'Business',
-    'version': '14.1.3',
+    'version': '14.1.8',
     'license': 'AGPL-3',
     'depends': ['base', 'account', 'crm', 'l10n_sa', 'mail'],
     'images': [
@@ -54,7 +54,7 @@
         'views/collect_payment_late.xml',
         'views/contracts_print.xml',
         'views/customers.xml',
-
+        'views/views.xml',
 
         # data
         'data/post_applied_data.xml',

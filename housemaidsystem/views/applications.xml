@@ -317,6 +317,15 @@
                             <field name="passport_issue_date"/>
                             <field name="passport_country_id"/>
                             <field name="passport_expiry_date"/>
+                                     <field name="transfer_request_number" string="Transfer Request Number"/>
+                        <field name="transfer_request_date" string="Transfer Request Date"/>
+
+                        <field name="security_approval_number" string="Security Approval Number"/>
+                        <field name="security_approval_date" string="Security Approval Date"/>
+
+                        <field name="work_id_request_number" string="Work ID Request Number"/>
+                        <field name="work_id_request_date" string="Work ID Request Date"/>
+
                         </group>
                         <separator string="Skill Details" colspan="4"/>
                         <group col="4">

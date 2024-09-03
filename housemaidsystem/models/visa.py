@@ -77,14 +77,11 @@ class Visa(models.Model):
             logger.exception("_calc_days_visa_rec_date Method")
             raise ValidationError(e)
 
+    @api.depends('application_id','visa_no')
     def _get_labor_dtl(self):
-        try:
-            for record in self:
-                if not record.application_id == None:
-                    self.office_code = record.application_id.office_code
-        except Exception as e:
-            logger.exception("_get_labor_dtl Method")
-            raise ValidationError(e)
+         for record in self:
+            self.office_code = record.application_id.office_code
+
 
     def apply(self):
         try:
@@ -328,3 +325,4 @@ class CancelVisa(models.Model):
     sponsor_avenue = fields.Char(string="Avenue", required=False, )
     sponsor_building = fields.Char(string="Building", required=False, )
     sponsor_zip = fields.Char(string="Zip", required=False, )
+

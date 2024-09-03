@@ -1,5 +1,17 @@
 <odoo>
     <data>
+
+
+
+        <record id="housemaid_configuration_contract_template_design" model="ir.actions.act_window">
+            <field name="name">ir.ui.view</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.ui.view</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('name', 'ilike', 'contract_print')]</field>
+        </record>
+
+
         <!-- ROOT MENU -->
         <menuitem id="housemaid_menu_root"
                   name="Housemaid"
@@ -322,11 +334,20 @@
                   action="housemaid_configuration_sponsor_house_type_action_window"
                   groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
                   sequence="9"/>
+
+                <menuitem id="contract_print_layout_menu_action"
+                  name="Contract Template Design"
+                  parent="configuration_menu_category"
+                  action="housemaid_configuration_contract_template_design"
+                  groups="housemaidsystem.system_manager_user_group,housemaidsystem.sales_manager_user_group"
+                  sequence="10"/>
+
+
         <menuitem id="housemaid_config_settings_menu"
                   name="Settings"
                   parent="configuration_menu_category"
                   action="housemaid_config_settings_action"
-                  sequence="10"/>
+                  sequence="11"/>
 
         <!-- ACTION MENU / Dynamic Reports / automatic appear in the model screen -->
         <report id="application_details"
@@ -553,7 +574,7 @@
         </record>
 
         <record id="contracts_print_report_menu_action" model="ir.actions.report">
-            <field name="name">Three Parties Contract Print (English and Arabic)</field>
+            <field name="name">Three Parties Contract Print (  Arabic)</field>
             <field name="model">housemaidsystem.configuration.contracts_print</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">housemaidsystem.contract_print</field>

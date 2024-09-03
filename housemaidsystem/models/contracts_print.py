@@ -243,7 +243,7 @@ class ContractsPrint(models.Model):
                     selltest_obj=self.env['housemaidsystem.applicant.selltest'].search([
 
                         ('application_id','=',self.application_id.id),
-                        ('new_customer_id', '=', self.application_id.customer_id.id)
+                        ('new_customer_id', '=', self.customer_id.id)
 
                     ],limit=1,order="id desc")
 
@@ -256,7 +256,6 @@ class ContractsPrint(models.Model):
                         self.hm_deal_amount = reservation.deal_amount if reservation.deal_amount else 0.0
 
                     if selltest_obj:
-                        if self.customer_id.id==selltest_obj.new_customer_id.id:
                             self.hm_deal_amount = selltest_obj.deal_amount if selltest_obj.deal_amount else 0.0
 
                     if self.application_id.gender.upper() == 'MALE':

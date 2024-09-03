@@ -6,6 +6,65 @@
             <t t-call="web.external_layout">
                 <div class="font">
                     <div class="page">
+<style>
+    /* General Table Styles */
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Header Styles */
+    .custom-table thead {
+        background-color: #28a745; /* Success green */
+        color: white;
+        font-weight: bold;
+    }
+
+    .custom-table thead th {
+        padding: 10px;
+        border: 2px solid black;
+    }
+
+    /* Body Row Styles */
+    .custom-table tbody tr {
+        background-color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Light gray for alternating rows */
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #d4edda; /* Light green on hover */
+        transform: scale(1.02);
+    }
+
+    .custom-table tbody td {
+        padding: 8px;
+        border: 2px solid black;
+    }
+
+    /* Footer Styles */
+    .custom-table tfoot {
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+    }
+
+    .custom-table tfoot td {
+        padding: 10px;
+        border: 2px solid black;
+        text-align: center;
+    }
+</style>
+
+
                         <br></br>
                         <div class="text-center">
                             <h3>
@@ -20,77 +79,47 @@
                             </br>
                         </div>
                         <br></br>
-                        <table class="table table-sm table-hover table-bordered">
-                            <thead class="thead-light small">
-                                <t t-if="accumulated">
-                                    <th colspan="9"> </th>
-                                </t>
-                                <t t-else="">
-                                    <th>SN</th>
-                                    <th>Expected Arrival Date</th>
-                                    <th>External Code</th>
-                                    <th>HM Name</th>
-                                    <th>Passport</th>
-                                    <th>Sponsor Name(En)</th>
-                                    <th>Sponsor Name(Ar)</th>
-                                    <th>Sponsor Mobile</th>
-                                    <th>Flight Number</th>
-                                    <th>User Name</th>
-                                </t>
-
-                            </thead>
-                            <tbody class="thead-light small">
-                                <t t-set="line_num" t-value="1"/>
-                                <t t-foreach="docs" t-as="doc">
-                                    <t t-if="accumulated == False">
-                                        <tr>
-                                        <td>
-                                            <t t-esc="line_num"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.expected_arrival_date.strftime('%Y-%m-%d %H:%M:%S')"/>
-
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.application_id.external_office_id"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.application_id.full_name"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.application_id.passport_id"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.customer_id.name"/>
-                                        </td>
-                                            <td>
-                                            <t t-esc="doc.customer_id.name_ar"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.customer_id.mobile"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.flight_no"/>
-                                        </td>
-                                        <td>
-                                            <t t-esc="doc.write_uid.name"/>
-                                        </td>
-                                    </tr>
-                                    </t>
-                                    <t t-set="line_num" t-value="line_num+1"/>
-                                </t>
-                            </tbody>
-                            <tfoot class="thead-light small">
-                                <tr>
-                                    <td colspan="9">
-                                        <span>Records Count
-                                            <span t-esc="line_num - 1"/>
-                                            Records
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
+<table class="custom-table">
+    <thead>
+        <tr>
+            <th style="width: 3%;">SN</th>
+            <th style="width: 12%;">Expected Arrival Date</th>
+            <th style="width: 7%;">External Code</th>
+            <th style="width: 13%;">HM Name</th>
+            <th style="width: 10%;">Passport</th>
+            <th style="width: 15%;">Sponsor Name (En)</th>
+            <th style="width: 15%;">Sponsor Name (Ar)</th>
+            <th style="width: 10%;">Sponsor Mobile</th>
+            <th style="width: 15%;">Flight Number</th>
+            <th style="width: 10%;">User Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <t t-set="line_num" t-value="1"/>
+        <t t-foreach="docs" t-as="doc">
+            <tr>
+                <td><t t-esc="line_num"/></td>
+                <td><span t-esc="doc.expected_arrival_date" t-options='{"widget": "datetime"}'/></td>
+                <td><t t-esc="doc.application_id.external_office_id"/></td>
+                <td><t t-esc="doc.application_id.full_name"/></td>
+                <td><t t-esc="doc.application_id.passport_id"/></td>
+                <td><t t-esc="doc.customer_id.name"/></td>
+                <td><t t-esc="doc.customer_id.name_ar"/></td>
+                <td><t t-esc="doc.customer_id.mobile"/></td>
+                <td><t t-esc="doc.flight_no"/></td>
+                <td><t t-esc="doc.write_uid.name"/></td>
+            </tr>
+            <t t-set="line_num" t-value="line_num + 1"/>
+        </t>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10">
+                Records Count: <span t-esc="line_num - 1"/> Records
+            </td>
+        </tr>
+    </tfoot>
+</table>
                     </div>
                 </div>
             </t>

@@ -20,374 +20,717 @@
     </template>
 
 
-    <template id="contract_print">
+<!--    <template id="contract_print">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="o">-->
+<!--                <t t-call="housemaidsystem.contract_layout">-->
+<!--                    <div class="page" style="border">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-center">-->
+<!--                                    <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;text-decoration: underline;">-->
+<!--                                        <b>Standard Triple-Party Recruitment / Employment Contract (Male / Female-->
+<!--                                            DomesticWorker)</b>-->
+<!--                                    </span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <br/>-->
+<!--                        <div class="row"-->
+<!--                             style="font-family:Simplified Arabic;font-size: 12px;text-align:center;text-decoration: underline;">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-left">-->
+<!--                                    <p>-->
+<!--                                        <b><span>As of the following mentioned day </span>-->
+<!--                                            <span t-field="o.day_name"/>-->
+<!--                                            <span> dated </span>-->
+<!--                                            <span t-field="o.contract_date"/>-->
+<!--                                            <span>the parties agreed to the following:</span></b>-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-left">-->
+<!--                                    <ol>-->
+<!--                                        <li>-->
+<!--                                            <span>(Office - Company) :</span>-->
+<!--                                            <b><u><span t-field="o.company_en_name"/></u></b>-->
+<!--                                            <span>according to the Ministry of Commerce permit no.</span>-->
+<!--                                            <b><u><span t-field="o.company_reg_id"/></u></b>-->
+<!--                                            <span>and the Public Authority of Manpower Permit no. </span>-->
+<!--                                            <b><u><span t-field="o.company_unique_num"/></u></b>-->
+<!--                                            <span>Unified no. :</span>-->
+<!--                                            <b><u><span t-field="o.company_unified_num"/></u></b>-->
+<!--                                            <span>located in :</span>-->
+<!--                                            <b><u><span t-field="o.company_address"/></u></b>-->
+<!--                                            <span>Tel. no :</span>-->
+<!--                                            <b><u><span t-field="o.company_telephone"/></u></b>-->
+<!--                                            <span>Email :</span>-->
+<!--                                            <b><u><span t-field="o.company_email"/></u></b>-->
+<!--                                            <span> (First Party)</span>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <span>Mr./Ms. :</span>-->
+<!--                                            <b><u><span t-field="o.customer_name"/></u></b>-->
+<!--                                            <span>Nationality:</span>-->
+<!--                                            <b><u><span t-field="o.customer_nationality"/></u></b>-->
+<!--                                            <span>Civil ID no :</span>-->
+<!--                                            <b><u><span t-field="o.customer_civil_id"/></u></b>-->
+<!--                                            <span>Number of family members :</span>-->
+<!--                                            <b><u><span t-field="o.customer_family_member"/></u></b>-->
+<!--                                            <span>Type of residence :</span>-->
+<!--                                            <b><u><span t-field="o.customer_house_type"/></u></b>-->
+<!--                                            <span>Occupation :</span>-->
+<!--                                            <b><u><span t-field="o.customer_occupation"/></u></b>-->
+<!--                                            <span>Home address :</span>-->
+<!--                                            <b><u><span t-field="o.customer_address"/></u></b>-->
+<!--                                            <span>Phone number :</span>-->
+<!--                                            <t t-if="o.customer_mobile != False">-->
+<!--                                                <b><u><span t-field="o.customer_mobile"/></u></b>-->
+<!--                                            </t>-->
+<!--                                            <t t-if="o.customer_mobile2 != False">-->
+<!--                                                <b> - <u><span t-field="o.customer_mobile2"/></u></b>-->
+<!--                                            </t>-->
+<!--                                            <span> (Second Party - Office)</span>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <span>Mr./Ms.</span>-->
+<!--                                            <b><u><span t-field="o.hm_name"/></u></b>-->
+<!--                                            <span>Gender:</span>-->
+<!--                                            <b><u><span t-field="o.hm_sex"/></u></b>-->
+<!--                                            <span>Date of birth:</span>-->
+<!--                                            <b><u><span t-field="o.hm_dob"/></u></b>-->
+<!--                                            <span>Nationality:</span>-->
+<!--                                            <b><u><span t-field="o.hm_nationality"/></u></b>-->
+<!--                                            <span>Job:</span>-->
+<!--                                            <b><u><span t-field="o.hm_occupation"/></u></b>-->
+<!--                                            <span>Passport:</span>-->
+<!--                                            <b><u><span t-field="o.hm_passport_number"/></u></b>-->
+<!--                                            <span>(Third Party – Domestic Worker) </span>-->
+<!--                                        </li>-->
+<!--                                    </ol>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-left">-->
+<!--                                    <span>who was deployed by:</span>-->
+<!--                                    <b><u><span t-field="o.hm_office_name"/></u></b>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row"-->
+<!--                             style="font-family:Simplified Arabic;font-size: 11px;text-align:center;text-decoration: underline;">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-left">-->
+<!--                                    <b>Preamble:</b>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row" style="font-family:Simplified Arabic;font-size: 9px;text-align:center;">-->
+<!--                            <div class="col-6">-->
+<!--                                <div class="text-left">-->
+<!--                                    <p>-->
+<!--                                        Since the second party wishes to recruit a domestic worker to work at-->
+<!--                                        his/her household, and the first party is authorized to recruit domestic workers-->
+<!--                                        by the Public Authority of Manpower, whereas the third party wishes to work for-->
+<!--                                        the second party; it’s agreed to do the following:-->
+<!--                                        <br/>-->
+<!--                                        <u><b>First:</b></u>The preamble is an integral part of this contract provisions-->
+<!--                                        and-->
+<!--                                        is bound to it.-->
+<!--                                        <br/>-->
+<!--                                        <b>Second:</b>Both the first and second parties acknowledge that they-->
+<!--                                        have read the-->
+<!--                                        Amiri decree number 17 of the year 1959 concerning foreigners’ residency and the-->
+<!--                                        decrees complied with it, and decree number 68 of the year 2015 concerning-->
+<!--                                        domestic workers and the decrees complied with it, and the commitment to all of-->
+<!--                                        the terms stated within.-->
+<!--                                        <br/>-->
+<!--                                        <u><b>Third:</b></u> The first party must commit to recruit the third party to-->
+<!--                                        work for-->
+<!--                                        the second party under the occupational title of DOMESTIC WORKER with payment of-->
+<!--                                        <u><b><span t-field="o.hm_deal_amount"/></b></u> Kuwaiti Dinars only, which-->
+<!--                                        represents-->
+<!--                                        the amount of the third party’s recruitment, and the first party’s commission-->
+<!--                                        for-->
+<!--                                        he must pay an amount of <u><b><span t-field="o.hm_deal_amount"/></b></u> KD-->
+<!--                                        once the-->
+<!--                                        first-->
+<!--                                        party receives the visa from the second party and the rest of the amount-->
+<!--                                        of <b><u>0 KD</u></b>-->
+<!--                                        which must be paid upon the arrival of the third party and handing him/her over-->
+<!--                                        to the second party.-->
+<!--                                        <br/>-->
+<!--                                        <u><b>Forth: The first party (Office/Company) must comply to the-->
+<!--                                            following:</b></u>-->
+<!--                                        <br/>-->
+<!--                                        1- Submitting a clear, colored 4x6 picture of the third party to the second-->
+<!--                                        party, and another clear and colored 9x12 picture of the domestic worker in full-->
+<!--                                        standing position, in addition to a copy of the passport and a document stating-->
+<!--                                        general information about the following (name - nationality - work experience - -->
+<!--                                        languages - religion - birth date - weight - height - academic degree - marital-->
+<!--                                        status).-->
+<!--                                        <br/>-->
+<!--                                        2- The first party must comply to recruiting the third party to work for the-->
+<!--                                        second party in a period not exceeding 90 days from the day that the second-->
+<!--                                        party submits the visa to the first party. And in case the third party fails to-->
+<!--                                        arrive within that period, the first party complies to return the amount paid by-->
+<!--                                        the second party within 3 days.-->
+<!--                                        <br/>-->
+<!--                                        3- The first party complies to receive the third party once he/she arrives in-->
+<!--                                        the country, and hand him/her to the second party within 24 hours of his/her-->
+<!--                                        arrival. <br/>-->
+<!--                                        Failing to do so, the first party must inform the Domestic Workers-->
+<!--                                        Recruitment Department and the third party will be taken into the Public-->
+<!--                                        Authority of Manpower housing center.-->
+<!--                                        <br/>-->
+<!--                                        4- The first party complies to return the third party back to his/her country-->
+<!--                                        and give the second party a refund within 6 months (warranty period) of-->
+<!--                                        receiving the domestic worker to work for the second party. This is subject to-->
+<!--                                        all cases mentioned in article 17 of law 68 of the year 2015 which are mentioned-->
+<!--                                        below:-->
+<!--                                        <br/>-->
+<!--                                        • An existing obstacle that prevents the domestic worker from working, and the-->
+<!--                                        Second party has nothing to do with it.-->
+<!--                                        <br/>-->
+<!--                                        • Domestic worker has a communicable/infectious disease or physical, mental or-->
+<!--                                        health disability that prevents him/her from working.-->
+<!--                                        <br/>-->
+<!--                                        • An issued legal impediment imposed in regards to public interest which might-->
+<!--                                        prevent the employer from issuing a visa for the domestic worker.-->
+<!--                                        <br/>-->
+<!--                                        • Deportation of the domestic worker in regards to public interest.-->
+<!--                                        • False information provided by the office/company about the domestic worker.-->
+<!--                                        • If the domestic worker refuses to work or leaves to an unknown destination.-->
+<!--                                        <br/>-->
+<!--                                        In case the office/company refuses to handle the expenses of returning the-->
+<!--                                        domestic worker back to his/her home country, and/or refuses to refund the-->
+<!--                                        employer, the Domestic Workers Recruitment Department will handle the situation-->
+<!--                                        based on the guarantee letter mentioned in article 2 of the law 68 of the year-->
+<!--                                        2015 concerning domestic workers.-->
+<!--                                        <br/>-->
+<!--                                        5- Conveying the domestic worker to the Domestic Workers Recruitment Department-->
+<!--                                        if he/she returns to the office/company unless there was an exception.-->
+<!--                                        <br/>-->
+<!--                                        6- The first party complies to transfer the third party’s deceased body to-->
+<!--                                        his/her country in case the cause of death is related to illness that is dated-->
+<!--                                        prior to the date of entry to the country, and a period of employment that did-->
+<!--                                        not exceed 6 months from handing the domestic worker to the employer.-->
+<!--                                        <br/>-->
+<!--                                        <u><b>Fifth: The second party (Employer) is committed to the following:</b></u>-->
+<!--                                        <br/>-->
+<!--                                        1- Providing an appropriate housing for the third party equipped with all-->
+<!--                                        necessities and decent means of living.-->
+<!--                                        <br/>-->
+<!--                                        2- Providing suitable food and clothes for the third party (Domestic Worker) in-->
+<!--                                        a way that ensures him/her adequate life, and is obliged to provide him/her with-->
+<!--                                        medical treatment and nursing by registering him/her in the health system-->
+<!--                                        applicable in the State of Kuwait pursuant to Law No. (1) of the year 1999.-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-6">-->
+<!--                                <div class="text-left">-->
+<!--                                    <p>3- Salary must be paid at the end of each Gregorian month starting from the first-->
+<!--                                        day of work and should not be less than the designated amount by ministerial-->
+<!--                                        decree, signed by the third party (Domestic Worker) on the contract, and the-->
+<!--                                        money transfer receipt is considered proof of receiving the salary.-->
+<!--                                        <br/>-->
+<!--                                        4- Compensating the third party in case of injury during work or because of it-->
+<!--                                        according to the provisions of Kuwait Civil Law.-->
+<!--                                        <br/>-->
+<!--                                        5- Issuing a valid residency for the third party (Domestic Worker) for the-->
+<!--                                        duration of the contract in accordance with Amiri decree number 17 of the year-->
+<!--                                        1959 concerning foreigners’ residency and the decrees complied with it.-->
+<!--                                        <br/>-->
+<!--                                        6- Handling all expenses to bring the third party (Domestic Worker) and should-->
+<!--                                        not Leave any of these expenses on the third party.-->
+<!--                                        <br/>-->
+<!--                                        7- Paying the expenses of transferring the third party (Domestic Worker)-->
+<!--                                        deceased body to his/her country as well as sending the salary of the last month-->
+<!--                                        to the third party’s beneficiaries.-->
+<!--                                        <br/>-->
+<!--                                        8- It is not permissible for the second party (Employer) to assign a domestic-->
+<!--                                        worker to work outside the State of Kuwait. If this occurs without the agreement-->
+<!--                                        of the worker, the worker will be returned to his/her country at the expense of-->
+<!--                                        the second party (Employer).-->
+<!--                                        <br/>-->
+<!--                                        9- The third party (Domestic Worker) is entitled to own a phone and use it-->
+<!--                                        outside the working hours, provided that he/she keeps the secrets and privacy of-->
+<!--                                        the household, and use such phone in a manner consistent with public morals.-->
+<!--                                        <br/>-->
+<!--                                        <u><b>Sixth: The third party (Domestic Worker) is obligated to the-->
+<!--                                            following:</b></u>-->
+<!--                                        <br/>-->
+<!--                                        1- Do the work he/she is supposed to do by following and complying to all-->
+<!--                                        instructions of the second party and his/her family members under the condition-->
+<!--                                        that these instructions do not threaten the third party’s life or offend his/her-->
+<!--                                        dignity.-->
+<!--                                        <br/>-->
+<!--                                        The Third Party must also respect the customs and traditions of the country.-->
+<!--                                        <br/>-->
+<!--                                        2- Preserving the secrets, belongings and money of the second party and his/her-->
+<!--                                        family members.-->
+<!--                                        <br/>-->
+<!--                                        3- Refusal to work for others whether with or without commission.-->
+<!--                                        <br/>-->
+<!--                                        <u><b>Seventh: General provisions:</b></u>-->
+<!--                                        <br/>-->
+<!--                                        1- The third party (Domestic Worker) works for the second party (Employer) under-->
+<!--                                        the job title of DOMECTIC WORKER with a monthly salary of-->
+<!--                                        <u><b><span t-field="o.hm_salary"/></b></u> KD.-->
+<!--                                        <br/>-->
+<!--                                        2- This contract is effective from the first day of commencing work at the-->
+<!--                                        second party’s household and is valid-->
+<!--                                        <u><b><span t-field="o.contract_valid_years"/></b></u> years as of-->
+<!--                                        <u><b><span t-field="o.contract_end_date"/></b></u>-->
+<!--                                        , and is renewable-->
+<!--                                        for longer periods unless one of the parties (second/third) expresses the desire-->
+<!--                                        not to renew at least two months before the contract expiry.-->
+<!--                                        <br/>-->
+<!--                                        3- Third party working hours must not exceed 12 hours daily, whereas continuous-->
+<!--                                        working hours must not exceed 5 hours daily followed by at least 1 hour resting-->
+<!--                                        time which is not included in the overall working hours. The third party also-->
+<!--                                        has the right to sleep for a continuous 8 hours minimum at night.-->
+<!--                                        <br/>-->
+<!--                                        4- Not depriving the third party from the right of having a fully paid weekly-->
+<!--                                        rest.-->
+<!--                                        <br/>-->
+<!--                                        5- Not depriving the third party from the right of having a fully paid annual-->
+<!--                                        leave.-->
+<!--                                        <br/>-->
+<!--                                        6- An end-of-service bonus payment equivalent to one-month salary for every year-->
+<!--                                        served by the third party at the end of his/her contract.-->
+<!--                                        <br/>-->
+<!--                                        7- The second party (Employer) is not allowed to keep in his/her possession any-->
+<!--                                        of the third party’s (Domestic Worker) personal identity document such as-->
+<!--                                        passport.-->
+<!--                                        <br/>-->
+<!--                                        8- Transferring the residency of the third party (Domestic Worker) is prohibited-->
+<!--                                        during first party (Office/Company) warranty period.-->
+<!--                                        <br/>-->
+<!--                                        9- The second party (Employer) shall bear the cost of economy class ticket for-->
+<!--                                        the third party (Domestic Worker) return to back to his/her country at the end-->
+<!--                                        of the contract or any other renewed periods.-->
+<!--                                        <br/>-->
+<!--                                        10- In case of conflict about any of this contract articles, the case will be-->
+<!--                                        referred to the Public Authority of Manpower for the settlement of the conflict.-->
+<!--                                        Failed settlements will be referred to designated court.-->
+<!--                                        <br/>-->
+<!--                                        11- Anything unstated in this contract must be referred to the articles under-->
+<!--                                        law no. 68 of 2015 in respect to domestic workers rules, and in case of lack of-->
+<!--                                        law acts that address it, the Kuwaiti laws are applicable.-->
+<!--                                        <br/>-->
+<!--                                        12- This contract has been made in both Arabic and English languages and all-->
+<!--                                        parties should have full knowledge of the contents of this contract, the Arabic-->
+<!--                                        text shall prevail and be referred when necessary.-->
+<!--                                        <br/>-->
+<!--                                        13- This contract is drawn in original and three copies. The original shall be-->
+<!--                                        sent to the Public Authority of Manpower, after the arrival of the third party-->
+<!--                                        to the country and signing the contract.-->
+<!--                                        <br/>-->
+<!--                                        The first and second copies are for the-->
+<!--                                        first party, and the third one shall be sent to the second party.-->
+<!--                                        <br/>-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <br/>-->
+<!--                        <div class="row"-->
+<!--                             style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="text-left">-->
+<!--                                    <p>-->
+<!--                                        <b><u>First Party (Office/Company) :</u></b>-->
+<!--                                        <br/>-->
+<!--                                        <b>Name :</b> <span t-field="o.company_en_name"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>NI.D. :</b><span t-field="o.company_reg_id"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>Signature :</b>-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="text-left">-->
+<!--                                    <p>-->
+<!--                                        <b><u>Second Party (Sponsor) :</u></b>-->
+<!--                                        <br/>-->
+<!--                                        <b>Name :</b> <span t-field="o.customer_name"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>Civil ID :</b><span t-field="o.customer_civil_id"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>Signature :</b>-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="text-left">-->
+<!--                                    <p>-->
+<!--                                        <b><u>Third Party ( Domestic Worker) :</u></b>-->
+<!--                                        <br/>-->
+<!--                                        <b>Name :</b><span t-field="o.hm_name"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>Passport ID :</b><span t-field="o.hm_passport_number"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>Signature :</b>-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+<!--                    <div style="page-break-before: always"></div>-->
+
+
+<!--                    <div class="page" dir="rtl">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-center">-->
+<!--                                   <b> <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;text-decoration: underline;">-->
+<!--                                        عقد-->
+<!--                                        استقدام / عمل-->
+<!--                                        عامل /عاملة منزلية (-->
+<!--                                        الثلاثي النموذجي)</span>-->
+<!--                                   </b>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <br/>-->
+<!--                        <div class="row"-->
+<!--                             style="font-family:Simplified Arabic;font-size: 12px;text-align:center;text-decoration: underline;">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-right">-->
+<!--                                    <p>-->
+<!--                                        <b>-->
+<!--                                            <span>انه في يوم </span>-->
+<!--                                            <span t-field="o.day_ar_name"/>-->
+<!--                                            <span> الموافق </span>-->
+<!--                                            <span t-field="o.contract_date"/>-->
+<!--                                            <span> اتفق على الاتي كل من :-</span>-->
+<!--                                        </b>-->
+
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-right">-->
+<!--                                    <ol>-->
+<!--                                        <li>-->
+<!--                                            <span>مكتب / شركة :</span>-->
+<!--                                            <b><u><span t-field="o.company_ar_name"/></u></b>-->
+<!--                                            <span>بموجب ترخيص من وزارة التجارة-->
+<!--                                                رقم :</span>-->
+<!--                                            <b><u><span t-field="o.company_reg_id"/></u></b>-->
+<!--                                            <span>والهيئة العامة للقوى العاملة رقم :</span>-->
+<!--                                            <b><u><span t-field="o.company_unique_num"/></u></b>-->
+<!--                                            <span>الرقم الموحد :</span>-->
+<!--                                            <b><u><span t-field="o.company_unified_num"/></u></b>-->
+<!--                                            <span>والكائن في :</span>-->
+<!--                                            <b><u><span t-field="o.company_address_ar"/></u></b>-->
+<!--                                            <span>رقم التليفون :</span>-->
+<!--                                            <b><u><span t-field="o.company_telephone"/></u></b>-->
+<!--                                            <span>البريد الإلكتروني :</span>-->
+<!--                                            <b><u><span t-field="o.company_email"/></u></b>-->
+<!--                                            <b><span>( طرف اول)</span></b>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <span>السيد/ السيدة :</span>-->
+<!--                                            <b><u><span t-field="o.customer_name_ar"/></u></b>-->
+<!--                                            <span>الجنسية :</span>-->
+<!--                                            <b><u><span t-field="o.customer_ar_nationality"/></u></b>-->
+<!--                                            <span>ويحمل بطاقة مدنية رقم :</span>-->
+<!--                                            <b><u><span t-field="o.customer_civil_id"/></u></b>-->
+<!--                                            <span>عدد الأفراد :</span>-->
+<!--                                            <b><u><span t-field="o.customer_family_member"/></u></b>-->
+<!--                                            <span>نوع السكن :</span>-->
+<!--                                            <b><u><span t-field="o.customer_ar_house_type"/></u></b>-->
+<!--                                            <span>المهنة :</span>-->
+<!--                                            <b><u><span t-field="o.customer_ar_occupation"/></u></b>-->
+<!--                                            <span>العنوان :</span>-->
+<!--                                            <b><u><span t-field="o.customer_ar_address"/></u></b>-->
+<!--                                            <span>رقم الهاتف :</span>-->
+<!--                                            <t t-if="o.customer_mobile != False">-->
+<!--                                                <b><u><span t-field="o.customer_mobile"/></u></b>-->
+<!--                                            </t>-->
+<!--                                            <t t-if="o.customer_mobile2 != False">-->
+<!--                                                <b><u> - <span t-field="o.customer_mobile2"/></u></b>-->
+<!--                                            </t>-->
+<!--                                            <b><span> طرف ثاني ( صاحب العمل )</span></b>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <span>السيد/ السيدة :</span>-->
+<!--                                            <b><u><span t-field="o.hm_name"/></u></b>-->
+<!--                                            <span>الجنس :</span>-->
+<!--                                            <b><u><span t-field="o.hm_ar_sex"/></u></b>-->
+<!--                                            <span>تاريخ الميلاد :</span>-->
+<!--                                            <b><u><span t-field="o.hm_dob"/></u></b>-->
+<!--                                            <span>الجنسية :</span>-->
+<!--                                            <b><u><span t-field="o.hm_ar_nationality"/></u></b>-->
+<!--                                            <span>المهنة :</span>-->
+<!--                                            <b><u><span t-field="o.hm_ar_occupation"/></u></b>-->
+<!--                                            <span>يحمل جواز :</span>-->
+<!--                                            <b><u><span t-field="o.hm_passport_number"/></u></b>-->
+<!--                                            <b><span>( طرف ثالث / العامل المنزلي )</span></b>-->
+<!--                                        </li>-->
+<!--                                    </ol>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-right">-->
+<!--                                    <span>الذي تم استقدامه من قبل :</span>-->
+<!--                                    <b><u><span t-field="o.hm_office_name"/></u></b>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-12">-->
+<!--                                <div class="text-right">-->
+<!--                                    <b><span-->
+<!--                                            style="font-family:Simplified Arabic;font-size: 9px;text-align:center;text-decoration: underline;">-->
+<!--                                        تمهيد :</span></b>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row" style="font-family:Simplified Arabic;font-size: 10px;text-align:center;">-->
+<!--                            <div class="col-6">-->
+<!--                                <div class="text-right">-->
+<!--                                    <p>حيث أن الطرف الثااني يرغب في استقدام ( عامل / عاملة ) منزلي للعمل لديه والطرف-->
+<!--                                        الاول رخص له من قبل الهيئة العامة للقوى العاملة بممارسة هذا النشاط والطرف الثالث-->
+<!--                                        ( العامل المنزلي ) يرغب في العمل لدى الطرف الثاني فقد تم الاتفاق على الآتي- :-->
+<!--                                        <br/>-->
+<!--                                        <u><b>أولا:</b></u> يعتبر التمهيد السابق جزء لا يتجزأ من أحكام هذا العقد ومكملاً له .-->
+<!--                                        <br/>-->
+<!--                                        <u><b>ثانيا:</b></u> يقر كل من الطرفين الأول و الثاني باطلاعهما على المرسوم الأميري رقم-->
+<!--                                        17-->
+<!--                                        لسنة 1959 بقانون إقامة الأجانب وتعديلاته والقرارات المنفذة ، وكذلك القانون رقم-->
+<!--                                        68 لسنة 2015 في شان العمالة المنزلية والقرارات المنفذة له والتزامهما بكافة-->
+<!--                                        الاحكام الواردة بها.-->
+<!--                                        <br/>-->
+<!--                                        <u><b>ثالثاً:</b></u> يلتزم الطرف الأول باستقدام الطرف الثاني ( العامل المنزلي ) للعمل-->
+<!--                                        لدي-->
+<!--                                        الطرف الثاني بمهنة وذلك مقابل مبلغ <b><u><span t-field="o.hm_deal_amount"/></u></b> د.ك-->
+<!--                                        وقدره دينار كويتي لا غير ويمثل المبلغ-->
+<!--                                        قيمة تكاليف استقدام الطرف الثالث (العامل المنزلي) وعموله الطرف الأول على أن يسدد-->
+<!--                                        الطرف الثاني المبلغ على النحو التالي :- -->
+<!--                                        <br/>-->
+<!--                                        أ- مبلغ <u><b><span t-field="o.hm_deal_amount"/></b></u> د.ك عند استلام الطرف الأول-->
+<!--                                        التأشيرة من الطرف الثاني .-->
+<!--                                        <br/>-->
+<!--                                        ب- باقي المبلغ وقدر صفر د.ك يسدد عند وصول الطرف الثالث ( العامل المنزلي )-->
+<!--                                        وتسليمه-->
+<!--                                        للطرف الثاني للعمل لديه .-->
+<!--                                        <br/>-->
+<!--                                        <u><b>رابعا:</b></u> يلتزم الطرف الاول بما يلي- -->
+<!--                                        <br/>-->
+<!--                                        1-تسليم الطرف الثاني صورة شخصية ملونة حديثة مقاس 4*6 واضحة المعالم وصورة اخري-->
+<!--                                        ملونة حديثة كاملة المعالم( بوضع الوقوف ) مقاس 9*12 للعامل المنزلي المراد-->
+<!--                                        استقدامه إضافة إلى صورة لجواز السفر وبيانات الطرف الثالث ( العامل المنزلي )-->
+<!--                                        مبينا به كحد أدني ( الاسم – الجنسية – المهنة – الخبرة – اللغات – الديانة – تاريخ-->
+<!--                                        الميلاد – الوزن – الدرجة العلمية – الطول – الحالة الاجتماعية ).-->
+<!--                                        <br/>-->
+<!--                                        2-استقدام الطرف الثالث للطرف الثاني في مدة أقصاها( ) يوم-->
+<!--                                        <br/>-->
+<!--                                        3-استقبال واستلام الطرف الثالث( العامل المنزلي ) فور وصوله إلى البلاد مباشرة-->
+<!--                                        وتسليمه للطرف الثاني خلال ( 24 ) ساعة وإذا تعذر ذلك عليه أن يخطر إدارة تنظيم-->
+<!--                                        استقدام العمالة المنزلية به على أن يتم تسليم الطرف الثالث ( العامل المنزلي ) إلى-->
+<!--                                        مركز الإيواء التابع للهيئة العامة للقوى العاملة المخصص لذلك .-->
+<!--                                        <br/>-->
+<!--                                        4-إعادة الطرف الثالث ( العامل المنزلي) إلى بلده ورد المبلغ الذي تقاضاه من الطرف-->
+<!--                                        الثاني خلال مدة ستة أشهر من تاريخ استلام العامل المنزلي للعمل لدى الطرف الثاني-->
+<!--                                        وذلك في جميع الحالات المنصوص عليها بالمادة( 17 ) من قانون العمالة المنزلية رقم-->
+<!--                                        68 لسنة 2015 وهى كما يلى- :-->
+<!--                                        <br/>-->
+<!--                                        - وجود عائق يحول دون قيام العامل المنزلي بعمله لا يد لصاحب العمل فيه .-->
+<!--                                        - إصابة العامل المنزلي بأحد الامراض السارية أو أي اعاقة بدنية أو صحية أو نفسية-->
+<!--                                        تمنعه من الاستمرار بالعمل .-->
+<!--                                        - قيام مانع قانوني تفرضه المصلحة العامة يحول دون استصدار صاحب العمل إقامته-->
+<!--                                        للعامل المنزلي .-->
+<!--                                        - إبعاد العامل المنزلي إداريا لمقتضيا المصلحة العامة .-->
+<!--                                        - قيام المكتب او الشركة بتزويد صاحب العمل ببيانات أو معلومات غير صحيحة عن العامل-->
+<!--                                        المنزلي .-->
+<!--                                        - رفض العامل المنزلي الاستمرار في العمل أو تركه الى جهة غير معلومة .-->
+<!--                                        وفى حالة امتناع الطرف الاول عن اعادة الطرف الثالث إلي بلاده ورد المبلغ الذي-->
+<!--                                        تقاضاه من الطرف الثاني في الحالات السابقة تتولى إدارة تنظيم استقدام العمالة-->
+<!--                                        المنزلية القيام بذلك خصما من خطاب الضمان المالي المنصوص عليه بالمادة ( 2 ) من-->
+<!--                                        قانون رقم 68 لسنة 2015 في شأن العمالة المنزلية.-->
+<!--                                        <br/>-->
+<!--                                        5-احالة الطرف الثالث ( العامل المنزلي ) فوراً إلى إدارة تنظيم استقدام العمالة-->
+<!--                                        المنزلية في حالة هروبه وعودته للمكتب أو الشركة .-->
+<!--                                        <br/>-->
+<!--                                        6-نقل جثمان الطرف الثالث (العامل المنزلي) الى بلده في حالة وفاته إذا كانت الوفاة-->
+<!--                                        ترجع لأسباب مرضية سابقة على تاريخ دخول البلاد وخلال ستة أشهر من تاريخ استلام-->
+<!--                                        الطرف الثالث للعمل لدى الطرف الثاني.-->
+<!--                                        <br/>-->
+<!--                                        <u><b>خامسا:</b></u> يلتزم الطرف الثاني ( صاحب العمل ) بما يلي: &#45;&#45;-->
+<!--                                        <br/>-->
+<!--                                        1-توفير سكن مناسب ومجهز بوسائل المعيشة اللائقة للطرف الثالث (العامل المنزلي) .-->
+<!--                                        <br/>-->
+<!--                                        2-اطعام الطرف الثالث (العامل المنزلي) وكسوته بما يكفل له حياة مناسبة ويلتزم-->
+<!--                                        بعلاجه وتمريضه وتسجيله في الضمان الصحي المنصوص عليه في القانون رقم (1) لسنة-->
+<!--                                        1999.-->
+<!--                                        <br/>-->
+<!--                                        3-أداء أجر الطرف الثالث (العامل المنزلي) منذ اليوم الاول للعمل لديه وذلك في-->
+<!--                                        نهاية كل شهر ميلادي على أن لا يقل عن الحد الأدنى المنصوص عليه بالقرار الوزاري-->
+<!--                                        بموجب ايصال استلام موقع من الطرف الثالث ويعد ايصال التحويل لراتبه صورة من صور-->
+<!--                                        الاثبات باستلام الاجر .-->
+<!--                                        <br/>-->
+<!--                                        4- تعوين الطرف الثالث ( العامل المنزلي )عن اصابات العمل وفقا لأحكام القانوني-->
+<!--                                        المدني الكويتي متى ما وقعت أثناء تأدية عمله أو بسببه .-->
+<!--                                        <br/>-->
+<!--                                        5-استصدار إقامة للطرف الثالث (العامل المنزلي) لمدة هذا العقد وفق لأحكام المرسوم-->
+<!--                                        الأميري رقم 17 لسنة 1959 بشأن قانون إقامة الاجانب و القرارات المنفذة له.-->
+<!--                                        <br/>-->
+<!--                                        6-تحمل مصاريف استقدام الطرف الثالث (العامل المنزلي) ولا يجوز له الرجوع بها على-->
+<!--                                        الطرف الثالث.-->
+<!--                                        <br/>-->
+<!--                                        7-تحمل تكاليف إعادة جثمان الطرف الثالث (العامل المنزلي) إلى بلد في حالة وفاته مع-->
+<!--                                        صرف أجر الشهر الذي توفى فيه للمستحقين عنه .-->
+
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-6">-->
+<!--                                <div class="text-right">-->
+<!--                                    <p>-->
+<!--                                        8-لا يحق لصاحب العمل تكليف العامل خارج دولة الكويت وفي حاال ثبوت ذلك دون موافقته-->
+<!--                                        يتم اعادته لبلده على نفقة-->
+<!--                                        صاحب العمل .-->
+<!--                                        <br/>-->
+<!--                                        9-السماح للطرف الثالث (العامل المنزلي) بامتلاك الهاتف واستخدامه ، وذلك خارج-->
+<!--                                        ساعات العمل مع مراعاة السرية و الخصوصية في مكان العمل، وعلى نحو لا يتنافى مع-->
+<!--                                        الآداب العامة .-->
+<!--                                        <br/>-->
+<!--                                        <u><b>سادسا:</b></u> يلتزم الطرف الثالث (العامل المنزلي) بالاتي:- -->
+<!--                                        <br/>-->
+<!--                                        1-أداء العمل المتفق عليه واتباع تعليمات الطرف الثاني وأفراد أسرته و تنفيذها على-->
+<!--                                        الوجه الاكمل و احترام قوانين و عادات و تقاليد البلد ، شريطة الا يعرض تنفيذ هذه-->
+<!--                                        التعليمات سلامة الطرف الثالث (العامل المنزلي) إلى الخطر أو يسيء إلى كرامته .-->
+<!--                                        <br/>-->
+<!--                                        2-المحافظة على أسرار وأموال وممتلكات الطرف الثاني وأفراد أسرته.-->
+<!--                                        <br/>-->
+<!--                                        3-الامتناع عن أداء عمل لدى الغير بأجر أو بدون أجر .-->
+<!--                                        <br/>-->
+<!--                                        <u><b>سابعا:</b></u> أحكام عامة:- -->
+<!--                                        <br/>-->
+<!--                                        1-يعمل الطرف الثالث لدى الطرف الثاني بمهنه نظير أجر شهري مقدار <u><b><span-->
+<!--                                            t-field="o.hm_salary"/></b></u> د.ك .-->
+<!--                                        <br/>-->
+<!--                                        2-مدة هذا العقد <b><u><span-->
+<!--                                            t-field="o.contract_valid_years"/></u></b> يبدأ اعتبارا من تاريخ الاستقدام قابلة-->
+<!--                                        للتجديد لمدد أخرى ما لم-->
+<!--                                        يبد أحد الطرفين ( الثاني أو الثالث) رغبته في عدم التجديد قبل نهاية العقد بشهرين-->
+<!--                                        على الاقل .-->
+<!--                                        <br/>-->
+<!--                                        3-لا يجوز تشغيل الطرف الثالث (العامل المنزلي) أكثر من 12 ساعة يوميا على الا تزيد-->
+<!--                                        ساعات العمل المتصلة عن خمس-->
+<!--                                        ساعا يوميا يعقبها فترة راحة لا تقل عن ساعة ويحق للطرف الثالث استراحة ليلية لمدة-->
+<!--                                        8 ساعات متواصلة على الاقل.-->
+<!--                                        <br/>-->
+<!--                                        4-أحقية الطرف الثالث (العامل المنزلي) في الحصول على راحة أسبوعية مدفوعة الاجر .-->
+<!--                                        <br/>-->
+<!--                                        5-أحقية الطرف الثالث (العامل المنزلي) في الحصول على إجازة سنوية مدفوعة الاجر .-->
+<!--                                        <br/>-->
+<!--                                        6-يستحق الطرف الثالث (العامل المنزلي) مكافأة نهاية خدمة تعادل أجر شهر عن كل سنة-->
+<!--                                        عند انتهاء مدة العقد .-->
+<!--                                        <br/>-->
+<!--                                        7-عدم احتفاظ صاحب العمل بأي مستندا أو وثائق إثبات شخصية للعامل المنزلي لديه ،-->
+<!--                                        مثل جواز السفر .-->
+<!--                                        <br/>-->
+<!--                                        8-يمنع تحويل اقامة الطرف الثالث (العامل المنزلي) خلال مدة ضمان الطرف الاول.-->
+<!--                                        <br/>-->
+<!--                                        9-يلتزم الطرف الثاني بدفع قيمة تذكرة سفر للطرف الثالث (العامل المنزلي) عند سفره-->
+<!--                                        بعد انتهاء مدة العقد أو أي مدة مجددة و ذلك بالدرجة السياحية إلى بلد الاصلي .-->
+<!--                                        <br/>-->
+<!--                                        10-أى نزاع قد ينشا بخصوص أي بند من بنود هذا العقد ينعقد الاختصاص فيها لإدارة-->
+<!--                                        العمالة المنزلية لتسوية النزاع وفي حالة تعذر التسوية يحال إلى المحكمة المختصة.-->
+<!--                                        <br/>-->
+<!--                                        11-كل ما لم يرد ذكر بهذا العقد يخضع لأحكام القانون رقم 68 لسااانة 2015 بشأن-->
+<!--                                        العمالة المنزلية و القرارات المنفذة له وإذا لم يوجد به نص فتطبق أحكام القوانين-->
+<!--                                        الكويتية.-->
+<!--                                        <br/>-->
+<!--                                        12-حرر هذا العقد باللغتين العربية والانجليزية وعلى جميع الاطراف العلم بمحتويات-->
+<!--                                        هذا العقد ويعتمد النص باللغة العربية ويرجع له عند اللزوم .-->
+<!--                                        <br/>-->
+<!--                                        13-حرر هذا العقد من اصل وأربعة نسخ ،اصل العقد يرسل لإدارة العمالة المنزلية بعد-->
+<!--                                        وصول الطرف الثالث ( العامل المنزلي) للبلاد وتوقيعه على العقد والنسخة الاولي-->
+<!--                                        والثانية تسلم للطرف الثاني والنسخة الثالثة للطرف الاول والنسخة الرابعة ترسل-->
+<!--                                        للطرف الثالث( العامل المنزلي ) .-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <br/>-->
+<!--                        <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="text-right">-->
+<!--                                    <p>-->
+<!--                                        <b><u>الطرف الاول (مكتب/شركه) :</u></b>-->
+<!--                                        <br/>-->
+<!--                                        <b>الاسم :</b> <span t-field="o.company_ar_name"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>ر.م :</b><span t-field="o.company_reg_id"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>التوقيع :</b>-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="text-right">-->
+<!--                                    <p>-->
+<!--                                        <b><u>الطرف الثاني (الكفيل) :</u></b>-->
+<!--                                        <br/>-->
+<!--                                        <b>الاسم :</b> <span t-field="o.customer_name_ar"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>البطاقه المدنية :</b><span t-field="o.customer_civil_id"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>التوقيع :</b>-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-4">-->
+<!--                                <div class="text-right">-->
+<!--                                    <p>-->
+<!--                                        <b><u>الطرف الثالث (العامل المنزلي) :</u></b>-->
+<!--                                        <br/>-->
+<!--                                        <b>الاسم :</b><span t-field="o.hm_name"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>رقم الجواز :</b><span t-field="o.hm_passport_number"/>-->
+<!--                                        <br/>-->
+<!--                                        <b>التوقيع :</b>-->
+<!--                                    </p>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </t>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+    <data  noupdate="1">
+            <template id="contract_print">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="housemaidsystem.contract_layout">
-                    <div class="page" style="border">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="text-center">
-                                    <span style="font-family:Simplified Arabic;font-size: 14px;text-align:center;text-decoration: underline;">
-                                        <b>Standard Triple-Party Recruitment / Employment Contract (Male / Female
-                                            DomesticWorker)</b>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row"
-                             style="font-family:Simplified Arabic;font-size: 12px;text-align:center;text-decoration: underline;">
-                            <div class="col-12">
-                                <div class="text-left">
-                                    <p>
-                                        <b><span>As of the following mentioned day </span>
-                                            <span t-field="o.day_name"/>
-                                            <span> dated </span>
-                                            <span t-field="o.contract_date"/>
-                                            <span>the parties agreed to the following:</span></b>
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">
-                            <div class="col-12">
-                                <div class="text-left">
-                                    <ol>
-                                        <li>
-                                            <span>(Office - Company) :</span>
-                                            <b><u><span t-field="o.company_en_name"/></u></b>
-                                            <span>according to the Ministry of Commerce permit no.</span>
-                                            <b><u><span t-field="o.company_reg_id"/></u></b>
-                                            <span>and the Public Authority of Manpower Permit no. </span>
-                                            <b><u><span t-field="o.company_unique_num"/></u></b>
-                                            <span>Unified no. :</span>
-                                            <b><u><span t-field="o.company_unified_num"/></u></b>
-                                            <span>located in :</span>
-                                            <b><u><span t-field="o.company_address"/></u></b>
-                                            <span>Tel. no :</span>
-                                            <b><u><span t-field="o.company_telephone"/></u></b>
-                                            <span>Email :</span>
-                                            <b><u><span t-field="o.company_email"/></u></b>
-                                            <span> (First Party)</span>
-                                        </li>
-                                        <li>
-                                            <span>Mr./Ms. :</span>
-                                            <b><u><span t-field="o.customer_name"/></u></b>
-                                            <span>Nationality:</span>
-                                            <b><u><span t-field="o.customer_nationality"/></u></b>
-                                            <span>Civil ID no :</span>
-                                            <b><u><span t-field="o.customer_civil_id"/></u></b>
-                                            <span>Number of family members :</span>
-                                            <b><u><span t-field="o.customer_family_member"/></u></b>
-                                            <span>Type of residence :</span>
-                                            <b><u><span t-field="o.customer_house_type"/></u></b>
-                                            <span>Occupation :</span>
-                                            <b><u><span t-field="o.customer_occupation"/></u></b>
-                                            <span>Home address :</span>
-                                            <b><u><span t-field="o.customer_address"/></u></b>
-                                            <span>Phone number :</span>
-                                            <t t-if="o.customer_mobile != False">
-                                                <b><u><span t-field="o.customer_mobile"/></u></b>
-                                            </t>
-                                            <t t-if="o.customer_mobile2 != False">
-                                                <b> - <u><span t-field="o.customer_mobile2"/></u></b>
-                                            </t>
-                                            <span> (Second Party - Office)</span>
-                                        </li>
-                                        <li>
-                                            <span>Mr./Ms.</span>
-                                            <b><u><span t-field="o.hm_name"/></u></b>
-                                            <span>Gender:</span>
-                                            <b><u><span t-field="o.hm_sex"/></u></b>
-                                            <span>Date of birth:</span>
-                                            <b><u><span t-field="o.hm_dob"/></u></b>
-                                            <span>Nationality:</span>
-                                            <b><u><span t-field="o.hm_nationality"/></u></b>
-                                            <span>Job:</span>
-                                            <b><u><span t-field="o.hm_occupation"/></u></b>
-                                            <span>Passport:</span>
-                                            <b><u><span t-field="o.hm_passport_number"/></u></b>
-                                            <span>(Third Party – Domestic Worker) </span>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">
-                            <div class="col-12">
-                                <div class="text-left">
-                                    <span>who was deployed by:</span>
-                                    <b><u><span t-field="o.hm_office_name"/></u></b>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row"
-                             style="font-family:Simplified Arabic;font-size: 11px;text-align:center;text-decoration: underline;">
-                            <div class="col-12">
-                                <div class="text-left">
-                                    <b>Preamble:</b>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="font-family:Simplified Arabic;font-size: 9px;text-align:center;">
-                            <div class="col-6">
-                                <div class="text-left">
-                                    <p>
-                                        Since the second party wishes to recruit a domestic worker to work at
-                                        his/her household, and the first party is authorized to recruit domestic workers
-                                        by the Public Authority of Manpower, whereas the third party wishes to work for
-                                        the second party; it’s agreed to do the following:
-                                        <br/>
-                                        <u><b>First:</b></u>The preamble is an integral part of this contract provisions
-                                        and
-                                        is bound to it.
-                                        <br/>
-                                        <b>Second:</b>Both the first and second parties acknowledge that they
-                                        have read the
-                                        Amiri decree number 17 of the year 1959 concerning foreigners’ residency and the
-                                        decrees complied with it, and decree number 68 of the year 2015 concerning
-                                        domestic workers and the decrees complied with it, and the commitment to all of
-                                        the terms stated within.
-                                        <br/>
-                                        <u><b>Third:</b></u> The first party must commit to recruit the third party to
-                                        work for
-                                        the second party under the occupational title of DOMESTIC WORKER with payment of
-                                        <u><b><span t-field="o.hm_deal_amount"/></b></u> Kuwaiti Dinars only, which
-                                        represents
-                                        the amount of the third party’s recruitment, and the first party’s commission
-                                        for
-                                        he must pay an amount of <u><b><span t-field="o.hm_deal_amount"/></b></u> KD
-                                        once the
-                                        first
-                                        party receives the visa from the second party and the rest of the amount
-                                        of <b><u>0 KD</u></b>
-                                        which must be paid upon the arrival of the third party and handing him/her over
-                                        to the second party.
-                                        <br/>
-                                        <u><b>Forth: The first party (Office/Company) must comply to the
-                                            following:</b></u>
-                                        <br/>
-                                        1- Submitting a clear, colored 4x6 picture of the third party to the second
-                                        party, and another clear and colored 9x12 picture of the domestic worker in full
-                                        standing position, in addition to a copy of the passport and a document stating
-                                        general information about the following (name - nationality - work experience -
-                                        languages - religion - birth date - weight - height - academic degree - marital
-                                        status).
-                                        <br/>
-                                        2- The first party must comply to recruiting the third party to work for the
-                                        second party in a period not exceeding 90 days from the day that the second
-                                        party submits the visa to the first party. And in case the third party fails to
-                                        arrive within that period, the first party complies to return the amount paid by
-                                        the second party within 3 days.
-                                        <br/>
-                                        3- The first party complies to receive the third party once he/she arrives in
-                                        the country, and hand him/her to the second party within 24 hours of his/her
-                                        arrival. <br/>
-                                        Failing to do so, the first party must inform the Domestic Workers
-                                        Recruitment Department and the third party will be taken into the Public
-                                        Authority of Manpower housing center.
-                                        <br/>
-                                        4- The first party complies to return the third party back to his/her country
-                                        and give the second party a refund within 6 months (warranty period) of
-                                        receiving the domestic worker to work for the second party. This is subject to
-                                        all cases mentioned in article 17 of law 68 of the year 2015 which are mentioned
-                                        below:
-                                        <br/>
-                                        • An existing obstacle that prevents the domestic worker from working, and the
-                                        Second party has nothing to do with it.
-                                        <br/>
-                                        • Domestic worker has a communicable/infectious disease or physical, mental or
-                                        health disability that prevents him/her from working.
-                                        <br/>
-                                        • An issued legal impediment imposed in regards to public interest which might
-                                        prevent the employer from issuing a visa for the domestic worker.
-                                        <br/>
-                                        • Deportation of the domestic worker in regards to public interest.
-                                        • False information provided by the office/company about the domestic worker.
-                                        • If the domestic worker refuses to work or leaves to an unknown destination.
-                                        <br/>
-                                        In case the office/company refuses to handle the expenses of returning the
-                                        domestic worker back to his/her home country, and/or refuses to refund the
-                                        employer, the Domestic Workers Recruitment Department will handle the situation
-                                        based on the guarantee letter mentioned in article 2 of the law 68 of the year
-                                        2015 concerning domestic workers.
-                                        <br/>
-                                        5- Conveying the domestic worker to the Domestic Workers Recruitment Department
-                                        if he/she returns to the office/company unless there was an exception.
-                                        <br/>
-                                        6- The first party complies to transfer the third party’s deceased body to
-                                        his/her country in case the cause of death is related to illness that is dated
-                                        prior to the date of entry to the country, and a period of employment that did
-                                        not exceed 6 months from handing the domestic worker to the employer.
-                                        <br/>
-                                        <u><b>Fifth: The second party (Employer) is committed to the following:</b></u>
-                                        <br/>
-                                        1- Providing an appropriate housing for the third party equipped with all
-                                        necessities and decent means of living.
-                                        <br/>
-                                        2- Providing suitable food and clothes for the third party (Domestic Worker) in
-                                        a way that ensures him/her adequate life, and is obliged to provide him/her with
-                                        medical treatment and nursing by registering him/her in the health system
-                                        applicable in the State of Kuwait pursuant to Law No. (1) of the year 1999.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="text-left">
-                                    <p>3- Salary must be paid at the end of each Gregorian month starting from the first
-                                        day of work and should not be less than the designated amount by ministerial
-                                        decree, signed by the third party (Domestic Worker) on the contract, and the
-                                        money transfer receipt is considered proof of receiving the salary.
-                                        <br/>
-                                        4- Compensating the third party in case of injury during work or because of it
-                                        according to the provisions of Kuwait Civil Law.
-                                        <br/>
-                                        5- Issuing a valid residency for the third party (Domestic Worker) for the
-                                        duration of the contract in accordance with Amiri decree number 17 of the year
-                                        1959 concerning foreigners’ residency and the decrees complied with it.
-                                        <br/>
-                                        6- Handling all expenses to bring the third party (Domestic Worker) and should
-                                        not Leave any of these expenses on the third party.
-                                        <br/>
-                                        7- Paying the expenses of transferring the third party (Domestic Worker)
-                                        deceased body to his/her country as well as sending the salary of the last month
-                                        to the third party’s beneficiaries.
-                                        <br/>
-                                        8- It is not permissible for the second party (Employer) to assign a domestic
-                                        worker to work outside the State of Kuwait. If this occurs without the agreement
-                                        of the worker, the worker will be returned to his/her country at the expense of
-                                        the second party (Employer).
-                                        <br/>
-                                        9- The third party (Domestic Worker) is entitled to own a phone and use it
-                                        outside the working hours, provided that he/she keeps the secrets and privacy of
-                                        the household, and use such phone in a manner consistent with public morals.
-                                        <br/>
-                                        <u><b>Sixth: The third party (Domestic Worker) is obligated to the
-                                            following:</b></u>
-                                        <br/>
-                                        1- Do the work he/she is supposed to do by following and complying to all
-                                        instructions of the second party and his/her family members under the condition
-                                        that these instructions do not threaten the third party’s life or offend his/her
-                                        dignity.
-                                        <br/>
-                                        The Third Party must also respect the customs and traditions of the country.
-                                        <br/>
-                                        2- Preserving the secrets, belongings and money of the second party and his/her
-                                        family members.
-                                        <br/>
-                                        3- Refusal to work for others whether with or without commission.
-                                        <br/>
-                                        <u><b>Seventh: General provisions:</b></u>
-                                        <br/>
-                                        1- The third party (Domestic Worker) works for the second party (Employer) under
-                                        the job title of DOMECTIC WORKER with a monthly salary of
-                                        <u><b><span t-field="o.hm_salary"/></b></u> KD.
-                                        <br/>
-                                        2- This contract is effective from the first day of commencing work at the
-                                        second party’s household and is valid
-                                        <u><b><span t-field="o.contract_valid_years"/></b></u> years as of
-                                        <u><b><span t-field="o.contract_end_date"/></b></u>
-                                        , and is renewable
-                                        for longer periods unless one of the parties (second/third) expresses the desire
-                                        not to renew at least two months before the contract expiry.
-                                        <br/>
-                                        3- Third party working hours must not exceed 12 hours daily, whereas continuous
-                                        working hours must not exceed 5 hours daily followed by at least 1 hour resting
-                                        time which is not included in the overall working hours. The third party also
-                                        has the right to sleep for a continuous 8 hours minimum at night.
-                                        <br/>
-                                        4- Not depriving the third party from the right of having a fully paid weekly
-                                        rest.
-                                        <br/>
-                                        5- Not depriving the third party from the right of having a fully paid annual
-                                        leave.
-                                        <br/>
-                                        6- An end-of-service bonus payment equivalent to one-month salary for every year
-                                        served by the third party at the end of his/her contract.
-                                        <br/>
-                                        7- The second party (Employer) is not allowed to keep in his/her possession any
-                                        of the third party’s (Domestic Worker) personal identity document such as
-                                        passport.
-                                        <br/>
-                                        8- Transferring the residency of the third party (Domestic Worker) is prohibited
-                                        during first party (Office/Company) warranty period.
-                                        <br/>
-                                        9- The second party (Employer) shall bear the cost of economy class ticket for
-                                        the third party (Domestic Worker) return to back to his/her country at the end
-                                        of the contract or any other renewed periods.
-                                        <br/>
-                                        10- In case of conflict about any of this contract articles, the case will be
-                                        referred to the Public Authority of Manpower for the settlement of the conflict.
-                                        Failed settlements will be referred to designated court.
-                                        <br/>
-                                        11- Anything unstated in this contract must be referred to the articles under
-                                        law no. 68 of 2015 in respect to domestic workers rules, and in case of lack of
-                                        law acts that address it, the Kuwaiti laws are applicable.
-                                        <br/>
-                                        12- This contract has been made in both Arabic and English languages and all
-                                        parties should have full knowledge of the contents of this contract, the Arabic
-                                        text shall prevail and be referred when necessary.
-                                        <br/>
-                                        13- This contract is drawn in original and three copies. The original shall be
-                                        sent to the Public Authority of Manpower, after the arrival of the third party
-                                        to the country and signing the contract.
-                                        <br/>
-                                        The first and second copies are for the
-                                        first party, and the third one shall be sent to the second party.
-                                        <br/>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row"
-                             style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">
-                            <div class="col-4">
-                                <div class="text-left">
-                                    <p>
-                                        <b><u>First Party (Office/Company) :</u></b>
-                                        <br/>
-                                        <b>Name :</b> <span t-field="o.company_en_name"/>
-                                        <br/>
-                                        <b>NI.D. :</b><span t-field="o.company_reg_id"/>
-                                        <br/>
-                                        <b>Signature :</b>
-                                    </p>
-
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="text-left">
-                                    <p>
-                                        <b><u>Second Party (Sponsor) :</u></b>
-                                        <br/>
-                                        <b>Name :</b> <span t-field="o.customer_name"/>
-                                        <br/>
-                                        <b>Civil ID :</b><span t-field="o.customer_civil_id"/>
-                                        <br/>
-                                        <b>Signature :</b>
-                                    </p>
-
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="text-left">
-                                    <p>
-                                        <b><u>Third Party ( Domestic Worker) :</u></b>
-                                        <br/>
-                                        <b>Name :</b><span t-field="o.hm_name"/>
-                                        <br/>
-                                        <b>Passport ID :</b><span t-field="o.hm_passport_number"/>
-                                        <br/>
-                                        <b>Signature :</b>
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div style="page-break-before: always"></div>
@@ -508,171 +851,12 @@
                         </div>
                         <div class="row" style="font-family:Simplified Arabic;font-size: 10px;text-align:center;">
                             <div class="col-6">
-                                <div class="text-right">
-                                    <p>حيث أن الطرف الثااني يرغب في استقدام ( عامل / عاملة ) منزلي للعمل لديه والطرف
-                                        الاول رخص له من قبل الهيئة العامة للقوى العاملة بممارسة هذا النشاط والطرف الثالث
-                                        ( العامل المنزلي ) يرغب في العمل لدى الطرف الثاني فقد تم الاتفاق على الآتي- :
-                                        <br/>
-                                        <u><b>أولا:</b></u> يعتبر التمهيد السابق جزء لا يتجزأ من أحكام هذا العقد ومكملاً له .
-                                        <br/>
-                                        <u><b>ثانيا:</b></u> يقر كل من الطرفين الأول و الثاني باطلاعهما على المرسوم الأميري رقم
-                                        17
-                                        لسنة 1959 بقانون إقامة الأجانب وتعديلاته والقرارات المنفذة ، وكذلك القانون رقم
-                                        68 لسنة 2015 في شان العمالة المنزلية والقرارات المنفذة له والتزامهما بكافة
-                                        الاحكام الواردة بها.
-                                        <br/>
-                                        <u><b>ثالثاً:</b></u> يلتزم الطرف الأول باستقدام الطرف الثاني ( العامل المنزلي ) للعمل
-                                        لدي
-                                        الطرف الثاني بمهنة وذلك مقابل مبلغ <b><u><span t-field="o.hm_deal_amount"/></u></b> د.ك
-                                        وقدره دينار كويتي لا غير ويمثل المبلغ
-                                        قيمة تكاليف استقدام الطرف الثالث (العامل المنزلي) وعموله الطرف الأول على أن يسدد
-                                        الطرف الثاني المبلغ على النحو التالي :-
-                                        <br/>
-                                        أ- مبلغ <u><b><span t-field="o.hm_deal_amount"/></b></u> د.ك عند استلام الطرف الأول
-                                        التأشيرة من الطرف الثاني .
-                                        <br/>
-                                        ب- باقي المبلغ وقدر صفر د.ك يسدد عند وصول الطرف الثالث ( العامل المنزلي )
-                                        وتسليمه
-                                        للطرف الثاني للعمل لديه .
-                                        <br/>
-                                        <u><b>رابعا:</b></u> يلتزم الطرف الاول بما يلي-
-                                        <br/>
-                                        1-تسليم الطرف الثاني صورة شخصية ملونة حديثة مقاس 4*6 واضحة المعالم وصورة اخري
-                                        ملونة حديثة كاملة المعالم( بوضع الوقوف ) مقاس 9*12 للعامل المنزلي المراد
-                                        استقدامه إضافة إلى صورة لجواز السفر وبيانات الطرف الثالث ( العامل المنزلي )
-                                        مبينا به كحد أدني ( الاسم – الجنسية – المهنة – الخبرة – اللغات – الديانة – تاريخ
-                                        الميلاد – الوزن – الدرجة العلمية – الطول – الحالة الاجتماعية ).
-                                        <br/>
-                                        2-استقدام الطرف الثالث للطرف الثاني في مدة أقصاها( ) يوم
-                                        <br/>
-                                        3-استقبال واستلام الطرف الثالث( العامل المنزلي ) فور وصوله إلى البلاد مباشرة
-                                        وتسليمه للطرف الثاني خلال ( 24 ) ساعة وإذا تعذر ذلك عليه أن يخطر إدارة تنظيم
-                                        استقدام العمالة المنزلية به على أن يتم تسليم الطرف الثالث ( العامل المنزلي ) إلى
-                                        مركز الإيواء التابع للهيئة العامة للقوى العاملة المخصص لذلك .
-                                        <br/>
-                                        4-إعادة الطرف الثالث ( العامل المنزلي) إلى بلده ورد المبلغ الذي تقاضاه من الطرف
-                                        الثاني خلال مدة ستة أشهر من تاريخ استلام العامل المنزلي للعمل لدى الطرف الثاني
-                                        وذلك في جميع الحالات المنصوص عليها بالمادة( 17 ) من قانون العمالة المنزلية رقم
-                                        68 لسنة 2015 وهى كما يلى- :
-                                        <br/>
-                                        - وجود عائق يحول دون قيام العامل المنزلي بعمله لا يد لصاحب العمل فيه .
-                                        - إصابة العامل المنزلي بأحد الامراض السارية أو أي اعاقة بدنية أو صحية أو نفسية
-                                        تمنعه من الاستمرار بالعمل .
-                                        - قيام مانع قانوني تفرضه المصلحة العامة يحول دون استصدار صاحب العمل إقامته
-                                        للعامل المنزلي .
-                                        - إبعاد العامل المنزلي إداريا لمقتضيا المصلحة العامة .
-                                        - قيام المكتب او الشركة بتزويد صاحب العمل ببيانات أو معلومات غير صحيحة عن العامل
-                                        المنزلي .
-                                        - رفض العامل المنزلي الاستمرار في العمل أو تركه الى جهة غير معلومة .
-                                        وفى حالة امتناع الطرف الاول عن اعادة الطرف الثالث إلي بلاده ورد المبلغ الذي
-                                        تقاضاه من الطرف الثاني في الحالات السابقة تتولى إدارة تنظيم استقدام العمالة
-                                        المنزلية القيام بذلك خصما من خطاب الضمان المالي المنصوص عليه بالمادة ( 2 ) من
-                                        قانون رقم 68 لسنة 2015 في شأن العمالة المنزلية.
-                                        <br/>
-                                        5-احالة الطرف الثالث ( العامل المنزلي ) فوراً إلى إدارة تنظيم استقدام العمالة
-                                        المنزلية في حالة هروبه وعودته للمكتب أو الشركة .
-                                        <br/>
-                                        6-نقل جثمان الطرف الثالث (العامل المنزلي) الى بلده في حالة وفاته إذا كانت الوفاة
-                                        ترجع لأسباب مرضية سابقة على تاريخ دخول البلاد وخلال ستة أشهر من تاريخ استلام
-                                        الطرف الثالث للعمل لدى الطرف الثاني.
-                                        <br/>
-                                        <u><b>خامسا:</b></u> يلتزم الطرف الثاني ( صاحب العمل ) بما يلي: --
-                                        <br/>
-                                        1-توفير سكن مناسب ومجهز بوسائل المعيشة اللائقة للطرف الثالث (العامل المنزلي) .
-                                        <br/>
-                                        2-اطعام الطرف الثالث (العامل المنزلي) وكسوته بما يكفل له حياة مناسبة ويلتزم
-                                        بعلاجه وتمريضه وتسجيله في الضمان الصحي المنصوص عليه في القانون رقم (1) لسنة
-                                        1999.
-                                        <br/>
-                                        3-أداء أجر الطرف الثالث (العامل المنزلي) منذ اليوم الاول للعمل لديه وذلك في
-                                        نهاية كل شهر ميلادي على أن لا يقل عن الحد الأدنى المنصوص عليه بالقرار الوزاري
-                                        بموجب ايصال استلام موقع من الطرف الثالث ويعد ايصال التحويل لراتبه صورة من صور
-                                        الاثبات باستلام الاجر .
-                                        <br/>
-                                        4- تعوين الطرف الثالث ( العامل المنزلي )عن اصابات العمل وفقا لأحكام القانوني
-                                        المدني الكويتي متى ما وقعت أثناء تأدية عمله أو بسببه .
-                                        <br/>
-                                        5-استصدار إقامة للطرف الثالث (العامل المنزلي) لمدة هذا العقد وفق لأحكام المرسوم
-                                        الأميري رقم 17 لسنة 1959 بشأن قانون إقامة الاجانب و القرارات المنفذة له.
-                                        <br/>
-                                        6-تحمل مصاريف استقدام الطرف الثالث (العامل المنزلي) ولا يجوز له الرجوع بها على
-                                        الطرف الثالث.
-                                        <br/>
-                                        7-تحمل تكاليف إعادة جثمان الطرف الثالث (العامل المنزلي) إلى بلد في حالة وفاته مع
-                                        صرف أجر الشهر الذي توفى فيه للمستحقين عنه .
+                               <t t-call="housemaidsystem.contract_print_right"/>
 
-                                    </p>
-                                </div>
+
                             </div>
                             <div class="col-6">
-                                <div class="text-right">
-                                    <p>
-                                        8-لا يحق لصاحب العمل تكليف العامل خارج دولة الكويت وفي حاال ثبوت ذلك دون موافقته
-                                        يتم اعادته لبلده على نفقة
-                                        صاحب العمل .
-                                        <br/>
-                                        9-السماح للطرف الثالث (العامل المنزلي) بامتلاك الهاتف واستخدامه ، وذلك خارج
-                                        ساعات العمل مع مراعاة السرية و الخصوصية في مكان العمل، وعلى نحو لا يتنافى مع
-                                        الآداب العامة .
-                                        <br/>
-                                        <u><b>سادسا:</b></u> يلتزم الطرف الثالث (العامل المنزلي) بالاتي:-
-                                        <br/>
-                                        1-أداء العمل المتفق عليه واتباع تعليمات الطرف الثاني وأفراد أسرته و تنفيذها على
-                                        الوجه الاكمل و احترام قوانين و عادات و تقاليد البلد ، شريطة الا يعرض تنفيذ هذه
-                                        التعليمات سلامة الطرف الثالث (العامل المنزلي) إلى الخطر أو يسيء إلى كرامته .
-                                        <br/>
-                                        2-المحافظة على أسرار وأموال وممتلكات الطرف الثاني وأفراد أسرته.
-                                        <br/>
-                                        3-الامتناع عن أداء عمل لدى الغير بأجر أو بدون أجر .
-                                        <br/>
-                                        <u><b>سابعا:</b></u> أحكام عامة:-
-                                        <br/>
-                                        1-يعمل الطرف الثالث لدى الطرف الثاني بمهنه نظير أجر شهري مقدار <u><b><span
-                                            t-field="o.hm_salary"/></b></u> د.ك .
-                                        <br/>
-                                        2-مدة هذا العقد <b><u><span
-                                            t-field="o.contract_valid_years"/></u></b> يبدأ اعتبارا من تاريخ الاستقدام قابلة
-                                        للتجديد لمدد أخرى ما لم
-                                        يبد أحد الطرفين ( الثاني أو الثالث) رغبته في عدم التجديد قبل نهاية العقد بشهرين
-                                        على الاقل .
-                                        <br/>
-                                        3-لا يجوز تشغيل الطرف الثالث (العامل المنزلي) أكثر من 12 ساعة يوميا على الا تزيد
-                                        ساعات العمل المتصلة عن خمس
-                                        ساعا يوميا يعقبها فترة راحة لا تقل عن ساعة ويحق للطرف الثالث استراحة ليلية لمدة
-                                        8 ساعات متواصلة على الاقل.
-                                        <br/>
-                                        4-أحقية الطرف الثالث (العامل المنزلي) في الحصول على راحة أسبوعية مدفوعة الاجر .
-                                        <br/>
-                                        5-أحقية الطرف الثالث (العامل المنزلي) في الحصول على إجازة سنوية مدفوعة الاجر .
-                                        <br/>
-                                        6-يستحق الطرف الثالث (العامل المنزلي) مكافأة نهاية خدمة تعادل أجر شهر عن كل سنة
-                                        عند انتهاء مدة العقد .
-                                        <br/>
-                                        7-عدم احتفاظ صاحب العمل بأي مستندا أو وثائق إثبات شخصية للعامل المنزلي لديه ،
-                                        مثل جواز السفر .
-                                        <br/>
-                                        8-يمنع تحويل اقامة الطرف الثالث (العامل المنزلي) خلال مدة ضمان الطرف الاول.
-                                        <br/>
-                                        9-يلتزم الطرف الثاني بدفع قيمة تذكرة سفر للطرف الثالث (العامل المنزلي) عند سفره
-                                        بعد انتهاء مدة العقد أو أي مدة مجددة و ذلك بالدرجة السياحية إلى بلد الاصلي .
-                                        <br/>
-                                        10-أى نزاع قد ينشا بخصوص أي بند من بنود هذا العقد ينعقد الاختصاص فيها لإدارة
-                                        العمالة المنزلية لتسوية النزاع وفي حالة تعذر التسوية يحال إلى المحكمة المختصة.
-                                        <br/>
-                                        11-كل ما لم يرد ذكر بهذا العقد يخضع لأحكام القانون رقم 68 لسااانة 2015 بشأن
-                                        العمالة المنزلية و القرارات المنفذة له وإذا لم يوجد به نص فتطبق أحكام القوانين
-                                        الكويتية.
-                                        <br/>
-                                        12-حرر هذا العقد باللغتين العربية والانجليزية وعلى جميع الاطراف العلم بمحتويات
-                                        هذا العقد ويعتمد النص باللغة العربية ويرجع له عند اللزوم .
-                                        <br/>
-                                        13-حرر هذا العقد من اصل وأربعة نسخ ،اصل العقد يرسل لإدارة العمالة المنزلية بعد
-                                        وصول الطرف الثالث ( العامل المنزلي) للبلاد وتوقيعه على العقد والنسخة الاولي
-                                        والثانية تسلم للطرف الثاني والنسخة الثالثة للطرف الاول والنسخة الرابعة ترسل
-                                        للطرف الثالث( العامل المنزلي ) .
-                                    </p>
-
-                                </div>
+                                  <t t-call="housemaidsystem.contract_print_left"/>
                             </div>
                         </div>
                         <br/>
@@ -726,6 +910,37 @@
             </t>
         </t>
     </template>
+
+
+            <template id="contract_print_right">
+                                       <div class="text-right">
+                                    <p>
+
+
+
+
+
+
+                                    </p>
+                                </div>
+
+         </template>
+            <template id="contract_print_left">
+                                          <div class="text-right">
+                                    <p>
+
+
+
+
+
+                                        
+                                    </p>
+
+                                </div>
+
+       </template>
+
+    </data>
 
 
 </odoo>

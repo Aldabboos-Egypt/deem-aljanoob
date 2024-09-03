@@ -447,3 +447,12 @@ class ResConfigSettings(models.TransientModel):
 
     # def action_setup_housemaid(self):
     #     post_instllations.main_setup(self)
+
+
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    first_content= fields.Html(string='First Content', )
+    second_content= fields.Html(string='Second Content', )
+

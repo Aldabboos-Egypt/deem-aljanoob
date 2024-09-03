@@ -40,6 +40,17 @@ class applications(models.Model):
     _rec_name = 'external_office_id'
     _inherit = ['mail.thread', 'mail.activity.mixin', 'utm.mixin', 'format.address.mixin']
 
+
+
+    transfer_request_number = fields.Char(string='Transfer Request Number')
+    transfer_request_date = fields.Date(string='Transfer Request Date')
+
+    security_approval_number = fields.Char(string='Security Approval Number')
+    security_approval_date = fields.Date(string='Security Approval Date')
+
+    work_id_request_number = fields.Char(string='Work ID Request Number')
+    work_id_request_date = fields.Date(string='Work ID Request Date')
+
     # --------------Fields List---------------------------
     # fields.Date.today()
     applicant_date = fields.Date(string="Applicant Date", required=True, default=fields.Date.context_today)
