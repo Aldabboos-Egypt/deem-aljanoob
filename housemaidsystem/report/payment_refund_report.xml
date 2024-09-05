@@ -4,7 +4,63 @@
         <t t-call="web.external_layout">
 
             <div class="page">
+<style>
+    /* General Table Styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+    }
 
+    /* Header Styles */
+    .thead {
+        background-color: #28a745; /* Success green */
+        color: white;
+        font-weight: bold;
+    }
+
+    .thead th {
+        padding: 10px;
+        border: 2px solid black;
+    }
+
+    /* Body Row Styles */
+    .tbody tr {
+        background-color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Light gray for alternating rows */
+    }
+
+    .tbody tr:hover {
+        background-color: #d4edda; /* Light green on hover */
+        transform: scale(1.02);
+    }
+
+    .tbody td {
+        padding: 8px;
+        border: 2px solid black;
+    }
+
+    /* Footer Styles */
+    .tfoot {
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+    }
+
+    .tfoot td {
+        padding: 10px;
+        border: 2px solid black;
+        text-align: center;
+    }
+</style>
                 <t t-if="o.payment_type == 'inbound'">
                 <h3><strong>Payment Received: <span t-field="o.name"/></strong></h3>
                 </t>

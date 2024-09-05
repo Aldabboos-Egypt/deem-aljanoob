@@ -6,43 +6,102 @@
             <t t-call="web.external_layout">
                 <div class="font">
                     <div class="page">
+                        <style>
+    /* General Table Styles */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Header Styles */
+    .thead {
+        background-color: #28a745; /* Success green */
+        color: white;
+        font-weight: bold;
+    }
+
+    .thead th {
+        padding: 10px;
+        border: 2px solid black;
+    }
+
+    /* Body Row Styles */
+    .tbody tr {
+        background-color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Light gray for alternating rows */
+    }
+
+    .tbody tr:hover {
+        background-color: #d4edda; /* Light green on hover */
+        transform: scale(1.02);
+    }
+
+    .tbody td {
+        padding: 8px;
+        border: 2px solid black;
+    }
+
+    /* Footer Styles */
+    .tfoot {
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+    }
+
+    .tfoot td {
+        padding: 10px;
+        border: 2px solid black;
+        text-align: center;
+    }
+</style>
                         <div class="text-center">
                             <h3>
                                 <strong><u>Activated Applications List Report</u></strong>
                             </h3>
                         </div>
-                        <table class="table table-sm table-hover table-bordered">
-                            <thead>
-                                <th>SN</th>
-                                <th>Activation Date</th>
-                                <th>Code</th>
-                                <th>Name</th>
-                                <th>Activate Reason</th>
-                            </thead>
-                            <tbody>
-                                <t t-set="line_num" t-value="1"/>
-                                <t t-foreach="docs" t-as="doc">
-                                    <tr>
-                                        <td class="small">
-                                            <t t-esc="line_num"/>
-                                        </td>
-                                        <td class="small">
-                                            <t t-raw="doc.activate_date"/>
-                                        </td>
-                                        <td class="small">
-                                            <t t-esc="doc.application_id.external_office_id"/>
-                                        </td>
-                                        <td class="small">
-                                            <t t-esc="doc.application_id.full_name"/>
-                                        </td>
-                                        <td class="small">
-                                            <t t-esc="doc.activate_reason"/>
-                                        </td>
-                                    </tr>
-                                    <t t-set="line_num" t-value="line_num+1"/>
-                                </t>
-                            </tbody>
-                        </table>
+<table class="custom-table">
+    <thead>
+        <tr>
+            <th style="width: 10%;">SN</th>
+            <th style="width: 20%;">Activation Date</th>
+            <th style="width: 15%;">Code</th>
+            <th style="width: 30%;">Name</th>
+            <th style="width: 25%;">Activate Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        <t t-set="line_num" t-value="1"/>
+        <t t-foreach="docs" t-as="doc">
+            <tr>
+                <td>
+                    <t t-esc="line_num"/>
+                </td>
+                <td>
+                    <t t-raw="doc.activate_date"/>
+                </td>
+                <td>
+                    <t t-esc="doc.application_id.external_office_id"/>
+                </td>
+                <td>
+                    <t t-esc="doc.application_id.full_name"/>
+                </td>
+                <td>
+                    <t t-esc="doc.activate_reason"/>
+                </td>
+            </tr>
+            <t t-set="line_num" t-value="line_num+1"/>
+        </t>
+    </tbody>
+</table>
                     </div>
                 </div>
             </t>

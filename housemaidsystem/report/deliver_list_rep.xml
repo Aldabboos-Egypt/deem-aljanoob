@@ -6,6 +6,63 @@
             <t t-call="web.external_layout">
                 <div class="font">
                     <div class="page">
+     <style>
+    /* General Table Styles */
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: #f9f9f9;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Header Styles */
+    .custom-table thead {
+        background-color: #28a745; /* Success green */
+        color: white;
+        font-weight: bold;
+    }
+
+    .custom-table thead th {
+        padding: 10px;
+        border: 2px solid black;
+    }
+
+    /* Body Row Styles */
+    .custom-table tbody tr {
+        background-color: #fff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .custom-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2; /* Light gray for alternating rows */
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #d4edda; /* Light green on hover */
+        transform: scale(1.02);
+    }
+
+    .custom-table tbody td {
+        padding: 8px;
+        border: 2px solid black;
+    }
+
+    /* Footer Styles */
+    .custom-table tfoot {
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+    }
+
+    .custom-table tfoot td {
+        padding: 10px;
+        border: 2px solid black;
+        text-align: center;
+    }
+</style>
                         <br></br>
                         <div class="text-center">
                             <h3>
@@ -22,134 +79,80 @@
                             </br>
                         </div>
                         <br></br>
-                        <table class="table table-sm table-hover table-bordered">
-                            <thead class="thead-light small">
+<table class="custom-table">
+    <thead>
+        <t t-if="accumulated">
+            <tr>
+                <th colspan="11"></th>
+            </tr>
+        </t>
+        <t t-else="">
+            <tr>
+                <th style="width: 5%;">SN</th>
+                <th style="width: 10%;">Deliver Date</th>
+                <th style="width: 10%;">HM Ref</th>
+                <th style="width: 15%;">HM Name</th>
+                <th style="width: 10%;">Passport</th>
+                <th style="width: 15%;">Sponsor Name(En)</th>
+                <th style="width: 15%;">Sponsor Name(Ar)</th>
+                <th style="width: 10%;">Deal</th>
+                <th style="width: 10%;">Down Paid</th>
+                <th style="width: 10%;">Paid</th>
+                <th style="width: 10%;">Discount</th>
+                <th style="width: 10%;">Remain</th>
+            </tr>
+        </t>
+    </thead>
+    <tbody>
+        <t t-set="line_num" t-value="1"/>
+        <t t-set="tot_deal_amount" t-value="0.000"/>
+        <t t-set="tot_down_payment_amount" t-value="0.000"/>
+        <t t-set="tot_paid_amount" t-value="0.000"/>
+        <t t-set="tot_remain_amount" t-value="0.000"/>
+        <t t-set="tot_discount_amount" t-value="0.000"/>
+        <t t-foreach="docs" t-as="doc">
+            <t t-set="down_payment_amount" t-value="0"/>
+            <t t-set="down_payment_amount"
+               t-value="doc.invoice_id.amount_total - (doc.paid_amount + doc.discount_amount)"/>
 
-                                <t t-if="accumulated">
-                                    <th colspan="6"></th>
-                                </t>
-                                <t t-else="">
-                                    <th>SN</th>
-                                    <th>Deliver Date</th>
-                                    <th>HM Ref</th>
-                                    <th>HM Name</th>
-                                    <th>Passport</th>
-                                    <th>Sponsor Name(En)</th>
-                                    <th>Sponsor Name(Ar)</th>
-                                </t>
-                                <th>Deal</th>
-                                <th>Down Paid</th>
-                                <th>Paid</th>
-                                <th>Discount</th>
-                                <th>Remain</th>
-                            </thead>
-                            <tbody class="thead-light small">
-                                <t t-set="line_num" t-value="1"/>
-                                <t t-set="tot_deal_amount" t-value="0.000"/>
-                                <t t-set="tot_down_payment_amount" t-value="0.000"/>
-                                <t t-set="tot_paid_amount" t-value="0.000"/>
-                                <t t-set="tot_remain_amount" t-value="0.000"/>
-                                <t t-set="tot_discount_amount" t-value="0.000"/>
-                                <t t-foreach="docs" t-as="doc">
+            <t t-if="accumulated == False">
+                <tr>
+                    <td><t t-esc="line_num"/></td>
+                    <td><t t-raw="doc.deliver_date"/></td>
+                    <td><t t-esc="doc.application_id.external_office_id"/></td>
+                    <td><t t-esc="doc.application_id.full_name"/></td>
+                    <td><t t-esc="doc.application_id.passport_id"/></td>
+                    <td><t t-esc="doc.customer_id.name"/></td>
+                    <td><t t-esc="doc.customer_id.name_ar"/></td>
+                    <td><span t-esc="doc.invoice_total" t-options='{"widget": "float", "precision": 3}'/></td>
+                    <td><span t-esc="down_payment_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+                    <td><span t-esc="doc.paid_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+                    <td><span t-esc="doc.discount_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+                    <td><span t-esc="doc.invoice_id.amount_residual_signed" t-options='{"widget": "float", "precision": 3}'/></td>
+                </tr>
+            </t>
 
-                                    <t t-set="down_payment_amount" t-value="0"/>
-                                    <t t-set="down_payment_amount"
-                                       t-value="doc.invoice_id.amount_total-(doc.paid_amount + doc.discount_amount)"/>
-
-
-                                    <t t-if="accumulated == False">
-                                        <tr>
-                                            <td>
-                                                <t t-esc="line_num"/>
-                                            </td>
-                                            <td>
-                                                <t t-raw="doc.deliver_date"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="doc.application_id.external_office_id"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="doc.application_id.full_name"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="doc.application_id.passport_id"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="doc.customer_id.name"/>
-                                            </td>
-                                            <td>
-                                                <t t-esc="doc.customer_id.name_ar"/>
-                                            </td>
-                                            <td>
-                                                <span t-esc="doc.invoice_total"
-                                                      t-options='{"widget": "float", "precision": 3}'/>
-                                            </td>
-                                            <td>
-                                                <span t-esc="down_payment_amount"
-                                                      t-options='{"widget": "float", "precision": 3}'/>
-                                            </td>
-                                            <td>
-                                                <span t-esc="doc.paid_amount"
-                                                      t-options='{"widget": "float", "precision": 3}'/>
-                                            </td>
-
-                                            <td>
-                                                <span t-esc="doc.discount_amount"
-                                                      t-options='{"widget": "float", "precision": 3}'/>
-                                            </td>
-                                            <td>
-                                                <span t-esc="doc.invoice_id.amount_residual_signed"
-                                                      t-options='{"widget": "float", "precision": 3}'/>
-                                            </td>
-                                        </tr>
-                                    </t>
-
-
-                                    <t t-set="line_num" t-value="line_num+1"/>
-                                    <t t-set="tot_deal_amount" t-value="tot_deal_amount+doc.invoice_total"/>
-                                    <t t-set="tot_down_payment_amount"
-                                       t-value="tot_down_payment_amount+down_payment_amount"/>
-                                    <t t-set="tot_paid_amount"
-                                       t-value="tot_paid_amount+doc.paid_amount"/>
-                                    <t t-set="tot_discount_amount"
-                                       t-value="tot_discount_amount+doc.discount_amount"/>
-                                    <t t-set="tot_remain_amount"
-                                       t-value="tot_remain_amount+doc.invoice_id.amount_residual_signed"/>
-
-                                </t>
-                            </tbody>
-                            <tfoot class="thead-light small">
-                                <tr>
-                                    <td colspan="6">
-                                        <span>Total of
-                                            <span t-esc="line_num - 1"/>
-                                            Records
-                                        </span>
-
-                                    </td>
-                                    <td align="right">
-                                        <span t-esc="tot_deal_amount"
-                                              t-options='{"widget": "float", "precision": 3}'/>
-                                    </td>
-                                    <td align="right">
-                                        <span t-esc="tot_down_payment_amount"
-                                              t-options='{"widget": "float", "precision": 3}'/>
-                                    </td>
-                                    <td align="right">
-                                        <span t-esc="tot_paid_amount"
-                                              t-options='{"widget": "float", "precision": 3}'/>
-                                    </td>
-                                    <td align="right">
-                                        <span t-esc="tot_discount_amount"
-                                              t-options='{"widget": "float", "precision": 3}'/>
-                                    </td>
-                                    <td align="right">
-                                        <span t-esc="tot_remain_amount"
-                                              t-options='{"widget": "float", "precision": 3}'/>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
+            <t t-set="line_num" t-value="line_num + 1"/>
+            <t t-set="tot_deal_amount" t-value="tot_deal_amount + doc.invoice_total"/>
+            <t t-set="tot_down_payment_amount" t-value="tot_down_payment_amount + down_payment_amount"/>
+            <t t-set="tot_paid_amount" t-value="tot_paid_amount + doc.paid_amount"/>
+            <t t-set="tot_discount_amount" t-value="tot_discount_amount + doc.discount_amount"/>
+            <t t-set="tot_remain_amount" t-value="tot_remain_amount + doc.invoice_id.amount_residual_signed"/>
+        </t>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="7">
+                <span>Total of <span t-esc="line_num - 1"/> Records</span>
+            </td>
+            <td align="right"><span t-esc="tot_deal_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+            <td align="right"><span t-esc="tot_down_payment_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+            <td align="right"><span t-esc="tot_paid_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+            <td align="right"><span t-esc="tot_discount_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+            <td align="right"><span t-esc="tot_remain_amount" t-options='{"widget": "float", "precision": 3}'/></td>
+        </tr>
+    </tfoot>
+</table>
                     </div>
                 </div>
             </t>
