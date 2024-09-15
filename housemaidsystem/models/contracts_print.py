@@ -340,3 +340,68 @@ class ContractsPrint(models.Model):
         except Exception as e:
             logger.exception("unlink Method")
             raise ValidationError(e)
+
+
+from odoo import models, fields
+from lxml import etree
+import logging
+
+_logger = logging.getLogger(__name__)
+
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    contract_left_content = fields.Html(string='Contract Left Content')
+    contract_right_content = fields.Html(string='Contract Right Content')
+
+    def apply_contract_content(self):
+        print(self.contract_right_content)
+        print(self.contract_left_content)
+        def format_contract_content(content, align):
+            try:
+                # Ensure tags are well-formed, and close all self-closing tags
+                content = content.replace('<br>', '<br />')
+                content = content.replace('</p>', '<br />')
+                content = content.replace('<p>', '')
+
+                # Log content for debugging
+                _logger.info(f"Formatted {align} content: {content}")
+
+                # Wrapping content in safe XML structure
+                wrapped_content = f"<div class='text-{align}'><p>{content}</p></div>"
+
+                # Validate the content as XML
+                content_xml = etree.fromstring(wrapped_content)
+
+                # Return valid and pretty XML content
+                return etree.tostring(content_xml, pretty_print=True).decode("utf-8")
+            except etree.XMLSyntaxError as e:
+                _logger.error(f"XML Syntax Error in {align} content: {content}")
+                raise ValueError(f"Invalid XML content in contract: {e}")
+
+        # Generate contract contents
+        contract_left_content = f"""<?xml version="1.0"?>
+            <t t-name="housemaidsystem.housemaid_contract_template_left">
+                {format_contract_content(self.contract_left_content or "", 'left')}
+            </t>
+        """
+        contract_right_content = f"""<?xml version="1.0"?>
+            <t t-name="housemaidsystem.housemaid_contract_template_right">
+                {format_contract_content(self.contract_right_content or "", 'right')}
+            </t>
+        """
+
+        # Search for the contract templates
+        housemaid_contract_template_left = self.env['ir.ui.view'].search([('name', '=', 'housemaid_contract_template_left')], limit=1)
+        housemaid_contract_template_right = self.env['ir.ui.view'].search([('name', '=', 'housemaid_contract_template_right')], limit=1)
+
+
+
+
+        if housemaid_contract_template_left and housemaid_contract_template_right:
+            # Log changes for tracking
+            _logger.info("Updating contract template content.")
+            housemaid_contract_template_left.write({'arch_db': contract_left_content})
+            housemaid_contract_template_right.write({'arch_db': contract_right_content})
+        else:
+            raise ValueError("One or both contract templates not found.")
