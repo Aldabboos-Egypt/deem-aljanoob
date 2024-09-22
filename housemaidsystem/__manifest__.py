@@ -9,7 +9,7 @@
     'author': "Bassam Mannaa",
     'website': "https://housemaidsystem.bassammannaa.com/",
     'category': 'Business',
-    'version': '14.1.10',
+    'version': '14.2.2',
     'license': 'AGPL-3',
     'depends': ['base', 'account', 'crm', 'l10n_sa', 'mail'],
     'images': [

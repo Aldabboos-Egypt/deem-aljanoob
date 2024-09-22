@@ -351,31 +351,40 @@ _logger = logging.getLogger(__name__)
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    contract_left_content = fields.Html(string='Contract Left Content')
-    contract_right_content = fields.Html(string='Contract Right Content')
+    contract_left_content = fields.Html(string='First Contract  Content')
+    contract_right_content = fields.Html(string='Second Contract   Content')
 
     def apply_contract_content(self):
         print(self.contract_right_content)
         print(self.contract_left_content)
-        def format_contract_content(content, align):
-            try:
-                # Ensure tags are well-formed, and close all self-closing tags
-                content = content.replace('<br>', '<br />')
-                content = content.replace('</p>', '<br />')
-                content = content.replace('<p>', '')
 
-                # Log content for debugging
+        def format_contract_content( content, align):
+            try:
+                # Clean and ensure valid HTML structure
+                content = content.replace('<br>', '<br />')  # Self-closing <br> tags
+                content = content.replace('<p>', '<p style="text-align: right;">')  # Right-align paragraphs
+                content = content.replace('</p>', '</p><br />')  # Ensure paragraphs are properly closed
+
+                # Encode special characters
+                content = content.replace('&', '&amp;')
+                content = content.replace('<', '&lt;')
+                content = content.replace('>', '&gt;')
+                content = content.replace('"', '&quot;')
+                content = content.replace("'", '&#39;')
+
+                # Log the cleaned content for debugging
                 _logger.info(f"Formatted {align} content: {content}")
 
-                # Wrapping content in safe XML structure
-                wrapped_content = f"<div class='text-{align}'><p>{content}</p></div>"
+                # Ensure the final structure is wrapped in a div with the proper alignment and direction
+                wrapped_content = f"<div style='text-align: {align}; direction: rtl;'>{content}</div>"
 
-                # Validate the content as XML
-                content_xml = etree.fromstring(wrapped_content)
+                # Validate the HTML content as XML
+                content_xml = etree.fromstring(wrapped_content.encode('utf-8'))
 
-                # Return valid and pretty XML content
-                return etree.tostring(content_xml, pretty_print=True).decode("utf-8")
+                # Return valid, pretty-printed XML content
+                return etree.tostring(content_xml, pretty_print=True, encoding='utf-8').decode("utf-8")
             except etree.XMLSyntaxError as e:
+                # Log the error for further investigation
                 _logger.error(f"XML Syntax Error in {align} content: {content}")
                 raise ValueError(f"Invalid XML content in contract: {e}")
 

@@ -850,14 +850,19 @@
                             </div>
                         </div>
                         <div class="row" style="font-family:Simplified Arabic;font-size: 10px;text-align:center;">
-                            <div class="col-6">
-                               <t t-call="housemaidsystem.housemaid_contract_template_right"/>
+
+                          <t t-call="housemaidsystem.housemaid_contract_template_left"/>
+                           <t t-call="housemaidsystem.housemaid_contract_template_right"/>
 
 
-                            </div>
-                            <div class="col-6">
-                                  <t t-call="housemaidsystem.housemaid_contract_template_left"/>
-                            </div>
+<!--                            <div class="col-6">-->
+<!--                               <t t-call="housemaidsystem.housemaid_contract_template_right"/>-->
+
+
+<!--                            </div>-->
+<!--                            <div class="col-6">-->
+<!--                                  <t t-call="housemaidsystem.housemaid_contract_template_left"/>-->
+<!--                            </div>-->
                         </div>
                         <br/>
                         <div class="row" style="font-family:Simplified Arabic;font-size: 11px;text-align:center;">
